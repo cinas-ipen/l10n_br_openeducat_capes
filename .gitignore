@@ -1,0 +1,36 @@
+# ==========================================
+# .gitignore para Odoo / OpenEduCat (Brasil)
+# ==========================================
+
+# Arquivos compilados do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de log e debug
+*.log
+*.pot
+
+# Pastas de dados locais do Docker (NUNCA comitar)
+pg_data/
+odoo_data/
+filestore/
+sessions/
+
+# Ambientes Virtuais (caso use fora do Docker para linting)
+venv/
+.venv/
+env/
+.env
+
+# Arquivos de IDE e SO
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Ignora o repositório original do OpenEduCat caso acabe baixando na mesma raiz por engano
+openeducat_erp/
+
