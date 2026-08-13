@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_capes_thesis_committee_tree" model="ir.ui.view">
+        <field name="name">capes.thesis.committee.tree</field>
+        <field name="model">capes.thesis.committee</field>
+        <field name="arch" type="xml">
+            <tree string="Membros de Bancas Examinadoras">
+                <field name="thesis_id"/>
+                <field name="member_id"/>
+                <field name="member_role"/>
+                <field name="is_titular"/>
+                <field name="can_vote" widget="boolean_toggle"/>
+                <field name="is_internal"/>
+                <field name="ies_origin"/>
+                <field name="has_phd"/>
+                <field name="civil_relationship_flag" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_capes_thesis_committee_form" model="ir.ui.view">
+        <field name="name">capes.thesis.committee.form</field>
+        <field name="model">capes.thesis.committee</field>
+        <field name="arch" type="xml">
+            <form string="Membro da Comissão Examinadora">
+                <sheet>
+                    <group>
+                        <group string="Identificação do Examinador">
+                            <field name="thesis_id"/>
+                            <field name="member_id"/>
+                            <field name="member_role"/>
+                            <field name="is_titular"/>
+                            <field name="can_vote"/>
+                        </group>
+                        <group string="Origem e Qualificação">
+                            <field name="is_internal"/>
+                            <field name="ies_origin"/>
+                            <field name="has_phd"/>
+                            <field name="non_phd_approval_doc" invisible="has_phd"/>
+                        </group>
+                    </group>
+                    <group string="Integridade e Impedimentos Éticos">
+                        <field name="civil_relationship_flag"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_capes_thesis_committee" model="ir.actions.act_window">
+        <field name="name">Membros de Bancas</field>
+        <field name="res_model">capes.thesis.committee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_capes_thesis_committee"
+              name="Examinadores / Bancas"
+              parent="menu_capes_thesis_root"
+              action="action_capes_thesis_committee"
+              sequence="20"/>
+</odoo>

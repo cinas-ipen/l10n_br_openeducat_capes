@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_capes_project_member_tree" model="ir.ui.view">
+        <field name="name">capes.project.member.tree</field>
+        <field name="model">capes.project.member</field>
+        <field name="arch" type="xml">
+            <tree string="Membros de Projetos e Taxonomia CRediT">
+                <field name="project_id"/>
+                <field name="partner_id"/>
+                <field name="role"/>
+                <field name="contrib_type"/>
+                <field name="faculty_id"/>
+                <field name="student_id"/>
+                <field name="link_start"/>
+                <field name="link_end"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_capes_project_member_form" model="ir.ui.view">
+        <field name="name">capes.project.member.form</field>
+        <field name="model">capes.project.member</field>
+        <field name="arch" type="xml">
+            <form string="Membro do Projeto de Pesquisa">
+                <sheet>
+                    <group>
+                        <group string="Vínculo com Projeto e Pessoa">
+                            <field name="project_id"/>
+                            <field name="partner_id"/>
+                            <field name="role"/>
+                            <field name="contrib_type"/>
+                        </group>
+                        <group string="Vinculação Acadêmica">
+                            <field name="faculty_id"/>
+                            <field name="student_id"/>
+                            <field name="area_name"/>
+                            <field name="research_line"/>
+                        </group>
+                    </group>
+                    <group string="Vigência da Participação">
+                        <group>
+                            <field name="link_start"/>
+                        </group>
+                        <group>
+                            <field name="link_end"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_capes_project_member" model="ir.actions.act_window">
+        <field name="name">Membros de Projetos (CRediT)</field>
+        <field name="res_model">capes.project.member</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_capes_project_member"
+              name="Membros de Projetos"
+              parent="menu_capes_research_root"
+              action="action_capes_project_member"
+              sequence="20"/>
+</odoo>

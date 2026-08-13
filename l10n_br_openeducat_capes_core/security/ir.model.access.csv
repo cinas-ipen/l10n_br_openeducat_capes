@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_program_capes_user,access_op_program_capes_user,model_op_program_capes,openeducat_core.group_op_user,1,0,0,0
+access_op_program_capes_manager,access_op_program_capes_manager,model_op_program_capes,openeducat_core.group_op_admin,1,1,1,1

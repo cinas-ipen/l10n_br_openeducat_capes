@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_op_academic_request_tree" model="ir.ui.view">
+        <field name="name">op.academic.request.tree</field>
+        <field name="model">op.academic.request</field>
+        <field name="arch" type="xml">
+            <tree string="Requerimentos Acadêmicos">
+                <field name="name"/>
+                <field name="create_date" string="Data Solicitação"/>
+                <field name="student_id"/>
+                <field name="request_type"/>
+                <field name="advisor_approval"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_op_academic_request_form" model="ir.ui.view">
+        <field name="name">op.academic.request.form</field>
+        <field name="model">op.academic.request</field>
+        <field name="arch" type="xml">
+            <form string="Requerimento Acadêmico">
+                <header>
+                    <button name="action_submit" string="Submeter Requerimento" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_approve" string="Deferir / Aprovar" type="object" class="oe_highlight" invisible="state not in ('submitted', 'under_review')"/>
+                    <button name="action_reject" string="Indeferir" type="object" class="btn-danger" invisible="state not in ('submitted', 'under_review')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,under_review,approved,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Número do Requerimento"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação do Solicitante">
+                            <field name="student_id"/>
+                            <field name="current_curriculum_version_id"/>
+                            <field name="request_type"/>
+                        </group>
+                        <group string="Parâmetros Específicos do Pleito">
+                            <field name="target_curriculum_version_id" invisible="request_type != 'regime_migration'"/>
+                            <field name="requested_days" invisible="request_type not in ('trancamento', 'prorrogacao')"/>
+                            <field name="advisor_approval"/>
+                            <field name="cpg_meeting_id"/>
+                        </group>
+                    </group>
+                    <group string="Fundamentação e Deliberação">
+                        <field name="justification" placeholder="Descreva detalhadamente a justificativa para este requerimento..."/>
+                        <field name="resolution_notes" placeholder="Parecer final ou deliberação da CPG..."/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_academic_request_search" model="ir.ui.view">
+        <field name="name">op.academic.request.search</field>
+        <field name="model">op.academic.request</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Requerimentos">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="request_type"/>
+                <filter string="Em Análise" name="under_review" domain="[('state', 'in', ('submitted', 'under_review'))]"/>
+                <filter string="Aprovados" name="approved" domain="[('state', '=', 'approved')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Tipo de Requerimento" name="group_by_type" context="{'group_by': 'request_type'}"/>
+                    <filter string="Situação" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Discente" name="group_by_student" context="{'group_by': 'student_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_op_academic_request" model="ir.actions.act_window">
+        <field name="name">Requerimentos do Portal</field>
+        <field name="res_model">op.academic.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_op_academic_request_search"/>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_op_academic_request"
+              name="Requerimentos Acadêmicos"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              action="action_op_academic_request"
+              sequence="40"/>
+</odoo>

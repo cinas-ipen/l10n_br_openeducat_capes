@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- QWeb PDF Report Action -->
+    <record id="action_report_student_transcript_br" model="ir.actions.report">
+        <field name="name">Histórico Escolar Consolidado (Transcrição)</field>
+        <field name="model">op.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_br_openeducat_capes_diploma.report_student_transcript_br_document</field>
+        <field name="report_file">l10n_br_openeducat_capes_diploma.report_student_transcript_br_document</field>
+        <field name="print_report_name">'Historico_Consolidado_' + (object.code or 'Discente')</field>
+        <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb PDF Document Template -->
+    <template id="report_student_transcript_br_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-family: sans-serif; font-size: 12px; color: #333;">
+                        <!-- Header -->
+                        <div class="text-center mb-4" style="border-bottom: 2px solid #003366; padding-bottom: 10px;">
+                            <h2 style="color: #003366; font-weight: bold; margin-bottom: 5px;">HISTÓRICO ESCOLAR CONSOLIDADO DE PÓS-GRADUAÇÃO</h2>
+                            <h4 style="margin: 0; color: #555;">PROGRAMA DE PÓS-GRADUAÇÃO STRICTO SENSU (CAPES)</h4>
+                        </div>
+
+                        <!-- Dados do Discente e Versão Regimental -->
+                        <div class="row mb-3" style="background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+                            <div class="col-6">
+                                <strong>Discente:</strong> <span t-field="o.partner_id.name"/><br/>
+                                <strong>CPF:</strong> <span t-field="o.partner_id.cpf"/><br/>
+                                <strong>Programa PPG:</strong> <span t-field="o.program_id.name"/><br/>
+                                <strong>Código SNPG/CAPES:</strong> <span t-field="o.program_id.snpg_code"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Matrícula:</strong> <span t-field="o.code"/><br/>
+                                <strong>Data de Admissão:</strong> <span t-field="o.admission_date"/><br/>
+                                <strong>Versão Regimental (Ato Perfeito):</strong> <span t-field="o.curriculum_version_id.name"/><br/>
+                                <strong>Situação Acadêmica:</strong> <span t-field="o.capes_status"/>
+                            </div>
+                        </div>
+
+                        <!-- Livro-Razão de Créditos Integralizados -->
+                        <h4 style="color: #003366; border-bottom: 1px solid #ccc; padding-bottom: 3px;" class="mt-4">1. INTEGRALIZAÇÃO CURRICULAR (LIVRO-RAZÃO ACADÊMICO)</h4>
+                        <table class="table table-bordered table-sm mt-2" style="font-size: 11px;">
+                            <thead style="background-color: #e9ecef;">
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Disciplina / Atividade Acadêmica</th>
+                                    <th class="text-center">Carga Horária</th>
+                                    <th class="text-center">Créditos</th>
+                                    <th class="text-center">Conceito</th>
+                                    <th class="text-center">Resultado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.env['op.student.credit.ledger'].search([('student_id', '=', o.id)], order='academic_period desc')" t-as="ledger">
+                                    <tr>
+                                        <td><span t-field="ledger.subject_id.code"/></td>
+                                        <td><span t-field="ledger.subject_id.name"/></td>
+                                        <td class="text-center"><span t-field="ledger.workload_hours"/>h</td>
+                                        <td class="text-center"><span t-field="ledger.credits"/></td>
+                                        <td class="text-center"><strong><span t-field="ledger.grade_concept"/></strong></td>
+                                        <td class="text-center">
+                                            <span t-if="ledger.is_approved" class="text-success">Aprovado</span>
+                                            <span t-else="" class="text-danger">Reprovado</span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- Defesa e Produto Intelectual -->
+                        <h4 style="color: #003366; border-bottom: 1px solid #ccc; padding-bottom: 3px;" class="mt-4">2. TRABALHO DE CONCLUSÃO E RITO PÚBLICO DE DEFESA</h4>
+                        <t t-set="defense" t-value="o.env['capes.thesis'].search([('student_id', '=', o.id), ('stage', '=', 'defense')], limit=1)"/>
+                        <div t-if="defense" style="background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+                            <strong>Título Final Aprovado em Ata:</strong> <span t-field="defense.title"/><br/>
+                            <strong>Data da Defesa:</strong> <span t-field="defense.defense_date"/><br/>
+                            <strong>Repositório DSpace (Handle/URI):</strong> <span t-field="defense.repository_url"/><br/>
+                            <strong>Situação do Rito:</strong> <span t-field="defense.status"/>
+                        </div>
+                        <div t-else="">
+                            <em>Nenhuma defesa final registrada ou homologada até a presente data.</em>
+                        </div>
+
+                        <!-- Assinatura e Autenticação Digital -->
+                        <div class="mt-5 pt-3" style="border-top: 2px solid #003366;">
+                            <div class="row">
+                                <div class="col-8">
+                                    <p style="font-size: 10px; margin: 0;">
+                                        <strong>MEC Portaria nº 70/2025 – Documento nato-digital com fé pública.</strong><br/>
+                                        A autenticidade deste histórico escolar consolidado pode ser confirmada scannerizando o QR Code ao lado ou acessando o endereço público <u>/valida-documento</u> com a chave SHA-256.
+                                    </p>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div style="border: 1px solid #ccc; padding: 5px; font-size: 10px; background: #fafafa;">
+                                        <strong>QR CODE DE VALIDAÇÃO</strong><br/>
+                                        <span style="font-family: monospace; font-size: 8px;">VALIDAÇÃO PÚBLICA</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

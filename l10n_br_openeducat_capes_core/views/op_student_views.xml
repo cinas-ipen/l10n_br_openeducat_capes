@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_student_form_capes" model="ir.ui.view">
+        <field name="name">op.student.form.capes</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Vínculo Regimental e Proficiências" name="capes_student_info">
+                    <group>
+                        <group string="Vínculo Acadêmico e Regimento (Ato Perfeito)">
+                            <field name="student_category"/>
+                            <field name="curriculum_version_id"/>
+                            <field name="capes_status"/>
+                            <field name="admission_date"/>
+                            <field name="status_date"/>
+                        </group>
+                        <group string="Orientação Acadêmica">
+                            <field name="advisor_id"/>
+                            <field name="coadvisor_id"/>
+                        </group>
+                    </group>
+                    <group string="Controle de Proficiência Linguística">
+                        <group>
+                            <field name="english_proficiency_status"/>
+                        </group>
+                        <group>
+                            <field name="portuguese_proficiency_status"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

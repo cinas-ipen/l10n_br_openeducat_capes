@@ -36,6 +36,7 @@ Para situações em que um candidato de elevado valor acadêmico ou tecnológico
 * **Trava de Conversão em Aluno Regular (`op.student`):** Ao acionar o comando de conversão de candidato aprovado em aluno regular, o Odoo verifica o parâmetro `proficiency_stage`. Se configurado como `'admission'` (Modo IPEN), o sistema bloqueia a geração do registro e do número de matrícula caso o comprovante de proficiência não esteja deferido no dossiê do candidato.
 * **Gatilho de Evasão Precoce:** O sistema monitora a assiduidade nas primeiras 3 semanas letivas. Ingressantes sem registro de presença ou justificativa formal no portal têm a matrícula cancelada automaticamente como "Desistente", notificando a secretaria para convocar o próximo candidato da lista de espera.
 * **Associação de Orientação:** A formalização do vínculo entre orientador/coorientador e discente deve ser executada no sistema impreterivelmente até o 3º mês letivo, mediante solicitação do aluno e aceite eletrônico do docente via portal.
+* **Declaração de Perfil Profissional (Baseline de Egressos):** No momento da conversão de candidato aprovado em Aluno Regular (`op.student`), o sistema exige obrigatoriamente o preenchimento da ficha de perfil profissional e impacto da titulação (`capes.student.professional.profile`) no Portal do Aluno. O aceite formal dos termos de monitoramento da CAPES é restrição técnica para a emissão definitiva do registro acadêmico e relatórios de acompanhamento quadrienal.
 
 ## 6. Subprocesso 3.1: Submissão e Workflow do Plano de Trabalho (`op.student.work_plan`)
 

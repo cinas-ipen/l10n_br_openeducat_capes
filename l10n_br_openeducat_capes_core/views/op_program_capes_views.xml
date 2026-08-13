@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_op_program_capes_tree" model="ir.ui.view">
+        <field name="name">op.program.capes.tree</field>
+        <field name="model">op.program.capes</field>
+        <field name="arch" type="xml">
+            <tree string="Programas de Pós-Graduação (PPG)">
+                <field name="snpg_code"/>
+                <field name="name"/>
+                <field name="modality"/>
+                <field name="evaluation_area"/>
+                <field name="capes_grade"/>
+                <field name="status"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_op_program_capes_form" model="ir.ui.view">
+        <field name="name">op.program.capes.form</field>
+        <field name="model">op.program.capes</field>
+        <field name="arch" type="xml">
+            <form string="Programa de Pós-Graduação (PPG)">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nome do Programa"/>
+                        <h1><field name="name" placeholder="Ex: Programa de Pós-Graduação em Tecnologia Nuclear"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação do Programa (SNPG)">
+                            <field name="snpg_code"/>
+                            <field name="capes_id"/>
+                            <field name="lang"/>
+                            <field name="company_id"/>
+                            <field name="status"/>
+                        </group>
+                        <group string="Modalidades e Atuação">
+                            <field name="modality"/>
+                            <field name="teaching_modal"/>
+                            <field name="operation_form"/>
+                            <field name="ies_role"/>
+                            <field name="school_term"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Datas e Portarias">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="recommend_date"/>
+                            <field name="recognize_date"/>
+                        </group>
+                        <group string="Coordenação do PPG">
+                            <field name="general_coord_id"/>
+                            <field name="local_coord_id"/>
+                            <field name="phone"/>
+                            <field name="website" widget="url"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Classificação e Ontologia CAPES">
+                            <group>
+                                <group string="Áreas de Avaliação">
+                                    <field name="evaluation_area"/>
+                                    <field name="broad_area"/>
+                                    <field name="basic_area"/>
+                                    <field name="subarea"/>
+                                    <field name="specialty"/>
+                                </group>
+                                <group string="Avaliação Quadrienal">
+                                    <field name="capes_grade"/>
+                                    <field name="grade_year"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_program_capes_search" model="ir.ui.view">
+        <field name="name">op.program.capes.search</field>
+        <field name="model">op.program.capes</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Programas CAPES">
+                <field name="name"/>
+                <field name="snpg_code"/>
+                <field name="evaluation_area"/>
+                <filter string="Em Funcionamento" name="active_status" domain="[('status', '=', 'active')]"/>
+                <filter string="Modalidade Acadêmica" name="acad_modality" domain="[('modality', '=', 'academic')]"/>
+                <filter string="Modalidade Profissional" name="prof_modality" domain="[('modality', '=', 'professional')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Modalidade" name="group_by_modality" context="{'group_by': 'modality'}"/>
+                    <filter string="Área de Avaliação" name="group_by_area" context="{'group_by': 'evaluation_area'}"/>
+                    <filter string="Nota CAPES" name="group_by_grade" context="{'group_by': 'capes_grade'}"/>
+                    <filter string="Situação" name="group_by_status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_op_program_capes" model="ir.actions.act_window">
+        <field name="name">Programas CAPES / SNPG</field>
+        <field name="res_model">op.program.capes</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_op_program_capes_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Cadastre o primeiro Programa de Pós-Graduação (PPG)!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_op_program_capes_root"
+              name="CAPES / PPG"
+              parent="openeducat_core.menu_op_school_root"
+              sequence="10"/>
+
+    <menuitem id="menu_op_program_capes"
+              name="Programas (SNPG)"
+              parent="menu_op_program_capes_root"
+              action="action_op_program_capes"
+              sequence="10"/>
+</odoo>

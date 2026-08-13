@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CPG Committee Views -->
+    <record id="view_op_cpg_committee_tree" model="ir.ui.view">
+        <field name="name">op.cpg.committee.tree</field>
+        <field name="model">op.cpg.committee</field>
+        <field name="arch" type="xml">
+            <tree string="Gestões CPG">
+                <field name="name"/>
+                <field name="program_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_op_cpg_committee_form" model="ir.ui.view">
+        <field name="name">op.cpg.committee.form</field>
+        <field name="model">op.cpg.committee</field>
+        <field name="arch" type="xml">
+            <form string="Gestão da Comissão de Pós-Graduação (CPG)">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Identificação da Gestão"/>
+                        <h1><field name="name" placeholder="Ex: Gestão CPG 2024-2027"/></h1>
+                    </div>
+                    <group>
+                        <group string="Programa e Vigência">
+                            <field name="program_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Membros do Conselho CPG">
+                            <field name="member_ids">
+                                <tree editable="bottom">
+                                    <field name="partner_id"/>
+                                    <field name="role"/>
+                                    <field name="mandate_origin"/>
+                                    <field name="document_ref"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- CPG Meeting Views -->
+    <record id="view_op_cpg_meeting_tree" model="ir.ui.view">
+        <field name="name">op.cpg.meeting.tree</field>
+        <field name="model">op.cpg.meeting</field>
+        <field name="arch" type="xml">
+            <tree string="Reuniões da CPG">
+                <field name="name"/>
+                <field name="committee_id"/>
+                <field name="meeting_date"/>
+                <field name="meeting_type"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_op_cpg_meeting_form" model="ir.ui.view">
+        <field name="name">op.cpg.meeting.form</field>
+        <field name="model">op.cpg.meeting</field>
+        <field name="arch" type="xml">
+            <form string="Reunião da CPG">
+                <header>
+                    <button name="action_publish_minutes" string="Homologar Ata" type="object" class="oe_highlight" invisible="state != 'in_approval'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,agenda_open,in_approval,published"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Número / Identificador da Reunião"/>
+                        <h1><field name="name" placeholder="Ex: 3ª Reunião Ordinária CPG/2026"/></h1>
+                    </div>
+                    <group>
+                        <group string="Dados da Sessão">
+                            <field name="committee_id"/>
+                            <field name="meeting_date"/>
+                            <field name="meeting_type"/>
+                        </group>
+                        <group string="Ata Gerada">
+                            <field name="minutes_pdf" filename="name"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Requerimentos Pautados">
+                            <field name="agenda_request_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="student_id"/>
+                                    <field name="request_type"/>
+                                    <field name="advisor_approval"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Log de Aprovação Auditável">
+                            <field name="approval_log_ids" readonly="1">
+                                <tree>
+                                    <field name="timestamp"/>
+                                    <field name="user_id"/>
+                                    <field name="vote"/>
+                                    <field name="ip_address"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_op_cpg_committee" model="ir.actions.act_window">
+        <field name="name">Conselho CPG</field>
+        <field name="res_model">op.cpg.committee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_op_cpg_meeting" model="ir.actions.act_window">
+        <field name="name">Reuniões CPG</field>
+        <field name="res_model">op.cpg.meeting</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_op_cpg_root"
+              name="Governança CPG"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              sequence="50"/>
+
+    <menuitem id="menu_op_cpg_committee"
+              name="Composição CPG"
+              parent="menu_op_cpg_root"
+              action="action_op_cpg_committee"
+              sequence="10"/>
+
+    <menuitem id="menu_op_cpg_meeting"
+              name="Reuniões e Atas"
+              parent="menu_op_cpg_root"
+              action="action_op_cpg_meeting"
+              sequence="20"/>
+</odoo>

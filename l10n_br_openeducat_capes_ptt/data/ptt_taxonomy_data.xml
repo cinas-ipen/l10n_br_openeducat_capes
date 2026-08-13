@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- 4 Eixos Estruturantes da CAPES (GTPT) -->
+    <record id="ptt_axis_1" model="capes.ptt.axis">
+        <field name="code">E1</field>
+        <field name="name">Produtos e Processos Tecnológicos</field>
+        <field name="description">Inovação tangível, patentes, softwares, hardwares, metodologias de intervenção clínica/radiológica e tecnologias sociais.</field>
+    </record>
+
+    <record id="ptt_axis_2" model="capes.ptt.axis">
+        <field name="code">E2</field>
+        <field name="name">Produtos e Processos de Formação</field>
+        <field name="description">Impacto na capacitação humana, elaboração de cursos de qualificação, materiais didáticos complexos e propostas curriculares.</field>
+    </record>
+
+    <record id="ptt_axis_3" model="capes.ptt.axis">
+        <field name="code">E3</field>
+        <field name="name">Produtos e Processos de Divulgação e Difusão</field>
+        <field name="description">Democratização do conhecimento técnico, organização de eventos tecnológicos, exposições, curadoria de dados públicos e relatórios.</field>
+    </record>
+
+    <record id="ptt_axis_4" model="capes.ptt.axis">
+        <field name="code">E4</field>
+        <field name="name">Produtos e Processos de Serviços Técnicos</field>
+        <field name="description">Prestação de assessoria ao Estado ou à indústria, laudos radiológicos/nucleares complexos, normas técnicas e marcos regulatórios.</field>
+    </record>
+
+    <!-- Tipologias Oficiais GTPT / Medicina II -->
+    <record id="ptt_type_t13" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_1"/>
+        <field name="code">T13</field>
+        <field name="name">Patente Depositada ou Concedida</field>
+        <field name="req_ip">True</field>
+    </record>
+
+    <record id="ptt_type_t19" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_1"/>
+        <field name="code">T19</field>
+        <field name="name">Registro de Software ou Aplicativo Mobile</field>
+        <field name="req_ip">True</field>
+    </record>
+
+    <record id="ptt_type_t15" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_1"/>
+        <field name="code">T15</field>
+        <field name="name">Tecnologia Social / Processo Não-Patenteável</field>
+        <field name="req_ip">False</field>
+    </record>
+
+    <record id="ptt_type_t08" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_2"/>
+        <field name="code">T08</field>
+        <field name="name">Curso de Formação Profissional / Capacitação</field>
+        <field name="req_ip">False</field>
+    </record>
+
+    <record id="ptt_type_t09" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_2"/>
+        <field name="code">T09</field>
+        <field name="name">Material Didático / Instrucional / Manual Operacional</field>
+        <field name="req_ip">False</field>
+    </record>
+
+    <record id="ptt_type_t06" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_3"/>
+        <field name="code">T06</field>
+        <field name="name">Relatório Técnico Conclusivo / Laudo de Auditoria</field>
+        <field name="req_ip">False</field>
+    </record>
+
+    <record id="ptt_type_t11" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_1"/>
+        <field name="code">T11</field>
+        <field name="name">Empresa Inovadora / Startup / Spin-off Acadêmica</field>
+        <field name="req_ip">False</field>
+    </record>
+
+    <record id="ptt_type_t05" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_4"/>
+        <field name="code">T05</field>
+        <field name="name">Norma Técnica ou Marco Regulatório (ANVISA / CNEN)</field>
+        <field name="req_ip">False</field>
+    </record>
+
+    <record id="ptt_type_t07" model="capes.ptt.type">
+        <field name="axis_id" ref="ptt_axis_4"/>
+        <field name="code">T07</field>
+        <field name="name">Protocolo Clínico / Guia de Conduta Sanitária</field>
+        <field name="req_ip">False</field>
+    </record>
+</odoo>

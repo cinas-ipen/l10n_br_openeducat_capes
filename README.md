@@ -106,6 +106,8 @@ docs/
 * Injeção de PIDs biográficos na classe base `res.partner`: campos estruturados e validados para ORCiD, URL do currículo Lattes, ResearcherID e Scopus Author ID.
 * Extensão da classe `op.faculty` (Docente) mapeando a categoria de vínculo (Permanente, Visitante, Colaborador), regime de dedicação, carga horária de atuação, indicador booleano de aposentadoria e histórico cronológico.
 * Extensão da classe `op.student` (Discente) com diferenciação entre "Aluno Regular" e "Aluno Especial / Matrícula Não Vinculada", além de tabela relacionada para gestão de afastamentos (motivação por CID, licenças e saúde).
+* Mapeamento da entidade transacional `capes.student.professional.profile` para captação da linha de base (*baseline*) profissional e de inserção no mercado do discente no momento do ingresso, contemplando dados da organização empregadora, setor, porte, cargo, faixa salarial (sob sigilo estatístico) e o termo de consentimento obrigatório para auditoria de impacto de egressos exigido pela CAPES.
+
 
 
 * **`modulo_03_formacao_e_disciplinas.md`**

@@ -10,6 +10,7 @@
                 <field name="program_id"/>
                 <field name="max_months_defense"/>
                 <field name="min_credits"/>
+                <field name="max_external_credits_percent"/>
                 <field name="proficiency_stage"/>
                 <field name="is_active" widget="boolean_toggle"/>
             </tree>
@@ -24,7 +25,7 @@
             <form string="Versão Regimental">
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" placeholder="Ex: Regimento MPTRCS 2020"/></h1>
+                        <h1><field name="name" placeholder="Ex: Regimento IPEN 2024, Regimento CDTN 2026"/></h1>
                     </div>
                     <group>
                         <group string="Identificação e Programa">
@@ -45,9 +46,10 @@
                             <field name="block_first_semester_trancamento"/>
                             <field name="retorno_rule"/>
                         </group>
-                        <group string="Carga Horária e Avaliação">
+                        <group string="Carga Horária, Créditos e Aproveitamento">
                             <field name="min_credits"/>
                             <field name="credit_hour_ratio"/>
+                            <field name="max_external_credits_percent"/>
                             <field name="grading_scale_type"/>
                         </group>
                     </group>
@@ -65,7 +67,7 @@
                                 <tree editable="bottom">
                                     <field name="subject_id"/>
                                     <field name="scope"/>
-                                    <field name="area_id"/>
+                                    <field name="area_name"/>
                                 </tree>
                             </field>
                         </page>
@@ -75,8 +77,12 @@
                                     <field name="academic_level"/>
                                     <field name="stage"/>
                                     <field name="min_titular_count"/>
+                                    <field name="suplente_mode"/>
                                     <field name="advisor_vote_role"/>
+                                    <field name="coadvisor_participation"/>
                                     <field name="external_rule"/>
+                                    <field name="allow_non_phd_member"/>
+                                    <field name="non_phd_approval_level"/>
                                 </tree>
                             </field>
                         </page>
@@ -85,4 +91,23 @@
             </form>
         </field>
     </record>
+
+    <!-- Window Action -->
+    <record id="action_op_curriculum_version" model="ir.actions.act_window">
+        <field name="name">Versões Regimentais</field>
+        <field name="res_model">op.curriculum.version</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Cadastre a primeira Versão Regimental para o programa!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_op_curriculum_version"
+              name="Versões Regimentais"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              action="action_op_curriculum_version"
+              sequence="20"/>
 </odoo>

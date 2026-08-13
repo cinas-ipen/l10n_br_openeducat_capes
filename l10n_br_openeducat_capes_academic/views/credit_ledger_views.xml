@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_op_student_credit_ledger_tree" model="ir.ui.view">
+        <field name="name">op.student.credit.ledger.tree</field>
+        <field name="model">op.student.credit.ledger</field>
+        <field name="arch" type="xml">
+            <tree string="Livro-Razão Acadêmico de Créditos" create="false" edit="false" delete="false">
+                <field name="date_earned"/>
+                <field name="student_id"/>
+                <field name="curriculum_version_id"/>
+                <field name="credit_type"/>
+                <field name="course_name"/>
+                <field name="credits" sum="Total Créditos"/>
+                <field name="hours" sum="Total Carga Horária"/>
+                <field name="grade_concept"/>
+                <field name="is_approved" widget="boolean_toggle"/>
+                <field name="origin_ref"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_op_student_credit_ledger_form" model="ir.ui.view">
+        <field name="name">op.student.credit.ledger.form</field>
+        <field name="model">op.student.credit.ledger</field>
+        <field name="arch" type="xml">
+            <form string="Lançamento do Livro-Razão de Créditos">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="course_name" string="Denominação da Atividade / Disciplina"/>
+                        <h1><field name="course_name" placeholder="Ex: Metodologia Científica Avançada"/></h1>
+                    </div>
+                    <group>
+                        <group string="Discente e Regimento">
+                            <field name="student_id"/>
+                            <field name="curriculum_version_id"/>
+                            <field name="credit_type"/>
+                            <field name="subject_id"/>
+                        </group>
+                        <group string="Créditos e Avaliação">
+                            <field name="credits"/>
+                            <field name="hours"/>
+                            <field name="grade_concept"/>
+                            <field name="is_approved"/>
+                            <field name="date_earned"/>
+                        </group>
+                    </group>
+                    <group string="Origem e Auditoria">
+                        <field name="origin_ref"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_student_credit_ledger_search" model="ir.ui.view">
+        <field name="name">op.student.credit.ledger.search</field>
+        <field name="model">op.student.credit.ledger</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Lançamentos no Ledger">
+                <field name="student_id"/>
+                <field name="course_name"/>
+                <field name="origin_ref"/>
+                <filter string="Disciplinas Regulares" name="type_subject" domain="[('credit_type', '=', 'subject')]"/>
+                <filter string="APO / PTT" name="type_apo" domain="[('credit_type', '=', 'apo')]"/>
+                <filter string="Qualificação e Defesa" name="type_milestone" domain="[('credit_type', '=', 'milestone')]"/>
+                <filter string="Créditos Externos" name="type_external" domain="[('credit_type', '=', 'external')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Discente" name="group_by_student" context="{'group_by': 'student_id'}"/>
+                    <filter string="Natureza do Crédito" name="group_by_type" context="{'group_by': 'credit_type'}"/>
+                    <filter string="Versão Regimental" name="group_by_version" context="{'group_by': 'curriculum_version_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_op_student_credit_ledger" model="ir.actions.act_window">
+        <field name="name">Livro-Razão de Créditos</field>
+        <field name="res_model">op.student.credit.ledger</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_op_student_credit_ledger_search"/>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_op_student_credit_ledger"
+              name="Livro-Razão de Créditos"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              action="action_op_student_credit_ledger"
+              sequence="30"/>
+</odoo>

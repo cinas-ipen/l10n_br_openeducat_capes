@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_op_student_work_plan_tree" model="ir.ui.view">
+        <field name="name">op.student.work_plan.tree</field>
+        <field name="model">op.student.work_plan</field>
+        <field name="arch" type="xml">
+            <tree string="Planos de Trabalho Discentes">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="advisor_id"/>
+                <field name="research_line"/>
+                <field name="advisor_ok" widget="boolean_toggle"/>
+                <field name="opinion_category"/>
+                <field name="cep_approved" widget="boolean_toggle"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_op_student_work_plan_form" model="ir.ui.view">
+        <field name="name">op.student.work_plan.form</field>
+        <field name="model">op.student.work_plan</field>
+        <field name="arch" type="xml">
+            <form string="Plano de Trabalho Discente">
+                <header>
+                    <button name="action_submit_by_student" string="Submeter ao Orientador" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_advisor_approve" string="Aprovar e Encaminhar (OK Orientador)" type="object" class="oe_highlight" invisible="state != 'submitted'"/>
+                    <button name="action_assign_evaluator" string="Designar Parecerista" type="object" class="oe_highlight" invisible="state != 'advisor_approved'"/>
+                    <button name="action_register_opinion" string="Registrar Parecer" type="object" class="oe_highlight" invisible="state != 'under_evaluation'"/>
+                    <button name="action_validate_cep" string="Validar Aprovação CEP/CEUA" type="object" class="oe_highlight" invisible="state != 'cep_pending'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,advisor_approved,under_evaluation,cep_pending,homologated"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Título do Plano de Trabalho"/>
+                        <h1><field name="name" placeholder="Ex: Síntese de Nanopartículas para Aplicação Médica"/></h1>
+                    </div>
+                    <group>
+                        <group string="Discente e Orientação">
+                            <field name="student_id"/>
+                            <field name="advisor_id"/>
+                            <field name="research_line"/>
+                            <field name="advisor_ok"/>
+                        </group>
+                        <group string="Anexo e Parecerista">
+                            <field name="attachment_pdf" filename="name"/>
+                            <field name="evaluator_id"/>
+                            <field name="cpg_meeting_id"/>
+                        </group>
+                    </group>
+                    <group string="Detalhamento Técnico do Projeto">
+                        <field name="summary" placeholder="Resumo e objetivos do trabalho..."/>
+                        <field name="methodology" placeholder="Metodologia científica e cronograma de execução..."/>
+                        <field name="ptt_prediction" placeholder="Previsão de Produto Técnico-Tecnológico (PTT)..."/>
+                    </group>
+                    <notebook>
+                        <page string="Avaliação CPG e Parecer Técnico">
+                            <group>
+                                <group string="Resultado da Avaliação">
+                                    <field name="opinion_category"/>
+                                </group>
+                                <group string="Trava Ética CEP / CEUA">
+                                    <field name="cep_document" filename="'parecer_cep.pdf'"/>
+                                    <field name="cep_approved"/>
+                                </group>
+                            </group>
+                            <group string="Parecer Fundamentado">
+                                <field name="evaluator_opinion" placeholder="Parecer consubstanciado do avaliador..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_student_work_plan_search" model="ir.ui.view">
+        <field name="name">op.student.work_plan.search</field>
+        <field name="model">op.student.work_plan</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Planos de Trabalho">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="advisor_id"/>
+                <filter string="Pendente OK Orientador" name="state_submitted" domain="[('state', '=', 'submitted')]"/>
+                <filter string="Fila Triagem Secretaria" name="state_advisor_approved" domain="[('state', '=', 'advisor_approved')]"/>
+                <filter string="Pendência CEP/CEUA" name="state_cep_pending" domain="[('state', '=', 'cep_pending')]"/>
+                <filter string="Homologados" name="state_homologated" domain="[('state', '=', 'homologated')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Situação" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Orientador" name="group_by_advisor" context="{'group_by': 'advisor_id'}"/>
+                    <filter string="Categoria Parecer" name="group_by_opinion" context="{'group_by': 'opinion_category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_op_student_work_plan" model="ir.actions.act_window">
+        <field name="name">Planos de Trabalho Discentes</field>
+        <field name="res_model">op.student.work_plan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_op_student_work_plan_search"/>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_op_student_work_plan"
+              name="Planos de Trabalho"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              action="action_op_student_work_plan"
+              sequence="45"/>
+</odoo>

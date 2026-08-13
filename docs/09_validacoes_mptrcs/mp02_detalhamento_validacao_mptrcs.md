@@ -176,16 +176,17 @@ A tabela abaixo deve ser revisada e formalmente chancelada durante a reunião de
 
 | Item de Admissão / Parâmetro | Campo Técnico no Odoo | Configuração Padrão MPTRCS (IPEN) | Outras Opções Suportadas pelo ERP |
 | :---- | :---- | :---- | :---- |
-| **Distribuição de Vagas** | edital_quota_mode | **Vagas Globais do Programa** | Fracionadas por Linha ou por Docente |
-| **Gatilho de Proficiência** | proficiency_stage | 'admission' (Exigido na Entrada) | 'qualification' ou 'defense' |
-| **Reserva de Ações Afirmativas** | affirmative_action_percent | **20% das vagas** (Cotista / PcD) | Parametrizável (0% a 50%) |
-| **Mínimo de Créditos no 1º Semestre** | min_first_semester_credits | **24 Créditos** (Calouros MPTRCS) | Parametrizável conforme a carga do PPG |
-| **Aprovação Excepcional (Override)** | is_override / override_justif | **Habilitado** (Atuação do Coordenador) | Ativado / Desativado por perfil de acesso |
-| **Janela de Evasão Precoce** | early_dropout_weeks | **3 Semanas** (Assiduidade Inicial) | Parametrizável (ex: 1 a 4 semanas) |
-| **Prazo Limite de Orientação** | max_months_advisor_link | **3º Mês Letivo** | Configurável (ex: 1º ao 6º mês) |
-| **Teto de Orientandos por Docente** | max_active_advisees | **8 Alunos Ativos** (Medicina II) | Configurable por área de avaliação CAPES |
-| **Trava Ética no Plano de Trabalho** | cep_required_gate | **Habilitado** (Bloqueia Bancas s/ CEP) | Ativado / Desativado |
-| **Teto de Créditos Aluno Especial** | max_special_student_credits | **8 Créditos** | Configurable (ex: 8, 12 ou 16 créditos) |
+| **Distribuição de Vagas** | `edital_quota_mode` | **Vagas Globais do Programa** | Fracionadas por Linha ou por Docente |
+| **Gatilho de Proficiência** | `proficiency_stage` | 'admission' (Exigido na Entrada) | 'qualification' ou 'defense' |
+| **Reserva de Ações Afirmativas** | `affirmative_action_percent` | **20% das vagas** (Cotista / PcD) | Parametrizável (0% a 50%) |
+| **Mínimo de Créditos no 1º Semestre** | `min_first_semester_credits` | **24 Créditos** (Calouros MPTRCS) | Parametrizável conforme a carga do PPG |
+| **Aprovação Excepcional (Override)** | `is_override` / `override_justif` | **Habilitado** (Atuação do Coordenador) | Ativado / Desativado por perfil de acesso |
+| **Janela de Evasão Precoce** | `early_dropout_weeks` | **3 Semanas** (Assiduidade Inicial) | Parametrizável (ex: 1 a 4 semanas) |
+| **Prazo Limite de Orientação** | `max_months_advisor_link` | **3º Mês Letivo** | Configurável (ex: 1º ao 6º mês) |
+| **Teto de Orientandos por Docente** | `max_active_advisees` | **8 Alunos Ativos** (Medicina II) | Configurable por área de avaliação CAPES |
+| **Trava Ética no Plano de Trabalho** | `cep_required_gate` | **Habilitado** (Bloqueia Bancas s/ CEP) | Ativado / Desativado |
+| **Teto de Créditos Aluno Especial** | `max_special_student_credits` | **8 Créditos** | Configurable (ex: 8, 12 ou 16 créditos) |
+| **Declaração de Perfil (Baseline)** | `capes.student.professional.profile` | **Obrigatório no Ingresso** (Monitoramento CAPES) | Ativado por padrão para Programas Profissionais |
 
 ### **5. Roteiro Prático para a Reunião de Validação (Checklist CPG-MP)**
 

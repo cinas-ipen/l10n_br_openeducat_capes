@@ -78,6 +78,7 @@ Abandona-se a matrícula direta e manual em favor da concorrência pública para
 * **Trava Dura de Proficiência na Matrícula (IPEN/USP):** Durante o procedimento de conversão para Aluno Regular (`op.student`), se o regimento ativo definir `proficiency_stage = 'admission'`, o Odoo impede a geração da matrícula e do registro discente caso a proficiência em Inglês/Português não esteja deferida.
 * **Início do Relógio:** A efetivação da matrícula dispara o relógio cronológico oficial (24 meses).
 * **Gatilho de Evasão Precoce:** O sistema inicia um monitoramento de assiduidade inicial. Alunos matriculados que não registrarem presença (sem justificativa comprovada atestada no portal) nas três primeiras semanas letivas terão a matrícula sumariamente cancelada (status "Desistente"). O sistema notificará a secretaria para convocar imediatamente o próximo candidato da lista de espera.
+* **Preenchimento Obrigatório do Perfil Profissional (Baseline de Egressos):** Para atender às diretrizes da CAPES relativas ao impacto e inserção profissional de titulados em programas acadêmicos e profissionais, o sistema impõe uma etapa final de matrícula onde o ingressante declara dados corporativos (empresa, setor, porte, cargo, tempo de casa, alinhamento com o mestrado e faixa salarial), concedendo anuência por meio de aceite digital auditável (`capes_terms_accepted`) para fins de prestação de contas estatística.
 
 **2.5. Associação de Orientação Sistêmica (Primeiro Semestre)**
 

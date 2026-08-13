@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_capes_student_professional_profile_tree" model="ir.ui.view">
+        <field name="name">capes.student.professional.profile.tree</field>
+        <field name="model">capes.student.professional.profile</field>
+        <field name="arch" type="xml">
+            <tree string="Perfis Profissionais de Egressos (Baseline CAPES)">
+                <field name="acceptance_timestamp"/>
+                <field name="student_id"/>
+                <field name="company_name"/>
+                <field name="company_sector"/>
+                <field name="company_size"/>
+                <field name="current_role"/>
+                <field name="mp_alignment"/>
+                <field name="capes_terms_accepted" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_capes_student_professional_profile_form" model="ir.ui.view">
+        <field name="name">capes.student.professional.profile.form</field>
+        <field name="model">capes.student.professional.profile</field>
+        <field name="arch" type="xml">
+            <form string="Perfil Profissional e Declaração de Impacto">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="company_name" string="Empresa / Empregador Atual"/>
+                        <h1><field name="company_name" placeholder="Ex: Instituto de Pesquisas Energéticas e Nucleares"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação do Discente">
+                            <field name="student_id"/>
+                            <field name="company_city"/>
+                            <field name="current_role"/>
+                            <field name="professional_area"/>
+                        </group>
+                        <group string="Caracterização da Organização">
+                            <field name="company_sector"/>
+                            <field name="company_size"/>
+                            <field name="tenure_range"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Alinhamento Estratégico com a Pós-Graduação">
+                            <field name="mp_alignment"/>
+                            <field name="salary_range"/>
+                        </group>
+                        <group string="Termos CAPES e Auditoria">
+                            <field name="capes_terms_accepted"/>
+                            <field name="acceptance_timestamp"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_capes_student_professional_profile" model="ir.actions.act_window">
+        <field name="name">Perfis Profissionais (Baseline CAPES)</field>
+        <field name="res_model">capes.student.professional.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_capes_student_professional_profile"
+              name="Perfis Profissionais / Egressos"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              action="action_capes_student_professional_profile"
+              sequence="60"/>
+</odoo>

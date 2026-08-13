@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_capes" model="ir.ui.view">
+        <field name="name">res.company.form.capes</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Dados CAPES / IES" name="capes_ies_info">
+                    <group>
+                        <group string="Identificação Governamental e PIDs">
+                            <field name="acronym"/>
+                            <field name="name_en"/>
+                            <field name="cnpj"/>
+                            <field name="capes_code"/>
+                            <field name="emec_code"/>
+                            <field name="isni_code"/>
+                            <field name="ror_id"/>
+                        </group>
+                        <group string="Classificação Institucional">
+                            <field name="admin_category"/>
+                            <field name="sub_category"/>
+                            <field name="academic_org"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Pró-Reitoria de Pós-Graduação">
+                            <field name="pro_rector_name"/>
+                            <field name="pro_rector_start"/>
+                            <field name="pro_rector_end"/>
+                        </group>
+                        <group string="Georreferenciamento e Códigos Regionais">
+                            <field name="ibge_code"/>
+                            <field name="siafi_code"/>
+                            <field name="mesoregion_id"/>
+                            <field name="microregion_id"/>
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -130,3 +130,22 @@
 | `agenda_request_ids` | Requerimentos Pautados | `One2many` | Requerimentos da esteira vindos do Portal. |
 | `minutes_pdf` | PDF da Ata Gerado (QWeb) | `Binary` | Documento final da Ata. |
 | `approval_log_ids` | Cliques Auditáveis de Aprovação | `One2many` | Registro de User_ID, Timestamp e IP dos votantes. |
+
+### 6. Perfil Profissional e Declaração de Impacto (Baseline de Egressos - CAPES)
+
+**Objetivo:** Capturar a linha de base (*baseline*) profissional do discente no momento do ingresso, atendendo às exigências da CAPES para avaliação do impacto da titulação na carreira, especialmente em Mestrados Profissionais.
+
+| Campo Odoo | Descrição / Regra de Negócio | Tipo de Dado Odoo | Domínio / Opções / Validação |
+| --- | --- | --- | --- |
+| `student_id` | Vínculo com o Discente | `Many2one` | FK para `op.student`. Obrigatório. |
+| `company_name` | Nome da Empresa / Empregador | `Char` | Nome empresarial da organização empregadora. Obrigatório. |
+| `company_city` | Cidade da Empresa | `Char` | Município da sede/filial onde o aluno atua. |
+| `company_sector` | Setor de Atuação da Empresa | `Selection` | `tech` (Tecnologia, Inovação e P&D), `health` (Saúde e Biotecnologia), `industry` (Indústria e Manufatura), `gov` (Setor Público / Órgão Regulador), `education` (Educação e Pesquisa), `services` (Serviços Especializados). |
+| `company_size` | Porte da Empresa (Funcionários) | `Selection` | `micro` (Até 19), `small` (20 a 99), `medium` (100 a 499), `large` (500 a 999), `enterprise` (Mais de 1.000). |
+| `current_role` | Cargo / Função Atual | `Char` | Cargo ou função exercida na organização. Obrigatório. |
+| `professional_area` | Área de Atuação Específica | `Char` | Departamento ou área técnica de lotação na empresa. |
+| `mp_alignment` | Alinhamento com o Mestrado Prof. | `Selection` | `yes` (Sim, alinhamento estratégico direto), `partial` (Parcialmente alinhado), `no` (Não alinhado / Transição). |
+| `tenure_range` | Tempo na Empresa | `Selection` | `lt_1` (Menos de 1 ano), `1_3` (1 a 3 anos), `3_5` (3 a 5 anos), `gt_5` (Mais de 5 anos). |
+| `salary_range` | Faixa Salarial Atual | `Selection` | `r1` (Até 5 salários mín.), `r2` (5 a 10), `r3` (10 a 15), `r4` (15 a 20), `r5` (Acima de 20). *Protegido por sigilo estatístico.* |
+| `capes_terms_accepted` | Aceite Termos CAPES e Programa | `Boolean` | **Obrigatório (`True`)**: Concordância com o compartilhamento de dados estatísticos anonimizados para a CAPES. |
+| `acceptance_timestamp` | Data e Hora do Aceite Digital | `Datetime` | Carimbo de tempo e IP gerados automaticamente na submissão. |

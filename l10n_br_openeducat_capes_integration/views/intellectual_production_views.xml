@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_capes_intellectual_production_tree" model="ir.ui.view">
+        <field name="name">capes.intellectual.production.tree</field>
+        <field name="model">capes.intellectual.production</field>
+        <field name="arch" type="xml">
+            <tree string="Guarda de Produções Intelectuais">
+                <field name="publication_year"/>
+                <field name="name"/>
+                <field name="production_type"/>
+                <field name="program_id"/>
+                <field name="student_id"/>
+                <field name="faculty_id"/>
+                <field name="qualis_stratum" widget="badge"/>
+                <field name="doi"/>
+                <field name="handle" widget="url"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_capes_intellectual_production_form" model="ir.ui.view">
+        <field name="name">capes.intellectual.production.form</field>
+        <field name="model">capes.intellectual.production</field>
+        <field name="arch" type="xml">
+            <form string="Produção Intelectual e Mapeamento Semântico">
+                <header>
+                    <button name="action_generate_oai_payload" string="Gerar Payload XML (oai_capes)" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_mark_exported" string="Marcar como Exportado" type="object" class="oe_highlight" invisible="state != 'validated'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validated,exported"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Título da Produção Científica / PTT"/>
+                        <h1><field name="name" placeholder="Ex: Evaluation of Radiopharmaceutical Purity using Gamma Spectroscopy"/></h1>
+                    </div>
+                    <group>
+                        <group string="Classificação e Vínculo">
+                            <field name="program_id"/>
+                            <field name="production_type"/>
+                            <field name="publication_year"/>
+                            <field name="qualis_stratum"/>
+                        </group>
+                        <group string="Autoria e Identificadores (PIDs)">
+                            <field name="student_id"/>
+                            <field name="faculty_id"/>
+                            <field name="doi"/>
+                            <field name="handle" widget="url"/>
+                            <field name="isbn_issn"/>
+                            <field name="journal_conference_name"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Payload XML DSpace (Crosswalk oai_capes)">
+                            <field name="oai_pmh_xml_payload" placeholder="O payload XML será gerado ao clicar em 'Gerar Payload XML (oai_capes)'..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_capes_intellectual_production_search" model="ir.ui.view">
+        <field name="name">capes.intellectual.production.search</field>
+        <field name="model">capes.intellectual.production</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Produções Intelectuais">
+                <field name="name"/>
+                <field name="doi"/>
+                <field name="handle"/>
+                <field name="student_id"/>
+                <field name="faculty_id"/>
+                <filter string="Validados CPG" name="validated" domain="[('state', '=', 'validated')]"/>
+                <filter string="Artigos Periódicos" name="articles" domain="[('production_type', '=', 'article')]"/>
+                <filter string="Produtos PTT" name="ptts" domain="[('production_type', 'in', ('patent', 'software', 'other_ptt'))]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Programa PPG" name="group_by_program" context="{'group_by': 'program_id'}"/>
+                    <filter string="Tipo de Produção" name="group_by_type" context="{'group_by': 'production_type'}"/>
+                    <filter string="Ano de Publicação" name="group_by_year" context="{'group_by': 'publication_year'}"/>
+                    <filter string="Estrato Qualis" name="group_by_qualis" context="{'group_by': 'qualis_stratum'}"/>
+                    <filter string="Situação" name="group_by_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_capes_intellectual_production" model="ir.actions.act_window">
+        <field name="name">Produções Intelectuais e Crosswalk</field>
+        <field name="res_model">capes.intellectual.production</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_capes_intellectual_production_search"/>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_capes_integration_root"
+              name="Interoperabilidade RICA|PG"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              sequence="50"/>
+
+    <menuitem id="menu_capes_intellectual_production"
+              name="Produções Intelectuais &amp; DSpace"
+              parent="menu_capes_integration_root"
+              action="action_capes_intellectual_production"
+              sequence="10"/>
+</odoo>

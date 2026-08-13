@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_capes_research_project_tree" model="ir.ui.view">
+        <field name="name">capes.research.project.tree</field>
+        <field name="model">capes.research.project</field>
+        <field name="arch" type="xml">
+            <tree string="Projetos de Pesquisa Científica">
+                <field name="name"/>
+                <field name="program_id"/>
+                <field name="coordinator_id"/>
+                <field name="project_type"/>
+                <field name="research_nature"/>
+                <field name="is_cooperation" widget="boolean_toggle"/>
+                <field name="funding_agency"/>
+                <field name="status" widget="badge"/>
+                <field name="start_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_capes_research_project_form" model="ir.ui.view">
+        <field name="name">capes.research.project.form</field>
+        <field name="model">capes.research.project</field>
+        <field name="arch" type="xml">
+            <form string="Projeto de Pesquisa Científica">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="ongoing,completed,suspended,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nome do Projeto de Pesquisa"/>
+                        <h1><field name="name" placeholder="Ex: Desenvolvimento de Radiotrazadores para Biotecnologia"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação e Programa">
+                            <field name="program_id"/>
+                            <field name="coordinator_id"/>
+                            <field name="capes_id"/>
+                            <field name="odoo_project_id"/>
+                        </group>
+                        <group string="Classificação e Natureza">
+                            <field name="project_type"/>
+                            <field name="research_nature"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="status_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Fomento e Financiamento">
+                            <field name="funding_agency"/>
+                            <field name="funding_process"/>
+                        </group>
+                        <group string="Cooperação Interinstitucional e Internacional">
+                            <field name="is_cooperation"/>
+                            <field name="foreign_ies" invisible="not is_cooperation"/>
+                            <field name="foreign_country_id" invisible="not is_cooperation"/>
+                        </group>
+                    </group>
+                    <group string="Descrição e Objetivos Científicos">
+                        <field name="description" placeholder="Descreva os objetivos, hipóteses e metodologias da pesquisa..."/>
+                    </group>
+                    <notebook>
+                        <page string="Equipe de Pesquisa (Taxonomia CRediT)">
+                            <field name="member_ids">
+                                <tree editable="bottom">
+                                    <field name="partner_id"/>
+                                    <field name="role"/>
+                                    <field name="contrib_type"/>
+                                    <field name="faculty_id"/>
+                                    <field name="student_id"/>
+                                    <field name="link_start"/>
+                                    <field name="link_end"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_capes_research_project_search" model="ir.ui.view">
+        <field name="name">capes.research.project.search</field>
+        <field name="model">capes.research.project</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Projetos de Pesquisa">
+                <field name="name"/>
+                <field name="coordinator_id"/>
+                <field name="funding_agency"/>
+                <filter string="Em Andamento" name="status_ongoing" domain="[('status', '=', 'ongoing')]"/>
+                <filter string="Em Cooperação" name="cooperation" domain="[('is_cooperation', '=', True)]"/>
+                <filter string="Pesquisa Aplicada" name="applied" domain="[('research_nature', '=', 'applied')]"/>
+                <filter string="Pesquisa Básica" name="basic" domain="[('research_nature', '=', 'basic')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Programa PPG" name="group_by_program" context="{'group_by': 'program_id'}"/>
+                    <filter string="Coordenador" name="group_by_coordinator" context="{'group_by': 'coordinator_id'}"/>
+                    <filter string="Tipo de Projeto" name="group_by_type" context="{'group_by': 'project_type'}"/>
+                    <filter string="Natureza" name="group_by_nature" context="{'group_by': 'research_nature'}"/>
+                    <filter string="Situação" name="group_by_status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_capes_research_project" model="ir.actions.act_window">
+        <field name="name">Projetos de Pesquisa</field>
+        <field name="res_model">capes.research.project</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_capes_research_project_search"/>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_capes_research_root"
+              name="Pesquisa e Projetos"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              sequence="35"/>
+
+    <menuitem id="menu_capes_research_project"
+              name="Projetos Científicos"
+              parent="menu_capes_research_root"
+              action="action_capes_research_project"
+              sequence="10"/>
+</odoo>

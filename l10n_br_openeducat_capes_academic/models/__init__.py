@@ -19,3 +19,7 @@
 ###############################################################################
 
 from . import curriculum_version
+from . import credit_ledger
+from . import academic_request
+from . import faculty_accreditation
+from . import cpg_governance

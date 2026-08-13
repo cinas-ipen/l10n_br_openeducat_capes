@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_capes" model="ir.ui.view">
+        <field name="name">res.partner.form.capes</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="PIDs e Dados Biográficos CAPES" name="capes_partner_info">
+                    <group>
+                        <group string="Identificadores Persistentes (PIDs)">
+                            <field name="orcid"/>
+                            <field name="lattes_url"/>
+                            <field name="researcher_id"/>
+                            <field name="scopus_id"/>
+                            <field name="capes_id"/>
+                            <field name="internal_code"/>
+                        </group>
+                        <group string="Dados Civis e Biográficos">
+                            <field name="fiscal_name"/>
+                            <field name="cpf"/>
+                            <field name="mother_name"/>
+                            <field name="birth_date"/>
+                            <field name="gender"/>
+                            <field name="race_color"/>
+                            <field name="has_disability"/>
+                            <field name="is_internal"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Naturalidade e Nacionalidade">
+                            <field name="nationality"/>
+                            <field name="birth_country_id"/>
+                            <field name="birth_state"/>
+                            <field name="birth_city_name"/>
+                            <field name="social_url"/>
+                        </group>
+                        <group string="Qualificação Acadêmica">
+                            <field name="academic_level"/>
+                            <field name="highest_degree"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_faculty_form_capes" model="ir.ui.view">
+        <field name="name">op.faculty.form.capes</field>
+        <field name="model">op.faculty</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_faculty_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Parâmetros GoPG / CAPES" name="capes_faculty_info">
+                    <group>
+                        <group string="Regime de Dedicação e Carga Horária">
+                            <field name="work_regime"/>
+                            <field name="workload"/>
+                            <field name="faculty_status"/>
+                            <field name="is_retired"/>
+                        </group>
+                        <group string="Maior Titulação Cadastrada">
+                            <field name="degree_level"/>
+                            <field name="degree_area"/>
+                            <field name="degree_ies"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

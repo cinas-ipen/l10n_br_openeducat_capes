@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Digital Diploma Tree View -->
+    <record id="view_capes_digital_diploma_tree" model="ir.ui.view">
+        <field name="name">capes.digital.diploma.tree</field>
+        <field name="model">capes.digital.diploma</field>
+        <field name="arch" type="xml">
+            <tree string="Diplomas Digitais (MEC 70/2025)">
+                <field name="graduation_date"/>
+                <field name="student_id"/>
+                <field name="degree_type"/>
+                <field name="origin_ies_name"/>
+                <field name="issuing_ies_name"/>
+                <field name="sha256_hash"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Digital Diploma Form View -->
+    <record id="view_capes_digital_diploma_form" model="ir.ui.view">
+        <field name="name">capes.digital.diploma.form</field>
+        <field name="model">capes.digital.diploma</field>
+        <field name="arch" type="xml">
+            <form string="Diploma Digital e Pacote de Titulação">
+                <header>
+                    <button name="action_generate_degree_package" string="Gerar Pacote de Titulação &amp; Hash SHA-256" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_sign_diploma_xades" string="Assinar Digitalmente (XAdES ICP-Brasil)" type="object" class="oe_highlight" invisible="state != 'package_ready'"/>
+                    <button name="action_issue_diploma" string="Concluir Expedição &amp; Registro" type="object" class="oe_highlight" invisible="state != 'signed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,package_ready,signed,issued"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="student_id" string="Discente Titulado"/>
+                        <h1><field name="student_id" placeholder="Selecione o discente..."/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação do Grau Acadêmico">
+                            <field name="degree_type"/>
+                            <field name="thesis_id"/>
+                            <field name="curriculum_version_id"/>
+                            <field name="graduation_date"/>
+                        </group>
+                        <group string="Fluxo Interinstitucional (MEC 70/2025)">
+                            <field name="origin_ies_name"/>
+                            <field name="issuing_ies_name"/>
+                            <field name="diploma_process_number"/>
+                        </group>
+                    </group>
+                    <group string="Criptografia e Auto-Autenticação Pública">
+                        <group>
+                            <field name="sha256_hash"/>
+                        </group>
+                        <group>
+                            <field name="validation_qr_code_url" widget="url"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Assinaturas Criptográficas (Trilha de Auditoria)">
+                            <field name="signature_log_ids">
+                                <tree editable="bottom">
+                                    <field name="signer_name"/>
+                                    <field name="certificate_serial"/>
+                                    <field name="signature_timestamp"/>
+                                    <field name="signature_hash"/>
+                                    <field name="signature_algorithm"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="XML do Diploma Digital (MEC 70/2025)">
+                            <field name="diploma_xml" placeholder="XML do Diploma Digital..."/>
+                        </page>
+                        <page string="XML do Dossiê Acadêmico (Livro-Razão &amp; Banca)">
+                            <field name="dossier_xml" placeholder="XML do Dossiê Acadêmico..."/>
+                        </page>
+                        <page string="XML Assinado (Envelope XAdES ICP-Brasil)">
+                            <field name="signed_xades_xml" placeholder="XML Assinado Digitalmente..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_capes_digital_diploma_search" model="ir.ui.view">
+        <field name="name">capes.digital.diploma.search</field>
+        <field name="model">capes.digital.diploma</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Diplomas Digitais">
+                <field name="student_id"/>
+                <field name="sha256_hash"/>
+                <field name="diploma_process_number"/>
+                <filter string="Expedidos" name="issued" domain="[('state', '=', 'issued')]"/>
+                <filter string="Assinados XAdES" name="signed" domain="[('state', '=', 'signed')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Grau Acadêmico" name="group_by_degree" context="{'group_by': 'degree_type'}"/>
+                    <filter string="Situação" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Data de Outorga" name="group_by_date" context="{'group_by': 'graduation_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Actions -->
+    <record id="action_capes_digital_diploma" model="ir.actions.act_window">
+        <field name="name">Diplomas Digitais (Portaria MEC 70/2025)</field>
+        <field name="res_model">capes.digital.diploma</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_capes_digital_diploma_search"/>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_capes_diploma_root"
+              name="Diplomas &amp; Titulação"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              sequence="60"/>
+
+    <menuitem id="menu_capes_digital_diploma"
+              name="Diplomas Digitais"
+              parent="menu_capes_diploma_root"
+              action="action_capes_digital_diploma"
+              sequence="10"/>
+</odoo>

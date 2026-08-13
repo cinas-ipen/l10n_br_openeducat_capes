@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Edital Tree View -->
+    <record id="view_op_admission_edital_tree" model="ir.ui.view">
+        <field name="name">op.admission.edital.tree</field>
+        <field name="model">op.admission.edital</field>
+        <field name="arch" type="xml">
+            <tree string="Editais de Seleção Pública">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="curriculum_version_id"/>
+                <field name="academic_year"/>
+                <field name="academic_term"/>
+                <field name="total_slots"/>
+                <field name="affirmative_action_slots"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Edital Form View -->
+    <record id="view_op_admission_edital_form" model="ir.ui.view">
+        <field name="name">op.admission.edital.form</field>
+        <field name="model">op.admission.edital</field>
+        <field name="arch" type="xml">
+            <form string="Edital de Seleção Pública">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,published,in_selection,homologated"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Título do Edital"/>
+                        <h1><field name="name" placeholder="Ex: Edital de Seleção PPGTN 2026/1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação do Certame">
+                            <field name="code"/>
+                            <field name="curriculum_version_id"/>
+                            <field name="program_id"/>
+                            <field name="cohort_name"/>
+                        </group>
+                        <group string="Cronograma e Cohort">
+                            <field name="academic_year"/>
+                            <field name="academic_term"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="result_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Gestão de Vagas e Cotas">
+                            <field name="total_slots"/>
+                            <field name="affirmative_action_percent"/>
+                            <field name="affirmative_action_slots"/>
+                        </group>
+                        <group string="Vagas Remanescentes">
+                            <field name="is_remanescent_vagas"/>
+                            <field name="parent_edital_id" invisible="not is_remanescent_vagas"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Fases do Processo Seletivo">
+                            <field name="phase_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="phase_type"/>
+                                    <field name="weight"/>
+                                    <field name="is_eliminatory"/>
+                                    <field name="min_score"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Quadro de Vagas por Linha / Orientador">
+                            <field name="slot_distribution_ids">
+                                <tree editable="bottom">
+                                    <field name="research_line"/>
+                                    <field name="faculty_id"/>
+                                    <field name="slots" sum="Total Vagas"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Candidatos Inscritos">
+                            <field name="candidate_ids" readonly="1">
+                                <tree>
+                                    <field name="partner_id"/>
+                                    <field name="advisor_id"/>
+                                    <field name="is_affirmative_action"/>
+                                    <field name="english_proficient"/>
+                                    <field name="final_score"/>
+                                    <field name="is_override"/>
+                                    <field name="state" widget="badge"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Candidate Form View -->
+    <record id="view_op_admission_candidate_form" model="ir.ui.view">
+        <field name="name">op.admission.candidate.form</field>
+        <field name="model">op.admission.candidate</field>
+        <field name="arch" type="xml">
+            <form string="Inscrição de Candidato">
+                <header>
+                    <button name="action_apply_override" string="Aprovar por Soberania (Override CPG)" type="object" class="btn-warning" invisible="state in ('approved', 'approved_override', 'converted')"/>
+                    <button name="action_convert_to_student" string="Converter em Aluno Regular" type="object" class="oe_highlight" invisible="state not in ('approved', 'approved_override')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,doc_ok,in_evaluation,approved,converted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Dados da Inscrição">
+                            <field name="edital_id"/>
+                            <field name="partner_id"/>
+                            <field name="advisor_id"/>
+                        </group>
+                        <group string="Avaliação e Requisitos">
+                            <field name="is_affirmative_action"/>
+                            <field name="english_proficient"/>
+                            <field name="final_score"/>
+                            <field name="converted_student_id" invisible="not converted_student_id"/>
+                        </group>
+                    </group>
+                    <group string="Soberania do Coordenador (Override)" invisible="not is_override and state not in ('rejected', 'in_evaluation')">
+                        <field name="is_override"/>
+                        <field name="override_justification" placeholder="Justificativa técnica fundamentada para aprovação em caráter excepcional..."/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window Actions -->
+    <record id="action_op_admission_edital" model="ir.actions.act_window">
+        <field name="name">Editais de Seleção</field>
+        <field name="res_model">op.admission.edital</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_op_admission_candidate" model="ir.actions.act_window">
+        <field name="name">Inscrições de Candidatos</field>
+        <field name="res_model">op.admission.candidate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_op_admission_root"
+              name="Admissão e Seleção"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              sequence="15"/>
+
+    <menuitem id="menu_op_admission_edital"
+              name="Editais de Seleção"
+              parent="menu_op_admission_root"
+              action="action_op_admission_edital"
+              sequence="10"/>
+
+    <menuitem id="menu_op_admission_candidate"
+              name="Candidatos / Seleção"
+              parent="menu_op_admission_root"
+              action="action_op_admission_candidate"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_cpg_meeting_minutes">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center mb-4">
+                            <h2>Ata da Reunião da Comissão de Pós-Graduação (CPG)</h2>
+                            <h4 t-field="o.name"/>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong>Programa:</strong> <span t-field="o.committee_id.program_id.name"/><br/>
+                                <strong>Gestão CPG:</strong> <span t-field="o.committee_id.name"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Data/Hora:</strong> <span t-field="o.meeting_date"/><br/>
+                                <strong>Tipo de Sessão:</strong> <span t-field="o.meeting_type"/>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h5>1. Requerimentos e Pauta Deliberada</h5>
+                        <table class="table table-sm table-bordered mt-2">
+                            <thead>
+                                <tr>
+                                    <th>Nº Requerimento</th>
+                                    <th>Discente Solicitante</th>
+                                    <th>Tipo de Requerimento</th>
+                                    <th>Anuência Orientador</th>
+                                    <th>Resultado CPG</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.agenda_request_ids" t-as="req">
+                                    <tr>
+                                        <td><span t-field="req.name"/></td>
+                                        <td><span t-field="req.student_id.name"/></td>
+                                        <td><span t-field="req.request_type"/></td>
+                                        <td><span t-field="req.advisor_approval"/></td>
+                                        <td><span t-field="req.state"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <h5 class="mt-4">2. Registro de Assinaturas e Cliques Auditáveis de Aprovação</h5>
+                        <table class="table table-sm table-bordered mt-2">
+                            <thead>
+                                <tr>
+                                    <th>Data / Hora</th>
+                                    <th>Membro / Usuário</th>
+                                    <th>Deliberação</th>
+                                    <th>IP do Terminal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.approval_log_ids" t-as="log">
+                                    <tr>
+                                        <td><span t-field="log.timestamp"/></td>
+                                        <td><span t-field="log.user_id.name"/></td>
+                                        <td><span t-field="log.vote"/></td>
+                                        <td><span t-field="log.ip_address"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_cpg_meeting_minutes" model="ir.actions.report">
+        <field name="name">Ata de Reunião CPG</field>
+        <field name="model">op.cpg.meeting</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_br_openeducat_capes_academic.report_cpg_meeting_minutes</field>
+        <field name="report_file">l10n_br_openeducat_capes_academic.report_cpg_meeting_minutes</field>
+        <field name="print_report_name">'Ata_CPG_%s' % (object.name.replace('/', '_'))</field>
+        <field name="binding_model_id" ref="model_op_cpg_meeting"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
