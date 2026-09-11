@@ -26,6 +26,7 @@ env/
 
 # Ferramentas de IA / Assistentes
 .gemini/
+.agents/
 
 # Documentos Institucionais em PDF (Regulamentos e Páginas Locais)
 *.pdf
