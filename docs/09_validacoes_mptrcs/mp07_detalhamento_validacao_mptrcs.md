@@ -1,57 +1,62 @@
-# **Validação Técnica MP7 - Expedição Documental e Diploma Digital**
+# **Validação Técnica MP7 - Expedição Documental, Registro Interinstitucional (USP) e Diplomas (Físico / Digital)**
 
 ## **1. Introdução e Finalidade**
 
-O **Macroprocesso 07** operacionaliza o encerramento do vínculo acadêmico. No contexto IPEN/USP, este processo é bifásico:
+O **Macroprocesso 07** operacionaliza o encerramento do vínculo acadêmico no contexto do **IPEN-CNEN/SP**:
 
-1. **IPEN (Origem/Validação):** Responsável pela auditoria final, consolidação do dossiê acadêmico e envio dos dados à USP.  
-2. **USP (Registradora/Emissora):** Responsável pela emissão final do Diploma Nato-Digital, em conformidade com a Portaria MEC nº 70/2025.
+1. **IPEN (Origem / Validação Acadêmica):** Responsável pela auditoria final, consolidação do dossiê acadêmico e conferência de elegibilidade de titulação.
+2. **USP (Universidade Registradora Externa):** Tendo em vista que o IPEN é um instituto de pesquisa (sem autonomia universitária direta para escrituração autônoma de diplomas), a **Universidade de São Paulo (USP)** atua como IES Registradora encarregada do registro formal do diploma.
+3. **Dualidade de Formatos (Físico em Papel e Nato-Digital MEC 70/2025):** Tendo em vista que o MEC priorizou a implementação obrigatória do diploma digital na graduação, a pós-graduação *Stricto Sensu* do MP-TRCS utiliza a emissão em papel com protocolo de remessa para registro na USP (Livro de Registro e Folha), estando o Odoo preparado para a transição nato-digital simultânea (`emission_format` = `paper_hybrid` / `digital` / `both`).
 
-A finalidade deste processo no ERP é compilar o "Pacote de Titulação" com rigor criptográfico e conformidade legal, garantindo que a USP receba dados imutáveis e auditáveis.
+A finalidade deste processo no ERP é compilar o "Pacote de Titulação" com rigor criptográfico e auditabilidade, atendendo tanto ao trâmite impresso em papel quanto ao modelo nato-digital.
 
-## **2. O Pacote de Titulação (Envio IPEN -> USP)**
+---
 
-Uma vez que o discente atinge o status "Titulado" no IPEN (após o upload da versão final do PDF pelo discente e a chancela/validação da Secretaria Acadêmica), o sistema congela a vida acadêmica e prepara o **Dossiê Digital de Expedição**, que deve ser transmitido para o sistema da USP.
+## **2. O Pacote de Titulação (IPEN $\rightarrow$ USP)**
+
+Uma vez que o discente atinge o status "Titulado" no IPEN (após o upload da versão final do PDF pelo discente e a chancela/validação da Secretaria Acadêmica), o sistema congela a vida acadêmica e prepara o **Dossiê Digital de Expedição** a ser transmitido/encaminhado para a USP.
 
 Este pacote contém:
 
-* **XML de Registro Acadêmico:** Dados civis do egresso, carga horária total, disciplinas cursadas, notas, frequência e resumo da dissertação.  
-* **Evidências de Defesa:** Ata de defesa com a composição da banca (identificando o membro externo) e a validação do quórum regimental.  
-* **Evidências de PTT:** Registro do PTT homologado, com seu respectivo estrato Qualis e URL de acesso ao Repositório Institucional (DSpace).  
-* **Hash de Integridade:** O ERP IPEN gera um *Hash SHA-256* de todo o pacote de dados enviado, garantindo que o que foi enviado é exatamente o que a USP receberá.
+* **Histórico Escolar Consolidado:** Carga horária total em horas (100 créditos = 1.500h), disciplinas cursadas, conceitos e nota final.
+* **Evidências de Defesa:** Ata de defesa com a composição da banca (identificando os membros externos) e a validação do quórum regimental.  
+* **Evidências de PTT:** Registro do PTT homologado, com seu respectivo estrato Qualis e Handle URI do Repositório Institucional (DSpace).  
+* **Hash SHA-256 de Integridade:** O ERP IPEN gera uma chave criptográfica SHA-256 para selagem do processo.
+
+---
 
 ## **3. Fluxo de Expedição (Workflow IPEN-USP)**
 
 `[IPEN: Auditoria de Elegibilidade Final (Créditos, PTT, Defesa, CEP)]`  
                `│`  
                `▼`  
-`[IPEN/ERP: Compila Dossiê Digital + Assinatura Digital do Coordenador]`  
+`[IPEN/ERP: Compila Dossiê Digital + Selagem com Hash SHA-256]`  
                `│`  
                `▼`  
-`[IPEN -> USP: Transmissão via API / Canal Seguro]`  
+`[IPEN -> USP: Remessa do Processo Físico / Transmissão via API]`  
                `│`  
                `▼`  
-`[USP: Validação do Dossiê e Assinatura da Autoridade Registradora]`  
+`[USP: Escrituração no Livro de Registro de Diplomas (Livro / Folha)]`  
                `│`  
                `▼`  
-`[USP: Emissão do Diploma Nato-Digital (Portaria MEC 70/2025)]`  
-               `│`  
-               `▼`  
-`[Discente: Download do Diploma na Carteira Digital da USP]`
+`[IPEN/Odoo: Averbação do Livro/Folha e Conclusão do Processo]`
+
+---
 
 ## **4. Governança e Responsabilidades (Matriz de Stakeholders)**
 
 | Ator | Responsabilidade no Processo |
 | :---- | :---- |
-| **IPEN (Secretaria/CPG)** | Validação acadêmica, auditoria de documentos e envio do dossiê. |
-| **USP (Registradora)** | Conferência final de dados, assinatura digital oficial e expedição. |
-| **ERP (OpenEduCat)** | Motor de auditoria, cálculo de créditos e selagem do dossiê (Hash). |
+| **IPEN (Secretaria/CPG)** | Auditoria acadêmica, consolidação do dossiê, remessa do diploma/processo e averbação. |
+| **USP (Pró-Reitoria de Pós-Graduação)** | Registro oficial do grau acadêmico, escrituração no Livro de Registro e emissão/autenticação. |
+| **ERP (OpenEduCat)** | Motor de auditoria, cálculo de créditos, gestão de livros de registro e selagem criptográfica (Hash SHA-256). |
 
-## **5. Roteiro para Reunião de Validação (Secretaria IPEN e TI USP)**
+---
+
+## **5. Roteiro para Reunião de Validação (Secretaria IPEN e Pró-Reitoria USP)**
 
 Para validar este fluxo de expedição, sugiro focar nos seguintes pontos de pauta:
 
-1. **Padronização do Pacote de Dados:** Definir a estrutura (schema) do JSON/XML que o IPEN enviará para a USP, garantindo que os metadados acadêmicos da CAPES estejam presentes.  
-2. **Homologação da RVDD:** Validar se o template do diploma (PDF) emitido pela USP está recebendo corretamente os dados orquestrados pelo IPEN.  
-3. **Protocolo de Retorno:** Definir como a USP sinaliza ao sistema do IPEN que o diploma foi emitido, para que o status do aluno possa ser atualizado de "Titulado" para "Diploma Expedido" automaticamente.  
-4. **Infraestrutura de Assinatura:** Confirmar se a USP aceitará a assinatura do Coordenador do IPEN no dossiê de envio como parte da "Declaração de Veracidade da Origem".
+1. **Protocolo de Remessa do Processo:** Definir a fluxo de envio físico do diploma impressos em papel e do histórico escolar para a USP.
+2. **Escrituração de Livro e Folha:** Confirmar o preenchimento dos campos `registration_book_number` e `registration_page_number` no Odoo após o retorno do protocolo da USP.
+3. **Chancela Digital e QR Code:** Testar o QR Code de acesso público e a chave Hash SHA-256 gravados no rodapé dos documentos emitidos pelo IPEN.

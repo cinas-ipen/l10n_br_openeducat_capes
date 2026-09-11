@@ -136,4 +136,4 @@
 | `is_internal` | Pertence ao Quadro Institucional da IES | `Boolean` | Computado de `res.partner.is_internal`. Utilizado para validar a regra `external_rule` de endogenia. |
 | `ies_origin` | IES de Origem do Examinador | `Char` | Texto livre para membros externos (exportado na DAV / Sucupira). |
 | `has_phd` | Possui Título de Doutor | `Boolean` | Valida se exige doutorado ou se possui parecer de notória especialização aprovado pela alçada correspondente. |
-| `civil_relationship_flag` | Impedimento por Parentesco | `Boolean` | Valida ausência de parentesco direto/colateral até 4º grau com discente ou orientador (Regra USP Art. 89 §3º). |
+| `civil_relationship_flag` | Impedimento por Parentesco | `Boolean` | Valida ausência de parentesco direto/colateral até 4º grau com discente ou orientador (Impedimento Cível Regimental). |

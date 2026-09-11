@@ -69,14 +69,14 @@ A validade jurídica do título outorgado depende da estrita conformidade da com
 O Odoo valida o cadastro da banca checando os parâmetros ativos para o nível (Mestrado/Doutorado) e rito (Qualificação/Defesa):
 
 * **Quórum de Titulares:** 
-  * *Mestrados (Geral):* Mínimo de 3 titulares (ex: IPEN, Mackenzie, CDTN, USP).
-  * *Doutorados:* Configurável para 3 ou 5 titulares (ex: 5 membros no CDTN e USP).
+  * *Mestrados (Geral):* Mínimo de 3 titulares (ex: IPEN, Mackenzie, CDTN).
+  * *Doutorados:* Configurável para 3 ou 5 titulares (ex: 5 membros no CDTN).
 * **Quórum de Suplentes:**
   * *Regra de Par Fixo (Mackenzie):* Exige 2 suplentes (1 interno e 1 externo).
-  * *Regra Proporcional (USP Art. 89 §5º):* Exige 1 suplente para cada membro titular.
+  * *Regra Proporcional:* Exige 1 suplente para cada membro titular.
 * **Papel e Voto do Orientador:**
   * *Modo Votante (`voting_president`):* O orientador preside e vota (MPTRCS/IPEN e Mackenzie).
-  * *Modo Não-Votante (`non_voting_president`):* O orientador preside a sessão, mas abstém-se de votar e atribuir nota (Regra CDTN Art. 44 §4º e opção USP).
+  * *Modo Não-Votante (`non_voting_president`):* O orientador preside a sessão, mas abstém-se de votar e atribuir nota (Regra CDTN Art. 44 §4º).
 * **Papel do Coorientador:**
   * Configurado como membro adicional sem direito a voto (Mackenzie/CDTN), ou com participação vedada caso o orientador esteja presente (MPTRCS Art. 10 §3º).
 
@@ -86,8 +86,8 @@ O Odoo valida o cadastro da banca checando os parâmetros ativos para o nível (
 2. **Validação de Endogenia (Membros Externos):**
    * *Mínimo 1 Externo:* Exige pelo menos 1 doutor externo ao PPG e à IES (MPTRCS / Mackenzie).
    * *Mínimo 2 Externos:* Exige pelo menos 2 doutores externos ao PPG (Doutorado CDTN).
-   * *Maioria Externa (USP Art. 89 §4º):* Valida se a maioria simples dos examinadores votantes é externa ao PPG e pelo menos 1 externo à Unidade.
-3. **Trava de Impedimento Cível (USP Art. 89 §3º):** O sistema impede o cadastro de membros com parentesco em linha reta ou colateral até 4º grau com o discente ou orientador.
+   * *Maioria Externa:* Valida se a maioria simples dos examinadores votantes é externa ao PPG.
+3. **Trava de Impedimento Cível:** O sistema impede o cadastro de membros com parentesco em linha reta ou colateral até 4º grau com o discente ou orientador.
 4. **Exceção de Notória Especialização:** Permite incluir especialistas de mercado sem o título de Doutor, mediante fluxo de aprovação com alçada parametrizada (Aprovação CPG simples, 2/3 da CPG, ou Aprovação CPG + Conselho Superior).
 
 ### 4.3. Dinâmica Temporal e Modalidade da Sessão
@@ -95,7 +95,7 @@ O Odoo valida o cadastro da banca checando os parâmetros ativos para o nível (
 * **Cronometria Parametrizada:** Os tempos limite de exposição do candidato (ex: 50 min no IPEN, 45 min no CDTN) e de arguição por examinador (ex: 40 min) são definidos na versão curricular e gravados na ata QWeb.
 * **Política de Presença (`defense_location_policy`):**
   * *Presencial / Híbrida:* Presença física obrigatória do aluno e presidente, permitindo examinadores remotos (IPEN / Mackenzie).
-  * *Totalmente Remota:* Permite sessões 100% virtuais mediante justificativa e autorização do colegiado (CDTN Art. 49 / USP).
+  * *Totalmente Remota:* Permite sessões 100% virtuais mediante justificativa e autorização do colegiado (CDTN Art. 49).
 
 ---
 

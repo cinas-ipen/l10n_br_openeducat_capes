@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Digital Diploma Tree View -->
+    <!-- Digital & Paper Diploma Tree View -->
     <record id="view_capes_digital_diploma_tree" model="ir.ui.view">
         <field name="name">capes.digital.diploma.tree</field>
         <field name="model">capes.digital.diploma</field>
         <field name="arch" type="xml">
-            <list string="Diplomas Digitais (MEC 70/2025)">
+            <list string="Diplomas e Pacotes de Titulação (MEC 70/2025)">
                 <field name="graduation_date"/>
                 <field name="student_id"/>
                 <field name="degree_type"/>
+                <field name="emission_format"/>
+                <field name="issuing_ies_type"/>
                 <field name="origin_ies_name"/>
                 <field name="issuing_ies_name"/>
+                <field name="registration_book_number"/>
                 <field name="sha256_hash"/>
                 <field name="state" widget="badge"/>
             </list>
         </field>
     </record>
 
-    <!-- Digital Diploma Form View -->
+    <!-- Digital & Paper Diploma Form View -->
     <record id="view_capes_digital_diploma_form" model="ir.ui.view">
         <field name="name">capes.digital.diploma.form</field>
         <field name="model">capes.digital.diploma</field>
         <field name="arch" type="xml">
-            <form string="Diploma Digital e Pacote de Titulação">
+            <form string="Diploma e Pacote de Titulação">
                 <header>
                     <button name="action_generate_degree_package" string="Gerar Pacote de Titulação &amp; Hash SHA-256" type="object" class="oe_highlight" invisible="state != 'draft'"/>
-                    <button name="action_sign_diploma_xades" string="Assinar Digitalmente (XAdES ICP-Brasil)" type="object" class="oe_highlight" invisible="state != 'package_ready'"/>
+                    <button name="action_sign_diploma_xades" string="Assinar Digitalmente (XAdES) / Chancelar" type="object" class="oe_highlight" invisible="state != 'package_ready'"/>
                     <button name="action_issue_diploma" string="Concluir Expedição &amp; Registro" type="object" class="oe_highlight" invisible="state != 'signed'"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,package_ready,signed,issued"/>
                 </header>
@@ -41,10 +44,22 @@
                             <field name="curriculum_version_id"/>
                             <field name="graduation_date"/>
                         </group>
-                        <group string="Fluxo Interinstitucional (MEC 70/2025)">
+                        <group string="Governança e Formato de Emissão">
+                            <field name="emission_format"/>
+                            <field name="issuing_ies_type"/>
                             <field name="origin_ies_name"/>
                             <field name="issuing_ies_name"/>
                             <field name="diploma_process_number"/>
+                        </group>
+                    </group>
+                    <group string="Registro Físico em Livro / Tramitação Externa">
+                        <group>
+                            <field name="registration_book_number"/>
+                            <field name="registration_page_number"/>
+                        </group>
+                        <group>
+                            <field name="physical_dispatch_date"/>
+                            <field name="registration_date"/>
                         </group>
                     </group>
                     <group string="Criptografia e Auto-Autenticação Pública">
@@ -67,13 +82,13 @@
                                 </list>
                             </field>
                         </page>
-                        <page string="XML do Diploma Digital (MEC 70/2025)">
+                        <page string="XML do Diploma Digital (MEC 70/2025)" invisible="emission_format == 'paper_hybrid'">
                             <field name="diploma_xml" placeholder="XML do Diploma Digital..."/>
                         </page>
                         <page string="XML do Dossiê Acadêmico (Livro-Razão &amp; Banca)">
                             <field name="dossier_xml" placeholder="XML do Dossiê Acadêmico..."/>
                         </page>
-                        <page string="XML Assinado (Envelope XAdES ICP-Brasil)">
+                        <page string="XML Assinado (Envelope XAdES ICP-Brasil)" invisible="emission_format == 'paper_hybrid'">
                             <field name="signed_xades_xml" placeholder="XML Assinado Digitalmente..."/>
                         </page>
                     </notebook>
@@ -92,16 +107,20 @@
         <field name="name">capes.digital.diploma.search</field>
         <field name="model">capes.digital.diploma</field>
         <field name="arch" type="xml">
-            <search string="Pesquisar Diplomas Digitais">
+            <search string="Pesquisar Diplomas">
                 <field name="student_id"/>
                 <field name="sha256_hash"/>
                 <field name="diploma_process_number"/>
+                <field name="registration_book_number"/>
                 <filter string="Expedidos" name="issued" domain="[('state', '=', 'issued')]"/>
-                <filter string="Assinados XAdES" name="signed" domain="[('state', '=', 'signed')]"/>
+                <filter string="Assinados / Registrados" name="signed" domain="[('state', '=', 'signed')]"/>
+                <filter string="Nato-Digital" name="format_digital" domain="[('emission_format', '=', 'digital')]"/>
+                <filter string="Físico / Papel" name="format_paper" domain="[('emission_format', '=', 'paper_hybrid')]"/>
                 <group>
+                    <filter string="Formato de Emissão" name="group_by_format" context="{'group_by': 'emission_format'}"/>
+                    <filter string="Governança do Registro" name="group_by_type" context="{'group_by': 'issuing_ies_type'}"/>
                     <filter string="Grau Acadêmico" name="group_by_degree" context="{'group_by': 'degree_type'}"/>
                     <filter string="Situação" name="group_by_state" context="{'group_by': 'state'}"/>
-                    <filter string="Data de Outorga" name="group_by_date" context="{'group_by': 'graduation_date'}"/>
                 </group>
             </search>
         </field>
@@ -109,7 +128,7 @@
 
     <!-- Window Actions -->
     <record id="action_capes_digital_diploma" model="ir.actions.act_window">
-        <field name="name">Diplomas Digitais (Portaria MEC 70/2025)</field>
+        <field name="name">Diplomas e Pacotes de Titulação</field>
         <field name="res_model">capes.digital.diploma</field>
         <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_capes_digital_diploma_search"/>
@@ -122,7 +141,7 @@
               sequence="60"/>
 
     <menuitem id="menu_capes_digital_diploma"
-              name="Diplomas Digitais"
+              name="Gestão de Diplomas"
               parent="menu_capes_diploma_root"
               action="action_capes_digital_diploma"
               sequence="10"/>

@@ -98,7 +98,7 @@
 | `grading_scale_type` | Escala de Conceitos e Corte | `Selection` | `scale_abc_r` (A,B,C Aprovados; R Reprovado), `scale_abcd_rf` (A,B,C,D Aprovados - CDTN Art. 38/42). |
 | `teaching_internship_mode` | Regra de Estágio de Docência (Portaria 221/2025) | `Selection` | `not_applicable` (Cursos Profissionais/Isentos), `scholarship_only` (Apenas Bolsistas), `mandatory_all` (Todos), `flexible_equivalence` (Permite Estágio Supervisionado / Equivalentes). |
 | `ptt_validation_mode` | Modo de Validação do PTT | `Selection` | `cpg_checklist` (Checklist + Anuência Orientadores + CPG), `qualis_prior` (Avaliação Qualis Prévia), `none` (Sem PTT). |
-| `proficiency_stage` | Momento Exigência Proficiência | `Selection` | `admission` (Na Admissão - IPEN/USP), `qualification` (Na Qualificação), `defense` (Na Defesa). |
+| `proficiency_stage` | Momento Exigência Proficiência | `Selection` | `admission` (Na Admissão - IPEN), `qualification` (Na Qualificação), `defense` (Na Defesa). |
 | `defense_location_policy` | Política de Presença da Defesa | `Selection` | `onsite_mandatory` (Presencial), `hybrid_allowed` (Presença física aluno/presidente), `fully_remote_allowed` (100% remota autorizada - CDTN Art. 49). |
 | `presentation_max_minutes` | Tempo Máximo Exposição (min) | `Integer` | Ex: 50 min (IPEN), 45 min (CDTN Art. 48 §2º). |
 | `arguing_max_minutes_per_member` | Tempo Máximo Arguição p/ Membro | `Integer` | Ex: 40 min por examinador. |
@@ -122,10 +122,10 @@
 | `curriculum_version_id` | Versão do Currículo | `Many2one` | FK para `op.curriculum.version`. Mandatory. |
 | `academic_level` | Nível de Formação | `Selection` | `master` (Mestrado), `phd` (Doutorado). |
 | `stage` | Rito Acadêmico | `Selection` | `qualification` (Qualificação), `seminar` (Seminário de Área), `defense` (Defesa Final). |
-| `min_titular_count` | Mínimo de Examinadores Titulares | `Integer` | Ex: 3 (Mestrado geral), 5 (Doutorado CDTN/USP). |
-| `suplente_mode` | Regra de Suplentes | `Selection` | `fixed_pair` (Mínimo 2: 1 int / 1 ext - Mackenzie), `one_per_titular` (1 por titular - USP Art. 89 §5º), `custom` (Quantidade fixa). |
-| `advisor_vote_role` | Papel e Voto do Orientador | `Selection` | `voting_president` (Preside e Vota - IPEN/Mackenzie), `non_voting_president` (Preside sem voto - CDTN Art. 44 §4º / USP), `examiner_only` (Membro votante sem presidência). |
+| `min_titular_count` | Mínimo de Examinadores Titulares | `Integer` | Ex: 3 (Mestrado geral), 5 (Doutorado CDTN). |
+| `suplente_mode` | Regra de Suplentes | `Selection` | `fixed_pair` (Mínimo 2: 1 int / 1 ext - Mackenzie), `one_per_titular` (1 por titular), `custom` (Quantidade fixa). |
+| `advisor_vote_role` | Papel e Voto do Orientador | `Selection` | `voting_president` (Preside e Vota - IPEN/Mackenzie), `non_voting_president` (Preside sem voto - CDTN Art. 44 §4º), `examiner_only` (Membro votante sem presidência). |
 | `coadvisor_participation` | Participação do Coorientador | `Selection` | `non_voting_additional` (Membro adicional sem voto), `forbidden_with_advisor` (Proibido se Orientador presente - IPEN Art. 10 §3º), `full_voting_member` (Membro Votante). |
-| `external_rule` | Exigência de Membros Externos | `Selection` | `min_one_external` (Mínimo 1 externo ao PPG/IES), `min_two_external` (Mínimo 2 externos - CDTN Doutorado), `majority_external` (Maioria externa ao PPG - USP Art. 89 §4º). |
+| `external_rule` | Exigência de Membros Externos | `Selection` | `min_one_external` (Mínimo 1 externo ao PPG/IES), `min_two_external` (Mínimo 2 externos - CDTN Doutorado), `majority_external` (Maioria externa ao PPG). |
 | `allow_non_phd_member` | Permite Especialista sem Doutorado | `Boolean` | Em Mestrados Profissionais, aceita notória especialização de mercado. |
-| `non_phd_approval_level` | Alçada de Aprovação de Não-Doutor | `Selection` | `cpg_simple` (CPG simples), `cpg_qualified` (2/3 da CPG - IPEN Art. 46 §3º), `superior_council` (CPG + Conselho Superior - USP Art. 89 §2º). |
+| `non_phd_approval_level` | Alçada de Aprovação de Não-Doutor | `Selection` | `cpg_simple` (CPG simples), `cpg_qualified` (2/3 da CPG - IPEN Art. 46 §3º), `superior_council` (CPG + Conselho Superior). |

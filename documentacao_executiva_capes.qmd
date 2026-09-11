@@ -106,7 +106,7 @@ l10n_br_openeducat_capes/
 ├── l10n_br_openeducat_capes_thesis       # Ritos Bipartidos (Seminários/Qualificação/Defesa), Bancas e Versão Final PDF
 ├── l10n_br_openeducat_capes_ptt          # Produtos Técnico-Tecnológicos, 4 Eixos, 21 Tipos, TRL 1-9 e Qualis Tecnológico
 ├── l10n_br_openeducat_capes_integration  # Barramento REST JSON v1 (Fonte Prata) e Crosswalk DSpace OAI-PMH (Fonte Ouro)
-└── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e XAdES/USP
+├── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e XAdES
 ```
 
 ## Árvore de Dependências e Segurança (Odoo 19)
@@ -232,7 +232,7 @@ if record.stage == 'defense':
         )
 ```
 
-## Composição da Banca e Trava de Impedimento Cível (USP Art. 89 §3º)
+## Composição da Banca e Trava de Impedimento Cível (Impedimentos Legais)
 * **Quórum de Titulares e Suplentes:** Validação do número mínimo de doutores.
 * **Impedimento Cível (`civil_relationship_flag`):** Bloqueio automático de parentes em linha reta ou colateral até 4º grau com o discente ou orientador.
 * **Membros Externos (Endogenia):** Verificação do número mínimo de examinadores externos ao PPG e à IES.
@@ -266,10 +266,11 @@ $$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \tex
 * `GET /api/capes/v1/curriculums`: Matrizes curriculares e regras regimentais.
 * `GET /api/capes/v1/projects_and_ptts`: Projetos de pesquisa e PTTs com Qualis.
 
-## Diplomas Digitais Nato-Digitais (Portaria MEC nº 70/2025)
-* **Modelo `capes.digital.diploma`:** Geração do XML oficial do diploma e dossiê acadêmico.
-* **Assinatura XAdES-BES ICP-Brasil:** Assinatura digital com certificado A3/HSM, Carimbo de Tempo e Hash SHA-256.
-* **Autenticação Pública (`/valida-documento`):** QR Code no rodapé do Histórico Escolar QWeb redirecionando para validação pública da chave SHA-256.
+## Gestão de Diplomas, Livros de Registro e Titulação (MEC 70/2025 & Transição Física)
+* **Modelo `capes.digital.diploma`:** Geração do XML oficial do diploma, dossiê acadêmico e controle de registro físico em papel.
+* **Governança Dual de Registro (`issuing_ies_type`):** Suporte nativo a Universidades com Autonomia Registradora Direta e a Institutos de Pesquisa sem autonomia universitária (como o **IPEN-CNEN/SP**), cujos diplomas são remetidos para escrituração na Universidade Registradora Externa (**USP**).
+* **Suporte Híbrido de Emissão (`emission_format`):** Permite a emissão em Papel/Físico com Livro de Registro (`registration_book_number`) e Folha (`registration_page_number`), a emissão Nato-Digital (XML + XAdES-BES + RVDD MEC 70/2025) ou ambos simultaneamente.
+* **Assinatura XAdES-BES ICP-Brasil & Hash SHA-256:** Selagem criptográfica do Pacote de Titulação e emissão de QR Code de autenticação pública (`/valida-documento`).
 
 ---
 
@@ -280,8 +281,8 @@ $$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \tex
 | **Portaria CAPES nº 158/2023** | Governança GoPG | Fim da alimentação manual duplicada; interoperabilidade ativa. | APIs RESTful JSON Fonte Prata e barramento OAI-PMH `oai_capes`. |
 | **Instrução Normativa nº 1/2026** | Coleta RICA\|PG | Coleta automatizada passiva de discentes, docentes e projetos. | Endpoints `/api/capes/v1/` com Privacy by Design (LGPD). |
 | **Portaria CAPES nº 221/2025** | Estágio Docência | Validação flexível de estágio de docência para bolsistas. | Parâmetro `teaching_internship_mode` na versão curricular. |
-| **Portaria MEC nº 70/2025** | Diplomas Digitais | Emissão obrigatoriamente nato-digital em XML com XAdES. | Modelo `capes.digital.diploma`, envelopes XAdES e timestamp. |
+| **Portaria MEC nº 70/2025 & Registro Físico** | Diplomas e Registros | Emissão Nato-Digital (XML/XAdES) e Registro Físico/Papel com Livro/Folha. | Modelo `capes.digital.diploma` com seleção `digital`, `paper_hybrid` e governança IPEN $\rightarrow$ USP. |
 | **Diretrizes GTPT / Medicina II** | Produção Técnica | Classificação rígida em 4 eixos, 21 tipos e TRL 1-9. | Taxonomia XML estática, Quotas de PI e motor Qualis Tecnológico. |
-| **Regimento USP Art. 89 §3º** | Bancas Examinadoras | Impedimento por parentesco até 4º grau e controle de endogenia. | Checagem de `civil_relationship_flag` e quórum externo. |
+| **Governança de Bancas** | Bancas Examinadoras | Impedimento por parentesco até 4º grau e controle de endogenia. | Checagem de `civil_relationship_flag` e quórum externo. |
 | **Ato Jurídico Perfeito (CF/88)** | Direitos do Aluno | Preservação das regras de ingresso até a diplomação. | Entidade `op.curriculum.version` associada ao aluno (`student_id`). |
 | **Regulamento MP-TRCS v2 Art. 31º** | Matriz de Créditos | Distribuição de 100 créditos (40 disc. + 52 tese + 8 atividades). | Desdobramento de 5 campos em `op.curriculum.version`. |

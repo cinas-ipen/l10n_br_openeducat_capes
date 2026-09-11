@@ -26,7 +26,7 @@ from odoo.exceptions import ValidationError
 
 class CapesDigitalDiploma(models.Model):
     _name = 'capes.digital.diploma'
-    _description = 'Diploma Nato-Digital e Pacote de Titulação (Portaria MEC 70/2025)'
+    _description = 'Expedição e Registro de Diplomas (Nato-Digital MEC 70/2025 e Físico/Papel)'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'graduation_date desc, id desc'
 
@@ -55,27 +55,62 @@ class CapesDigitalDiploma(models.Model):
         ('doctorate', 'Doutor em Ciências')
     ], string='Grau Acadêmico Concedido', required=True, default='master', tracking=True)
 
+    # Modalidade e Governança do Registro
+    issuing_ies_type = fields.Selection([
+        ('autonomous_university', 'Universidade com Autonomia Registradora Direta'),
+        ('external_registering_university', 'Registro via IES Registradora Externa (ex: USP para IPEN)')
+    ], string='Governança do Registro', default='external_registering_university', required=True, tracking=True)
+
+    emission_format = fields.Selection([
+        ('digital', 'Nato-Digital (Portaria MEC nº 70/2025)'),
+        ('paper_hybrid', 'Físico em Papel Registrado (Tradição/Transição MEC)'),
+        ('both', 'Ambos (Digital + Físico)')
+    ], string='Formato de Emissão', default='paper_hybrid', required=True, tracking=True)
+
     origin_ies_name = fields.Char(
-        string='IES de Origem (Ensino / Pesquisa)',
+        string='IES / Instituto de Origem',
         default='Instituto de Pesquisas Energéticas e Nucleares - IPEN-CNEN/SP',
         required=True
     )
     issuing_ies_name = fields.Char(
         string='IES Emissora / Registradora do Grau',
         default='Universidade de São Paulo - USP',
-        required=True
+        required=True,
+        help='Para institutos de pesquisa como o IPEN, a IES Registradora do diploma é a USP.'
     )
 
     diploma_process_number = fields.Char(
         string='Número do Processo de Registro de Diploma',
         tracking=True,
-        help='Número de protocolo de registro na Pró-Reitoria de Pós-Graduação'
+        help='Número de protocolo do processo de registro (ex: Processo USP / IPEN)'
     )
     graduation_date = fields.Date(
         string='Data da Outorga do Grau',
         required=True,
         default=fields.Date.context_today,
         tracking=True
+    )
+
+    # Campos de Registro Físico / Livro de Registro
+    registration_book_number = fields.Char(
+        string='Número do Livro de Registro',
+        tracking=True,
+        help='Livro de Registro de Diplomas da IES Registradora (ex: Livro 42-B na USP)'
+    )
+    registration_page_number = fields.Char(
+        string='Folha / Página do Registro',
+        tracking=True,
+        help='Número da Folha/Página do Livro de Registro (ex: Fls. 118)'
+    )
+    registration_date = fields.Date(
+        string='Data do Registro na IES Registradora',
+        tracking=True,
+        help='Data em que a IES Registradora (ex: USP) efetivou o registro do diploma'
+    )
+    physical_dispatch_date = fields.Date(
+        string='Data de Remessa do Protocolo Físico',
+        tracking=True,
+        help='Data de remessa do processo/diploma em papel para a IES Registradora'
     )
 
     # Criptografia e Estruturação de XMLs Federais (Portaria MEC nº 70/2025)
@@ -106,7 +141,7 @@ class CapesDigitalDiploma(models.Model):
     state = fields.Selection([
         ('draft', 'Rascunho / Em Preparação'),
         ('package_ready', 'Pacote de Titulação Selado'),
-        ('signed', 'Assinado Digitalmente (XAdES)'),
+        ('signed', 'Assinado Digitalmente / Registrado'),
         ('issued', 'Diploma Expedido & Registrado')
     ], string='Situação', default='draft', tracking=True)
 
@@ -116,15 +151,23 @@ class CapesDigitalDiploma(models.Model):
         string='Trilha de Auditoria de Assinaturas Criptográficas'
     )
 
+    @api.onchange('issuing_ies_type')
+    def _onchange_issuing_ies_type(self):
+        for record in self:
+            if record.issuing_ies_type == 'external_registering_university':
+                record.issuing_ies_name = 'Universidade de São Paulo - USP'
+            elif record.issuing_ies_type == 'autonomous_university':
+                record.issuing_ies_name = record.origin_ies_name or 'Universidade Autônoma'
+
     def action_generate_degree_package(self):
-        """Gera o Hash SHA-256 e os XMLs estruturados conforme a Portaria MEC nº 70/2025."""
+        """Gera o Hash SHA-256 e os XMLs estruturados do Dossiê Acadêmico."""
         Ledger = self.env['op.student.credit.ledger']
         for record in self:
             if not record.student_id or not record.thesis_id:
                 raise ValidationError("Discente e Defesa/Tese são obrigatórios para gerar o Pacote de Titulação.")
 
             # 1. Cálculo da Chave Hash SHA-256
-            raw_hash_str = f"{record.student_id.id}|{record.student_id.partner_id.cpf}|{record.thesis_id.title}|{record.graduation_date}|{record.origin_ies_name}|{record.issuing_ies_name}"
+            raw_hash_str = f"{record.student_id.id}|{record.student_id.partner_id.cpf}|{record.thesis_id.title}|{record.graduation_date}|{record.origin_ies_name}|{record.issuing_ies_name}|{record.emission_format}"
             hash_object = hashlib.sha256(raw_hash_str.encode('utf-8'))
             record.sha256_hash = hash_object.hexdigest().upper()
             record.validation_qr_code_url = f"/valida-documento?hash={record.sha256_hash}"
@@ -135,6 +178,8 @@ class CapesDigitalDiploma(models.Model):
 <DiplomaDigital xmlns="http://www.mec.gov.br/diplomadigital">
     <InfDiplomaDigital id="DIP-{record.id}">
         <DadosDiploma>
+            <FormatoEmissao>{record.emission_format}</FormatoEmissao>
+            <GovernancaRegistro>{record.issuing_ies_type}</GovernancaRegistro>
             <NomeTitulado>{record.student_id.partner_id.name}</NomeTitulado>
             <CPFTitulado>{record.student_id.partner_id.cpf or ''}</CPFTitulado>
             <GrauConcedido>{record.degree_type}</GrauConcedido>
@@ -144,6 +189,11 @@ class CapesDigitalDiploma(models.Model):
             <CodigoEMEC>{company.emec_code or ''}</CodigoEMEC>
             <CodigoCapesPPG>{record.student_id.program_id.snpg_code if record.student_id.program_id else ''}</CodigoCapesPPG>
         </DadosDiploma>
+        <DadosRegistroFisico>
+            <NumeroLivro>{record.registration_book_number or ''}</NumeroLivro>
+            <NumeroFolha>{record.registration_page_number or ''}</NumeroFolha>
+            <DataRegistro>{record.registration_date or ''}</DataRegistro>
+        </DadosRegistroFisico>
         <DadosTese>
             <TituloTese>{record.thesis_id.title}</TituloTese>
             <HandleDSpace>{record.thesis_id.repository_url or ''}</HandleDSpace>
@@ -172,14 +222,20 @@ class CapesDigitalDiploma(models.Model):
             record.state = 'package_ready'
 
     def action_sign_diploma_xades(self):
-        """Orquestra a assinatura criptográfica avançada XAdES ICP-Brasil (Certificados A3/HSM) e insere Carimbo de Tempo."""
+        """Orquestra a assinatura criptográfica avançada XAdES ICP-Brasil ou a chancela do protocolo físico."""
         for record in self:
             if record.state not in ('package_ready', 'signed'):
-                raise ValidationError("Gere primeiro o Pacote de Titulação antes de assinar digitalmente.")
+                raise ValidationError("Gere primeiro o Pacote de Titulação antes de assinar digitalmente / registrar.")
 
             # Simulação Criptográfica de Envelope XAdES-BES (MEC 70/2025)
             timestamp_str = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
             sig_hash = hashlib.sha256(f"{record.diploma_xml}|{timestamp_str}".encode('utf-8')).hexdigest().upper()
+
+            subject_name = "CN=SECRETARIA ACADEMICA ICP-BRASIL, O=INSTITUTO DE PESQUISAS ENERGETICAS E NUCLEARES"
+            signer_label = "Secretaria Acadêmica / CPG-IPEN"
+            if record.issuing_ies_type == 'external_registering_university':
+                subject_name += f", OU={record.issuing_ies_name}"
+                signer_label += f" & Pró-Reitoria de Pós-Graduação ({record.issuing_ies_name})"
 
             signed_xml = f"""{record.diploma_xml}
 <!-- Signature XAdES ICP-Brasil Enveloped -->
@@ -191,7 +247,7 @@ class CapesDigitalDiploma(models.Model):
     <ds:SignatureValue>XAdES_ICP_BRASIL_A3_HSM_SIGNATURE_DATA_STRING</ds:SignatureValue>
     <ds:KeyInfo>
         <ds:X509Data>
-            <ds:X509SubjectName>CN=REITORIA USP ICP-BRASIL, O=UNIVERSIDADE DE SAO PAULO</ds:X509SubjectName>
+            <ds:X509SubjectName>{subject_name}</ds:X509SubjectName>
         </ds:X509Data>
     </ds:KeyInfo>
     <ds:Object>
@@ -203,8 +259,8 @@ class CapesDigitalDiploma(models.Model):
             # Registra a trilha de auditoria de assinatura
             self.env['capes.diploma.signature.log'].create({
                 'diploma_id': record.id,
-                'signer_name': 'Reitoria da Universidade de São Paulo - USP / CPG-IPEN',
-                'certificate_serial': 'ICP-BR-A3-2026-USP-0091823',
+                'signer_name': signer_label,
+                'certificate_serial': 'ICP-BR-A3-2026-IPEN-USP-0091823',
                 'signature_timestamp': fields.Datetime.now(),
                 'signature_hash': sig_hash,
                 'signature_algorithm': 'XAdES-BES SHA-256 com Carimbo de Tempo (ICP-Brasil)'
@@ -213,8 +269,8 @@ class CapesDigitalDiploma(models.Model):
             record.state = 'signed'
 
     def action_issue_diploma(self):
-        """Conclui a expedição formal e o registro do Diploma Digital."""
+        """Conclui a expedição formal e o registro do Diploma."""
         for record in self:
             if not record.signed_xades_xml:
-                raise ValidationError("O diploma precisa estar assinado no padrão XAdES antes de ser expedido.")
+                raise ValidationError("O diploma precisa estar assinado / chancelado no pacote antes de ser expedido.")
             record.state = 'issued'

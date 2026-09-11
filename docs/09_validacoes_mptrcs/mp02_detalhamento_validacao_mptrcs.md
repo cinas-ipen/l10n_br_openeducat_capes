@@ -96,11 +96,11 @@ Abaixo, cada um dos 7 subprocessos do MP2 é detalhado considerando a **Lógica 
 
 * **Descrição Operacional:** Com a publicação da lista final de aprovados, a Secretaria aciona o comando de conversão de candidato em aluno regular (op.student). O Odoo valida os pré-requisitos de entrada, gera o registro cadastral, atribui o número de matrícula e inicia o relógio cronológico oficial. 
 * **Configuração Específica MPTRCS/IPEN:** 
-  * *Trava Dura de Proficiência na Matrícula (proficiency_stage = 'admission'):* Por se tratar da regra IPEN/USP, o Odoo bloqueia a geração da matrícula caso o comprovante de proficiência em Inglês (e Português para estrangeiros) não esteja deferido no dossiê. 
+  * *Trava Dura de Proficiência na Matrícula (proficiency_stage = 'admission'):* Por se tratar da regra IPEN, o Odoo bloqueia a geração da matrícula caso o comprovante de proficiência em Inglês (e Português para estrangeiros) não esteja deferido no dossiê. 
   * *Início do Relógio:* A efetivação da matrícula marca o dia 0 e inicia a contagem improrrogável dos **24 meses** de prazo máximo de titulação. 
   * *Gatilho de Evasão Precoce:* O ERP monitora a assiduidade nas **3 primeiras semanas letivas**. Ingressantes sem registro de presença ou sem justificativa formal homologada no portal têm a matrícula cancelada automaticamente como "Desistente", notificando a Secretaria para convocação imediata do próximo candidato da lista de espera.  
 * **Matriz de Parametrização no ERP:** 
-  * *Gatilho de Proficiência:* 'admission' (IPEN/USP), 'qualification' (Mackenzie) ou 'defense'. 
+  * *Gatilho de Proficiência:* 'admission' (IPEN), 'qualification' (Mackenzie) ou 'defense'. 
   * *Janela de Evasão Precoce:* Ajustável (ex: 1 a 4 semanas) ou desativável.
 
 #### **Subprocesso 2.5: Formalização Eletrônica do Vínculo de Orientação**

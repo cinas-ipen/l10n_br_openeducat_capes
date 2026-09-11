@@ -31,7 +31,7 @@ Esta entidade concentra parâmetros vitais que balizam o motor cronológico, a a
   * Valor em horas-aula de cada crédito (`credit_hour_ratio`: ex: 15h no IPEN/CDTN vs 10h/12h no Mackenzie).
   * Escala de conceitos e nota de corte para aprovação (`grading_scale_type`), suportando o conceito "D" como aprovado (CDTN) ou "C" (IPEN/Mackenzie).
 * **Parametrização do Momento da Proficiência (`proficiency_stage`):**
-  * `admission`: Exigência na matrícula inicial (Regra IPEN/USP).
+  * `admission`: Exigência na matrícula inicial (Regra IPEN).
   * `qualification`: Exigência no Exame de Qualificação.
   * `defense`: Exigência no momento do depósito da Defesa Final.
 * **Disciplinas Obrigatórias Dinâmicas (`op.curriculum.subject.rule`):**
@@ -42,7 +42,7 @@ Esta entidade concentra parâmetros vitais que balizam o motor cronológico, a a
   * `cpg_checklist` (Checklist + Dupla Anuência + Pauta CPG), `qualis_prior` (Estrato Qualis T1-T5 prévio), ou `none` (Cursos Acadêmicos).
 * **Regras de Composição de Bancas e Votação (`op.curriculum.committee.rule`):**
   * Quórum de titulares e suplentes (ex: 3 membros no Mestrado; 3 a 5 no Doutorado; 2 suplentes fixos ou 1 suplente por titular).
-  * Voto do Orientador (`voting_president` no IPEN/Mackenzie vs. `non_voting_president` no CDTN e opção USP).
+  * Voto do Orientador (`voting_president` no IPEN/Mackenzie vs. `non_voting_president` no CDTN).
   * Quórum de membros externos ao PPG (mínimo 1 externo, mínimo 2 externos, ou maioria externa).
 * **Política de Modalidade da Defesa (`defense_location_policy`):**
   * `onsite_mandatory` (Presencial obrigatório), `hybrid_allowed` (Presença física do aluno/presidente), ou `fully_remote_allowed` (100% remota autorizada).

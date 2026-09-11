@@ -102,10 +102,10 @@ Abaixo, cada um dos 10 subprocessos do MP1 é detalhado considerando a **Lógica
 
 * **Descrição Operacional:** Configura o momento exato em que o ERP exige a aprovação no exame de proficiência em língua estrangeira (Inglês, e Português no caso de discentes estrangeiros).
 * **Configuração Específica MPTRCS/IPEN:**
-* *Gatilho de Exigência (proficiency_stage):* 'admission' (Modo IPEN/USP).
+* *Gatilho de Exigência (proficiency_stage):* 'admission' (Modo IPEN).
 * *Efeito Sistêmico:* A aprovação no exame de proficiência é condição *sine qua non* no ato do ingresso. O Odoo bloqueia a conversão do candidato aprovado em aluno regular (op.student) e a emissão do número de matrícula caso o comprovante não esteja homologado.
 * **Matriz de Parametrização no ERP:**
-* 'admission': Exigência na matrícula inicial (IPEN/USP).
+* 'admission': Exigência na matrícula inicial (IPEN).
 * 'qualification': Exigência como pré-requisito para o agendamento da Qualificação (Mackenzie).
 * 'defense': Exigência para o depósito da Defesa Final.
 
@@ -161,10 +161,10 @@ Abaixo, cada um dos 10 subprocessos do MP1 é detalhado considerando a **Lógica
 * *Exceção de Notória Especialização:* Permite especialista de mercado sem doutorado mediante parecer aprovado por **2/3 do Colegiado** (Regulamento MPTRCS Art. 46 §3º).
 * *Política de Presença (defense_location_policy):* hybrid_allowed (Presença física obrigatória do discente e do presidente na sede do IPEN, permitindo examinadores remotos).
 * **Matriz de Parametrização no ERP:**
-* *Quórum:* 3 a 5 membros titulares; suplentes por par fixo (1 int / 1 ext - Mackenzie) ou 1 para cada titular (USP Art. 89 §5º).
-* *Voto do Orientador:* Votante (voting_president - IPEN/Mackenzie) vs. Não-Votante (non_voting_president - CDTN Art. 44 §4º e opção USP).
-* *Membros Externos:* Mínimo 1 externo (IPEN/Mackenzie), Mínimo 2 externos (CDTN Doutorado), ou Maioria Externa ao PPG (USP Art. 89 §4º).
-* *Impedimento Cível:* Trava automática para parentesco em linha reta ou colateral até 4º grau com o discente ou orientador (USP Art. 89 §3º).
+* *Quórum:* 3 a 5 membros titulares; suplentes por par fixo (1 int / 1 ext - Mackenzie) ou 1 para cada titular.
+* *Voto do Orientador:* Votante (voting_president - IPEN/Mackenzie) vs. Não-Votante (non_voting_president - CDTN Art. 44 §4º).
+* *Membros Externos:* Mínimo 1 externo (IPEN/Mackenzie), Mínimo 2 externos (CDTN Doutorado), ou Maioria Externa ao PPG.
+* *Impedimento Cível:* Trava automática para parentesco em linha reta ou colateral até 4º grau com o discente ou orientador.
 * *Modalidade:* Presencial, Híbrida ou 100% Remota autorizada (CDTN Art. 49).
 
 #### **Subprocesso 1.10: Tramitação e Protocolo de Migração Regimental**
@@ -200,7 +200,7 @@ A tabela abaixo deve ser revisada e formalmente aprovada durante a reunião de t
 | **Disciplinas Obrigatórias** | op.curriculum.subject.rule | MP-01 e MP-02 (Gerais) | Por Programa ou por Área de Concentração |
 | **Estágio de Docência (CAPES 221)** | teaching_internship_mode | 'not_applicable' (Profissional) | 'scholarship_only', 'mandatory_all', 'flexible' |
 | **Mecânica de Validação de PTT** | ptt_validation_mode | 'cpg_checklist' (Checklist + CPG) | 'qualis_prior' ou 'none' |
-| **Papel e Voto do Orientador** | advisor_vote_role | 'voting_president' (Preside/Vota) | 'non_voting_president' (CDTN/USP) |
+| **Papel e Voto do Orientador** | advisor_vote_role | 'voting_president' (Preside/Vota) | 'non_voting_president' (CDTN) |
 | **Participação Coorientador** | coadvisor_participation | 'forbidden_with_advisor' | 'non_voting_additional' ou 'full_voting' |
 | **Endogenia de Externos** | external_rule | 'min_one_external' (1 externo IPEN) | 'min_two_external' ou 'majority_external' |
 | **Aprovação de Não-Doutor** | non_phd_approval_level | 'cpg_qualified' (2/3 da CPG) | 'cpg_simple' ou 'superior_council' |

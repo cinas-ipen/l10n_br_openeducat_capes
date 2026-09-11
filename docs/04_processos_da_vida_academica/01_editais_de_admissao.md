@@ -21,7 +21,7 @@ O sistema permite a configuração de `N` fases encadeadas através de uma rela�
 
 1. **Validação Documental:** Homologação da inscrição (conferência de diploma de graduação, histórico escolar e documentos civis).
 2. **Análise de Currículo Lattes e Provas:** Computação objetiva da pontuação do Lattes e lançamento de notas de provas escritas.
-3. **Trava de Proficiência Linguística na Admissão (Regra IPEN/USP):** Quando o regimento atrelado ao edital possuir `proficiency_stage = 'admission'`, a aprovação e apresentação do certificado de proficiência em Língua Inglesa (e Português para estrangeiros) passa a ser condição **sine qua non** para a homologação do resultado.
+3. **Trava de Proficiência Linguística na Admissão (Regra IPEN):** Quando o regimento atrelado ao edital possuir `proficiency_stage = 'admission'`, a aprovação e apresentação do certificado de proficiência em Língua Inglesa (e Português para estrangeiros) passa a ser condição **sine qua non** para a homologação do resultado.
 4. **Entrevista Qualitativa e Rubrica CPG:** Painel de avaliação no ERP para a banca de entrevistas, com atribuição de notas de 1 a 5 nas dimensões: *Maturidade Profissional*, *Alinhamento com o Setor Produtivo/Linha de Pesquisa* e *Potencial de Geração de PTT*.
 
 ## 4. O Gatilho de Soberania do Coordenador (Override Estratégico)

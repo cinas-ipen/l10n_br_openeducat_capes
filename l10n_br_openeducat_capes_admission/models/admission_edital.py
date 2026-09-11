@@ -294,9 +294,9 @@ class OpAdmissionCandidate(models.Model):
                 raise ValidationError("Apenas candidatos com situação Aprovado ou Aprovado (Override) podem ser convertidos em Aluno Regular.")
             
             curriculum = record.edital_id.curriculum_version_id
-            # Trava de Proficiência na Admissão (Regra IPEN/USP)
+            # Trava de Proficiência na Admissão (Regra IPEN)
             if curriculum.proficiency_stage == 'admission' and not record.english_proficient:
-                raise ValidationError("O regimento do curso exige a comprovação de proficiência linguística na admissão (Regra IPEN/USP) antes da conversão em Aluno Regular.")
+                raise ValidationError("O regimento do curso exige a comprovação de proficiência linguística na admissão (Regra IPEN) antes da conversão em Aluno Regular.")
 
             # Criação do Aluno Regular
             student = Student.create({

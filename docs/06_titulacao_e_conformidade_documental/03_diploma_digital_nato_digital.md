@@ -1,45 +1,59 @@
 ### docs/06_titulacao_e_conformidade_documental/03_diploma_digital_nato_digital.md
 
-# Governança de Expedição de Diplomas – Integração IPEN (Origem) e USP (Instituição Registradora Emissora)
+# Governança de Expedição e Registro de Diplomas – Dualidade de Modelos (IPEN/USP) e Suporte Híbrido (Digital / Físico)
 
-## 1. O Marco Regulatório e a Realidade Institucional (Portaria MEC nº 70/2025)
+## 1. O Marco Regulatório e as Modalidades de Emissão
 
-A expedição de diplomas de pós-graduação *Stricto Sensu* rege-se pela Portaria MEC nº 70/2025, que proíbe o formato físico em papel como documento oficial, exigindo a entidade "Nato-Digital" sob a forma de arquivo XML criptografado.
+A expedição de diplomas de pós-graduação *Stricto Sensu* (Mestrado e Doutorado) no Brasil vivencia uma fase de transição normativa e tecnológica:
 
-No ecossistema do Programa de Pós-Graduação em Tecnologia das Radiações em Ciências da Saúde (MPTRCS), o **Instituto de Pesquisas Energéticas e Nucleares (IPEN-CNEN/SP)** atua como unidade técnico-científica de ensino, mas **não possui autonomia legal direta para o registro autônomo de graus acadêmicos**, competindo esta atribuição institucional à **Universidade de São Paulo (USP)**, à qual o programa está formalmente vinculado e associado para fins de outorga de títulos.
+- **Portaria MEC nº 70/2025 (Nato-Digital):** Estabelece as especificações do Diploma Digital assinado via ICP-Brasil (XAdES-BES com Carimbo de Tempo e Representação Visual RVDD).
+- **Emissão Tradicional / Híbrida em Papel:** Tendo em vista que o Ministério da Educação (MEC) implementou integralmente a obrigatoriedade do diploma digital prioritariamente para os cursos de Graduação, os Programas de Pós-Graduação *Stricto Sensu* mantêm operacionalmente a emissão de diplomas físicos em papel com trâmite de registro formal em Livro de Registro físico/digital.
 
-Portanto, o submódulo `l10n_br_openeducat_capes_diploma` opera em duas camadas coordenadas:
-
-1. **IPEN (Fonte Prata e Ouro):** Orquestra a auditoria integral da vida acadêmica, a defesa, a homologação do PTT, a validação da versão final do PDF e a geração do manifesto para o Repositório Institucional (DSpace), gerando e selando o **Pacote de Titulação**.
-2. **USP (Autoridade Registradora Emissora):** Recebe o pacote validado, processa a homologação final do registro acadêmico e emite oficialmente o Diploma Nato-Digital.
-
----
-
-## 2. A Composição do "Pacote de Titulação" (IPEN $\rightarrow$ USP)
-
-Uma vez que o discente atinge o status de "Titulado" no ERP do IPEN (após o upload da versão final em PDF pelo discente e a chancela/validação da Secretaria Acadêmica), o sistema empacota os dados para transmissão segura à USP, contendo:
-
-* **XML de Lastro Acadêmico:** Extraído diretamente das tabelas *append-only* do Livro-Razão (`op.student.credit.ledger`), contendo o histórico escolar consolidado com conversão de créditos em horas-aula e as assinaturas de regimento (Ato Jurídico Perfeito).
-* **Ata de Defesa e Dossiê da Banca:** Metadados da comissão julgadora (`capes.thesis.committee`), comprovando o quórum de doutores, a participação de membros externos e a inexistência de endogenia ou impedimentos.
-* **Comprovação do PTT:** Identificação do Produto Técnico-Tecnológico validado com seu estrato Qualis e evidências anexadas.
+O submódulo `l10n_br_openeducat_capes_diploma` foi arquitetado para suportar **ambos os formatos** (`emission_format`):
+- `digital`: Nato-Digital em XML com envelope XAdES e RVDD (MEC 70/2025).
+- `paper_hybrid`: Diploma Físico em Papel com protocolo de remessa, averbação em Livro de Registro e chancela digital do dossiê.
+- `both`: Emissão Simultânea (Digital + Físico em Papel).
 
 ---
 
-## 3. Orquestração Criptográfica e Expedição pela USP
+## 2. Modelos de Governança Institucional (`issuing_ies_type`)
 
-Com base no pacote enviado pelo IPEN, a infraestrutura da USP executa a esteira tecnológica de expedição regulada pela Portaria MEC nº 70/2025:
+O ERP diferencia dois arranjos institucionais de outorga de graus acadêmicos:
 
-* **Estruturação dos XMLs Oficiais:** Geração do XML do Diploma Digital (dados civis, grau de Mestre Profissional, reconhecimento CAPES) e do XML da Documentação Acadêmica (histórico).
-* **Assinatura Avançada XAdES (ICP-Brasil):** Aplicação de assinaturas digitais com certificados corporativos institucionais A3/HSM da Reitoria da USP e da unidade registradora.
-* **Carimbo de Tempo (Timestamp):** Injeção de carimbo de tempo por Autoridade de Certificação homologada para assegurar a perenidade e a imutabilidade da data de outorga do grau.
+### Modelo A: Autonomia Registradora Direta (`autonomous_university`)
+Aplicável a Universidades (Federais, Estaduais ou Privadas com autonomia) que possuem prerrogativa legal para registrar autonomamente os diplomas por elas emitidos (`origin_ies_name` == `issuing_ies_name`).
+
+### Modelo B: Registro via IES Registradora Externa (`external_registering_university`)
+Aplicável a Institutos de Pesquisa e Faculdades isoladas — como o **Instituto de Pesquisas Energéticas e Nucleares (IPEN-CNEN/SP)** —, os quais ministram o ensino e possuem excelência acadêmica, mas **não possuem autonomia universitária direta para o registro autônomo de diplomas**.
+
+No caso do MP-TRCS e demais cursos do IPEN:
+- **IES / Instituto de Origem (`origin_ies_name`):** Instituto de Pesquisas Energéticas e Nucleares (IPEN-CNEN/SP).
+- **IES Emissora / Registradora (`issuing_ies_name`):** Universidade de São Paulo (USP), responsável pela escrituração do registro de diploma em seus livros e pela expedição/averbação formal do título.
+
+---
+
+## 3. Estrutura do "Pacote de Titulação" e Tramitação Interinstitucional
+
+Independentemente do formato (Digital ou Físico), o Odoo consolida o **Pacote de Titulação** no IPEN após a aprovação da defesa e validação da versão final:
+
+1. **Selagem do Lastro Acadêmico (IPEN):** Compilação do histórico escolar *append-only* (`op.student.credit.ledger`), ata da comissão julgadora e comprovante do Produto Técnico-Tecnológico (PTT).
+2. **Cálculo da Chave Hash SHA-256:** Geração da impressão digital criptográfica única para imutabilidade do processo.
+3. **Remessa para a IES Registradora (USP):**
+   - *No formato Físico/Papel:* Registro da `physical_dispatch_date` (Data de Remessa do Processo) e posterior averbação do `registration_book_number` (Livro de Registro) e `registration_page_number` (Folha/Página) atribuídos pela Pró-Reitoria de Pós-Graduação da USP.
+   - *No formato Digital:* Transmissão via API do manifesto XML para validação e assinatura XAdES pela USP.
 
 ---
 
-## 4. Representação Visual e Transparência (RVDD)
+## 4. Matriz de Campos do Modelo `capes.digital.diploma`
 
-Para legibilidade do mercado e dos egressos, a USP gera a **Representação Visual do Diploma Digital (RVDD)** em PDF de alta resolução, contendo:
-
-* O brasão institucional e os selos de registro.
-* Um **QR Code** de acesso público que aponta diretamente para o validador digital da USP e para os metadados validados na Fonte Prata do IPEN.
-
----
+| Campo Odoo | Descrição | Tipo | Uso / Regra de Negócio |
+| :--- | :--- | :--- | :--- |
+| `issuing_ies_type` | Governança do Registro | `Selection` | `autonomous_university` vs. `external_registering_university` (IPEN $\rightarrow$ USP). |
+| `emission_format` | Formato de Emissão | `Selection` | `digital` (MEC 70/2025), `paper_hybrid` (Físico em Papel), `both`. |
+| `origin_ies_name` | IES de Origem | `Char` | Ex: Instituto de Pesquisas Energéticas e Nucleares - IPEN-CNEN/SP. |
+| `issuing_ies_name` | IES Registradora | `Char` | Ex: Universidade de São Paulo - USP. |
+| `registration_book_number` | Livro de Registro | `Char` | Número do Livro de Registro de Diplomas (ex: Livro 42-B). |
+| `registration_page_number` | Folha / Página | `Char` | Folha ou Página do registro (ex: Fls. 118). |
+| `registration_date` | Data do Registro | `Date` | Data de efetivação do registro na IES Registradora (USP). |
+| `physical_dispatch_date` | Data de Remessa | `Date` | Data de envio do protocolo físico para a USP. |
+| `sha256_hash` | Hash de Autenticidade | `Char` | Chave SHA-256 gerada para selagem do processo. |

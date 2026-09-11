@@ -154,15 +154,15 @@ sequenceDiagram
 - Taxonomia oficial de **4 Eixos Estruturantes** e **21 Tipologias** do GTPT / CAPES.
 - Avaliação multidimensional em escala **TRL 1-9** com calculadora automatizada de estratos (**T1 a T5**).
 
-### 5. Diploma Digital Nato-Digital (Portaria MEC nº 70/2025)
-- Governança bifásica entre IES/Instituto de Origem e Autoridade Registradora Emissora.
-- Envelopamento XML com assinaturas digitais **XAdES-BES (ICP-Brasil)**, Carimbo de Tempo e Representação Visual (RVDD) com código QR de autenticidade.
+### 5. Gestão de Diplomas, Livros de Registro e Titulação (MEC 70/2025 & Físico em Papel)
+- Governança parametrizável para Universidades Autônomas e para Institutos de Pesquisa (como o **IPEN-CNEN/SP**), cujos diplomas são remetidos para escrituração na IES Registradora Externa (**USP**).
+- Suporte híbrido a Diplomas Físicos em Papel (com protocolo de remessa, Livro de Registro e Folha) e Diplomas Nato-Digitais em XML/XAdES (Portaria MEC nº 70/2025).
 
 ---
 
 ## 📊 Perfil de Referência e Validação Regulatória
 
-Como validação empírica e prova de conceito regulatória, o sistema foi parametrizado e validado contra o perfil do **Mestrado Profissional em Tecnologia das Radiações em Saúde (MP-TRCS)** do **IPEN-CNEN/SP** (em parceria de titulação com a USP):
+Como validação empírica e prova de conceito regulatória, o sistema foi parametrizado e validado contra o perfil do **Mestrado Profissional em Tecnologia das Radiações em Saúde (MP-TRCS)** do **IPEN-CNEN/SP** (com registro de diplomas na **USP**):
 - As regras específicas e listas de verificação desse perfil encontram-se documentadas no diretório [`docs/09_validacoes_mptrcs/`](docs/09_validacoes_mptrcs).
 - Modelos de dados e planilhas de importação de exemplo estão disponíveis em [`import_templates/exemplos_referencia/mptrcs_ipen/`](import_templates/exemplos_referencia/mptrcs_ipen).
 

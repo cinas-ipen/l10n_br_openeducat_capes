@@ -131,7 +131,7 @@ class OpCurriculumVersion(models.Model):
 
     # Parametrizações de Domínio Específico
     proficiency_stage = fields.Selection([
-        ('admission', 'Na Admissão (Entrada - IPEN/USP)'),
+        ('admission', 'Na Admissão (Entrada - IPEN)'),
         ('qualification', 'No Exame de Qualificação'),
         ('defense', 'No Momento da Defesa')
     ], string='Momento Exigência Proficiência', default='admission', required=True)
@@ -251,7 +251,7 @@ class OpCurriculumCommitteeRule(models.Model):
 
     advisor_vote_role = fields.Selection([
         ('voting_president', 'Preside e Vota (IPEN/Mackenzie)'),
-        ('non_voting_president', 'Preside sem Voto (CDTN/USP)'),
+        ('non_voting_president', 'Preside sem Voto (Não-Votante)'),
         ('examiner_only', 'Membro Votante sem Presidência')
     ], string='Papel e Voto do Orientador', default='voting_president', required=True)
 
@@ -264,7 +264,7 @@ class OpCurriculumCommitteeRule(models.Model):
     external_rule = fields.Selection([
         ('min_one_external', 'Mínimo 1 Externo ao PPG/IES'),
         ('min_two_external', 'Mínimo 2 Externos (Doutorado CDTN)'),
-        ('majority_external', 'Maioria Externa ao PPG (USP)')
+        ('majority_external', 'Maioria Externa ao PPG')
     ], string='Exigência de Membros Externos', default='min_one_external', required=True)
 
     allow_non_phd_member = fields.Boolean(

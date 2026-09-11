@@ -21,7 +21,7 @@ Este é o processo fundacional de back-office. Antes de qualquer edital ser publ
   * *Matriz de Distribuição Obrigatória:* Divisão da integralização em silos/buckets parametrizáveis.
   * *Tetos de Aproveitamento Externo e Produção Técnica:* Configuração das propriedades de validação em Python: teto de disciplinas externas (ex: até 50% no IPEN vs. 40% no Mackenzie) e bonificação por produções (teto de 25%).
 * **Parametrização de Proficiência Linguística (`proficiency_stage`):**
-  * Configuração do gatilho: `admission` (matrícula inicial - IPEN/USP), `qualification` ou `defense`.
+  * Configuração do gatilho: `admission` (matrícula inicial - IPEN), `qualification` ou `defense`.
 * **Parametrização Dinâmica de Disciplinas Obrigatórias (`op.curriculum.subject.rule`):**
   * Eliminação de códigos fixos em código. Obrigatoriedade gerenciada por tabela de regras com escopo de Programa ou por Área de Concentração (`area_id`).
 * **Parametrização do Estágio de Docência / Supervisionado (`teaching_internship_mode` - Portaria CAPES nº 221/2025):**
@@ -75,7 +75,7 @@ Abandona-se a matrícula direta e manual em favor da concorrência pública para
 **2.4. Transição de Estado, Trava de Proficiência e Matrícula Regular**
 
 * Ao final do certame, o status muda para a condição intermediária de "Candidato Aprovado".
-* **Trava Dura de Proficiência na Matrícula (IPEN/USP):** Durante o procedimento de conversão para Aluno Regular (`op.student`), se o regimento ativo definir `proficiency_stage = 'admission'`, o Odoo impede a geração da matrícula e do registro discente caso a proficiência em Inglês/Português não esteja deferida.
+* **Trava Dura de Proficiência na Matrícula (IPEN):** Durante o procedimento de conversão para Aluno Regular (`op.student`), se o regimento ativo definir `proficiency_stage = 'admission'`, o Odoo impede a geração da matrícula e do registro discente caso a proficiência em Inglês/Português não esteja deferida.
 * **Início do Relógio:** A efetivação da matrícula dispara o relógio cronológico oficial (24 meses).
 * **Gatilho de Evasão Precoce:** O sistema inicia um monitoramento de assiduidade inicial. Alunos matriculados que não registrarem presença (sem justificativa comprovada atestada no portal) nas três primeiras semanas letivas terão a matrícula sumariamente cancelada (status "Desistente"). O sistema notificará a secretaria para convocar imediatamente o próximo candidato da lista de espera.
 * **Preenchimento Obrigatório do Perfil Profissional (Baseline de Egressos):** Para atender às diretrizes da CAPES relativas ao impacto e inserção profissional de titulados em programas acadêmicos e profissionais, o sistema impõe uma etapa final de matrícula onde o ingressante declara dados corporativos (empresa, setor, porte, cargo, tempo de casa, alinhamento com o mestrado e faixa salarial), concedendo anuência por meio de aceite digital auditável (`capes_terms_accepted`) para fins de prestação de contas estatística.
@@ -250,9 +250,9 @@ Orquestra os ritos acadêmicos de passagem e consolidação do grau, aplicando r
 * O orientador atesta a aptidão do trabalho e submete a proposta de banca examinadora no ERP com antecedência parametrizada no regimento (ex: 15 ou 30 dias).
 * **Auditoria Paramétrica da Comissão Julgadora (`op.curriculum.committee.rule`):**
   * Validação do quórum de titulares (3 ou 5 membros) e suplentes conforme a regra ativa do programa (par fixo vs. 1 por titular).
-  * Aplicação da regra de voto do Orientador (Votante no IPEN/Mackenzie vs. Não-Votante no CDTN/USP).
-  * Validação do quórum de membros externos e percentual de endogenia (mínimo 1 externo, mínimo 2 externos, ou maioria externa).
-  * Checagem de impedimentos por parentesco cível até 4º grau (Regra USP Art. 89 §3º).
+  * Aplicação da regra de voto do Orientador (Votante no IPEN/Mackenzie vs. Não-Votante no CDTN).
+  * Validação da participação de membros externos ao PPG/IES conforme a exigência do regimento.
+  * Checagem de impedimentos por parentesco cível até 4º grau.
 
 **6.4. Sessão de Julgamento, Modalidades, Validação da Versão Final e Depósito pela Biblioteca**
 
@@ -265,16 +265,15 @@ Orquestra os ritos acadêmicos de passagem e consolidação do grau, aplicando r
 
 ---
 
-## Macroprocesso 07: Consolidação do Pacote de Titulação e Tramitação para USP
+## Macroprocesso 07: Consolidação do Pacote de Titulação, Registro Interinstitucional (USP) e Expedição (Digital / Físico)
 
-Processo integrado de auditoria de back-office e transmissão documental para encerramento do vínculo acadêmico, operacionalizado no IPEN para submissão à autoridade registradora competente (USP) em cumprimento à Portaria MEC nº 70/2025.
+Processo integrado de auditoria de back-office e consolidação documental para encerramento do vínculo acadêmico, operacionalizado para atender tanto instituições com autonomia registradora direta quanto institutos de pesquisa (como o IPEN) que encaminham o registro para uma Universidade Registradora Externa (como a USP), com suporte a diplomas digitais (Portaria MEC nº 70/2025) e físicos em papel com Livro de Registro.
 
-* **Geração de Histórico Escolar Consolidado e Auditável (IPEN):** O módulo de emissão compila o relatório oficial de notas e créditos do discente acessando diretamente as tabelas *append-only* do `op.student.credit.ledger`. O documento exibe de forma detalhada o título final da dissertação defendida, a composição completa da banca examinadora (identificando os membros externos) e a carga horária em horas convertida perfeitamente de acordo com o fator do regimento do aluno (ex: 100 créditos = 1.500 horas de atividades no IPEN). O PDF interno é selado com um Código de Autenticidade (Hash SHA-256) e um QR Code de validação.
-* **Empacotamento e Transmissão para a USP (Autoridade Registradora):** O IPEN não emite o diploma de forma autônoma; ele atua como o garantidor da origem e integridade acadêmica. O OpenEduCat compila o **Pacote de Titulação** contendo o histórico validado, a ata de defesa assinada com o clique auditável da CPG e o link do DSpace (Handle/URI), transmitindo-o via API segura para o sistema de registro de diplomas da Universidade de São Paulo (USP).
-* **Orquestração do Diploma Nato-Digital pela USP (MEC 70/2025):** A partir dos dados validados pelo IPEN, a USP assume a esteira de expedição digital:
-    * *Compilação do XML:* A USP estrutura os dados acadêmicos, de identificação do egresso, da instituição outorgante e do curso em um arquivo XML formatado estritamente dentro dos esquemas XSD federais.
-    * *Assinatura Criptográfica XAdES e Carimbo de Tempo:* Aplicação sequencial de assinaturas digitais corporativas ICP-Brasil (A3/HSM) da Reitoria da USP no padrão **XAdES** (*XML Advanced Electronic Signatures*), com injeção de *Timestamp* por Autoridade de Carimbo de Tempo homologada.
-    * *Representação Visual do Diploma Digital (RVDD):* Emissão do PDF espelho de alta resolução contendo o QR Code de acesso público para checagem do XML nato-digital original nos servidores da USP e do MEC, disponibilizando-o na carteira digital do egresso.
+* **Geração de Histórico Escolar Consolidado e Auditável (IPEN):** O módulo de emissão compila o relatório oficial de notas e créditos do discente acessando diretamente as tabelas *append-only* do `op.student.credit.ledger`. O documento exibe de forma detalhada o título final da dissertação defendida, a composição completa da banca examinadora (identificando os membros externos) e a carga horária em horas convertida de acordo com o fator do regimento do aluno (ex: 100 créditos = 1.500 horas de atividades no IPEN). O documento é selado com uma chave Hash SHA-256 e QR Code de verificação pública.
+* **Empacotamento do Dossiê e Remessa Interinstitucional (IPEN $\rightarrow$ USP):** O OpenEduCat compila o **Pacote de Titulação** contendo o histórico validado, a ata de defesa assinada e o link do DSpace (Handle/URI). Nos casos de institutos de pesquisa como o IPEN, o sistema gera o protocolo de remessa física/digital (`physical_dispatch_date`) para averbação na Pró-Reitoria de Pós-Graduação da Universidade Registradora (USP).
+* **Averbação do Registro e Expedição (Papel / Nato-Digital):**
+    * *Modalidade Físico em Papel (`paper_hybrid`):* Registro do número do Livro de Registro (`registration_book_number`) e da Folha (`registration_page_number`) emitidos pela USP, com arquivamento do dossiê físico/digital.
+    * *Modalidade Nato-Digital (`digital` - MEC 70/2025):* Geração dos esquemas XML federais, aplicação de envelope criptográfico XAdES-BES (ICP-Brasil) com Carimbo de Tempo e emissão da Representação Visual (RVDD) com QR Code.
 
 ---
 
