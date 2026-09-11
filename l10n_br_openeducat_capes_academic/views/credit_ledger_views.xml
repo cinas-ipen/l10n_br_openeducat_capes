@@ -5,7 +5,7 @@
         <field name="name">op.student.credit.ledger.tree</field>
         <field name="model">op.student.credit.ledger</field>
         <field name="arch" type="xml">
-            <tree string="Livro-Razão Acadêmico de Créditos" create="false" edit="false" delete="false">
+            <list string="Livro-Razão Acadêmico de Créditos" create="false" edit="false" delete="false">
                 <field name="date_earned"/>
                 <field name="student_id"/>
                 <field name="curriculum_version_id"/>
@@ -16,7 +16,7 @@
                 <field name="grade_concept"/>
                 <field name="is_approved" widget="boolean_toggle"/>
                 <field name="origin_ref"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -68,7 +68,7 @@
                 <filter string="APO / PTT" name="type_apo" domain="[('credit_type', '=', 'apo')]"/>
                 <filter string="Qualificação e Defesa" name="type_milestone" domain="[('credit_type', '=', 'milestone')]"/>
                 <filter string="Créditos Externos" name="type_external" domain="[('credit_type', '=', 'external')]"/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Discente" name="group_by_student" context="{'group_by': 'student_id'}"/>
                     <filter string="Natureza do Crédito" name="group_by_type" context="{'group_by': 'credit_type'}"/>
                     <filter string="Versão Regimental" name="group_by_version" context="{'group_by': 'curriculum_version_id'}"/>
@@ -81,7 +81,7 @@
     <record id="action_op_student_credit_ledger" model="ir.actions.act_window">
         <field name="name">Livro-Razão de Créditos</field>
         <field name="res_model">op.student.credit.ledger</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_op_student_credit_ledger_search"/>
     </record>
 

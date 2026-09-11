@@ -1,0 +1,2 @@
+student_id/cpf,curriculum_version_id/name,credit_type,course_name,credits,grade_concept,is_approved,date_earned,origin_ref
+"98765432100","Regimento Modelo 2024","subject","Metodologia de Pesquisa I",4,"A",True,"2024-07-15","TURMA-2024-1"

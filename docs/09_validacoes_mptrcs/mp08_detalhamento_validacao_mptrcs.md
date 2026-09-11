@@ -10,7 +10,7 @@ O sistema opera sob o paradigma do **GoPG (Governança Colaborativa de Informaç
 
 Para que o MPTRCS tenha nota máxima na avaliação, a interoperabilidade deve ser precisa:
 
-* **Fonte Ouro (DSpace/Repositório):** É a fonte da verdade da produção acadêmica e científica. O DSpace guarda o PDF final da dissertação e os metadados do PTT. A chave de integração aqui é o **Handle (URI persistente)**, que o DSpace gera e o Odoo captura para confirmar a titulação.  
+* **Fonte Ouro (DSpace/Repositório):** É a fonte da verdade da produção acadêmica e científica. A Biblioteca Central realiza o upload oficial e a curadoria do PDF final da dissertação e PTT no DSpace, exposto via OAI-PMH (`oai_capes`), gerando o **Handle (URI persistente)** averbado no Odoo (`repository_url`).  
 * **Fonte Prata (OpenEduCat/Odoo):** É a fonte da verdade da vida acadêmica (alunos, docentes, disciplinas, créditos, bancas). O Odoo expõe endpoints RESTful que são consumidos pelos robôs coletores da CAPES.
 
 ## **3. Workflow de Interoperabilidade (O Motor de Integração)**
@@ -42,7 +42,7 @@ A transmissão de dados sensíveis segue diretrizes rigorosas:
 
 Para que a CAPES valide a "Fonte Ouro", o MPTRCS deve garantir a consistência através do mapeamento semântico (Crosswalk):
 
-1. **Averbação de Identificadores:** O Odoo, ao finalizar o rito de titulação, envia ao DSpace os PIDs necessários (DOI e Handle) para que o metadado no repositório fique completo.  
+1. **Averbação de Identificadores & Manifesto:** O Odoo, ao titular o discente e emitir o manifesto de metadados (`library_manifest_payload`), encaminha os dados e PIDs (DOI, ORCiD, SNPG) para a Biblioteca Central realizar o upload no DSpace e averbar o Handle de volta no Odoo.  
 2. **Transformação XSLT:** O DSpace utiliza o arquivo oai_capes.xsl para transformar os metadados internos (padrão Dublin Core dim) para o XML exigido pela CAPES, garantindo que o snpg_code e o orcid do autor estejam presentes.
 
 ## **7. Resumo de Validação para Stakeholders (IPEN)**

@@ -5,7 +5,7 @@
         <field name="name">capes.project.member.tree</field>
         <field name="model">capes.project.member</field>
         <field name="arch" type="xml">
-            <tree string="Membros de Projetos e Taxonomia CRediT">
+            <list string="Membros de Projetos e Taxonomia CRediT">
                 <field name="project_id"/>
                 <field name="partner_id"/>
                 <field name="role"/>
@@ -14,7 +14,7 @@
                 <field name="student_id"/>
                 <field name="link_start"/>
                 <field name="link_end"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -56,7 +56,7 @@
     <record id="action_capes_project_member" model="ir.actions.act_window">
         <field name="name">Membros de Projetos (CRediT)</field>
         <field name="res_model">capes.project.member</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu Item -->

@@ -5,15 +5,16 @@
         <field name="name">capes.thesis.tree</field>
         <field name="model">capes.thesis</field>
         <field name="arch" type="xml">
-            <tree string="Ritos Acadêmicos (Qualificação e Defesas)">
+            <list string="Ritos Acadêmicos (Qualificação e Defesas)">
                 <field name="defense_date"/>
                 <field name="student_id"/>
                 <field name="stage"/>
                 <field name="doc_type"/>
                 <field name="title"/>
+                <field name="secretariat_approval" widget="boolean_toggle"/>
                 <field name="status" widget="badge"/>
                 <field name="repository_url" widget="url"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -27,8 +28,10 @@
                     <button name="action_schedule_rite" string="Validar e Agendar Rito" type="object" class="oe_highlight" invisible="status != 'draft'"/>
                     <button name="action_approve_in_board" string="Aprovar na Banca" type="object" class="oe_highlight" invisible="status != 'scheduled'"/>
                     <button name="action_disapprove_in_board" string="Reprovar na Banca" type="object" class="btn-danger" invisible="status != 'scheduled'"/>
-                    <button name="action_homologate_deposit" string="Homologar Depósito DSpace &amp; Titular" type="object" class="oe_highlight" invisible="status != 'deposit_pending'"/>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,scheduled,approved,deposit_pending,homologated"/>
+                    <button name="action_submit_final_version" string="Submeter Versão Final (Aluno)" type="object" class="oe_highlight" invisible="status != 'deposit_pending'"/>
+                    <button name="action_secretariat_approve_final_version" string="Validar Versão Final &amp; Titular (Secretaria OK)" type="object" class="oe_highlight" invisible="status != 'final_version_submitted'"/>
+                    <button name="action_record_dspace_handle" string="Averbar Handle DSpace (Biblioteca)" type="object" invisible="status != 'homologated'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,scheduled,approved,deposit_pending,final_version_submitted,homologated"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -50,18 +53,10 @@
                             <field name="arguing_time_minutes"/>
                         </group>
                     </group>
-                    <group string="Repositório Institucional (DSpace / Fonte Ouro)">
-                        <group>
-                            <field name="repository_url" widget="url"/>
-                        </group>
-                        <group>
-                            <field name="deposit_date"/>
-                        </group>
-                    </group>
                     <notebook>
                         <page string="Comissão Examinadora (Banca)">
                             <field name="committee_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="member_id"/>
                                     <field name="member_role"/>
                                     <field name="is_titular"/>
@@ -71,8 +66,32 @@
                                     <field name="has_phd"/>
                                     <field name="civil_relationship_flag"/>
                                     <field name="non_phd_approval_doc"/>
-                                </tree>
+                                </list>
                             </field>
+                        </page>
+                        <page string="Versão Final (PDF) &amp; Validação da Secretaria">
+                            <group>
+                                <group string="Upload da Versão Final (Aluno)">
+                                    <field name="final_pdf_file" filename="final_pdf_filename"/>
+                                    <field name="final_pdf_filename" invisible="1"/>
+                                    <field name="final_pdf_upload_date"/>
+                                </group>
+                                <group string="Aceite e Deferimento de Titulação (Secretaria)">
+                                    <field name="secretariat_approval"/>
+                                    <field name="secretariat_approval_date"/>
+                                </group>
+                            </group>
+                            <group string="Guia / Manifesto de Metadados para Biblioteca Central (DSpace)">
+                                <field name="library_manifest_payload" placeholder="Manifesto de metadados gerado após a aprovação da secretaria..."/>
+                            </group>
+                            <group string="Depósito no Repositório Institucional (Biblioteca / DSpace)">
+                                <group>
+                                    <field name="repository_url" widget="url"/>
+                                </group>
+                                <group>
+                                    <field name="deposit_date"/>
+                                </group>
+                            </group>
                         </page>
                         <page string="Metadados e Resumos">
                             <group>
@@ -108,11 +127,12 @@
                 <field name="student_id"/>
                 <field name="repository_url"/>
                 <filter string="Agendados" name="scheduled" domain="[('status', '=', 'scheduled')]"/>
-                <filter string="Pendente Depósito DSpace" name="deposit_pending" domain="[('status', '=', 'deposit_pending')]"/>
+                <filter string="Pendente Envio PDF Aluno" name="deposit_pending" domain="[('status', '=', 'deposit_pending')]"/>
+                <filter string="Versão Final Enviada (Secretaria)" name="final_version_submitted" domain="[('status', '=', 'final_version_submitted')]"/>
                 <filter string="Homologados / Titulados" name="homologated" domain="[('status', '=', 'homologated')]"/>
                 <filter string="Defesas Finais" name="stage_defense" domain="[('stage', '=', 'defense')]"/>
                 <filter string="Qualificações" name="stage_qual" domain="[('stage', '=', 'qualification')]"/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Rito" name="group_by_stage" context="{'group_by': 'stage'}"/>
                     <filter string="Situação" name="group_by_status" context="{'group_by': 'status'}"/>
                     <filter string="Tipo de Documento" name="group_by_doctype" context="{'group_by': 'doc_type'}"/>
@@ -125,7 +145,7 @@
     <record id="action_capes_thesis" model="ir.actions.act_window">
         <field name="name">Ritos Acadêmicos (Qualificação / Defesa)</field>
         <field name="res_model">capes.thesis</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_capes_thesis_search"/>
     </record>
 

@@ -5,13 +5,13 @@
 ## 1. A Fonte Ouro e a Trava de Metadados
 Enquanto o Odoo (Fonte Prata) detém a verdade sobre a "Vida Acadêmica", o Repositório Institucional DSpace (Fonte Ouro) detém a verdade sobre o "Produto Final" (Teses, Dissertações e PTTs). O GoPG estabelece que a biblioteca digital é o fim da linha; a CAPES coleta o XML bibliográfico diretamente do DSpace via protocolo OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting).
 
-O desafio arquitetural resolvido pelo `l10n_br_openeducat_capes_integration` é garantir que o aluno não deposite lixo no DSpace. O fluxo determina que:
-1. O aluno defende a tese no Odoo.
-2. A banca aprova no Odoo.
-3. O Odoo gera um pacote de metadados selado.
-4. O discente submete o PDF ao DSpace utilizando os metadados validados pelo Odoo.
-5. Após o bibliotecário aprovar o depósito, o DSpace gera um Handle (URI).
-6. Este Handle é averbado de volta no campo `repository_url` da classe `capes.thesis` no Odoo para liberar a geração do Diploma Digital.
+O desafio arquitetural resolvido pelo `l10n_br_openeducat_capes_integration` é garantir a total integridade dos metadados e arquivos antes do depósito no DSpace. O fluxo determina que:
+1. O aluno defende a tese e obtém a aprovação da banca no Odoo (`approved`).
+2. O discente realiza o upload do PDF final corrigido (com capa, folha de aprovação e ficha catalográfica) no Portal do Aluno Odoo (`final_pdf_file`).
+3. A Secretaria Acadêmica realiza a conferência de formatação e efetua a validação (`secretariat_approval = True`), o que altera imediatamente o status do discente para "Titulado" (`homologated`) e gera o manifesto de metadados (`library_manifest_payload`).
+4. A Secretaria encaminha a Ordem de Serviço com o PDF validado e o manifesto de metadados para a Biblioteca Central.
+5. A Biblioteca Central realiza exclusivamente o depósito oficial no Repositório Institucional DSpace (Fonte Ouro) e informa o Handle permanente (URI) gerado.
+6. O Handle é averbado no campo `repository_url` da classe `capes.thesis` no Odoo para fechamento da malha de interoperabilidade e exposição no protocolo OAI-PMH (`oai_capes`).
 
 ## 2. O Contexto e Prefixo Exclusivo `oai_capes`
 Para que os robôs da Plataforma Sucupira diferenciem uma dissertação normal de um arquivo de som histórico presente na biblioteca da IES, o repositório DSpace deve ser configurado com um contexto OAI-PMH específico.

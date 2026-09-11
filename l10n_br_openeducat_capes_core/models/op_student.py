@@ -30,11 +30,6 @@ class OpStudent(models.Model):
         ('special', 'Especial / Não-Vinculado')
     ], string='Categoria Discente', default='regular')
 
-    curriculum_version_id = fields.Many2one(
-        'op.curriculum.version',
-        string='Versão Regimental (Ato Jurídico Perfeito)',
-        help='Regimento ao qual o estudante foi vinculado no momento do ingresso'
-    )
     capes_status = fields.Selection([
         ('enrolled', 'Matriculado'),
         ('abandon', 'Abandono'),

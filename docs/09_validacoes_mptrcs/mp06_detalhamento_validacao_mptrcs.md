@@ -35,7 +35,7 @@ A estrutura da banca examinadora não é arbitrária; ela segue as regras parame
 2. **Triagem:** Secretaria Acadêmica verifica a conformidade da banca e a elegibilidade do aluno.  
 3. **Homologação da CPG:** A banca é submetida à deliberação do colegiado.  
 4. **Sessão:** Realização da defesa e lavratura da ata automática via QWeb.  
-5. **Depósito no Repositório (Fonte Ouro):** Após a aprovação, abre-se o prazo legal de 30 dias para depósito no DSpace.
+5. **Validação Final, Titulação e Depósito (Fonte Ouro):** Após a aprovação na defesa, o discente efetua o upload do PDF final corrigido no Odoo. A Secretaria Acadêmica valida a formatação e ficha catalográfica, alterando o status para "Titulado" e enviando a Ordem de Serviço e manifesto para a Biblioteca Central realizar o depósito no DSpace.
 
 ## **5. Resumo para Stakeholders (Parametrização MPTRCS)**
 

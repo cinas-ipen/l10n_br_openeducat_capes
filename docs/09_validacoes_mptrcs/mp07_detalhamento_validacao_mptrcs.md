@@ -11,7 +11,7 @@ A finalidade deste processo no ERP é compilar o "Pacote de Titulação" com rig
 
 ## **2. O Pacote de Titulação (Envio IPEN -> USP)**
 
-Uma vez que o discente atinge o status "Titulado" no IPEN (após o depósito do PDF final e averbação do Handle), o sistema congela a vida acadêmica e prepara o **Dossiê Digital de Expedição**, que deve ser transmitido para o sistema da USP.
+Uma vez que o discente atinge o status "Titulado" no IPEN (após o upload da versão final do PDF pelo discente e a chancela/validação da Secretaria Acadêmica), o sistema congela a vida acadêmica e prepara o **Dossiê Digital de Expedição**, que deve ser transmitido para o sistema da USP.
 
 Este pacote contém:
 

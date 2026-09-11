@@ -47,7 +47,7 @@ O pedido de agendamento da defesa deve ser submetido pelo orientador no Portal d
 
 1. **Integralização Teórica e Disciplinas Obrigatórias:** Cumprimento da carga mínima de créditos e aprovação em **todas as disciplinas obrigatórias** configuradas em `op.curriculum.subject.rule` para a versão curricular do aluno, considerando tanto as disciplinas gerais do programa quanto as específicas da sua Área de Concentração (`area_id`).
 2. **Proficiência Linguística:** O sistema checa o parâmetro `proficiency_stage` do regimento. Para o IPEN (`proficiency_stage = 'admission'`), essa checagem é automaticamente validada como cumprida por ser requisito de entrada.
-3. **Marcos Intermediários:** Aprovação consolidada no Seminário de Área e/ou Exame de Qualificação.
+3. **Integralização no Livro-Razão (Artigo 39º do Regulamento MP-TRCS):** Para o agendamento da Defesa Final, a engine valida no livro-razão (`op.student.credit.ledger`) se o aluno cumpriu o teto mínimo de créditos em disciplinas do programa (`min_subject_credits`, ex: 40 créditos no MP-TRCS) e o Seminário Geral (`other_mandatory_credits`, ex: 8 créditos).
 4. **Validação do Produto Técnico-Tecnológico (PTT):** O Odoo verifica o parâmetro `ptt_validation_mode` do regimento do aluno:
    * *Modo `cpg_checklist` (MPTRCS / V1):* Confirmação de que o requerimento de defesa contendo a indicação do PTT possui o aceite do Orientador, do Coorientador (se houver) e a homologação formal aprovada em Ata de Reunião da CPG.
    * *Modo `qualis_prior`:* Confirmação de que existe PTT registrado no estado `homologated` com estrato Qualis atribuído.
@@ -101,7 +101,7 @@ O Odoo valida o cadastro da banca checando os parâmetros ativos para o nível (
 
 ## 5. Homologação Final, Depósito no Repositório (DSpace) e Titulação
 
-Após a aprovação na defesa pública, o rito transita para o estado `deposit_pending` (Pendente de Depósito).
+Após a aprovação na defesa pública, o rito transita para o estado `deposit_pending` (Pendente Envio Versão Final Aluno).
 
 ```text
 [Defesa Pública Aprovada na Banca]
@@ -110,25 +110,31 @@ Após a aprovação na defesa pública, o rito transita para o estado `deposit_p
    [Status: deposit_pending]
                │
                ▼
-[Aluno: Prazo Limite Improrrogável de 30 Dias]
+[Discente: Upload da Versão Final PDF no Portal Odoo (Prazo Regimental)]
                │
                ▼
-[Upload do PDF Definitivo no DSpace (Fonte Ouro)]
+[Status: final_version_submitted]
                │
                ▼
-[Bibliotecário: Curadoria e Geração do Handle (URI)]
+[Secretaria Acadêmica: Triagem de Formatação & Ficha Catalográfica]
                │
                ▼
-[Averbação do Handle em capes.thesis.repository_url]
+[Clique: "Validar Versão Final & Titular (Secretaria OK)"]
                │
-               ▼
-  [Status Discente: TITULADO / EGRESSO]
-               │
-               ▼
-[Liberação da Emissão do Diploma Digital (MEC 70/2025)]
-
+               ├─────────────────────────────────────────┐
+               ▼                                         ▼
+ [Status Discente: TITULADO]             [Geração do Manifesto DSpace (XML)]
+ (Histórico Congelado e Elegível                 │
+  ao Diploma Digital MEC 70/2025)                ▼
+                                  [Envio PDF + Manifesto à Biblioteca Central]
+                                                 │
+                                                 ▼
+                                  [Biblioteca: Upload Oficial no DSpace]
+                                                 │
+                                                 ▼
+                                  [Averbação do Handle (repository_url)]
 ```
 
-1. **Prazo de Depósito Legal:** O discente dispõe do **prazo limite improrrogável de 30 dias** pós-defesa para realizar as correções solicitadas pela banca e efetuar o upload do trabalho final no Repositório Institucional DSpace (Fonte Ouro).
-2. **Averbação do Handle:** O bibliotecário aprova o depósito e gera o identificador persistente (URI/Handle). Esse link é averbado no campo `repository_url` do modelo `capes.thesis` no Odoo.
-3. **Gatilho de Titulação:** A presença do Handle ativo e validado é o gatilho técnico indispensável para que o Odoo altere o status do discente para "Titulado", congelando o seu histórico e liberando a esteira de expedição do **Diploma Nato-Digital (Portaria MEC nº 70/2025)**.
+1. **Upload da Versão Final pelo Discente:** O discente dispõe do prazo regimental pós-defesa (ex: 30 dias) para aplicar as revisões recomendadas pela banca e realizar o upload da versão final corrigida do PDF no Portal do Aluno Odoo (contendo capa, folha de aprovação e ficha catalográfica), alterando o status para `final_version_submitted`.
+2. **Validação da Secretaria e Titulação Instantânea:** A Secretaria Acadêmica efetua a triagem documental e, ao confirmar a conformidade do arquivo, aciona a ação de validação (`secretariat_approval = True`). O sistema altera imediatamente o status do rito para `homologated` e o discente para **Titulado**, selando a data de titulação no histórico escolar e habilitando a esteira do Diploma Digital Nato-Digital.
+3. **Geração do Manifesto e Depósito na Biblioteca:** Simultaneamente à titulação, o Odoo gera o manifesto de metadados acadêmicos (`library_manifest_payload`). A Secretaria encaminha a Ordem de Serviço com o PDF e os metadados para a Biblioteca Central, responsável exclusiva pela submissão do trabalho no DSpace (Fonte Ouro) e posterior averbação do Handle (`repository_url`).

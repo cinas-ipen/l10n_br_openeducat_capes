@@ -5,16 +5,17 @@
 ## 1. Disciplina (`op.subject`)
 | Campo Odoo | Metadado JSON DAV | Tipo de Dado Odoo | Domínio / Validação JSON |
 | :--- | :--- | :--- | :--- |
-| `capes_id` | Identificador da disciplina | `Integer` | Numérico. |
-| `internal_code` | Código da disciplina no PPG | `Char` | Alfanumérico. |
+| `id` | Identificador da disciplina | `Integer` | Numérico (PK Odoo / CAPES). |
+| `code` | Código da disciplina no PPG | `Char` | Alfanumérico. |
 | `name` | Nome da disciplina | `Char` | Texto livre. |
 | `syllabus` | Ementa da disciplina | `Text` | Texto explicativo. |
-| `basic_biblio` | Bibliografia Básica | `Text` | Referências essenciais. |
-| `workload` | Carga horária da disciplina | `Integer` | Numérico. |
-| `credits` | Número de créditos | `Integer` | Numérico. |
-| `is_mandatory` | Indicador de obrigatoriedade| `Boolean` | Sim; Não. |
-| `start_date` | Data de início da disciplina| `Date` | AAAA-MM-DD. |
-| `end_date` | Data de encerramento | `Date` | AAAA-MM-DD. |
+| `basic_bibliography` | Bibliografia Básica | `Text` | Referências essenciais. |
+| `complementary_bibliography` | Bibliografia Complementar | `Text` | Referências complementares. |
+| `phea_indicator` | Processos Híbridos (PHEA) | `Boolean` | Sim; Não. |
+| `teaching_language` | Idioma de Oferta | `Selection` | Português (`pt`), Inglês (`en`), Espanhol (`es`), Outro (`other`). |
+| `grade_weightage` | Carga horária / Peso da disciplina | `Float` | Numérico. |
+| `subject_type` | Indicador de obrigatoriedade | `Selection` | Obrigatória (`compulsory`), Eletiva (`elective`). |
+| `active` | Situação de atividade no catálogo | `Boolean` | Ativo / Inativo. |
 
 ## 2. Turma (`op.batch` / `op.session`)
 | Campo Odoo | Metadado JSON DAV | Tipo de Dado Odoo | Domínio / Validação JSON |

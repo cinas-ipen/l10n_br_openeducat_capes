@@ -1,0 +1,287 @@
+---
+title: "Documentação Arquitetural e Executiva do Ecossistema l10n_br_openeducat_capes"
+subtitle: "Sistema de Gestão de Pós-Graduação Stricto Sensu em Conformidade com o Programa GoPG da CAPES, Portarias MEC/CAPES e Regulamento MP-TRCS v2"
+author: "Grupo de Pesquisa CINAS / IPEN-CNEN/SP"
+date: "2026-09-11"
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    toc: true
+    toc-depth: 4
+    toc-title: "Sumário Executivo e Arquitetural"
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    smooth-scroll: true
+    embed-resources: true
+lang: pt-BR
+---
+
+# Introdução e Contexto Regulatório da Pós-Graduação Stricto Sensu
+
+## O Desafio da Governança na Pós-Graduação Nacional
+
+A administração acadêmica e científica da pós-graduação *Stricto Sensu* (Mestrados Acadêmicos, Mestrados Profissionais e Doutorados) no Brasil difere substancialmente dos sistemas lineares adotados no ensino superior geral. O ecossistema brasileiro é fortemente regulado pela **Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (CAPES)** e pelo **Ministério da Educação (MEC)**, exigindo o cumprimento rigoroso de ontologias de dados, regras regimentais e prazos legais.
+
+Inconsistências cadastrais, inconsistências de datas de vínculo, omissão de produções intelectuais ou falhas no cumprimento das diretrizes da Diretoria de Avaliação (DAV) geram consequências institucionais severas:
+
+* **Rebaixamento de Notas dos Programas (PPGs):** Penalizações na avaliação quadrienal da CAPES.
+* **Perda Orçamentária e Redução de Bolsas:** Cortes diretos em recursos do PROEX, PROAP e bolsas de estudo (CNPq/CAPES/FAPESP).
+* **Perda de Autonomia ou Descredenciamento:** Risco de cassação da autorização de funcionamento do curso pelo MEC.
+
+:::{.callout-important}
+### Fonte de Verdade Arquitetural
+O módulo `l10n_br_openeducat_capes` foi concebido para atuar como a espinha dorsal de conformidade do ERP OpenEduCat/Odoo 19.0, garantindo rigor relacional, aderência estrita a **305 metadados CAPES DAV** e blindagem contra erros humanos e inconformidades regulatórias.
+:::
+
+## O Programa de Governança Colaborativa de Informações da Pós-Graduação (GoPG)
+
+Instituído oficialmente pela **Portaria CAPES nº 158, de 17 de agosto de 2023**, e complementado pela **Instrução Normativa nº 1/2026**, o **Programa GoPG** altera a dinâmica histórica de prestação de contas dos programas de pós-graduação. O modelo arcaico de redigitação manual periódica na Plataforma Sucupira é substituído por um ambiente **interoperável, contínuo e auditável em tempo real**.
+
+Os objetivos centrais do GoPG englobam:
+
+1. **Erradicação da Redundância:** Eliminar o preenchimento duplicado de dados existentes nos sistemas ERP institucionais.
+2. **Fé Pública e Integridade Criptográfica:** Garantir que o dado coletado reflita exata e matematicamente o histórico transacional do aluno e do docente.
+3. **Coleta Ativa e Passiva Automatizada:** Integração via APIs RESTful e barramentos OAI-PMH entre a IES e a infraestrutura federal da **Rede de Integração da Comunidade Acadêmica da Pós-Graduação (RICA|PG)**.
+
+## A Arquitetura Tríplice de Fontes de Dados (Ouro, Prata e Bronze)
+
+O GoPG estabelece uma divisão funcional estrita para as fontes de dados corporativas da pós-graduação:
+
+```{mermaid}
+graph TD
+    subgraph CAPES ["CAPES / RICA|PG (Plataforma Sucupira)"]
+        Coletor["Robôs de Coleta Automatizada e Auditoria Quadrienal"]
+    end
+
+    subgraph Prata ["FONTE PRATA (Odoo 19 / OpenEduCat)"]
+        ERP["l10n_br_openeducat_capes"]
+        VidaAcad["Gestão da Vida Acadêmica, Livro-Razão & PIDs"]
+        API_REST["Endpoints RESTful JSON (/api/capes/v1/)"]
+    end
+
+    subgraph Ouro ["FONTE OURO (Repositório DSpace)"]
+        DSpace["DSpace Institutional Repository"]
+        OAIPMH["Provedor OAI-PMH (oai_capes XML)"]
+        PDFs["Teses, Dissertações e PTTs Finais"]
+    end
+
+    subgraph Bronze ["FONTE BRONZE (Residual / Descontinuada)"]
+        Manual["Preenchimento Manual Web na Plataforma Sucupira"]
+    end
+
+    ERP --> VidaAcad
+    VidaAcad --> API_REST
+    API_REST -->|"Coleta Passiva JSON"| Coletor
+    VidaAcad -->|"Injeção de Metadados & Valid. Semântica"| DSpace
+    DSpace --> PDFs
+    PDFs --> OAIPMH
+    OAIPMH -->|"Coleta OAI-PMH XML"| Coletor
+    Manual -.->|"Em descontinuidade pelo GoPG"| Coletor
+
+    style Prata fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style Ouro fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Bronze fill:#ffe0b2,stroke:#f57c00,stroke-width:1px
+    style CAPES fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+```
+
+* **Fonte Ouro (Repositórios Institucionais DSpace):** Custodia os arquivos digitais definitivos das teses, dissertações e Produtos Técnico-Tecnológicos (PTTs). Expõe o XML no namespace `oai_capes`. Uma vez coletado pela CAPES, o dado fica bloqueado para edição manual na Sucupira.
+* **Fonte Prata (ERP OpenEduCat / Odoo):** Custodia a verdade sobre a vida acadêmica, matrículas, notas, integralização de créditos, livro-razão imutável, composição de bancas, credenciamento docente e PTTs. Expõe APIs RESTful JSON sob a rota `/api/capes/v1/`.
+* **Fonte Bronze (Inserção Manual na Sucupira):** Formulários Web manuais sob diretriz de descontinuidade progressiva pelo GoPG.
+
+---
+
+# Topologia do Monorepo e Arquitetura de Módulos (Odoo 19)
+
+O monorepo `l10n_br_openeducat_capes` é composto por 8 submódulos isolados que estendem o Odoo 19.0 e o OpenEduCat 19.0 segundo os princípios de *Domain-Driven Design* (DDD):
+
+```text
+l10n_br_openeducat_capes/
+├── l10n_br_openeducat_capes_core         # PIDs biográficos (ORCiD, Lattes, CPF), IES, PPGs (Código SNPG)
+├── l10n_br_openeducat_capes_admission    # Editais de Seleção, Cotas, Fases Dinâmicas e Conversão em Aluno
+├── l10n_br_openeducat_capes_academic     # Versionamento Regimental (op.curriculum.version) e Livro-Razão (append-only)
+├── l10n_br_openeducat_capes_research     # Projetos de Pesquisa, Linhas de Pesquisa e Taxonomia CRediT
+├── l10n_br_openeducat_capes_thesis       # Ritos Bipartidos (Seminários/Qualificação/Defesa), Bancas e Versão Final PDF
+├── l10n_br_openeducat_capes_ptt          # Produtos Técnico-Tecnológicos, 4 Eixos, 21 Tipos, TRL 1-9 e Qualis Tecnológico
+├── l10n_br_openeducat_capes_integration  # Barramento REST JSON v1 (Fonte Prata) e Crosswalk DSpace OAI-PMH (Fonte Ouro)
+└── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e XAdES/USP
+```
+
+## Árvore de Dependências e Segurança (Odoo 19)
+
+Em conformidade com as diretrizes do Odoo 19:
+* **Views XML:** Todas as visões em lista utilizam rigorosamente a tag `<list>` (substituindo `<tree>`). As visões de busca (`<search>`) utilizam agrupamentos `<group>` sem os atributos legados `expand="0"` e `string`.
+* **Grupos de Segurança:** Os arquivos `security/ir.model.access.csv` utilizam os grupos oficiais do OpenEduCat 19 (`openeducat_core.group_op_faculty` e `openeducat_core.group_op_back_office_admin`).
+
+---
+
+# Governança Regimental, Motor Curricular e Livro-Razão de Créditos
+
+## O Motor de Versionamento Regimental (`op.curriculum.version`)
+
+Para solucionar a variação de regimentos entre turmas e garantir o **Ato Jurídico Perfeito (CF/88)**, o modelo `op.curriculum.version` isola as regras do curso e as associa diretamente ao discente (`op.student.curriculum_version_id`).
+
+### Matriz de Créditos (CAPES / Sucupira / Regimento MP-TRCS v2)
+
+Em alinhamento total com a **Plataforma Sucupira** e os **Artigos 30º, 31º e 38º do Regulamento MP-TRCS v2**, o modelo desdobra a matriz em 5 categorias regulatórias:
+
+1. **`min_credits` (Créditos Totais Exigidos):** `100` créditos (Total geral exigido para titulação).
+2. **`min_subject_credits` (Créditos Mínimos em Disciplinas do Programa):** `40` créditos (Art. 31º).
+3. **`thesis_credits` (Créditos da Dissertação / Tese / Trabalho Final):** `52` créditos (Art. 31º).
+4. **`other_mandatory_credits` (Outras Atividades Obrigatórias - Seminário Geral):** `8` créditos (Art. 31º / Art. 38º).
+5. **`max_external_credits_percent` (Teto de Disciplinas Externas):** `50%` (Art. 31º §1º - até 20 créditos externos aproveitáveis).
+6. **`max_external_subject_credits` (Teto Efetivo Calculado):** `20.0` créditos (Campo computado via `@api.depends`).
+
+```python
+@api.depends('min_subject_credits', 'max_external_credits_percent')
+def _compute_max_external_subject_credits(self):
+    for record in self:
+        record.max_external_subject_credits = (record.min_subject_credits * record.max_external_credits_percent) / 100.0
+```
+
+### Validações e Restrições de Coerência Curricular
+
+```python
+@api.constrains('max_months_defense', 'min_credits', 'min_subject_credits', 'thesis_credits', 'other_mandatory_credits', 'max_external_credits_percent')
+def _check_regimen_parameters(self):
+    for record in self:
+        if record.max_months_defense <= 0:
+            raise ValidationError("O prazo máximo de titulação em meses deve ser superior a zero.")
+        if record.min_credits <= 0:
+            raise ValidationError("A exigência total de créditos deve ser um valor positivo.")
+        if (record.min_subject_credits + record.thesis_credits + record.other_mandatory_credits) > record.min_credits:
+            raise ValidationError(
+                f"A soma dos créditos em disciplinas ({record.min_subject_credits}), dissertação ({record.thesis_credits}) "
+                f"e outras atividades ({record.other_mandatory_credits}) supera os créditos totais exigidos ({record.min_credits})."
+            )
+```
+
+## O Livro-Razão Acadêmico Imutável (`op.student.credit.ledger`)
+
+Para evitar recálculos retroativos em históricos passados, a integralização opera sob a arquitetura *Append-Only*:
+
+* **Imutabilidade Estrita (`unlink` bloqueado):** O sistema impede o apagamento de lançamentos no livro-razão.
+* **Categorias de Crédito (`credit_type`):**
+  * `subject`: Disciplinas Regulares.
+  * `apo`: Atividades Programadas Obrigatórias / Produção Técnica.
+  * `milestone`: Créditos por Qualificação e Defesa.
+  * `external`: Aproveitamento de Créditos Externos.
+
+---
+
+# Certificação de Aderência ao Dicionário CAPES DAV (305 Metadados)
+
+Varredura e auditoria automatizada realizada sobre os arquivos da pasta `metadados_dav_capes_json/` confirmam **100% de cobertura dos 305 metadados oficiais da CAPES DAV em 27 entidades**:
+
+| Entidade CAPES DAV | Metadados | Modelo Odoo Mapeado | Descrição do Mapeamento |
+| :--- | :---: | :--- | :--- |
+| **PROGRAMA DE PÓS-GRADUAÇÃO** | 45 | `op.program.capes`, `res.company` | SNPG code, Nota CAPES, Grande Área, Área de Avaliação, Subárea, Especialidade, Coordenadores, Idioma. |
+| **CURSO / REGIMENTO** | 39 | `op.curriculum.version` | Créditos Totais (`min_credits`), Disciplinas (`min_subject_credits`), Tese (`thesis_credits`), Atividades (`other_mandatory_credits`), Prazos e Bancas. |
+| **PESSOA (Docentes / Alunos / Egressos)** | 83 | `res.partner`, `op.faculty`, `op.student`, `op.faculty.accreditation` | CPF, Lattes ID, ORCID ID, Scopus Author ID, ResearcherID, Vínculo de Bolsa, Credenciamento CPG. |
+| **PRODUÇÃO INTELECTUAL & PTT** | 33 | `capes.intellectual.production`, `capes.ptt.product`, `capes.ptt.author`, `capes.ptt.evaluation` | DOI, Handle, ISBN, ISSN, Estrato Qualis, Tipologia PTT (T01-T21), TRL 1-9, Contribuição CRediT, Acesso Aberto/Embargado. |
+| **PROJETO DE PESQUISA** | 22 | `capes.research.project`, `capes.project.member` | Nome, Coordenador, Fomento, Natureza (Básica/Aplicada), Cooperação, 14 Papéis CRediT. |
+| **DISCIPLINA & TURMA** | 22 | `op.subject` (via `op_subject_extension.py`) | Código, Nome, Ementa (`syllabus`), Bibliografia Básica (`basic_bibliography`), Bibliografia Complementar (`complementary_bibliography`), PHEA (`phea_indicator`), Idioma. |
+| **INSTITUIÇÃO, CAMPUS & ENDEREÇO** | 42 | `res.company`, `res.partner` | Nome da IES, Sigla, CNPJ, Código IBGE, CEP, Atuação da IES. |
+| **ÁREA DE CONCENTRAÇÃO & LINHAS** | 10 | `op.curriculum.subject.rule`, `capes.research.project` | Nome da Área, Descrição, Linhas de Pesquisa. |
+| **RITOS ACADÊMICOS & BANCAS** | 9 | `capes.thesis`, `capes.thesis.committee` | Ritos, Qualificação, Defesa, Membros Efetivos/Suplentes, Voto Orientador, Endogenia. |
+
+---
+
+# Processos da Vida Acadêmica e Motor Cronológico (MP01 a MP10)
+
+## Editais de Seleção e Admissão (`l10n_br_openeducat_capes_admission`)
+* **Editais (`op.admission.edital`):** Vagas, cotas sociais/raciais, comissão de seleção e etapas.
+* **Plano de Trabalho Discente (`op.student.work_plan`):** Submissão de planos com triagem pela Secretaria Acadêmica e controle de pendências éticas (CEP/CEUA).
+
+## Motor Cronológico e Jubilamento (`pending_dismissal`)
+* **Relógio Acadêmico (24 meses no MP-TRCS):** Calculado a partir da data de ingresso.
+* **Prorrogações (`max_extension_days` = 90 dias):** Requerimento via portal com homologação da CPG.
+* **Trancamento (`max_trancamento_days` = 365 dias):** Suspensão regimental contínua sem trava de 1º semestre (`block_first_semester_trancamento` = False).
+* **Cron Job Noturno de Jubilamento:** Varre diariamente o estouro de prazos ou dupla reprovação em disciplinas/ritos e altera o aluno para `pending_dismissal`, interrompendo a exportação para a CAPES para proteger os indicadores do PPG.
+
+## Governança da CPG (`op.cpg.governance` & `op.cpg.meeting`)
+* **Atas de Reunião em QWeb PDF:** Compilação automática da pauta e deliberações.
+* **Aprovação Auditável:** Registro do User ID, Timestamp e IP dos membros da comissão.
+
+---
+
+# Ritos Acadêmicos, Bancas e Depósito no DSpace (`l10n_br_openeducat_capes_thesis`)
+
+## Travas Prévias de Elegibilidade para Agendamento de Defesa (Artigo 39º)
+
+Ao acionar a ação de agendamento da Defesa Final (`stage == 'defense'`), a engine Python executa uma varredura rigorosa:
+
+1. **Plano de Trabalho Homologado CPG.**
+2. **Pendência Ética CEP/CEUA Liberada.**
+3. **Proficiência em Língua Estrangeira Aprovada (`proficiency_stage`).**
+4. **Créditos Mínimos em Disciplinas Cumpridos (`subject_credits >= curriculum.min_subject_credits`, ex: 40h) e Seminário Geral (`other_mandatory_credits`, ex: 8h).**
+
+```python
+if record.stage == 'defense':
+    ledger_records = Ledger.search([
+        ('student_id', '=', record.student_id.id),
+        ('is_approved', '=', True)
+    ])
+    subject_credits = sum(ledger_records.filtered(lambda l: l.credit_type in ('subject', 'external', 'apo')).mapped('credits'))
+    if subject_credits < curriculum.min_subject_credits:
+        raise ValidationError(
+            f"Integralização de disciplinas insuficiente (Art. 39º). O aluno possui {subject_credits:.1f} créditos em disciplinas, "
+            f"mas o regimento exige o mínimo de {curriculum.min_subject_credits} créditos em disciplinas do programa."
+        )
+```
+
+## Composição da Banca e Trava de Impedimento Cível (USP Art. 89 §3º)
+* **Quórum de Titulares e Suplentes:** Validação do número mínimo de doutores.
+* **Impedimento Cível (`civil_relationship_flag`):** Bloqueio automático de parentes em linha reta ou colateral até 4º grau com o discente ou orientador.
+* **Membros Externos (Endogenia):** Verificação do número mínimo de examinadores externos ao PPG e à IES.
+
+---
+
+# Produtos Técnico-Tecnológicos (PTT) e Qualis Tecnológico
+
+## Taxonomia GTPT / Medicina II e Motor Qualis (`capes.ptt.product`)
+
+O submódulo `l10n_br_openeducat_capes_ptt` implementa os 4 eixos (E1 a E4) e 21 tipologias (T01 a T21) da CAPES:
+
+$$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \text{Aplicabilidade (25)} + \text{Complexidade (20)}$$
+
+### Estratos do Qualis Tecnológico
+
+* **T1 (90 a 100 pts):** Excelente / Alto Impacto Internacional ou Nacional.
+* **T2 (75 a 89 pts):** Muito Bom / Relevância Regional/Nacional Expressiva.
+* **T3 (60 a 74 pts):** Bom / Relevância Regional.
+* **T4 (45 a 59 pts):** Regular / Aplicação Local.
+* **T5 (30 a 44 pts):** Fraco / Baixa Complexidade.
+* **TNC (< 30 pts ou Não Aderente):** Produto Não Classificado / Glosado.
+
+---
+
+# Interoperabilidade Externa, Diplomas Digitais e Validação Pública
+
+## APIs RESTful Fonte Prata (`/api/capes/v1/`)
+* `GET /api/capes/v1/students`: Discentes, PIDs, proficiência e orientador.
+* `GET /api/capes/v1/faculty`: Corpo docente, regime de trabalho e credenciamento.
+* `GET /api/capes/v1/curriculums`: Matrizes curriculares e regras regimentais.
+* `GET /api/capes/v1/projects_and_ptts`: Projetos de pesquisa e PTTs com Qualis.
+
+## Diplomas Digitais Nato-Digitais (Portaria MEC nº 70/2025)
+* **Modelo `capes.digital.diploma`:** Geração do XML oficial do diploma e dossiê acadêmico.
+* **Assinatura XAdES-BES ICP-Brasil:** Assinatura digital com certificado A3/HSM, Carimbo de Tempo e Hash SHA-256.
+* **Autenticação Pública (`/valida-documento`):** QR Code no rodapé do Histórico Escolar QWeb redirecionando para validação pública da chave SHA-256.
+
+---
+
+# Matriz de Conformidade Regulatória
+
+| Norma / Diretriz | Âmbito Regulatório | Exigência Principal | Solução no `l10n_br_openeducat_capes` |
+| :--- | :--- | :--- | :--- |
+| **Portaria CAPES nº 158/2023** | Governança GoPG | Fim da alimentação manual duplicada; interoperabilidade ativa. | APIs RESTful JSON Fonte Prata e barramento OAI-PMH `oai_capes`. |
+| **Instrução Normativa nº 1/2026** | Coleta RICA\|PG | Coleta automatizada passiva de discentes, docentes e projetos. | Endpoints `/api/capes/v1/` com Privacy by Design (LGPD). |
+| **Portaria CAPES nº 221/2025** | Estágio Docência | Validação flexível de estágio de docência para bolsistas. | Parâmetro `teaching_internship_mode` na versão curricular. |
+| **Portaria MEC nº 70/2025** | Diplomas Digitais | Emissão obrigatoriamente nato-digital em XML com XAdES. | Modelo `capes.digital.diploma`, envelopes XAdES e timestamp. |
+| **Diretrizes GTPT / Medicina II** | Produção Técnica | Classificação rígida em 4 eixos, 21 tipos e TRL 1-9. | Taxonomia XML estática, Quotas de PI e motor Qualis Tecnológico. |
+| **Regimento USP Art. 89 §3º** | Bancas Examinadoras | Impedimento por parentesco até 4º grau e controle de endogenia. | Checagem de `civil_relationship_flag` e quórum externo. |
+| **Ato Jurídico Perfeito (CF/88)** | Direitos do Aluno | Preservação das regras de ingresso até a diplomação. | Entidade `op.curriculum.version` associada ao aluno (`student_id`). |
+| **Regulamento MP-TRCS v2 Art. 31º** | Matriz de Créditos | Distribuição de 100 créditos (40 disc. + 52 tese + 8 atividades). | Desdobramento de 5 campos em `op.curriculum.version`. |

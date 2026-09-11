@@ -1,0 +1,2 @@
+name,cpf,email,orcid,lattes_url,curriculum_version_id/name,admission_date,academic_status,advisor_id/cpf
+"Discente Exemplo","98765432100","discente.exemplo@universidade.edu.br","0000-0000-0000-0000","http://lattes.cnpq.br/0000000000000000","Regimento Modelo 2024","2024-03-01","active","12345678901"

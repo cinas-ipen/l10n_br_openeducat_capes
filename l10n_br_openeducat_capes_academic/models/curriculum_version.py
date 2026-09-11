@@ -77,11 +77,30 @@ class OpCurriculumVersion(models.Model):
         ('current_matrix', 'Vinculação à Matriz Vigente no Retorno')
     ], string='Regra de Retorno e Estrutura', default='current_matrix', required=True)
 
-    # Matriz de Carga Horária, Créditos e Aproveitamento
+    # Matriz de Carga Horária, Créditos e Aproveitamento (Sucupira / CAPES)
     min_credits = fields.Integer(
         string='Créditos Totais Exigidos',
         default=100,
-        required=True
+        required=True,
+        help='Total de créditos exigidos para titulação (ex: 100 créditos MP-TRCS)'
+    )
+    min_subject_credits = fields.Integer(
+        string='Créditos Mínimos em Disciplinas',
+        default=40,
+        required=True,
+        help='Créditos exigidos especificamente em disciplinas presenciais do programa'
+    )
+    thesis_credits = fields.Integer(
+        string='Créditos da Dissertação / Tese',
+        default=52,
+        required=True,
+        help='Créditos atribuídos ao Trabalho Final de Curso (Dissertação / Tese)'
+    )
+    other_mandatory_credits = fields.Integer(
+        string='Créditos em Outras Atividades Obrigatórias',
+        default=8,
+        required=True,
+        help='Créditos em Seminários Gerais de Área, Estágios Docência ou Atividades Fixas'
     )
     credit_hour_ratio = fields.Integer(
         string='Horas por Unidade de Crédito',
@@ -94,10 +113,21 @@ class OpCurriculumVersion(models.Model):
         default=50,
         help='Teto regulamentar para aproveitamento de disciplinas externas (ex: 50% IPEN, 40% Mackenzie)'
     )
+    max_external_subject_credits = fields.Float(
+        string='Teto Efetivo Disciplinas Externas (Créditos)',
+        compute='_compute_max_external_subject_credits',
+        store=True,
+        help='Quantidade máxima absoluta de créditos em disciplinas externas que podem ser aproveitados'
+    )
     grading_scale_type = fields.Selection([
         ('scale_abc_r', 'Conceitos A, B, C (Aprovados) e R (Reprovado)'),
         ('scale_abcd_rf', 'Conceitos A, B, C, D (Aprovados) e R, F (Reprovados)')
     ], string='Escala de Conceitos e Corte', default='scale_abc_r', required=True)
+
+    @api.depends('min_subject_credits', 'max_external_credits_percent')
+    def _compute_max_external_subject_credits(self):
+        for record in self:
+            record.max_external_subject_credits = (record.min_subject_credits * record.max_external_credits_percent) / 100.0
 
     # Parametrizações de Domínio Específico
     proficiency_stage = fields.Selection([
@@ -142,13 +172,20 @@ class OpCurriculumVersion(models.Model):
         default=True
     )
 
-    @api.constrains('max_months_defense', 'min_credits', 'max_external_credits_percent')
+    @api.constrains('max_months_defense', 'min_credits', 'min_subject_credits', 'thesis_credits', 'other_mandatory_credits', 'max_external_credits_percent')
     def _check_regimen_parameters(self):
         for record in self:
             if record.max_months_defense <= 0:
                 raise ValidationError("O prazo máximo de titulação em meses deve ser superior a zero.")
             if record.min_credits <= 0:
                 raise ValidationError("A exigência total de créditos deve ser um valor positivo.")
+            if record.min_subject_credits < 0 or record.thesis_credits < 0 or record.other_mandatory_credits < 0:
+                raise ValidationError("Os valores de créditos específicos não podem ser negativos.")
+            if (record.min_subject_credits + record.thesis_credits + record.other_mandatory_credits) > record.min_credits:
+                raise ValidationError(
+                    f"A soma dos créditos em disciplinas ({record.min_subject_credits}), dissertação ({record.thesis_credits}) "
+                    f"e outras atividades ({record.other_mandatory_credits}) supera os créditos totais exigidos ({record.min_credits})."
+                )
             if record.max_external_credits_percent < 0 or record.max_external_credits_percent > 100:
                 raise ValidationError("O percentual máximo de créditos externos deve estar entre 0% e 100%.")
 
@@ -240,3 +277,14 @@ class OpCurriculumCommitteeRule(models.Model):
         ('cpg_qualified', '2/3 da CPG'),
         ('superior_council', 'CPG + Conselho Superior')
     ], string='Alçada de Aprovação de Não-Doutor', default='cpg_simple')
+
+
+class OpStudent(models.Model):
+    _inherit = 'op.student'
+
+    curriculum_version_id = fields.Many2one(
+        'op.curriculum.version',
+        string='Versão Regimental (Ato Jurídico Perfeito)',
+        help='Regimento ao qual o estudante foi vinculado no momento do ingresso'
+    )
+

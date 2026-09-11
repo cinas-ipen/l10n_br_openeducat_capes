@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+</head>
+<body>
+<h1 id="ecossistema-l10n_br_openeducat_capes">Ecossistema
+<code>l10n_br_openeducat_capes</code></h1>
+<h3 id="módulos-de-localização-brasileira-do-openeducat-para-pós-graduação-stricto-sensu-odoo-19.0">Módulos
+de Localização Brasileira do OpenEduCat para Pós-Graduação <em>Stricto
+Sensu</em> (Odoo 19.0)</h3>
+<p><a href="https://www.odoo.com/"><img role="img" aria-label="Odoo Version" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NCIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJPZG9vOiAxOS4wIj48dGl0bGU+T2RvbzogMTkuMDwvdGl0bGU+PGZpbHRlciBpZD0iYmx1ciI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTYiLz48L2ZpbHRlcj48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI3NCIgaGVpZ2h0PSIyMCIgcng9IjMiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjM5IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iMzkiIHdpZHRoPSIzNSIgaGVpZ2h0PSIyMCIgZmlsbD0icHVycGxlIi8+PHJlY3Qgd2lkdGg9Ijc0IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyMDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIyOTAiPk9kb288L3RleHQ+PHRleHQgeD0iMjA1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjI5MCI+T2RvbzwvdGV4dD48L2c+PHRleHQgeD0iMjA1IiB5PSIxNDAiIHRleHRMZW5ndGg9IjI5MCI+T2RvbzwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI1NTUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIyNTAiPjE5LjA8L3RleHQ+PHRleHQgeD0iNTU1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjI1MCI+MTkuMDwvdGV4dD48L2c+PHRleHQgeD0iNTU1IiB5PSIxNDAiIHRleHRMZW5ndGg9IjI1MCI+MTkuMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="Odoo Version" /></a> <a href="https://openeducat.org/"><img role="img" aria-label="OpenEduCat Version" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iT3BlbkVkdUNhdDogMTkuMCI+PHRpdGxlPk9wZW5FZHVDYXQ6IDE5LjA8L3RpdGxlPjxmaWx0ZXIgaWQ9ImJsdXIiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE2Ii8+PC9maWx0ZXI+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTE0IiBoZWlnaHQ9IjIwIiByeD0iMyIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNzkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI3OSIgd2lkdGg9IjM1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3ZWM2Ii8+PHJlY3Qgd2lkdGg9IjExNCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxnIHRyYW5zZm9ybT0ic2NhbGUoLjEpIj48ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0iIzAxMDEwMSI+PHRleHQgeD0iNDA1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iNjkwIj5PcGVuRWR1Q2F0PC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSI2OTAiPk9wZW5FZHVDYXQ8L3RleHQ+PC9nPjx0ZXh0IHg9IjQwNSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSI2OTAiPk9wZW5FZHVDYXQ8L3RleHQ+PC9nPjxnIHRyYW5zZm9ybT0ic2NhbGUoLjEpIj48ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0iIzAxMDEwMSI+PHRleHQgeD0iOTU1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iMjUwIj4xOS4wPC90ZXh0Pjx0ZXh0IHg9Ijk1NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIyNTAiPjE5LjA8L3RleHQ+PC9nPjx0ZXh0IHg9Ijk1NSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIyNTAiPjE5LjA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="OpenEduCat Version" /></a> <a href="https://www.gov.br/capes/"><img role="img" aria-label="GoPG CAPES" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDgiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iQ0FQRVM6IEdvUEcgQ29tcGxpYW50Ij48dGl0bGU+Q0FQRVM6IEdvUEcgQ29tcGxpYW50PC90aXRsZT48ZmlsdGVyIGlkPSJibHVyIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNiIvPjwvZmlsdGVyPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjE0OCIgaGVpZ2h0PSIyMCIgcng9IjMiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNDciIHdpZHRoPSIxMDEiIGhlaWdodD0iMjAiIGZpbGw9IiM2N2FjMDkiLz48cmVjdCB3aWR0aD0iMTQ4IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyNDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzNzAiPkNBUEVTPC90ZXh0Pjx0ZXh0IHg9IjI0NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIzNzAiPkNBUEVTPC90ZXh0PjwvZz48dGV4dCB4PSIyNDUiIHk9IjE0MCIgdGV4dExlbmd0aD0iMzcwIj5DQVBFUzwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI5NjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSI5MTAiPkdvUEcgQ29tcGxpYW50PC90ZXh0Pjx0ZXh0IHg9Ijk2NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSI5MTAiPkdvUEcgQ29tcGxpYW50PC90ZXh0PjwvZz48dGV4dCB4PSI5NjUiIHk9IjE0MCIgdGV4dExlbmd0aD0iOTEwIj5Hb1BHIENvbXBsaWFudDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="GoPG CAPES" /></a> <a href="https://www.in.gov.br/"><img role="img" aria-label="Portaria MEC 70/2025" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMzYiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iTUVDOiBQb3J0YXJpYSA3MC8yMDI1IChEaXBsb21hIERpZ2l0YWwpIj48dGl0bGU+TUVDOiBQb3J0YXJpYSA3MC8yMDI1IChEaXBsb21hIERpZ2l0YWwpPC90aXRsZT48ZmlsdGVyIGlkPSJibHVyIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNiIvPjwvZmlsdGVyPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjIzNiIgaGVpZ2h0PSIyMCIgcng9IjMiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjMzIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iMzMiIHdpZHRoPSIyMDMiIGhlaWdodD0iMjAiIGZpbGw9IiNlYTcyMzMiLz48cmVjdCB3aWR0aD0iMjM2IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIxNzUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIyMzAiPk1FQzwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMjMwIj5NRUM8L3RleHQ+PC9nPjx0ZXh0IHg9IjE3NSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIyMzAiPk1FQzwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIxMzM1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iMTkzMCI+UG9ydGFyaWEgNzAvMjAyNSAoRGlwbG9tYSBEaWdpdGFsKTwvdGV4dD48dGV4dCB4PSIxMzM1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjE5MzAiPlBvcnRhcmlhIDcwLzIwMjUgKERpcGxvbWEgRGlnaXRhbCk8L3RleHQ+PC9nPjx0ZXh0IHg9IjEzMzUiIHk9IjE0MCIgdGV4dExlbmd0aD0iMTkzMCI+UG9ydGFyaWEgNzAvMjAyNSAoRGlwbG9tYSBEaWdpdGFsKTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="Portaria MEC 70/2025" /></a> <a href="LICENSE"><img role="img" aria-label="License LGPL-3.0" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTIiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iTGljZW5zZTogTEdQTC0zLjAiPjx0aXRsZT5MaWNlbnNlOiBMR1BMLTMuMDwvdGl0bGU+PGZpbHRlciBpZD0iYmx1ciI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTYiLz48L2ZpbHRlcj48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMTIiIGhlaWdodD0iMjAiIHJ4PSIzIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI1MSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjUxIiB3aWR0aD0iNjEiIGhlaWdodD0iMjAiIGZpbGw9IiMwMDdlYzYiLz48cmVjdCB3aWR0aD0iMTEyIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyNjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSI0MTAiPkxpY2Vuc2U8L3RleHQ+PHRleHQgeD0iMjY1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjQxMCI+TGljZW5zZTwvdGV4dD48L2c+PHRleHQgeD0iMjY1IiB5PSIxNDAiIHRleHRMZW5ndGg9IjQxMCI+TGljZW5zZTwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI4MDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSI1MTAiPkxHUEwtMy4wPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSI1MTAiPkxHUEwtMy4wPC90ZXh0PjwvZz48dGV4dCB4PSI4MDUiIHk9IjE0MCIgdGV4dExlbmd0aD0iNTEwIj5MR1BMLTMuMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="License LGPL-3.0" /></a> <a href="https://www.docker.com/"><img role="img" aria-label="Docker Ready" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTEiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iRG9ja2VyOiBSZWFkeSI+PHRpdGxlPkRvY2tlcjogUmVhZHk8L3RpdGxlPjxmaWx0ZXIgaWQ9ImJsdXIiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE2Ii8+PC9maWx0ZXI+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTExIiBoZWlnaHQ9IjIwIiByeD0iMyIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjYiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2NiIgd2lkdGg9IjQ1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3ZWM2Ii8+PHJlY3Qgd2lkdGg9IjExMSIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxpbWFnZSB4PSI1IiB5PSIzIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5Qm1hV3hzUFNJak1qUTVOa1ZFSWlCeWIyeGxQU0pwYldjaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TkNBeU5DSWdlRzFzYm5NOUltaDBkSEE2THk5M2QzY3Vkek11YjNKbkx6SXdNREF2YzNabklqNDhkR2wwYkdVK1JHOWphMlZ5UEM5MGFYUnNaVDQ4Y0dGMGFDQmtQU0pOTVRNdU9UZ3pJREV4TGpBM09HZ3lMakV4T1dFdU1UZzJMakU0TmlBd0lEQXdMakU0TmkwdU1UZzFWamt1TURBMllTNHhPRFl1TVRnMklEQWdNREF0TGpFNE5pMHVNVGcyYUMweUxqRXhPV0V1TVRnMUxqRTROU0F3SURBd0xTNHhPRFV1TVRnMWRqRXVPRGc0WXpBZ0xqRXdNaTR3T0RNdU1UZzFMakU0TlM0eE9EVnRMVEl1T1RVMExUVXVORE5vTWk0eE1UaGhMakU0Tmk0eE9EWWdNQ0F3TUM0eE9EWXRMakU0TmxZekxqVTNOR0V1TVRnMkxqRTROaUF3SURBd0xTNHhPRFl0TGpFNE5XZ3RNaTR4TVRoaExqRTROUzR4T0RVZ01DQXdNQzB1TVRnMUxqRTROWFl4TGpnNE9HTXdJQzR4TURJdU1EZ3lMakU0TlM0eE9EVXVNVGcxYlRBZ01pNDNNVFpvTWk0eE1UaGhMakU0Tnk0eE9EY2dNQ0F3TUM0eE9EWXRMakU0TmxZMkxqSTVZUzR4T0RZdU1UZzJJREFnTURBdExqRTROaTB1TVRnMWFDMHlMakV4T0dFdU1UZzFMakU0TlNBd0lEQXdMUzR4T0RVdU1UZzFkakV1T0RnM1l6QWdMakV3TWk0d09ESXVNVGcxTGpFNE5TNHhPRFp0TFRJdU9UTWdNR2d5TGpFeVlTNHhPRFl1TVRnMklEQWdNREF1TVRnMExTNHhPRFpXTmk0eU9XRXVNVGcxTGpFNE5TQXdJREF3TFM0eE9EVXRMakU0TlVnNExqRmhMakU0TlM0eE9EVWdNQ0F3TUMwdU1UZzFMakU0TlhZeExqZzROMk13SUM0eE1ESXVNRGd6TGpFNE5TNHhPRFV1TVRnMmJTMHlMamsyTkNBd2FESXVNVEU1WVM0eE9EWXVNVGcySURBZ01EQXVNVGcxTFM0eE9EWldOaTR5T1dFdU1UZzFMakU0TlNBd0lEQXdMUzR4T0RVdExqRTROVWcxTGpFek5tRXVNVGcyTGpFNE5pQXdJREF3TFM0eE9EWXVNVGcxZGpFdU9EZzNZekFnTGpFd01pNHdPRFF1TVRnMUxqRTROaTR4T0RadE5TNDRPVE1nTWk0M01UVm9NaTR4TVRoaExqRTROaTR4T0RZZ01DQXdNQzR4T0RZdExqRTROVlk1TGpBd05tRXVNVGcyTGpFNE5pQXdJREF3TFM0eE9EWXRMakU0Tm1ndE1pNHhNVGhoTGpFNE5TNHhPRFVnTUNBd01DMHVNVGcxTGpFNE5YWXhMamc0T0dNd0lDNHhNREl1TURneUxqRTROUzR4T0RVdU1UZzFiUzB5TGpreklEQm9NaTR4TW1FdU1UZzFMakU0TlNBd0lEQXdMakU0TkMwdU1UZzFWamt1TURBMllTNHhPRFV1TVRnMUlEQWdNREF0TGpFNE5DMHVNVGcyYUMweUxqRXlZUzR4T0RVdU1UZzFJREFnTURBdExqRTROQzR4T0RWMk1TNDRPRGhqTUNBdU1UQXlMakE0TXk0eE9EVXVNVGcxTGpFNE5XMHRNaTQ1TmpRZ01HZ3lMakV4T1dFdU1UZzFMakU0TlNBd0lEQXdMakU0TlMwdU1UZzFWamt1TURBMllTNHhPRFV1TVRnMUlEQWdNREF0TGpFNE5DMHVNVGcyYUMweUxqRXlZUzR4T0RZdU1UZzJJREFnTURBdExqRTROaTR4T0RaMk1TNDRPRGRqTUNBdU1UQXlMakE0TkM0eE9EVXVNVGcyTGpFNE5XMHRNaTQ1TWlBd2FESXVNVEpoTGpFNE5TNHhPRFVnTUNBd01DNHhPRFF0TGpFNE5WWTVMakF3Tm1FdU1UZzFMakU0TlNBd0lEQXdMUzR4T0RRdExqRTRObWd0TWk0eE1tRXVNVGcxTGpFNE5TQXdJREF3TFM0eE9EUXVNVGcxZGpFdU9EZzRZekFnTGpFd01pNHdPREl1TVRnMUxqRTROUzR4T0RWTk1qTXVOell6SURrdU9EbGpMUzR3TmpVdExqQTFNUzB1TmpjeUxTNDFNUzB4TGprMU5DMHVOVEV0TGpNek9DNHdNREV0TGpZM05pNHdNeTB4TGpBeExqQTROeTB1TWpRNExURXVOeTB4TGpZMU15MHlMalV6TFRFdU56RTJMVEl1TlRZMmJDMHVNelEwTFM0eE9Ua3RMakl5Tmk0ek1qZGpMUzR5T0RRdU5ETTRMUzQwT1M0NU1qSXRMall4TWlBeExqUXpMUzR5TXk0NU55MHVNRGtnTVM0NE9ESXVOREF6SURJdU5qWXhMUzQxT1RVdU16TXlMVEV1TlRVdU5ERXpMVEV1TnpRMExqUXlTQzQzTlRGaExqYzFNUzQzTlRFZ01DQXdNQzB1TnpVdU56UTRJREV4TGpNM05pQXhNUzR6TnpZZ01DQXdNQzQyT1RJZ05DNHdOakpqTGpVME5TQXhMalF5T0NBeExqTTFOU0F5TGpRNElESXVOREVnTXk0eE1qUWdNUzR4T0M0M01qTWdNeTR4SURFdU1UTTNJRFV1TWpjMUlERXVNVE0zTGprNE15NHdNRE1nTVM0NU5qTXRMakE0TmlBeUxqa3pMUzR5TmpaaE1USXVNalE0SURFeUxqSTBPQ0F3SURBd015NDRNak10TVM0ek9EbGpMams0TFM0MU5qY2dNUzQ0TmkweExqSTRPQ0F5TGpZeExUSXVNVE0ySURFdU1qVXlMVEV1TkRFNElERXVPVGs0TFRJdU9UazNJREl1TlRVekxUUXVOR2d1TWpJeFl6RXVNemN5SURBZ01pNHlNVFV0TGpVME9TQXlMalk0TFRFdU1EQTVMak13T1MwdU1qa3pMalUxTFM0Mk5TNDNNRGN0TVM0d05EWnNMakE1T0MwdU1qZzRXaUl2UGp3dmMzWm5QZz09Ii8+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI0MjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzOTAiPkRvY2tlcjwvdGV4dD48dGV4dCB4PSI0MjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMzkwIj5Eb2NrZXI8L3RleHQ+PC9nPjx0ZXh0IHg9IjQyNSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIzOTAiPkRvY2tlcjwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI4NzUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzNTAiPlJlYWR5PC90ZXh0Pjx0ZXh0IHg9Ijg3NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIzNTAiPlJlYWR5PC90ZXh0PjwvZz48dGV4dCB4PSI4NzUiIHk9IjE0MCIgdGV4dExlbmd0aD0iMzUwIj5SZWFkeTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="Docker Ready" /></a></p>
+<p>O <strong><code>l10n_br_openeducat_capes</code></strong> é uma suíte
+completa de módulos de localização brasileira para o <strong>Odoo
+19.0</strong> e <strong>OpenEduCat 19.0</strong>, projetada para
+qualquer Programa de Pós-Graduação <em>Stricto Sensu</em> (Mestrado
+Acadêmico, Mestrado Profissional e Doutorado) de Instituições de Ensino
+Superior (IES) e Institutos de Pesquisa no Brasil.</p>
+<p>O ecossistema atende integralmente às diretrizes do <strong>Programa
+GoPG da CAPES (Portaria nº 158/2023)</strong>, à <strong>Instrução
+Normativa nº 1/2026 (RICA|PG)</strong>, ao <strong>Qualis Tecnológico
+(Diretrizes GTPT)</strong> e às exigências de <strong>Diplomas Digitais
+Nato-Digitais (Portaria MEC nº 70/2025)</strong> sob o paradigma do
+<strong>Ato Jurídico Perfeito (CF/88)</strong>.</p>
+<hr />
+<h2 id="topologia-do-monorepo-8-submódulos">🏛️ Topologia do Monorepo (8
+Submódulos)</h2>
+<p>O monorepo está estruturado sob os princípios de <em>Domain-Driven
+Design</em> (DDD) em 8 submódulos desacoplados com dependências
+estritas:</p>
+<pre class="text"><code>l10n_br_openeducat_capes/
+├── l10n_br_openeducat_capes_core         # PIDs biográficos (ORCiD, Lattes, CPF), IES, PPGs (Código SNPG)
+├── l10n_br_openeducat_capes_admission    # Editais de Seleção, Cotas, Fases Dinâmicas e Conversão em Aluno
+├── l10n_br_openeducat_capes_academic     # Versionamento Regimental (op.curriculum.version) e Livro-Razão (append-only)
+├── l10n_br_openeducat_capes_research     # Projetos de Pesquisa, Linhas de Pesquisa e Taxonomia CRediT
+├── l10n_br_openeducat_capes_thesis       # Ritos Bipartidos (Seminários/Qualificação/Defesa), Bancas e Versão Final PDF
+├── l10n_br_openeducat_capes_ptt          # Produtos Técnico-Tecnológicos, 4 Eixos, 21 Tipos, TRL 1-9 e Qualis Tecnológico
+├── l10n_br_openeducat_capes_integration  # Barramento REST JSON v1 (Fonte Prata) e Crosswalk DSpace OAI-PMH (Fonte Ouro)
+└── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e XAdES</code></pre>
+<h3 id="árvore-de-dependências-entre-submódulos">Árvore de Dependências
+entre Submódulos</h3>
+<pre class="mermaid"><code>graph TD
+    Core[l10n_br_openeducat_capes_core] --&gt; OpenEduCat[openeducat_core]
+    Academic[l10n_br_openeducat_capes_academic] --&gt; Core
+    Admission[l10n_br_openeducat_capes_admission] --&gt; Core
+    Admission --&gt; Academic
+    Research[l10n_br_openeducat_capes_research] --&gt; Academic
+    Research --&gt; Project[project]
+    Thesis[l10n_br_openeducat_capes_thesis] --&gt; Academic
+    Thesis --&gt; Admission
+    Thesis --&gt; Research
+    PTT[l10n_br_openeducat_capes_ptt] --&gt; Core
+    PTT --&gt; Academic
+    PTT --&gt; Thesis
+    Integration[l10n_br_openeducat_capes_integration] --&gt; Core
+    Integration --&gt; PTT
+    Diploma[l10n_br_openeducat_capes_diploma] --&gt; Core
+    Diploma --&gt; Academic
+    Diploma --&gt; Thesis</code></pre>
+<hr />
+<h2 id="execução-via-docker-e-docker-compose">🐳 Execução via Docker e
+Docker Compose</h2>
+<p>O ecossistema dispõe de ambiente Docker conteinerizado
+pré-configurado com <strong>Odoo 19.0</strong> e <strong>PostgreSQL
+16</strong> (com extensões <code>unaccent</code> e
+<code>pg_trgm</code>).</p>
+<h3 id="pré-requisitos">1. Pré-requisitos</h3>
+<ul>
+<li>Docker Engine <span class="math inline"> ≥ 24.0</span></li>
+<li>Docker Compose Plugin <span class="math inline"> ≥ 2.20</span></li>
+<li>Git</li>
+</ul>
+<h3 id="baixar-dependências-do-openeducat">2. Baixar Dependências do
+OpenEduCat</h3>
+<p>Antes de iniciar os contêineres, execute o script para baixar e
+preparar a dependência <code>openeducat_core</code> na pasta
+<code>external_addons/</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/fetch_dependencies.sh</span></span></code></pre></div>
+<h3 id="configurar-variáveis-de-ambiente">3. Configurar Variáveis de
+Ambiente</h3>
+<p>Copie o arquivo de exemplo <code>.env.example</code> para
+<code>.env</code> e ajuste as senhas e portas conforme necessário:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span></code></pre></div>
+<h3 id="iniciar-o-ambiente-docker">4. Iniciar o Ambiente Docker</h3>
+<p>Para construir a imagem customizada do Odoo 19 e subir o stack de
+serviços:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span> <span class="at">--build</span></span></code></pre></div>
+<h3 id="acessar-a-aplicação">5. Acessar a Aplicação</h3>
+<ul>
+<li><strong>URL do Odoo:</strong> <a href="http://localhost:8069">http://localhost:8069</a></li>
+<li><strong>Master Password (para criar o Banco de Dados):</strong>
+Definição constante no arquivo <code>.env</code>
+(<code>ODOO_ADMIN_PASSWD</code>).</li>
+</ul>
+<p>Ao criar a base de dados (ex: <code>ppg_exemplo_db</code>), acesse a
+tela de <strong>Aplicativos</strong>, remova o filtro “Aplicativos” da
+barra de busca e instale os submódulos na ordem: 1.
+<code>l10n_br_openeducat_capes_core</code> 2.
+<code>l10n_br_openeducat_capes_admission</code> 3.
+<code>l10n_br_openeducat_capes_academic</code> 4.
+<code>l10n_br_openeducat_capes_research</code> 5.
+<code>l10n_br_openeducat_capes_thesis</code> 6.
+<code>l10n_br_openeducat_capes_ptt</code> 7.
+<code>l10n_br_openeducat_capes_integration</code> 8.
+<code>l10n_br_openeducat_capes_diploma</code></p>
+<hr />
+<h2 id="transição-para-ip-externo-servidor-de-produção">🌐 Transição
+para IP Externo / Servidor de Produção</h2>
+<p>Para disponibilizar o sistema em um IP externo ou rede local (ex:
+<code>192.168.x.x</code> ou domínio oficial):</p>
+<ol type="1">
+<li><p>Edite o arquivo <code>.env</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Altere a ligação de 127.0.0.1 para 0.0.0.0</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">BIND_HOST</span><span class="op">=</span>0.0.0.0</span></code></pre></div></li>
+<li><p>Reinicie o ambiente:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose restart</span></code></pre></div></li>
+</ol>
+<hr />
+<h2 id="fluxos-chave-de-arquitetura-e-regras-de-negócio">🔄 Fluxos Chave
+de Arquitetura e Regras de Negócio</h2>
+<h3 id="depósito-da-versão-final-titulação-fluxo-institucional-biblioteca">1.
+Depósito da Versão Final &amp; Titulação (Fluxo Institucional /
+Biblioteca)</h3>
+<p>Em alinhamento com as melhores práticas institucionais, o discente
+efetua o depósito da versão final da dissertação/tese no Portal
+Odoo.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant D as Discente (Portal)
+    participant S as Secretaria Acadêmica
+    participant ERP as Odoo (Fonte Prata)
+    participant B as Biblioteca Central
+    participant DS as DSpace (Fonte Ouro)
+
+    D-&gt;&gt;ERP: Upload PDF Final Corrigido (com Capa e Ficha Catalográfica)
+    Note over ERP: Status: final_version_submitted
+    S-&gt;&gt;ERP: Triagem de Formatação &amp; Clique &quot;Validar Versão Final &amp; Titular&quot;
+    Note over ERP: Status: homologated / DISCENTE TITULADO&lt;br/&gt;Histórico Congelado &amp; Diploma Habilitado
+    ERP-&gt;&gt;ERP: Gera Manifesto XML (library_manifest_payload)
+    S-&gt;&gt;B: Encaminha Ordem de Serviço + PDF + Manifesto
+    B-&gt;&gt;DS: Realiza Upload Oficial e Curadoria no DSpace
+    DS--&gt;&gt;B: Gera Handle (URI Persistente)
+    B-&gt;&gt;ERP: Averba Handle (repository_url)</code></pre>
+<h3 id="versionamento-regimental-dinâmico-op.curriculum.version">2.
+Versionamento Regimental Dinâmico
+(<code>op.curriculum.version</code>)</h3>
+<ul>
+<li>Todas as regras de quórum de bancas, prazos limite, prorrogações,
+proficiência em idiomas e fatores de conversão de créditos (disciplinas,
+exames, trabalhos de conclusão, atividades complementares) são 100%
+parametrizáveis por programa e regimento.</li>
+<li>Sem <em>hardcode</em> no código Python.</li>
+</ul>
+<h3 id="imutabilidade-do-livro-razão-op.student.credit.ledger">3.
+Imutabilidade do Livro-Razão
+(<code>op.student.credit.ledger</code>)</h3>
+<ul>
+<li>Tabelas operadas estritamente em modo <em>append-only</em>.</li>
+<li>Impedimento absoluto de recálculos destrutivos ou exclusão de
+créditos já consolidados no histórico escolar.</li>
+</ul>
+<h3 id="qualis-tecnológico-ptt-capes.ptt.product">4. Qualis Tecnológico
+PTT (<code>capes.ptt.product</code>)</h3>
+<ul>
+<li>Taxonomia oficial de <strong>4 Eixos Estruturantes</strong> e
+<strong>21 Tipologias</strong> do GTPT / CAPES.</li>
+<li>Avaliação multidimensional em escala <strong>TRL 1-9</strong> com
+calculadora automatizada de estratos (<strong>T1 a T5</strong>).</li>
+</ul>
+<h3 id="diploma-digital-nato-digital-portaria-mec-nº-702025">5. Diploma
+Digital Nato-Digital (Portaria MEC nº 70/2025)</h3>
+<ul>
+<li>Governança bifásica entre IES/Instituto de Origem e Autoridade
+Registradora Emissora.</li>
+<li>Envelopamento XML com assinaturas digitais <strong>XAdES-BES
+(ICP-Brasil)</strong>, Carimbo de Tempo e Representação Visual (RVDD)
+com código QR de autenticidade.</li>
+</ul>
+<hr />
+<h2 id="perfil-de-referência-e-validação-regulatória">📊 Perfil de
+Referência e Validação Regulatória</h2>
+<p>Como validação empírica e prova de conceito regulatória, o sistema
+foi parametrizado e validado contra o perfil do <strong>Mestrado
+Profissional em Tecnologia das Radiações em Saúde (MP-TRCS)</strong> do
+<strong>IPEN-CNEN/SP</strong> (em parceria de titulação com a USP): - As
+regras específicas e listas de verificação desse perfil encontram-se
+documentadas no diretório <a href="docs/09_validacoes_mptrcs"><code>docs/09_validacoes_mptrcs/</code></a>.
+- Modelos de dados e planilhas de importação de exemplo estão
+disponíveis em <a href="import_templates/exemplos_referencia/mptrcs_ipen"><code>import_templates/exemplos_referencia/mptrcs_ipen/</code></a>.</p>
+<hr />
+<h2 id="documentação-técnica-completa-docs">📚 Documentação Técnica
+Completa (<code>docs/</code>)</h2>
+<p>O repositório conta com uma infraestrutura documental completa no
+diretório <a href="docs"><code>docs/</code></a>:</p>
+<ul>
+<li><strong><a href="docs/01_arquitetura_sistemica">01_arquitetura_sistemica</a>:</strong>
+Visão Geral do GoPG, Fonte Ouro/Prata e Topologia do Monorepo.</li>
+<li><strong><a href="docs/02_governanca_regimental_e_creditos">02_governanca_regimental_e_creditos</a>:</strong>
+Motor de Versionamento Curricular e Livro-Razão Imutável.</li>
+<li><strong><a href="docs/03_dicionarios__de_dados_dav">03_dicionarios__de_dados_dav</a>:</strong>
+Especificação dos Dicionários de Dados da DAV Módulos 01 a 06.</li>
+<li><strong><a href="docs/04_processos_da_vida_academica">04_processos_da_vida_academica</a>:</strong>
+Editais de Admissão, Matrículas de Acompanhamento e Trava de
+Prazos.</li>
+<li><strong><a href="docs/05_produtos_tecnico_tecnologicos_ptt">05_produtos_tecnico_tecnologicos_ptt</a>:</strong>
+Taxonomia GTPT, Qualis Tecnológico e Motor de Estratificação.</li>
+<li><strong><a href="docs/06_titulacao_e_conformidade_documental">06_titulacao_e_conformidade_documental</a>:</strong>
+Rito Bipartido, Histórico Consolidado e Diploma Digital MEC
+70/2025.</li>
+<li><strong><a href="docs/07_padroes_de_interoperabilidade_externa">07_padroes_de_interoperabilidade_externa</a>:</strong>
+APIs RESTful Fonte Prata e Crosswalk XSLT DSpace
+(<code>oai_capes</code>).</li>
+<li><strong><a href="docs/08_macroprocessos">08_macroprocessos</a>:</strong> Mapeamento
+dos 10 Macroprocessos Acadêmicos de Ponta a Ponta.</li>
+<li><strong><a href="docs/09_validacoes_mptrcs">09_validacoes_mptrcs</a>:</strong>
+Perfil de Referência e Checklists de Validação MP-TRCS
+IPEN-CNEN/SP.</li>
+<li><strong><a href="docs/guia_de_migracao_e_transicao_legacy.md">Guia
+de Migração e Transição do Sistema Legado</a>:</strong> Manual detalhado
+para zerar bases de teste e migrar dados do sistema antigo.</li>
+<li><strong><a href="import_templates">Templates CSV Universais e
+Exemplos</a>:</strong> Planilhas pré-formatadas genéricas para
+importação nativa e exemplos de referência.</li>
+<li><strong>Relatório Executivo HTML Autocontido:</strong> <a href="docs/documentacao_executiva_capes.html">docs/documentacao_executiva_capes.html</a></li>
+</ul>
+<hr />
+<h2 id="comandos-úteis">🛠️ Comandos Úteis</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Baixar dependências do OpenEduCat</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/fetch_dependencies.sh</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Subir ambiente Docker</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span> <span class="at">--build</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Acompanhar logs do Odoo</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose logs <span class="at">-f</span> odoo</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parar contêineres</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose down</span></code></pre></div>
+<hr />
+<h2 id="governança-e-contribuição">🤝 Governança e Contribuição</h2>
+<p>Contribuições da comunidade acadêmica, desenvolvedores Odoo e
+gestores de PPGs são extremamente bem-vindas! - Consulte nosso <a href="CONTRIBUTING.md">Guia de Contribuição
+(<code>CONTRIBUTING.md</code>)</a> para entender os padrões de código,
+regras de arquitetura e fluxo de Pull/Merge Requests. - Respeite o nosso
+<a href="CODE_OF_CONDUCT.md">Código de Conduta
+(<code>CODE_OF_CONDUCT.md</code>)</a>.</p>
+<hr />
+<h2 id="licença">📄 Licença</h2>
+<p>Este projeto é um software livre distribuído sob os termos da licença
+<strong>GNU Lesser General Public License v3.0 (LGPL-3.0)</strong>.
+Consulte o arquivo <a href="LICENSE"><code>LICENSE</code></a> para mais
+detalhes.</p>
+</body>
+</html>

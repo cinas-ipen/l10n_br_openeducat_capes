@@ -5,13 +5,13 @@
         <field name="name">op.cpg.committee.tree</field>
         <field name="model">op.cpg.committee</field>
         <field name="arch" type="xml">
-            <tree string="Gestões CPG">
+            <list string="Gestões CPG">
                 <field name="name"/>
                 <field name="program_id"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -36,12 +36,12 @@
                     <notebook>
                         <page string="Membros do Conselho CPG">
                             <field name="member_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="partner_id"/>
                                     <field name="role"/>
                                     <field name="mandate_origin"/>
                                     <field name="document_ref"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -55,13 +55,13 @@
         <field name="name">op.cpg.meeting.tree</field>
         <field name="model">op.cpg.meeting</field>
         <field name="arch" type="xml">
-            <tree string="Reuniões da CPG">
+            <list string="Reuniões da CPG">
                 <field name="name"/>
                 <field name="committee_id"/>
                 <field name="meeting_date"/>
                 <field name="meeting_type"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -92,24 +92,24 @@
                     <notebook>
                         <page string="Requerimentos Pautados">
                             <field name="agenda_request_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="student_id"/>
                                     <field name="request_type"/>
                                     <field name="advisor_approval"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Log de Aprovação Auditável">
                             <field name="approval_log_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="timestamp"/>
                                     <field name="user_id"/>
                                     <field name="vote"/>
                                     <field name="ip_address"/>
                                     <field name="notes"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -127,13 +127,13 @@
     <record id="action_op_cpg_committee" model="ir.actions.act_window">
         <field name="name">Conselho CPG</field>
         <field name="res_model">op.cpg.committee</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_op_cpg_meeting" model="ir.actions.act_window">
         <field name="name">Reuniões CPG</field>
         <field name="res_model">op.cpg.meeting</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu Items -->

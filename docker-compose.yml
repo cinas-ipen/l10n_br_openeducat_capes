@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: openeducat_capes_db
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
+      - POSTGRES_USER=${POSTGRES_USER:-odoo}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-odoo_capes_secure_pass_2026}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-odoo} -d ${POSTGRES_DB:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openeducat_capes_web
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${BIND_HOST:-127.0.0.1}:${ODOO_PORT:-8069}:8069"
+      - "${BIND_HOST:-127.0.0.1}:${LONGPOLLING_PORT:-8072}:8072"
+    environment:
+      - HOST=${DB_HOST:-db}
+      - PORT=${DB_PORT:-5432}
+      - USER=${POSTGRES_USER:-odoo}
+      - PASSWORD=${POSTGRES_PASSWORD:-odoo_capes_secure_pass_2026}
+    volumes:
+      - .:/mnt/extra-addons
+      - ./external_addons:/mnt/external-addons
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      - odoo_data:/var/lib/odoo
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  odoo_data:

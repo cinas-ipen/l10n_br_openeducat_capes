@@ -1,0 +1,4 @@
+gr_no,name,cpf,email,orcid,admission_date,capes_status,main_advisor_id/cpf,curriculum_version_id/name
+"2024001","Ana Paula Oliveira","11122233344","ana.oliveira@ipen.br","0000-0002-1111-2222","2024-03-01","regular","12345678901","Regimento MPTRCS 2024"
+"2024002","Bruno Henrique Lima","22233344455","bruno.lima@ipen.br","0000-0003-2222-3333","2024-03-01","regular","98765432100","Regimento MPTRCS 2024"
+"2023015","Carla Patricia Souza","33344455566","carla.souza@ipen.br","0000-0001-3333-4444","2023-08-15","graduated","12345678901","Regimento MPTRCS 2023"

@@ -5,7 +5,7 @@
         <field name="name">capes.ptt.product.tree</field>
         <field name="model">capes.ptt.product</field>
         <field name="arch" type="xml">
-            <tree string="Produtos Técnico-Tecnológicos (PTT)">
+            <list string="Produtos Técnico-Tecnológicos (PTT)">
                 <field name="title"/>
                 <field name="type_id"/>
                 <field name="axis_id"/>
@@ -14,7 +14,7 @@
                 <field name="is_adherent" widget="boolean_toggle"/>
                 <field name="final_stratum" widget="badge"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -120,16 +120,16 @@
                     <notebook>
                         <page string="Coautores e Equipe (Quota PI)">
                             <field name="author_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="partner_id"/>
                                     <field name="author_role"/>
                                     <field name="ip_share"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Avaliações Qualis Tecnológico">
                             <field name="evaluation_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="evaluator_id"/>
                                     <field name="evaluation_date"/>
                                     <field name="dim_impact"/>
@@ -138,7 +138,7 @@
                                     <field name="dim_complexity"/>
                                     <field name="total_score"/>
                                     <field name="final_stratum"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -164,7 +164,7 @@
                 <filter string="Homologados" name="homologated" domain="[('state', '=', 'homologated')]"/>
                 <filter string="Aderência Confirmada" name="adherent" domain="[('is_adherent', '=', True)]"/>
                 <filter string="Estrato T1 / T2" name="top_stratum" domain="[('final_stratum', 'in', ('T1', 'T2'))]"/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Tipologia" name="group_by_type" context="{'group_by': 'type_id'}"/>
                     <filter string="Eixo Estruturante" name="group_by_axis" context="{'group_by': 'axis_id'}"/>
                     <filter string="Nível TRL" name="group_by_trl" context="{'group_by': 'trl_level'}"/>

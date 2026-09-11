@@ -10,14 +10,14 @@ No ecossistema do Programa de Pós-Graduação em Tecnologia das Radiações em 
 
 Portanto, o submódulo `l10n_br_openeducat_capes_diploma` opera em duas camadas coordenadas:
 
-1. **IPEN (Fonte Prata e Ouro):** Orquestra a auditoria integral da vida acadêmica, a defesa, a homologação do PTT e o depósito legal no Repositório Institucional (DSpace), gerando e selando o **Pacote de Titulação**.
+1. **IPEN (Fonte Prata e Ouro):** Orquestra a auditoria integral da vida acadêmica, a defesa, a homologação do PTT, a validação da versão final do PDF e a geração do manifesto para o Repositório Institucional (DSpace), gerando e selando o **Pacote de Titulação**.
 2. **USP (Autoridade Registradora Emissora):** Recebe o pacote validado, processa a homologação final do registro acadêmico e emite oficialmente o Diploma Nato-Digital.
 
 ---
 
 ## 2. A Composição do "Pacote de Titulação" (IPEN $\rightarrow$ USP)
 
-Uma vez que o discente atinge o status de "Titulado" no ERP do IPEN (após a defesa aprovada e a averbação do Handle/URI do DSpace), o sistema empacota os dados para transmissão segura à USP, contendo:
+Uma vez que o discente atinge o status de "Titulado" no ERP do IPEN (após o upload da versão final em PDF pelo discente e a chancela/validação da Secretaria Acadêmica), o sistema empacota os dados para transmissão segura à USP, contendo:
 
 * **XML de Lastro Acadêmico:** Extraído diretamente das tabelas *append-only* do Livro-Razão (`op.student.credit.ledger`), contendo o histórico escolar consolidado com conversão de créditos em horas-aula e as assinaturas de regimento (Ato Jurídico Perfeito).
 * **Ata de Defesa e Dossiê da Banca:** Metadados da comissão julgadora (`capes.thesis.committee`), comprovando o quórum de doutores, a participação de membros externos e a inexistência de endogenia ou impedimentos.

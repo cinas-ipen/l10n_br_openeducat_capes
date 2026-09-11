@@ -6,6 +6,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
 # Arquivos de log e debug
 *.log
@@ -17,11 +18,18 @@ odoo_data/
 filestore/
 sessions/
 
-# Ambientes Virtuais (caso use fora do Docker para linting)
+# Ambientes Virtuais e Variáveis de Ambiente
 venv/
 .venv/
 env/
 .env
+
+# Ferramentas de IA / Assistentes
+.gemini/
+
+# Documentos Institucionais em PDF (Regulamentos e Páginas Locais)
+*.pdf
+docs/exemplos_referencia/pdfs/
 
 # Arquivos de IDE e SO
 .idea/
@@ -30,7 +38,10 @@ env/
 *.swo
 .DS_Store
 Thumbs.db
+docs/.Rhistory
 
-# Ignora o repositório original do OpenEduCat caso acabe baixando na mesma raiz por engano
+# Ignora dependências externas baixadas via script
 openeducat_erp/
+external_addons/
+
 

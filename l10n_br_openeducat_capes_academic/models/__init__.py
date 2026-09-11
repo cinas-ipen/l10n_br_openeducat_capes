@@ -23,3 +23,4 @@ from . import credit_ledger
 from . import academic_request
 from . import faculty_accreditation
 from . import cpg_governance
+from . import op_subject_extension

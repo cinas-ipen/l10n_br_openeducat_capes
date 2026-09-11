@@ -254,12 +254,14 @@ Orquestra os ritos acadêmicos de passagem e consolidação do grau, aplicando r
   * Validação do quórum de membros externos e percentual de endogenia (mínimo 1 externo, mínimo 2 externos, ou maioria externa).
   * Checagem de impedimentos por parentesco cível até 4º grau (Regra USP Art. 89 §3º).
 
-**6.4. Sessão de Julgamento, Modalidades e Homologação**
+**6.4. Sessão de Julgamento, Modalidades, Validação da Versão Final e Depósito pela Biblioteca**
 
 * **Modalidade:** Presencial, híbrida ou totalmente remota, conforme parametrizado em `defense_location_policy`.
 * **Dinâmica Temporal:** Registro dos tempos de exposição e arguição configurados no regimento.
-* **Prazo de Depósito Final:** Alteração de status para `deposit_pending`. O discente deve efetuar o upload do PDF final no Repositório Institucional (DSpace) dentro do prazo limite regimental (`max_days_post_defense_deposit`, ex: 30 ou 90 dias).
-* **Titulado e Diploma:** A averbação do Handle (URI) do DSpace altera a situação para "Titulado", liberando a emissão do histórico consolidado e do diploma digital (MEC 70/2025).
+* **Upload da Versão Final pelo Discente (Portal):** Após a aprovação na defesa, o status altera para `deposit_pending`. O discente dispõe do prazo limite regimental (`max_days_post_defense_deposit`, ex: 30 dias) para efetuar as correções solicitadas pela banca e realizar o upload da versão final corrigida do PDF no Portal do Aluno (incluindo capa, folha de aprovação e ficha catalográfica). O status altera para `final_version_submitted`.
+* **Triagem da Secretaria e Deferimento de Titulação:** A secretaria acadêmica verifica a conformidade técnica e de formatação do PDF. Ao conceder o aceite formal ("De acordo em Depósito da Versão Final"), o ERP altera autonomamente a situação da tese para `homologated` e a condição do discente para **"Titulado"**, liberando a expedição do Histórico Escolar Consolidado e a esteira de titulação.
+* **Geração do Manifesto de Metadados e Envio à Biblioteca:** O ERP gera automaticamente o **Documento/Guia de Metadados para o DSpace (Manifesto OAI-PMH)** contendo todos os PIDs, resumos bilíngues, banca e autor. A secretaria encaminha a ordem de serviço com o PDF validado para a **Biblioteca Central**, que realiza exclusivamente o upload oficial no Repositório Institucional DSpace (Fonte Ouro).
+* **Averbação do Handle:** A biblioteca aprova o depósito no DSpace e informa o Handle (URI) permanente gerado, que é averbado no campo `repository_url` no Odoo para fechamento da malha de interoperabilidade.
 
 ---
 

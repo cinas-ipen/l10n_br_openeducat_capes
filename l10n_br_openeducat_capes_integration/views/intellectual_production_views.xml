@@ -5,7 +5,7 @@
         <field name="name">capes.intellectual.production.tree</field>
         <field name="model">capes.intellectual.production</field>
         <field name="arch" type="xml">
-            <tree string="Guarda de Produções Intelectuais">
+            <list string="Guarda de Produções Intelectuais">
                 <field name="publication_year"/>
                 <field name="name"/>
                 <field name="production_type"/>
@@ -16,7 +16,7 @@
                 <field name="doi"/>
                 <field name="handle" widget="url"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -81,7 +81,7 @@
                 <filter string="Validados CPG" name="validated" domain="[('state', '=', 'validated')]"/>
                 <filter string="Artigos Periódicos" name="articles" domain="[('production_type', '=', 'article')]"/>
                 <filter string="Produtos PTT" name="ptts" domain="[('production_type', 'in', ('patent', 'software', 'other_ptt'))]"/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Programa PPG" name="group_by_program" context="{'group_by': 'program_id'}"/>
                     <filter string="Tipo de Produção" name="group_by_type" context="{'group_by': 'production_type'}"/>
                     <filter string="Ano de Publicação" name="group_by_year" context="{'group_by': 'publication_year'}"/>
@@ -96,7 +96,7 @@
     <record id="action_capes_intellectual_production" model="ir.actions.act_window">
         <field name="name">Produções Intelectuais e Crosswalk</field>
         <field name="res_model">capes.intellectual.production</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_capes_intellectual_production_search"/>
     </record>
 

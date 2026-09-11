@@ -5,7 +5,7 @@
         <field name="name">capes.digital.diploma.tree</field>
         <field name="model">capes.digital.diploma</field>
         <field name="arch" type="xml">
-            <tree string="Diplomas Digitais (MEC 70/2025)">
+            <list string="Diplomas Digitais (MEC 70/2025)">
                 <field name="graduation_date"/>
                 <field name="student_id"/>
                 <field name="degree_type"/>
@@ -13,7 +13,7 @@
                 <field name="issuing_ies_name"/>
                 <field name="sha256_hash"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -58,13 +58,13 @@
                     <notebook>
                         <page string="Assinaturas Criptográficas (Trilha de Auditoria)">
                             <field name="signature_log_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="signer_name"/>
                                     <field name="certificate_serial"/>
                                     <field name="signature_timestamp"/>
                                     <field name="signature_hash"/>
                                     <field name="signature_algorithm"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="XML do Diploma Digital (MEC 70/2025)">
@@ -98,7 +98,7 @@
                 <field name="diploma_process_number"/>
                 <filter string="Expedidos" name="issued" domain="[('state', '=', 'issued')]"/>
                 <filter string="Assinados XAdES" name="signed" domain="[('state', '=', 'signed')]"/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Grau Acadêmico" name="group_by_degree" context="{'group_by': 'degree_type'}"/>
                     <filter string="Situação" name="group_by_state" context="{'group_by': 'state'}"/>
                     <filter string="Data de Outorga" name="group_by_date" context="{'group_by': 'graduation_date'}"/>
@@ -111,7 +111,7 @@
     <record id="action_capes_digital_diploma" model="ir.actions.act_window">
         <field name="name">Diplomas Digitais (Portaria MEC 70/2025)</field>
         <field name="res_model">capes.digital.diploma</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_capes_digital_diploma_search"/>
     </record>
 

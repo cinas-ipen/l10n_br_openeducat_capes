@@ -10,7 +10,6 @@
                     <group>
                         <group string="Vínculo Acadêmico e Regimento (Ato Perfeito)">
                             <field name="student_category"/>
-                            <field name="curriculum_version_id"/>
                             <field name="capes_status"/>
                             <field name="admission_date"/>
                             <field name="status_date"/>

@@ -5,7 +5,7 @@
         <field name="name">capes.thesis.committee.tree</field>
         <field name="model">capes.thesis.committee</field>
         <field name="arch" type="xml">
-            <tree string="Membros de Bancas Examinadoras">
+            <list string="Membros de Bancas Examinadoras">
                 <field name="thesis_id"/>
                 <field name="member_id"/>
                 <field name="member_role"/>
@@ -15,7 +15,7 @@
                 <field name="ies_origin"/>
                 <field name="has_phd"/>
                 <field name="civil_relationship_flag" widget="boolean_toggle"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -53,7 +53,7 @@
     <record id="action_capes_thesis_committee" model="ir.actions.act_window">
         <field name="name">Membros de Bancas</field>
         <field name="res_model">capes.thesis.committee</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu Item -->

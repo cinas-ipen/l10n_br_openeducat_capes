@@ -1,0 +1,4 @@
+name,cpf,email,orcid,lattes_url,category
+"Prof. Dr. Carlos Eduardo Silva","12345678901","carlos.silva@ipen.br","0000-0002-1825-0001","http://lattes.cnpq.br/1234567890123456","permanent"
+"Profa. Dra. Maria Fernanda Santos","98765432100","maria.santos@ipen.br","0000-0001-9988-0002","http://lattes.cnpq.br/9876543210987654","permanent"
+"Prof. Dr. Roberto Mendes","45678912300","roberto.mendes@ipen.br","0000-0003-4455-0003","http://lattes.cnpq.br/4567891234567890","collaborator"

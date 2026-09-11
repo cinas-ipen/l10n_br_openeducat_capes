@@ -5,7 +5,7 @@
         <field name="name">op.program.capes.tree</field>
         <field name="model">op.program.capes</field>
         <field name="arch" type="xml">
-            <tree string="Programas de Pós-Graduação (PPG)">
+            <list string="Programas de Pós-Graduação (PPG)">
                 <field name="snpg_code"/>
                 <field name="name"/>
                 <field name="modality"/>
@@ -13,7 +13,7 @@
                 <field name="capes_grade"/>
                 <field name="status"/>
                 <field name="company_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -92,7 +92,7 @@
                 <filter string="Em Funcionamento" name="active_status" domain="[('status', '=', 'active')]"/>
                 <filter string="Modalidade Acadêmica" name="acad_modality" domain="[('modality', '=', 'academic')]"/>
                 <filter string="Modalidade Profissional" name="prof_modality" domain="[('modality', '=', 'professional')]"/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Modalidade" name="group_by_modality" context="{'group_by': 'modality'}"/>
                     <filter string="Área de Avaliação" name="group_by_area" context="{'group_by': 'evaluation_area'}"/>
                     <filter string="Nota CAPES" name="group_by_grade" context="{'group_by': 'capes_grade'}"/>
@@ -106,7 +106,7 @@
     <record id="action_op_program_capes" model="ir.actions.act_window">
         <field name="name">Programas CAPES / SNPG</field>
         <field name="res_model">op.program.capes</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_op_program_capes_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

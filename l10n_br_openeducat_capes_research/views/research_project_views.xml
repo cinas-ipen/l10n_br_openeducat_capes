@@ -5,7 +5,7 @@
         <field name="name">capes.research.project.tree</field>
         <field name="model">capes.research.project</field>
         <field name="arch" type="xml">
-            <tree string="Projetos de Pesquisa Científica">
+            <list string="Projetos de Pesquisa Científica">
                 <field name="name"/>
                 <field name="program_id"/>
                 <field name="coordinator_id"/>
@@ -15,7 +15,7 @@
                 <field name="funding_agency"/>
                 <field name="status" widget="badge"/>
                 <field name="start_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -65,7 +65,7 @@
                     <notebook>
                         <page string="Equipe de Pesquisa (Taxonomia CRediT)">
                             <field name="member_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="partner_id"/>
                                     <field name="role"/>
                                     <field name="contrib_type"/>
@@ -73,7 +73,7 @@
                                     <field name="student_id"/>
                                     <field name="link_start"/>
                                     <field name="link_end"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -100,7 +100,7 @@
                 <filter string="Em Cooperação" name="cooperation" domain="[('is_cooperation', '=', True)]"/>
                 <filter string="Pesquisa Aplicada" name="applied" domain="[('research_nature', '=', 'applied')]"/>
                 <filter string="Pesquisa Básica" name="basic" domain="[('research_nature', '=', 'basic')]"/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Programa PPG" name="group_by_program" context="{'group_by': 'program_id'}"/>
                     <filter string="Coordenador" name="group_by_coordinator" context="{'group_by': 'coordinator_id'}"/>
                     <filter string="Tipo de Projeto" name="group_by_type" context="{'group_by': 'project_type'}"/>
@@ -115,7 +115,7 @@
     <record id="action_capes_research_project" model="ir.actions.act_window">
         <field name="name">Projetos de Pesquisa</field>
         <field name="res_model">capes.research.project</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_capes_research_project_search"/>
     </record>
 

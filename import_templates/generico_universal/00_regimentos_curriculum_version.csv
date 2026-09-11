@@ -1,0 +1,2 @@
+name,program_id/snpg_code,min_credits,min_subject_credits,thesis_credits,other_mandatory_credits,credit_hour_ratio,max_external_credits_percent,max_months_defense,max_days_post_defense_deposit,proficiency_stage,teaching_internship_mode,ptt_validation_mode
+"Regimento Modelo 2024","00000000000P0",100,40,52,8,15,50,24,30,"admission","not_applicable","cpg_checklist"

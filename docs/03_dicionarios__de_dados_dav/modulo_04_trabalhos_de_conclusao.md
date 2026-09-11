@@ -91,11 +91,15 @@
 | `doc_type` | Tipo de Documento Final | `Selection` | `dissertation` (Dissertação), `thesis` (Tese), `tech_product` (Produto Tecnológico).
 
  |
-| `status` | Situação do Rito | `Selection` | `draft` (Rascunho), `scheduled` (Agendado), `approved` (Aprovado na Banca), `disapproved` (Reprovado na Banca), `deposit_pending` (Pendente de Depósito DSpace), `homologated` (Homologado / Titulado).
-
+| `final_pdf_file` | Versão Final da Dissertação/Tese (PDF) | `Binary` | Upload do PDF final corrigido pelo discente (contendo capa, folha de aprovação e ficha catalográfica).
  |
-| `repository_url` | Handle / URI no Repositório (DSpace) | `Char` | Handle permanente gerado pela biblioteca (Fonte Ouro). Prazo limite de 30 dias pós-defesa.
-
+| `secretariat_approval` | Validação da Secretaria Acadêmica | `Boolean` | Aceite formal da Secretaria após conferência do PDF e ficha catalográfica (Libera status Titulado).
+ |
+| `library_manifest_payload` | Manifesto de Metadados DSpace | `Text` | Guia com metadados gerada pelo Odoo para envio à Biblioteca Central.
+ |
+| `status` | Situação do Rito | `Selection` | `draft` (Rascunho), `scheduled` (Agendado), `approved` (Aprovado na Banca), `disapproved` (Reprovado na Banca), `deposit_pending` (Pendente Envio Versão Final Aluno), `final_version_submitted` (Versão Final Enviada - Triagem Secretaria), `homologated` (Homologado / Titulado - Secretaria OK).
+ |
+| `repository_url` | Handle / URI no Repositório (DSpace) | `Char` | Handle permanente gerado e averbado pela Biblioteca Central (Fonte Ouro) após o upload no DSpace.
  |
 | `abstract_main` | Resumo no Idioma Principal | `Text` | Texto integral do resumo aprovado.
 

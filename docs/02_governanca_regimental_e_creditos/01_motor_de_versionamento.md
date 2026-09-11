@@ -21,7 +21,13 @@ Esta entidade concentra parâmetros vitais que balizam o motor cronológico, a a
   * Prazo máximo de trancamento contínuo (`max_trancamento_days`): Parametrizável (ex: 365 dias no MPTRCS).
   * Bloqueio de trancamento no 1º semestre (`block_first_semester_trancamento`): Booleano parametrizável (True/False).
   * Regra de Retorno (`retorno_rule`): Define a vinculação automática à estrutura curricular vigente no retorno, aplicando o Ato Jurídico Perfeito sobre créditos já integralizados e exigindo cumprimento da nova matriz para pendências.
-* **Matriz de Carga Horária e Escala de Avaliação:**
+* **Matriz de Carga Horária, Créditos e Aproveitamento (Sucupira / CAPES / Regimento):**
+  * Créditos Totais Exigidos (`min_credits`): Total geral necessário para titulação (ex: 100 créditos no MP-TRCS v2).
+  * Créditos Mínimos em Disciplinas (`min_subject_credits`): Créditos exigidos em disciplinas presenciais do programa (ex: 40 créditos no MP-TRCS v2).
+  * Créditos da Dissertação / Tese (`thesis_credits`): Créditos atribuídos ao Trabalho Final de Curso (ex: 52 créditos no MP-TRCS v2).
+  * Créditos em Outras Atividades Obrigatórias (`other_mandatory_credits`): Créditos atribuídos a Seminários Gerais de Área ou Estágios (ex: 8 créditos no MP-TRCS v2).
+  * Teto de Aproveitamento de Créditos Externos (`max_external_credits_percent`): Percentual máximo de disciplinas cursadas fora do PPG (ex: 50% no MP-TRCS v2).
+  * Teto Efetivo de Créditos Externos (`max_external_subject_credits`): Campo computado automaticamente (`min_subject_credits * max_external_credits_percent / 100`, ex: 20.0 créditos).
   * Valor em horas-aula de cada crédito (`credit_hour_ratio`: ex: 15h no IPEN/CDTN vs 10h/12h no Mackenzie).
   * Escala de conceitos e nota de corte para aprovação (`grading_scale_type`), suportando o conceito "D" como aprovado (CDTN) ou "C" (IPEN/Mackenzie).
 * **Parametrização do Momento da Proficiência (`proficiency_stage`):**
