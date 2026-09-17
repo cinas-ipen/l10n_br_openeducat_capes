@@ -1,0 +1,2 @@
+id,name,code,program_level_id/id,department_id/id,active
+prog_oe_mptrcs,Mestrado Profissional em Tecnologia das Radiações em Ciências da Saúde,MPTRCS,level_ipen_prof,dept_ipen_ctr,True

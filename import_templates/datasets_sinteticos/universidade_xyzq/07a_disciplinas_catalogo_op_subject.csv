@@ -1,0 +1,37 @@
+id,name,code,type,subject_type,program_id/id,grade_weightage
+sub_cc501,Metodologia de Pesquisa em Computação,CC501,theory,compulsory,prog_xyzq_cc,4
+sub_cc502,Algoritmos Avançados e Teoria da Computação,CC502,theory,compulsory,prog_xyzq_cc,4
+sub_cc503,Seminários de Computação Científica,CC503,theory,compulsory,prog_xyzq_cc,2
+sub_cc510,Aprendizado Profundo e Redes Neurais,CC510,theory,elective,prog_xyzq_cc,4
+sub_cc511,Processamento de Linguagem Natural,CC511,theory,elective,prog_xyzq_cc,4
+sub_cc512,Visão Computacional e Reconhecimento de Padrões,CC512,theory,elective,prog_xyzq_cc,4
+sub_cc520,Sistemas Distribuídos e Computação em Nuvem,CC520,theory,elective,prog_xyzq_cc,4
+sub_cc521,Engenharia de Requisitos e Modelagem Ágil,CC521,theory,elective,prog_xyzq_cc,4
+sub_cc522,Cibersegurança e Criptografia Aplicada,CC522,theory,elective,prog_xyzq_cc,4
+sub_fa601,Mecânica Quântica Avançada,FA601,theory,compulsory,prog_xyzq_fis,4
+sub_fa602,Métodos Matemáticos da Física Teórica,FA602,theory,compulsory,prog_xyzq_fis,4
+sub_fa603,Seminário Geral de Física Aplicada,FA603,theory,compulsory,prog_xyzq_fis,2
+sub_fa610,Física de Sólidos e Semicondutores,FA610,theory,elective,prog_xyzq_fis,4
+sub_fa611,Espectroscopia e Difração de Raios-X,FA611,theory,elective,prog_xyzq_fis,4
+sub_fa612,Nanotecnologia e Superfícies,FA612,theory,elective,prog_xyzq_fis,4
+sub_fa620,Interação da Radiação com a Matéria,FA620,theory,elective,prog_xyzq_fis,4
+sub_fa621,Física Médica e Radioterapia Computacional,FA621,theory,elective,prog_xyzq_fis,4
+sub_fa622,Detectores Nucleares e Processamento de Sinais,FA622,theory,elective,prog_xyzq_fis,4
+sub_bm701,Biologia Molecular Celular Avançada,BM701,theory,compulsory,prog_xyzq_bio,4
+sub_bm702,Bioestatística e Delineamento Experimental,BM702,theory,compulsory,prog_xyzq_bio,4
+sub_bm703,Seminários Integrados em Biotecnologia,BM703,theory,compulsory,prog_xyzq_bio,2
+sub_bm710,Bioinformática e Análise de Sequências NGS,BM710,theory,elective,prog_xyzq_bio,4
+sub_bm711,Genômica Funcional e Epigenética,BM711,theory,elective,prog_xyzq_bio,4
+sub_bm712,Engenharia de Proteínas e Cristalografia,BM712,theory,elective,prog_xyzq_bio,4
+sub_bm720,Biotecnologia da Fermentação e Biorreatores,BM720,theory,elective,prog_xyzq_bio,4
+sub_bm721,Purificação de Biomoléculas e Downstream,BM721,theory,elective,prog_xyzq_bio,4
+sub_bm722,Bioprodutos e Biocombustíveis Avançados,BM722,theory,elective,prog_xyzq_bio,4
+sub_es801,Metodologia de PTT e Inovação Tecnológica,ES801,theory,compulsory,prog_xyzq_mpe,4
+sub_es802,Arquitetura de Software e Microsserviços,ES802,theory,compulsory,prog_xyzq_mpe,4
+sub_es803,Seminário de Projetos Tecnológicos,ES803,theory,compulsory,prog_xyzq_mpe,2
+sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,ES810,theory,elective,prog_xyzq_mpe,4
+sub_es811,Testes Automatizados e Qualidade de Software,ES811,theory,elective,prog_xyzq_mpe,4
+sub_es812,Desenvolvimento Cloud-Native e Containers,ES812,theory,elective,prog_xyzq_mpe,4
+sub_es820,Governança Digital e LGPD em Sistemas de TI,ES820,theory,elective,prog_xyzq_mpe,4
+sub_es821,Gestão de Produtos Digitais e Design de Serviços,ES821,theory,elective,prog_xyzq_mpe,4
+sub_es822,Gestão Ágil de Portfólio e Métricas de Software,ES822,theory,elective,prog_xyzq_mpe,4

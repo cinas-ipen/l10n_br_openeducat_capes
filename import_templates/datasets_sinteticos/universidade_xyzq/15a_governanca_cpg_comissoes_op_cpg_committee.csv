@@ -1,0 +1,5 @@
+id,name,program_id/id,start_date,end_date,status
+cpg_xyzq_cc,Gestão CPG PPGCC (2024-2027),prog_xyzq_cc,2024-01-01,2026-12-31,active
+cpg_xyzq_fis,Gestão CPG PPGFA (2024-2027),prog_xyzq_fis,2024-01-01,2026-12-31,active
+cpg_xyzq_bio,Gestão CPG PPGBM (2024-2027),prog_xyzq_bio,2024-01-01,2026-12-31,active
+cpg_xyzq_mpe,Gestão CPG MPESI (2024-2027),prog_xyzq_mpe,2024-01-01,2026-12-31,active

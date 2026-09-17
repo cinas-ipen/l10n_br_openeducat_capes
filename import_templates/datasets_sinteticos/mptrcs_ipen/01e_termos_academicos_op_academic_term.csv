@@ -1,0 +1,11 @@
+id,name,academic_year_id/id,term_start_date,term_end_date,company_id/id
+term_ipen_2022_1,2022.1,ay_ipen_2022,2022-02-01,2022-06-30,comp_ies_ipen
+term_ipen_2022_2,2022.2,ay_ipen_2022,2022-08-01,2022-12-15,comp_ies_ipen
+term_ipen_2023_1,2023.1,ay_ipen_2023,2023-02-01,2023-06-30,comp_ies_ipen
+term_ipen_2023_2,2023.2,ay_ipen_2023,2023-08-01,2023-12-15,comp_ies_ipen
+term_ipen_2024_1,2024.1,ay_ipen_2024,2024-02-01,2024-06-30,comp_ies_ipen
+term_ipen_2024_2,2024.2,ay_ipen_2024,2024-08-01,2024-12-15,comp_ies_ipen
+term_ipen_2025_1,2025.1,ay_ipen_2025,2025-02-01,2025-06-30,comp_ies_ipen
+term_ipen_2025_2,2025.2,ay_ipen_2025,2025-08-01,2025-12-15,comp_ies_ipen
+term_ipen_2026_1,2026.1,ay_ipen_2026,2026-02-01,2026-06-30,comp_ies_ipen
+term_ipen_2026_2,2026.2,ay_ipen_2026,2026-08-01,2026-12-15,comp_ies_ipen

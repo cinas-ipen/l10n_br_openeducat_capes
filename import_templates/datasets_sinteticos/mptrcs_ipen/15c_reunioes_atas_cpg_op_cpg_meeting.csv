@@ -1,0 +1,9 @@
+id,name,committee_id/id,meeting_date,meeting_type,state
+meet_mptrcs_2026_02,1ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-02-15 14:00:00,ordinary,published
+meet_mptrcs_2026_03,2ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-03-15 14:00:00,ordinary,published
+meet_mptrcs_2026_04,3ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-04-15 14:00:00,ordinary,published
+meet_mptrcs_2026_05,4ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-05-15 14:00:00,ordinary,published
+meet_mptrcs_2026_06,5ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-06-15 14:00:00,ordinary,published
+meet_mptrcs_2026_07,6ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-07-15 14:00:00,ordinary,published
+meet_mptrcs_2026_08,7ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-08-15 14:00:00,ordinary,published
+meet_mptrcs_2026_09,8ª Reunião Ordinária da CPG MPTRCS (2026),cpg_mptrcs_2025,2026-09-15 14:00:00,ordinary,published

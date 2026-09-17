@@ -1,0 +1,5 @@
+id,name,program_id/id,coordinator_id/id,research_line_id/id,research_nature,funding_agency,funding_process,start_date,end_date,status,description
+proj_mptrcs_01,Desenvolvimento de Fantomas e Sensores para Dosimetria 3D em Radioterapia,prog_mptrcs,fac_mptrcs_01,line_rad_dos_01,applied,FAPESP,2021/14589-2,2021-03-01,2026-12-31,ongoing,Fantomas e dosimetria 3D
+proj_mptrcs_02,Controle de Qualidade Automatizado em Aceleradores Médicos Lineares,prog_mptrcs,fac_mptrcs_02,line_rad_dos_02,applied,CNPq,408120/2021-8,2021-03-01,2026-12-31,ongoing,Automação de CQ em radioterapia
+proj_mptrcs_03,Síntese e Avaliação Biológica de Radiofármacos Marcados com Lutécio-177,prog_mptrcs,fac_mptrcs_05,line_rad_nuc_01,applied,CNEN,01300.0012/2022,2022-03-01,2026-12-31,ongoing,Radiofármacos inovadores Lu-177
+proj_mptrcs_04,Quantificação e Reconstrução de Imagens Moleculares em PET/CT,prog_mptrcs,fac_mptrcs_06,line_rad_nuc_02,applied,IAEA,BRA/6/029,2021-03-01,2026-12-31,ongoing,Processamento tomográfico PET/SPECT

@@ -1,0 +1,5 @@
+id,name,code,evaluation_type,program_id/id,department_id/id
+crs_xyzq_cc,Curso de Ciência da Computação (Stricto Sensu),CRS-PPGCC,normal,prog_oe_ppgcc,dept_xyzq_dcc
+crs_xyzq_fis,Curso de Física Aplicada (Stricto Sensu),CRS-PPGFA,normal,prog_oe_ppgfa,dept_xyzq_dfis
+crs_xyzq_bio,Curso de Biotecnologia Molecular (Stricto Sensu),CRS-PPGBM,normal,prog_oe_ppgbm,dept_xyzq_dbio
+crs_xyzq_mpe,Curso de Engenharia de Software e Inovação (Mestrado Profissional),CRS-MPESI,normal,prog_oe_mpesi,dept_xyzq_desi

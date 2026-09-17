@@ -1,0 +1,17 @@
+id,name,code,area_id/id,description
+line_cc_ia_01,Aprendizado de Máquina e Modelos Generativos,IA-01,area_cc_ia,"Pesquisa em deep learning, LLMs e representações neurais"
+line_cc_ia_02,Visão Computacional e Processamento de Imagens,IA-02,area_cc_ia,Reconhecimento de padrões biomédicos e análise de vídeo
+line_cc_es_01,Arquitetura de Software e Computação em Nuvem,ES-01,area_cc_es,"Microsserviços, escalabilidade e tolerância a falhas"
+line_cc_es_02,Cibersegurança e Criptografia Aplicada,ES-02,area_cc_es,"Segurança defensiva, blockchain e verificação formal"
+line_fis_mat_01,Nanoestruturas e Síntese de Novos Materiais,MAT-01,area_fis_mat,"Grafeno, filmes finos e spintrônica"
+line_fis_mat_02,Supercondutividade e Física do Estado Sólido,MAT-02,area_fis_mat,Fenômenos quânticos macroscópicos em baixas temperaturas
+line_fis_rad_01,Dosimetria das Radiações e Física Médica,RAD-01,area_fis_rad,Calibração dosimétrica e simulações Monte Carlo
+line_fis_rad_02,Instrumentação Nuclear e Detectores de Radiação,RAD-02,area_fis_rad,Sensores semicondutores e espectrometria gama
+line_bio_gen_01,Genômica Comparativa e NGS,GEN-01,area_bio_gen,Sequenciamento de genomas bacterianos e metagenômica
+line_bio_gen_02,Bioinformática Estrutural e Modelagem Molecular,GEN-02,area_bio_gen,Predição conformacional de proteínas e docking de fármacos
+line_bio_fer_01,Engenharia de Biorreatores e Fermentação,FER-01,area_bio_fer,Otimização de escala em processos fermentativos contínuos
+line_bio_fer_02,Engenharia Metabólica e Bioprodutos,FER-02,area_bio_fer,Edição gênica CRISPR para produção de biopolímeros
+line_mpe_dev_01,Engenharia de Plataforma e Práticas DevOps/SRE,DEV-01,area_mpe_dev,"Infraestrutura como código, CI/CD e observabilidade"
+line_mpe_dev_02,Desenvolvimento Cloud-Native e Microsserviços,DEV-02,area_mpe_dev,"Containers, service mesh e arquiteturas orientadas a eventos"
+line_mpe_gov_01,Governança Digital e Privacidade de Dados (LGPD),GOV-01,area_mpe_gov,"Auditoria de algoritmos, conformidade legal e gestão de riscos"
+line_mpe_gov_02,Gestão Ágil de Produtos e Métricas de Software,GOV-02,area_mpe_gov,"Discovery de produtos, métricas DORA e agilidade em escala"

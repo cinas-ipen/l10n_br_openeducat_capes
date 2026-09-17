@@ -1,5 +1,5 @@
-id,name,code,program_id/id,curriculum_version_id/id,academic_year,total_slots,start_date,end_date,affirmative_action_percent,state
-edital_mptrcs_t1,Edital Processo Seletivo MPTRCS - Turma 1 (2022),EDITAL-MPTRCS-2022,prog_mptrcs,reg_mptrcs_v2,2022,15,2021-10-01,2021-12-15,20.0,homologated
-edital_mptrcs_t2,Edital Processo Seletivo MPTRCS - Turma 2 (2023),EDITAL-MPTRCS-2023,prog_mptrcs,reg_mptrcs_v2,2023,15,2022-10-01,2022-12-15,20.0,homologated
-edital_mptrcs_t3,Edital Processo Seletivo MPTRCS - Turma 3 (2024),EDITAL-MPTRCS-2024,prog_mptrcs,reg_mptrcs_v2,2024,15,2023-10-01,2023-12-15,20.0,homologated
-edital_mptrcs_t4,Edital Processo Seletivo MPTRCS - Turma 4 (2025),EDITAL-MPTRCS-2025,prog_mptrcs,reg_mptrcs_v2,2025,15,2024-10-01,2024-12-15,20.0,published
+id,name,code,curriculum_version_id/id,academic_year,total_slots,start_date,end_date,affirmative_action_percent,state
+edital_mptrcs_t1,Edital Processo Seletivo MPTRCS - Turma 1 (2022),EDITAL-MPTRCS-2022,reg_mptrcs_v2,2022,15,2021-10-01,2021-12-15,20.0,homologated
+edital_mptrcs_t2,Edital Processo Seletivo MPTRCS - Turma 2 (2023),EDITAL-MPTRCS-2023,reg_mptrcs_v2,2023,15,2022-10-01,2022-12-15,20.0,homologated
+edital_mptrcs_t3,Edital Processo Seletivo MPTRCS - Turma 3 (2024),EDITAL-MPTRCS-2024,reg_mptrcs_v2,2024,15,2023-10-01,2023-12-15,20.0,homologated
+edital_mptrcs_t4,Edital Processo Seletivo MPTRCS - Turma 4 (2025),EDITAL-MPTRCS-2025,reg_mptrcs_v2,2025,15,2024-10-01,2024-12-15,20.0,published

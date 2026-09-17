@@ -1,0 +1,6 @@
+id,name,login,email,company_id/id
+user_xyzq_admin,Administrador Geral XYZQ,admin_xyzq,admin.posgrad@xyzq.edu.br,comp_ies_xyzq
+user_xyzq_sec,Secretaria Central de Pós-Graduação,secretaria_xyzq,sec.posgrad@xyzq.edu.br,comp_ies_xyzq
+user_xyzq_coord_cc,Coordenador PPGCC (Prof. Carlos),coord_ppgcc,coord.ppgcc@xyzq.edu.br,comp_ies_xyzq
+user_xyzq_coord_mpe,Coordenador MPESI (Prof. Eduardo),coord_mpesi,coord.mpesi@xyzq.edu.br,comp_ies_xyzq
+user_xyzq_prof,Docente Permanente PPG (Prof. Roberto),prof_xyzq,roberto.docente@xyzq.edu.br,comp_ies_xyzq

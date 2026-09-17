@@ -1,0 +1,15 @@
+id,product_id/id,partner_id/id,author_role,ip_share
+auth_ptt_stu_mpesi_01_stu,ptt_stu_mpesi_01,stu_mpesi_01,main_dev,60.0
+auth_ptt_stu_mpesi_01_adv,ptt_stu_mpesi_01,fac_xyzq_01,advisor,40.0
+auth_ptt_stu_mpesi_02_stu,ptt_stu_mpesi_02,stu_mpesi_02,main_dev,60.0
+auth_ptt_stu_mpesi_02_adv,ptt_stu_mpesi_02,fac_xyzq_02,advisor,40.0
+auth_ptt_stu_mpesi_03_stu,ptt_stu_mpesi_03,stu_mpesi_03,main_dev,60.0
+auth_ptt_stu_mpesi_03_adv,ptt_stu_mpesi_03,fac_xyzq_03,advisor,40.0
+auth_ptt_stu_mpesi_04_stu,ptt_stu_mpesi_04,stu_mpesi_04,main_dev,60.0
+auth_ptt_stu_mpesi_04_adv,ptt_stu_mpesi_04,fac_xyzq_04,advisor,40.0
+auth_ptt_stu_mpesi_05_stu,ptt_stu_mpesi_05,stu_mpesi_05,main_dev,60.0
+auth_ptt_stu_mpesi_05_adv,ptt_stu_mpesi_05,fac_xyzq_05,advisor,40.0
+auth_ptt_stu_mpesi_06_stu,ptt_stu_mpesi_06,stu_mpesi_06,main_dev,60.0
+auth_ptt_stu_mpesi_06_adv,ptt_stu_mpesi_06,fac_xyzq_08,advisor,40.0
+auth_ptt_stu_mpesi_07_stu,ptt_stu_mpesi_07,stu_mpesi_07,main_dev,60.0
+auth_ptt_stu_mpesi_07_adv,ptt_stu_mpesi_07,fac_xyzq_09,advisor,40.0

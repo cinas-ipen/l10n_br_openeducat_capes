@@ -1,0 +1,5 @@
+id,name,login,email,company_id/id
+user_mptrcs_admin,Administrador MPTRCS,admin_mptrcs,admin@ipen.br,comp_ies_ipen
+user_mptrcs_sec,Secretaria MPTRCS,secretaria_mptrcs,secretaria.mptrcs@ipen.br,comp_ies_ipen
+user_mptrcs_coord,Coordenador MPTRCS,coord_mptrcs,coordenacao.mptrcs@ipen.br,comp_ies_ipen
+user_mptrcs_prof,Professor MPTRCS,prof_mptrcs,professor.mptrcs@ipen.br,comp_ies_ipen

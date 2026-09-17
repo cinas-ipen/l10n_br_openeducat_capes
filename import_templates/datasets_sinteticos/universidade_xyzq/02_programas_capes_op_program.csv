@@ -1,0 +1,5 @@
+id,name,short_name,snpg_code,modality,capes_grade,school_term,company_id/id,evaluation_area,status
+prog_xyzq_cc,Programa de Pós-Graduação em Ciência da Computação,PPGCC,33001010001P1,academic,5,semestral,comp_ies_xyzq,Ciência da Computação,active
+prog_xyzq_fis,Programa de Pós-Graduação em Física Aplicada,PPGFA,33001010002P8,academic,6,semestral,comp_ies_xyzq,Astronomia / Física,active
+prog_xyzq_bio,Programa de Pós-Graduação em Biotecnologia Molecular,PPGBM,33001010003P4,academic,5,semestral,comp_ies_xyzq,Biotecnologia,active
+prog_xyzq_mpe,Mestrado Profissional em Engenharia de Software e Inovação,MPESI,33001010004P0,professional,4,semestral,comp_ies_xyzq,Engenharia / Software,active

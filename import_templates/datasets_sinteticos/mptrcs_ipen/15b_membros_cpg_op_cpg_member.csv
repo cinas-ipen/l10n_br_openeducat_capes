@@ -1,0 +1,7 @@
+id,committee_id/id,partner_id/id,role,mandate_origin,document_ref
+mem_mptrcs_coord,cpg_mptrcs_2025,fac_mptrcs_01,coordinator,peer_election,Portaria DIR-IPEN 001/2025
+mem_mptrcs_vice,cpg_mptrcs_2025,fac_mptrcs_02,vice_coordinator,peer_election,Portaria DIR-IPEN 002/2025
+mem_mptrcs_tit1,cpg_mptrcs_2025,fac_mptrcs_03,titular,peer_election,Portaria DIR-IPEN 003/2025
+mem_mptrcs_tit2,cpg_mptrcs_2025,fac_mptrcs_04,titular,peer_election,Portaria DIR-IPEN 004/2025
+mem_mptrcs_sup1,cpg_mptrcs_2025,fac_mptrcs_05,suplente,peer_election,Portaria DIR-IPEN 005/2025
+mem_mptrcs_sup2,cpg_mptrcs_2025,fac_mptrcs_06,suplente,peer_election,Portaria DIR-IPEN 006/2025

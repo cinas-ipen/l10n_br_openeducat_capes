@@ -1,0 +1,9 @@
+id,name,program_id/id,coordinator_id/id,research_line_id/id,research_nature,funding_agency,funding_process,start_date,end_date,status,description
+proj_cc_01,Sistemas Inteligentes e Redes Neurais Convolucionais para Apoio ao Diagnóstico,prog_xyzq_cc,fac_xyzq_01,line_cc_ia_01,applied,FAPESP,2022/11234-5,2022-03-01,2026-12-31,ongoing,Projeto de IA aplicada à saúde
+proj_cc_02,Arquiteturas Criptográficas Seguras para Redes em Nuvem Distribuídas,prog_xyzq_cc,fac_xyzq_02,line_cc_es_02,basic,CNPq,304567/2022-1,2022-03-01,2026-12-31,ongoing,Cibersegurança e protocolos pós-quânticos
+proj_fis_01,Propriedades Eletrônicas e Térmicas de Nanoestruturas Bidimensionais,prog_xyzq_fis,fac_xyzq_07,line_fis_mat_01,basic,CNPq,401234/2022-8,2022-03-01,2026-12-31,ongoing,Estudo de materiais 2D e spintrônica
+proj_fis_02,Desenvolvimento de Novos Fantomas e Detectores para Dosimetria Clínica,prog_xyzq_fis,fac_xyzq_08,line_fis_rad_01,applied,FAPESP,2022/23456-9,2022-03-01,2026-12-31,ongoing,Instrumentação radiológica de alta precisão
+proj_bio_01,Bioinformática Aplicada à Caracterização Genômica de Isolados Clínicos,prog_xyzq_bio,fac_xyzq_13,line_bio_gen_01,applied,CAPES,88887.123456/2022-00,2022-03-01,2026-12-31,ongoing,Metagenômica e resistência bacteriana
+proj_bio_02,Otimização Metabólica para Bioprodução de Biopolímeros Industriais,prog_xyzq_bio,fac_xyzq_14,line_bio_fer_02,applied,FINEP,01.22.0150.00,2022-03-01,2026-12-31,ongoing,Engenharia de bioprocessos sustentáveis
+proj_mpe_01,Plataformas de Automação DevOps e Observabilidade para Microsserviços,prog_xyzq_mpe,fac_xyzq_20,line_mpe_dev_01,applied,CNPq,409876/2022-5,2022-03-01,2026-12-31,ongoing,Engenharia de software moderna e automação
+proj_mpe_02,Governança Digital e Conformidade com a LGPD em Arquiteturas Corporativas,prog_xyzq_mpe,fac_xyzq_21,line_mpe_gov_01,applied,FINEP,01.22.0200.00,2022-03-01,2026-12-31,ongoing,Modelos de conformidade e privacidade

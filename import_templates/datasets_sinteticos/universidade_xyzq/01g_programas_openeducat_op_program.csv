@@ -1,0 +1,5 @@
+id,name,code,program_level_id/id,department_id/id,active
+prog_oe_ppgcc,Programa de Pós-Graduação em Ciência da Computação,PPGCC,level_xyzq_acad,dept_xyzq_dcc,True
+prog_oe_ppgfa,Programa de Pós-Graduação em Física Aplicada,PPGFA,level_xyzq_acad,dept_xyzq_dfis,True
+prog_oe_ppgbm,Programa de Pós-Graduação em Biotecnologia Molecular,PPGBM,level_xyzq_acad,dept_xyzq_dbio,True
+prog_oe_mpesi,Mestrado Profissional em Engenharia de Software e Inovação,MPESI,level_xyzq_prof,dept_xyzq_desi,True

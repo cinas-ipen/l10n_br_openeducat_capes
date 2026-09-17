@@ -1,0 +1,6 @@
+id,name,code,company_id/id
+cat_ipen_reg,Aluno Regular MPTRCS,REG-MPTRCS,comp_ies_ipen
+cat_ipen_esp,Aluno Especial / Avulso,ESP-MPTRCS,comp_ies_ipen
+cat_ipen_doc_perm,Docente Permanente CPG,DOC-PERM,comp_ies_ipen
+cat_ipen_doc_colab,Docente Colaborador,DOC-COLAB,comp_ies_ipen
+cat_ipen_rep_disc,Representante Discente CPG,REP-DISC,comp_ies_ipen

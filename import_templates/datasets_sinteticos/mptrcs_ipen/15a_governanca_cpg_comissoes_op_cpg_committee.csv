@@ -1,0 +1,3 @@
+id,name,program_id/id,start_date,end_date,status
+cpg_mptrcs_2022,Gestão CPG MPTRCS (2022-2025),prog_mptrcs,2022-01-01,2024-12-31,closed
+cpg_mptrcs_2025,Gestão CPG MPTRCS (2025-2028),prog_mptrcs,2025-01-01,2027-12-31,active

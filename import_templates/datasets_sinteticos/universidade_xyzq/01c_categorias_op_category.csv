@@ -1,0 +1,6 @@
+id,name,code,company_id/id
+cat_xyzq_reg,Aluno Regular Stricto Sensu,REG-XYZQ,comp_ies_xyzq
+cat_xyzq_esp,Aluno Especial / Disciplinas Isoladas,ESP-XYZQ,comp_ies_xyzq
+cat_xyzq_doc_perm,Docente Permanente CPG,DOC-PERM,comp_ies_xyzq
+cat_xyzq_doc_colab,Docente Colaborador,DOC-COLAB,comp_ies_xyzq
+cat_xyzq_rep_disc,Representante Discente CPG,REP-DISC,comp_ies_xyzq

@@ -1,0 +1,25 @@
+id,committee_id/id,partner_id/id,role,mandate_origin,document_ref
+mem_cpg_xyzq_cc_coord,cpg_xyzq_cc,fac_xyzq_01,coordinator,peer_election,Portaria CPG-XYZQ 01/cc
+mem_cpg_xyzq_cc_vice,cpg_xyzq_cc,fac_xyzq_02,vice_coordinator,peer_election,Portaria CPG-XYZQ 02/cc
+mem_cpg_xyzq_cc_tit1,cpg_xyzq_cc,fac_xyzq_03,titular,peer_election,Portaria CPG-XYZQ 03/cc
+mem_cpg_xyzq_cc_tit2,cpg_xyzq_cc,fac_xyzq_04,titular,peer_election,Portaria CPG-XYZQ 04/cc
+mem_cpg_xyzq_cc_sup1,cpg_xyzq_cc,fac_xyzq_05,suplente,peer_election,Portaria CPG-XYZQ 05/cc
+mem_cpg_xyzq_cc_sup2,cpg_xyzq_cc,fac_xyzq_06,suplente,peer_election,Portaria CPG-XYZQ 06/cc
+mem_cpg_xyzq_fis_coord,cpg_xyzq_fis,fac_xyzq_07,coordinator,peer_election,Portaria CPG-XYZQ 01/is
+mem_cpg_xyzq_fis_vice,cpg_xyzq_fis,fac_xyzq_08,vice_coordinator,peer_election,Portaria CPG-XYZQ 02/is
+mem_cpg_xyzq_fis_tit1,cpg_xyzq_fis,fac_xyzq_09,titular,peer_election,Portaria CPG-XYZQ 03/is
+mem_cpg_xyzq_fis_tit2,cpg_xyzq_fis,fac_xyzq_10,titular,peer_election,Portaria CPG-XYZQ 04/is
+mem_cpg_xyzq_fis_sup1,cpg_xyzq_fis,fac_xyzq_11,suplente,peer_election,Portaria CPG-XYZQ 05/is
+mem_cpg_xyzq_fis_sup2,cpg_xyzq_fis,fac_xyzq_12,suplente,peer_election,Portaria CPG-XYZQ 06/is
+mem_cpg_xyzq_bio_coord,cpg_xyzq_bio,fac_xyzq_13,coordinator,peer_election,Portaria CPG-XYZQ 01/io
+mem_cpg_xyzq_bio_vice,cpg_xyzq_bio,fac_xyzq_14,vice_coordinator,peer_election,Portaria CPG-XYZQ 02/io
+mem_cpg_xyzq_bio_tit1,cpg_xyzq_bio,fac_xyzq_15,titular,peer_election,Portaria CPG-XYZQ 03/io
+mem_cpg_xyzq_bio_tit2,cpg_xyzq_bio,fac_xyzq_16,titular,peer_election,Portaria CPG-XYZQ 04/io
+mem_cpg_xyzq_bio_sup1,cpg_xyzq_bio,fac_xyzq_17,suplente,peer_election,Portaria CPG-XYZQ 05/io
+mem_cpg_xyzq_bio_sup2,cpg_xyzq_bio,fac_xyzq_18,suplente,peer_election,Portaria CPG-XYZQ 06/io
+mem_cpg_xyzq_mpe_coord,cpg_xyzq_mpe,fac_xyzq_01,coordinator,peer_election,Portaria CPG-XYZQ 01/pe
+mem_cpg_xyzq_mpe_vice,cpg_xyzq_mpe,fac_xyzq_02,vice_coordinator,peer_election,Portaria CPG-XYZQ 02/pe
+mem_cpg_xyzq_mpe_tit1,cpg_xyzq_mpe,fac_xyzq_03,titular,peer_election,Portaria CPG-XYZQ 03/pe
+mem_cpg_xyzq_mpe_tit2,cpg_xyzq_mpe,fac_xyzq_04,titular,peer_election,Portaria CPG-XYZQ 04/pe
+mem_cpg_xyzq_mpe_sup1,cpg_xyzq_mpe,fac_xyzq_05,suplente,peer_election,Portaria CPG-XYZQ 05/pe
+mem_cpg_xyzq_mpe_sup2,cpg_xyzq_mpe,fac_xyzq_08,suplente,peer_election,Portaria CPG-XYZQ 06/pe

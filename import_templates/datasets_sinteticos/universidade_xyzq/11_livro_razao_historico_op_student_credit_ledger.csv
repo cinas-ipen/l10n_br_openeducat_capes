@@ -1,0 +1,522 @@
+id,student_id/id,curriculum_version_id/id,subject_id/id,course_name,credit_type,credits,hours,grade_concept,is_approved,date_earned,origin_ref
+led_stu_ppgcc_01_cc501,stu_ppgcc_01,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_01_cc502,stu_ppgcc_01,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_01_cc503,stu_ppgcc_01,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_01_cc510,stu_ppgcc_01,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_01_cc511,stu_ppgcc_01,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_01_cc512,stu_ppgcc_01,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_01_apo,stu_ppgcc_01,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_01_def,stu_ppgcc_01,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_02_cc501,stu_ppgcc_02,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_02_cc502,stu_ppgcc_02,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_02_cc503,stu_ppgcc_02,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_02_cc510,stu_ppgcc_02,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_02_cc511,stu_ppgcc_02,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_02_cc512,stu_ppgcc_02,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_02_apo,stu_ppgcc_02,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_02_def,stu_ppgcc_02,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_03_cc501,stu_ppgcc_03,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_03_cc502,stu_ppgcc_03,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_03_cc503,stu_ppgcc_03,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_03_cc510,stu_ppgcc_03,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_03_cc511,stu_ppgcc_03,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_03_cc512,stu_ppgcc_03,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_03_apo,stu_ppgcc_03,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_03_def,stu_ppgcc_03,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_04_cc501,stu_ppgcc_04,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_04_cc502,stu_ppgcc_04,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_04_cc503,stu_ppgcc_04,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_04_cc510,stu_ppgcc_04,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_04_cc511,stu_ppgcc_04,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_04_cc512,stu_ppgcc_04,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_04_apo,stu_ppgcc_04,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_04_def,stu_ppgcc_04,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_05_cc501,stu_ppgcc_05,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_05_cc502,stu_ppgcc_05,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_05_cc503,stu_ppgcc_05,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_05_cc510,stu_ppgcc_05,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_05_cc511,stu_ppgcc_05,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_05_cc512,stu_ppgcc_05,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_05_apo,stu_ppgcc_05,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_05_def,stu_ppgcc_05,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_06_cc501,stu_ppgcc_06,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_06_cc502,stu_ppgcc_06,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_06_cc503,stu_ppgcc_06,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_06_cc510,stu_ppgcc_06,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_06_cc511,stu_ppgcc_06,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_06_cc512,stu_ppgcc_06,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_06_apo,stu_ppgcc_06,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_06_def,stu_ppgcc_06,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_07_cc501,stu_ppgcc_07,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_07_cc502,stu_ppgcc_07,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_07_cc503,stu_ppgcc_07,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_07_cc510,stu_ppgcc_07,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_07_cc511,stu_ppgcc_07,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_07_cc512,stu_ppgcc_07,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_07_apo,stu_ppgcc_07,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_07_def,stu_ppgcc_07,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_08_cc501,stu_ppgcc_08,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_08_cc502,stu_ppgcc_08,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_08_cc503,stu_ppgcc_08,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_08_cc510,stu_ppgcc_08,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_08_cc511,stu_ppgcc_08,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_08_cc512,stu_ppgcc_08,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_08_apo,stu_ppgcc_08,reg_xyzq_cc_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgcc_08_def,stu_ppgcc_08,reg_xyzq_cc_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgcc_09_cc501,stu_ppgcc_09,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_09_cc502,stu_ppgcc_09,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_09_cc503,stu_ppgcc_09,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_10_cc501,stu_ppgcc_10,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_10_cc502,stu_ppgcc_10,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_10_cc503,stu_ppgcc_10,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_11_cc501,stu_ppgcc_11,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_11_cc502,stu_ppgcc_11,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_11_cc503,stu_ppgcc_11,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_12_cc501,stu_ppgcc_12,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_12_cc502,stu_ppgcc_12,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_12_cc503,stu_ppgcc_12,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_13_cc501,stu_ppgcc_13,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_13_cc502,stu_ppgcc_13,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_13_cc503,stu_ppgcc_13,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_13_cc510,stu_ppgcc_13,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_13_cc511,stu_ppgcc_13,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_13_cc512,stu_ppgcc_13,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_14_cc501,stu_ppgcc_14,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_14_cc502,stu_ppgcc_14,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_14_cc503,stu_ppgcc_14,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_14_cc510,stu_ppgcc_14,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_14_cc511,stu_ppgcc_14,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_14_cc512,stu_ppgcc_14,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_15_cc501,stu_ppgcc_15,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_15_cc502,stu_ppgcc_15,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_15_cc503,stu_ppgcc_15,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_15_cc510,stu_ppgcc_15,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_15_cc511,stu_ppgcc_15,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_15_cc512,stu_ppgcc_15,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_16_cc501,stu_ppgcc_16,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_16_cc502,stu_ppgcc_16,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_16_cc503,stu_ppgcc_16,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_16_cc510,stu_ppgcc_16,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_16_cc511,stu_ppgcc_16,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_16_cc512,stu_ppgcc_16,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_17_cc501,stu_ppgcc_17,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_17_cc502,stu_ppgcc_17,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_17_cc503,stu_ppgcc_17,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_17_cc510,stu_ppgcc_17,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_17_cc511,stu_ppgcc_17,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_17_cc512,stu_ppgcc_17,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_18_cc501,stu_ppgcc_18,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_18_cc502,stu_ppgcc_18,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_18_cc503,stu_ppgcc_18,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_18_cc510,stu_ppgcc_18,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_18_cc511,stu_ppgcc_18,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_18_cc512,stu_ppgcc_18,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,B,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_19_cc501,stu_ppgcc_19,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_19_cc502,stu_ppgcc_19,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_19_cc503,stu_ppgcc_19,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,B,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_19_cc510,stu_ppgcc_19,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_19_cc511,stu_ppgcc_19,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_19_cc512,stu_ppgcc_19,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_20_cc501,stu_ppgcc_20,reg_xyzq_cc_2024,sub_cc501,Metodologia de Pesquisa em Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_20_cc502,stu_ppgcc_20,reg_xyzq_cc_2024,sub_cc502,Algoritmos Avançados e Teoria da Computação,subject_internal,4,60,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_20_cc503,stu_ppgcc_20,reg_xyzq_cc_2024,sub_cc503,Seminários de Computação Científica,subject_internal,2,30,A,True,2024-06-30,PPGCC 2024.1
+led_stu_ppgcc_20_cc510,stu_ppgcc_20,reg_xyzq_cc_2024,sub_cc510,Aprendizado Profundo e Redes Neurais,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_20_cc511,stu_ppgcc_20,reg_xyzq_cc_2024,sub_cc511,Processamento de Linguagem Natural,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgcc_20_cc512,stu_ppgcc_20,reg_xyzq_cc_2024,sub_cc512,Visão Computacional e Reconhecimento de Padrões,subject_internal,4,60,A,True,2024-12-15,PPGCC 2024.2
+led_stu_ppgfa_01_fa601,stu_ppgfa_01,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_01_fa602,stu_ppgfa_01,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_01_fa603,stu_ppgfa_01,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_01_fa610,stu_ppgfa_01,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_01_fa611,stu_ppgfa_01,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_01_fa612,stu_ppgfa_01,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_01_apo,stu_ppgfa_01,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_01_def,stu_ppgfa_01,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_02_fa601,stu_ppgfa_02,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_02_fa602,stu_ppgfa_02,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_02_fa603,stu_ppgfa_02,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_02_fa610,stu_ppgfa_02,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_02_fa611,stu_ppgfa_02,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_02_fa612,stu_ppgfa_02,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_02_apo,stu_ppgfa_02,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_02_def,stu_ppgfa_02,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_03_fa601,stu_ppgfa_03,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_03_fa602,stu_ppgfa_03,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_03_fa603,stu_ppgfa_03,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_03_fa610,stu_ppgfa_03,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_03_fa611,stu_ppgfa_03,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_03_fa612,stu_ppgfa_03,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_03_apo,stu_ppgfa_03,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_03_def,stu_ppgfa_03,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_04_fa601,stu_ppgfa_04,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_04_fa602,stu_ppgfa_04,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_04_fa603,stu_ppgfa_04,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_04_fa610,stu_ppgfa_04,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_04_fa611,stu_ppgfa_04,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_04_fa612,stu_ppgfa_04,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_04_apo,stu_ppgfa_04,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_04_def,stu_ppgfa_04,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_05_fa601,stu_ppgfa_05,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_05_fa602,stu_ppgfa_05,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_05_fa603,stu_ppgfa_05,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_05_fa610,stu_ppgfa_05,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_05_fa611,stu_ppgfa_05,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_05_fa612,stu_ppgfa_05,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_05_apo,stu_ppgfa_05,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_05_def,stu_ppgfa_05,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_06_fa601,stu_ppgfa_06,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_06_fa602,stu_ppgfa_06,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_06_fa603,stu_ppgfa_06,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_06_fa610,stu_ppgfa_06,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_06_fa611,stu_ppgfa_06,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_06_fa612,stu_ppgfa_06,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_06_apo,stu_ppgfa_06,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_06_def,stu_ppgfa_06,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_07_fa601,stu_ppgfa_07,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_07_fa602,stu_ppgfa_07,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_07_fa603,stu_ppgfa_07,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_07_fa610,stu_ppgfa_07,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_07_fa611,stu_ppgfa_07,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_07_fa612,stu_ppgfa_07,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_07_apo,stu_ppgfa_07,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_07_def,stu_ppgfa_07,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_08_fa601,stu_ppgfa_08,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_08_fa602,stu_ppgfa_08,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_08_fa603,stu_ppgfa_08,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_08_fa610,stu_ppgfa_08,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_08_fa611,stu_ppgfa_08,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_08_fa612,stu_ppgfa_08,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_08_apo,stu_ppgfa_08,reg_xyzq_fis_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgfa_08_def,stu_ppgfa_08,reg_xyzq_fis_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgfa_09_fa601,stu_ppgfa_09,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_09_fa602,stu_ppgfa_09,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_09_fa603,stu_ppgfa_09,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_10_fa601,stu_ppgfa_10,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_10_fa602,stu_ppgfa_10,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_10_fa603,stu_ppgfa_10,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_11_fa601,stu_ppgfa_11,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_11_fa602,stu_ppgfa_11,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_11_fa603,stu_ppgfa_11,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_12_fa601,stu_ppgfa_12,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_12_fa602,stu_ppgfa_12,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_12_fa603,stu_ppgfa_12,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_13_fa601,stu_ppgfa_13,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_13_fa602,stu_ppgfa_13,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_13_fa603,stu_ppgfa_13,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_13_fa610,stu_ppgfa_13,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_13_fa611,stu_ppgfa_13,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_13_fa612,stu_ppgfa_13,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_14_fa601,stu_ppgfa_14,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_14_fa602,stu_ppgfa_14,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_14_fa603,stu_ppgfa_14,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_14_fa610,stu_ppgfa_14,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_14_fa611,stu_ppgfa_14,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_14_fa612,stu_ppgfa_14,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_15_fa601,stu_ppgfa_15,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_15_fa602,stu_ppgfa_15,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_15_fa603,stu_ppgfa_15,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_15_fa610,stu_ppgfa_15,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_15_fa611,stu_ppgfa_15,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_15_fa612,stu_ppgfa_15,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_16_fa601,stu_ppgfa_16,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_16_fa602,stu_ppgfa_16,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_16_fa603,stu_ppgfa_16,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_16_fa610,stu_ppgfa_16,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_16_fa611,stu_ppgfa_16,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_16_fa612,stu_ppgfa_16,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_17_fa601,stu_ppgfa_17,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_17_fa602,stu_ppgfa_17,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_17_fa603,stu_ppgfa_17,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_17_fa610,stu_ppgfa_17,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_17_fa611,stu_ppgfa_17,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_17_fa612,stu_ppgfa_17,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_18_fa601,stu_ppgfa_18,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_18_fa602,stu_ppgfa_18,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_18_fa603,stu_ppgfa_18,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_18_fa610,stu_ppgfa_18,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_18_fa611,stu_ppgfa_18,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_18_fa612,stu_ppgfa_18,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,B,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_19_fa601,stu_ppgfa_19,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_19_fa602,stu_ppgfa_19,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_19_fa603,stu_ppgfa_19,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,B,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_19_fa610,stu_ppgfa_19,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_19_fa611,stu_ppgfa_19,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_19_fa612,stu_ppgfa_19,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_20_fa601,stu_ppgfa_20,reg_xyzq_fis_2024,sub_fa601,Mecânica Quântica Avançada,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_20_fa602,stu_ppgfa_20,reg_xyzq_fis_2024,sub_fa602,Métodos Matemáticos da Física Teórica,subject_internal,4,60,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_20_fa603,stu_ppgfa_20,reg_xyzq_fis_2024,sub_fa603,Seminário Geral de Física Aplicada,subject_internal,2,30,A,True,2024-06-30,PPGFA 2024.1
+led_stu_ppgfa_20_fa610,stu_ppgfa_20,reg_xyzq_fis_2024,sub_fa610,Física de Sólidos e Semicondutores,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_20_fa611,stu_ppgfa_20,reg_xyzq_fis_2024,sub_fa611,Espectroscopia e Difração de Raios-X,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgfa_20_fa612,stu_ppgfa_20,reg_xyzq_fis_2024,sub_fa612,Nanotecnologia e Superfícies,subject_internal,4,60,A,True,2024-12-15,PPGFA 2024.2
+led_stu_ppgbm_01_bm701,stu_ppgbm_01,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_01_bm702,stu_ppgbm_01,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_01_bm703,stu_ppgbm_01,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_01_bm710,stu_ppgbm_01,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_01_bm711,stu_ppgbm_01,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_01_bm712,stu_ppgbm_01,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_01_apo,stu_ppgbm_01,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_01_def,stu_ppgbm_01,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_02_bm701,stu_ppgbm_02,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_02_bm702,stu_ppgbm_02,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_02_bm703,stu_ppgbm_02,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_02_bm710,stu_ppgbm_02,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_02_bm711,stu_ppgbm_02,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_02_bm712,stu_ppgbm_02,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_02_apo,stu_ppgbm_02,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_02_def,stu_ppgbm_02,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_03_bm701,stu_ppgbm_03,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_03_bm702,stu_ppgbm_03,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_03_bm703,stu_ppgbm_03,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_03_bm710,stu_ppgbm_03,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_03_bm711,stu_ppgbm_03,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_03_bm712,stu_ppgbm_03,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_03_apo,stu_ppgbm_03,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_03_def,stu_ppgbm_03,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_04_bm701,stu_ppgbm_04,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_04_bm702,stu_ppgbm_04,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_04_bm703,stu_ppgbm_04,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_04_bm710,stu_ppgbm_04,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_04_bm711,stu_ppgbm_04,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_04_bm712,stu_ppgbm_04,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_04_apo,stu_ppgbm_04,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_04_def,stu_ppgbm_04,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_05_bm701,stu_ppgbm_05,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_05_bm702,stu_ppgbm_05,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_05_bm703,stu_ppgbm_05,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_05_bm710,stu_ppgbm_05,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_05_bm711,stu_ppgbm_05,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_05_bm712,stu_ppgbm_05,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_05_apo,stu_ppgbm_05,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_05_def,stu_ppgbm_05,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_06_bm701,stu_ppgbm_06,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_06_bm702,stu_ppgbm_06,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_06_bm703,stu_ppgbm_06,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_06_bm710,stu_ppgbm_06,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_06_bm711,stu_ppgbm_06,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_06_bm712,stu_ppgbm_06,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_06_apo,stu_ppgbm_06,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_06_def,stu_ppgbm_06,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_07_bm701,stu_ppgbm_07,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_07_bm702,stu_ppgbm_07,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_07_bm703,stu_ppgbm_07,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_07_bm710,stu_ppgbm_07,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_07_bm711,stu_ppgbm_07,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_07_bm712,stu_ppgbm_07,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_07_apo,stu_ppgbm_07,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_07_def,stu_ppgbm_07,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_08_bm701,stu_ppgbm_08,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_08_bm702,stu_ppgbm_08,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_08_bm703,stu_ppgbm_08,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_08_bm710,stu_ppgbm_08,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_08_bm711,stu_ppgbm_08,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_08_bm712,stu_ppgbm_08,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_08_apo,stu_ppgbm_08,reg_xyzq_bio_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_ppgbm_08_def,stu_ppgbm_08,reg_xyzq_bio_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_ppgbm_09_bm701,stu_ppgbm_09,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_09_bm702,stu_ppgbm_09,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_09_bm703,stu_ppgbm_09,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_10_bm701,stu_ppgbm_10,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_10_bm702,stu_ppgbm_10,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_10_bm703,stu_ppgbm_10,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_11_bm701,stu_ppgbm_11,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_11_bm702,stu_ppgbm_11,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_11_bm703,stu_ppgbm_11,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_12_bm701,stu_ppgbm_12,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_12_bm702,stu_ppgbm_12,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_12_bm703,stu_ppgbm_12,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_13_bm701,stu_ppgbm_13,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_13_bm702,stu_ppgbm_13,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_13_bm703,stu_ppgbm_13,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_13_bm710,stu_ppgbm_13,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_13_bm711,stu_ppgbm_13,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_13_bm712,stu_ppgbm_13,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_14_bm701,stu_ppgbm_14,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_14_bm702,stu_ppgbm_14,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_14_bm703,stu_ppgbm_14,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_14_bm710,stu_ppgbm_14,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_14_bm711,stu_ppgbm_14,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_14_bm712,stu_ppgbm_14,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_15_bm701,stu_ppgbm_15,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_15_bm702,stu_ppgbm_15,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_15_bm703,stu_ppgbm_15,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_15_bm710,stu_ppgbm_15,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_15_bm711,stu_ppgbm_15,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_15_bm712,stu_ppgbm_15,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_16_bm701,stu_ppgbm_16,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_16_bm702,stu_ppgbm_16,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_16_bm703,stu_ppgbm_16,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_16_bm710,stu_ppgbm_16,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_16_bm711,stu_ppgbm_16,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_16_bm712,stu_ppgbm_16,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_17_bm701,stu_ppgbm_17,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_17_bm702,stu_ppgbm_17,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_17_bm703,stu_ppgbm_17,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_17_bm710,stu_ppgbm_17,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_17_bm711,stu_ppgbm_17,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_17_bm712,stu_ppgbm_17,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_18_bm701,stu_ppgbm_18,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_18_bm702,stu_ppgbm_18,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_18_bm703,stu_ppgbm_18,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_18_bm710,stu_ppgbm_18,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_18_bm711,stu_ppgbm_18,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_18_bm712,stu_ppgbm_18,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,B,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_19_bm701,stu_ppgbm_19,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_19_bm702,stu_ppgbm_19,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_19_bm703,stu_ppgbm_19,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,B,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_19_bm710,stu_ppgbm_19,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_19_bm711,stu_ppgbm_19,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_19_bm712,stu_ppgbm_19,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_20_bm701,stu_ppgbm_20,reg_xyzq_bio_2024,sub_bm701,Biologia Molecular Celular Avançada,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_20_bm702,stu_ppgbm_20,reg_xyzq_bio_2024,sub_bm702,Bioestatística e Delineamento Experimental,subject_internal,4,60,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_20_bm703,stu_ppgbm_20,reg_xyzq_bio_2024,sub_bm703,Seminários Integrados em Biotecnologia,subject_internal,2,30,A,True,2024-06-30,PPGBM 2024.1
+led_stu_ppgbm_20_bm710,stu_ppgbm_20,reg_xyzq_bio_2024,sub_bm710,Bioinformática e Análise de Sequências NGS,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_20_bm711,stu_ppgbm_20,reg_xyzq_bio_2024,sub_bm711,Genômica Funcional e Epigenética,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_ppgbm_20_bm712,stu_ppgbm_20,reg_xyzq_bio_2024,sub_bm712,Engenharia de Proteínas e Cristalografia,subject_internal,4,60,A,True,2024-12-15,PPGBM 2024.2
+led_stu_mpesi_01_es801,stu_mpesi_01,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_01_es802,stu_mpesi_01,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_01_es803,stu_mpesi_01,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_01_es810,stu_mpesi_01,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_01_es811,stu_mpesi_01,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_01_es812,stu_mpesi_01,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_01_apo,stu_mpesi_01,reg_xyzq_mpe_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_mpesi_01_def,stu_mpesi_01,reg_xyzq_mpe_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_mpesi_02_es801,stu_mpesi_02,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_02_es802,stu_mpesi_02,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_02_es803,stu_mpesi_02,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_02_es810,stu_mpesi_02,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_02_es811,stu_mpesi_02,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_02_es812,stu_mpesi_02,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_02_apo,stu_mpesi_02,reg_xyzq_mpe_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_mpesi_02_def,stu_mpesi_02,reg_xyzq_mpe_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_mpesi_03_es801,stu_mpesi_03,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_03_es802,stu_mpesi_03,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_03_es803,stu_mpesi_03,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_03_es810,stu_mpesi_03,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_03_es811,stu_mpesi_03,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_03_es812,stu_mpesi_03,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_03_apo,stu_mpesi_03,reg_xyzq_mpe_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_mpesi_03_def,stu_mpesi_03,reg_xyzq_mpe_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_mpesi_04_es801,stu_mpesi_04,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_04_es802,stu_mpesi_04,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_04_es803,stu_mpesi_04,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_04_es810,stu_mpesi_04,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_04_es811,stu_mpesi_04,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_04_es812,stu_mpesi_04,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_04_apo,stu_mpesi_04,reg_xyzq_mpe_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_mpesi_04_def,stu_mpesi_04,reg_xyzq_mpe_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_mpesi_05_es801,stu_mpesi_05,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_05_es802,stu_mpesi_05,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_05_es803,stu_mpesi_05,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_05_es810,stu_mpesi_05,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_05_es811,stu_mpesi_05,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_05_es812,stu_mpesi_05,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_05_apo,stu_mpesi_05,reg_xyzq_mpe_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_mpesi_05_def,stu_mpesi_05,reg_xyzq_mpe_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_mpesi_06_es801,stu_mpesi_06,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_06_es802,stu_mpesi_06,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_06_es803,stu_mpesi_06,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_06_es810,stu_mpesi_06,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_06_es811,stu_mpesi_06,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_06_es812,stu_mpesi_06,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_06_apo,stu_mpesi_06,reg_xyzq_mpe_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_mpesi_06_def,stu_mpesi_06,reg_xyzq_mpe_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_mpesi_07_es801,stu_mpesi_07,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_07_es802,stu_mpesi_07,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_07_es803,stu_mpesi_07,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_07_es810,stu_mpesi_07,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_07_es811,stu_mpesi_07,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_07_es812,stu_mpesi_07,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_07_apo,stu_mpesi_07,reg_xyzq_mpe_2024,,Atividades Complementares e Produção Técnica,apo,8,120,A,True,2025-11-30,APO
+led_stu_mpesi_07_def,stu_mpesi_07,reg_xyzq_mpe_2024,,Defesa Pública de Dissertação de Mestrado,milestone,52,780,A,True,2026-03-31,Defesa
+led_stu_mpesi_08_es801,stu_mpesi_08,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_08_es802,stu_mpesi_08,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_08_es803,stu_mpesi_08,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_09_es801,stu_mpesi_09,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_09_es802,stu_mpesi_09,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_09_es803,stu_mpesi_09,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_10_es801,stu_mpesi_10,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_10_es802,stu_mpesi_10,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_10_es803,stu_mpesi_10,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_11_es801,stu_mpesi_11,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_11_es802,stu_mpesi_11,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_11_es803,stu_mpesi_11,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_12_es801,stu_mpesi_12,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_12_es802,stu_mpesi_12,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_12_es803,stu_mpesi_12,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_13_es801,stu_mpesi_13,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_13_es802,stu_mpesi_13,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_13_es803,stu_mpesi_13,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_13_es810,stu_mpesi_13,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_13_es811,stu_mpesi_13,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_13_es812,stu_mpesi_13,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_14_es801,stu_mpesi_14,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_14_es802,stu_mpesi_14,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_14_es803,stu_mpesi_14,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_14_es810,stu_mpesi_14,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_14_es811,stu_mpesi_14,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_14_es812,stu_mpesi_14,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_15_es801,stu_mpesi_15,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_15_es802,stu_mpesi_15,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_15_es803,stu_mpesi_15,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_15_es810,stu_mpesi_15,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_15_es811,stu_mpesi_15,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_15_es812,stu_mpesi_15,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_16_es801,stu_mpesi_16,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_16_es802,stu_mpesi_16,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_16_es803,stu_mpesi_16,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_16_es810,stu_mpesi_16,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_16_es811,stu_mpesi_16,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_16_es812,stu_mpesi_16,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_17_es801,stu_mpesi_17,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_17_es802,stu_mpesi_17,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_17_es803,stu_mpesi_17,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_17_es810,stu_mpesi_17,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_17_es811,stu_mpesi_17,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_17_es812,stu_mpesi_17,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_18_es801,stu_mpesi_18,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_18_es802,stu_mpesi_18,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_18_es803,stu_mpesi_18,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_18_es810,stu_mpesi_18,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_18_es811,stu_mpesi_18,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_18_es812,stu_mpesi_18,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_19_es801,stu_mpesi_19,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_19_es802,stu_mpesi_19,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_19_es803,stu_mpesi_19,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_19_es810,stu_mpesi_19,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_19_es811,stu_mpesi_19,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_19_es812,stu_mpesi_19,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_20_es801,stu_mpesi_20,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_20_es802,stu_mpesi_20,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_20_es803,stu_mpesi_20,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_20_es810,stu_mpesi_20,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_20_es811,stu_mpesi_20,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_20_es812,stu_mpesi_20,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_21_es801,stu_mpesi_21,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_21_es802,stu_mpesi_21,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_21_es803,stu_mpesi_21,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_21_es810,stu_mpesi_21,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_21_es811,stu_mpesi_21,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_21_es812,stu_mpesi_21,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_22_es801,stu_mpesi_22,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_22_es802,stu_mpesi_22,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_22_es803,stu_mpesi_22,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_22_es810,stu_mpesi_22,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_22_es811,stu_mpesi_22,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_22_es812,stu_mpesi_22,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_23_es801,stu_mpesi_23,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_23_es802,stu_mpesi_23,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_23_es803,stu_mpesi_23,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_23_es810,stu_mpesi_23,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_23_es811,stu_mpesi_23,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_23_es812,stu_mpesi_23,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_24_es801,stu_mpesi_24,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_24_es802,stu_mpesi_24,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_24_es803,stu_mpesi_24,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,A,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_24_es810,stu_mpesi_24,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_24_es811,stu_mpesi_24,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_24_es812,stu_mpesi_24,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,B,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_25_es801,stu_mpesi_25,reg_xyzq_mpe_2024,sub_es801,Metodologia de PTT e Inovação Tecnológica,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_25_es802,stu_mpesi_25,reg_xyzq_mpe_2024,sub_es802,Arquitetura de Software e Microsserviços,subject_internal,4,60,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_25_es803,stu_mpesi_25,reg_xyzq_mpe_2024,sub_es803,Seminário de Projetos Tecnológicos,subject_internal,2,30,B,True,2024-06-30,MPESI 2024.1
+led_stu_mpesi_25_es810,stu_mpesi_25,reg_xyzq_mpe_2024,sub_es810,Engenharia de Plataforma e Práticas DevOps/SRE,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_25_es811,stu_mpesi_25,reg_xyzq_mpe_2024,sub_es811,Testes Automatizados e Qualidade de Software,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2
+led_stu_mpesi_25_es812,stu_mpesi_25,reg_xyzq_mpe_2024,sub_es812,Desenvolvimento Cloud-Native e Containers,subject_internal,4,60,A,True,2024-12-15,MPESI 2024.2

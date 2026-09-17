@@ -1,0 +1,5 @@
+id,name,code,course_id/id,start_date,end_date,active
+batch_xyzq_cc_2024,Turma PPGCC 2024,PPGCC-2024,crs_xyzq_cc,2024-03-01,2026-03-31,True
+batch_xyzq_fis_2024,Turma PPGFA 2024,PPGFA-2024,crs_xyzq_fis,2024-03-01,2026-03-31,True
+batch_xyzq_bio_2024,Turma PPGBM 2024,PPGBM-2024,crs_xyzq_bio,2024-03-01,2026-03-31,True
+batch_xyzq_mpe_2024,Turma MPESI 2024,MPESI-2024,crs_xyzq_mpe,2024-03-01,2026-03-31,True

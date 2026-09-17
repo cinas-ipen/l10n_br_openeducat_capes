@@ -1,0 +1,5 @@
+id,name,code,course_id/id,start_date,end_date,active
+batch_ipen_t1,Turma 1 (2022),MPTRCS-T1,crs_ipen_mptrcs,2022-03-01,2024-04-30,True
+batch_ipen_t2,Turma 2 (2023),MPTRCS-T2,crs_ipen_mptrcs,2023-03-01,2025-04-30,True
+batch_ipen_t3,Turma 3 (2024),MPTRCS-T3,crs_ipen_mptrcs,2024-03-01,2026-04-30,True
+batch_ipen_t4,Turma 4 (2025),MPTRCS-T4,crs_ipen_mptrcs,2025-03-01,2027-04-30,True

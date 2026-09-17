@@ -1,0 +1,9 @@
+id,name,code,program_id/id,description
+area_cc_ia,Inteligência Artificial e Ciência de Dados,CC-IA,prog_xyzq_cc,"Sistemas inteligentes, aprendizado de máquina e visão computacional"
+area_cc_es,Engenharia de Software e Sistemas Distribuídos,CC-ES,prog_xyzq_cc,"Arquitetura de software, computação em nuvem e segurança"
+area_fis_mat,Física da Matéria Condensada,FIS-MAT,prog_xyzq_fis,"Nanoestruturas, supercondutividade e novos materiais"
+area_fis_rad,Física Nuclear e Radiológica,FIS-RAD,prog_xyzq_fis,"Dosimetria, instrumentação nuclear e física médica"
+area_bio_gen,Genômica e Bioinformática,BIO-GEN,prog_xyzq_bio,"Sequenciamento genômico, expressão gênica e biologia computacional"
+area_bio_fer,Processos Biotecnológicos e Fermentativos,BIO-FER,prog_xyzq_bio,Bioprocessos industriais e engenharia metabólica
+area_mpe_dev,Desenvolvimento Ágil e DevOps Avançado,MPE-DEV,prog_xyzq_mpe,Processos modernos de engenharia de software e automação
+area_mpe_gov,Governança Digital e Gestão de TI,MPE-GOV,prog_xyzq_mpe,"Transformação digital, governança corporativa e produtos de TI"

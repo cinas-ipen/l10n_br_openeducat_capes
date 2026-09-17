@@ -1,0 +1,5 @@
+id,name,code,area_id/id,description
+line_rad_dos_01,Dosimetria Clínica e Planejamento Radioterápico Avançado,RAD-DOS-01,area_rad_dos,Desenvolvimento de protocolos dosimétricos e simulação Monte Carlo
+line_rad_dos_02,Controle da Qualidade e Segurança em Feixes de Radiação Ionizante,RAD-DOS-02,area_rad_dos,Desenvolvimento de dispositivos e fantomas de garantia da qualidade
+line_rad_nuc_01,Desenvolvimento e Caracterização de Radiofármacos Diagnósticos e Terapêuticos,RAD-NUC-01,area_rad_nuc,"Síntese, controle biológico e ensaios pré-clínicos de radiofármacos"
+line_rad_nuc_02,"Instrumentação Nuclear, Dosimetria Interna e Imagens Moleculares",RAD-NUC-02,area_rad_nuc,Reconstrução tomográfica PET/SPECT e dosimetria interna personalizada

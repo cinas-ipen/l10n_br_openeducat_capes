@@ -1,0 +1,17 @@
+id,name,committee_id/id,meeting_date,meeting_type,state
+meet_cpg_xyzq_cc_2024_02,1ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-02-15 14:00:00,ordinary,published
+meet_cpg_xyzq_cc_2024_03,2ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-03-15 14:00:00,ordinary,published
+meet_cpg_xyzq_cc_2024_04,3ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-04-15 14:00:00,ordinary,published
+meet_cpg_xyzq_cc_2024_05,4ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-05-15 14:00:00,ordinary,published
+meet_cpg_xyzq_cc_2024_06,5ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-06-15 14:00:00,ordinary,published
+meet_cpg_xyzq_cc_2024_07,6ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-07-15 14:00:00,ordinary,published
+meet_cpg_xyzq_cc_2024_08,7ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-08-15 14:00:00,ordinary,published
+meet_cpg_xyzq_cc_2024_09,8ª Reunião Ordinária da CPG (CC 2024),cpg_xyzq_cc,2024-09-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_02,1ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-02-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_03,2ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-03-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_04,3ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-04-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_05,4ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-05-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_06,5ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-06-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_07,6ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-07-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_08,7ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-08-15 14:00:00,ordinary,published
+meet_cpg_xyzq_mpe_2024_09,8ª Reunião Ordinária da CPG (MPE 2024),cpg_xyzq_mpe,2024-09-15 14:00:00,ordinary,published
