@@ -30,6 +30,11 @@ class CapesDigitalDiploma(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'graduation_date desc, id desc'
 
+    name = fields.Char(
+        string='Identificador do Diploma',
+        compute='_compute_name',
+        store=True
+    )
     student_id = fields.Many2one(
         'op.student',
         string='Discente Titulado',
@@ -49,6 +54,14 @@ class CapesDigitalDiploma(models.Model):
         store=True,
         readonly=True
     )
+
+    @api.depends('diploma_process_number', 'student_id.name')
+    def _compute_name(self):
+        for record in self:
+            proc = record.diploma_process_number or f"DIP-{record.id or 'NOVO'}"
+            sname = record.student_id.name or 'Discente'
+            record.name = f"{proc} - {sname}"
+
 
     degree_type = fields.Selection([
         ('master', 'Mestre em Ciências / Mestre Profissional'),
@@ -204,7 +217,12 @@ class CapesDigitalDiploma(models.Model):
             record.diploma_xml = diploma_xml_str
 
             # 3. Geração do XML do Dossiê Acadêmico (Livro-Razão e Banca)
-            ledger_records = Ledger.search([('student_id', '=', record.student_id.id), ('is_approved', '=', True)])
+            # Exclui disciplinas em quarentena de aluno especial que não foram formalmente incorporadas
+            ledger_records = Ledger.search([
+                ('student_id', '=', record.student_id.id),
+                ('credit_type', '!=', 'subject_special_quarantine'),
+                ('is_approved', '=', True)
+            ])
             ledger_xml_lines = "".join([
                 f"<Disciplina><Nome>{l.subject_id.name if l.subject_id else ''}</Nome><Creditos>{l.credits}</Creditos><Conceito>{l.grade_concept}</Conceito></Disciplina>"
                 for l in ledger_records

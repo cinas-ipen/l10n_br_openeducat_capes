@@ -34,6 +34,7 @@
         'security/ir.model.access.csv',
         'report/student_transcript_report.xml',
         'views/diploma_views.xml',
+        'views/op_student_diploma_views.xml',
     ],
     'installable': True,
     'application': False,

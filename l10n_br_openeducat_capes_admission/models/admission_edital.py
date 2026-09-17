@@ -298,15 +298,57 @@ class OpAdmissionCandidate(models.Model):
             if curriculum.proficiency_stage == 'admission' and not record.english_proficient:
                 raise ValidationError("O regimento do curso exige a comprovação de proficiência linguística na admissão (Regra IPEN) antes da conversão em Aluno Regular.")
 
-            # Criação do Aluno Regular
-            student = Student.create({
-                'partner_id': record.partner_id.id,
-                'curriculum_version_id': curriculum.id,
-                'advisor_id': record.advisor_id.id if record.advisor_id else False,
-                'student_category': 'regular',
-                'capes_status': 'enrolled',
-                'admission_date': fields.Date.context_today(self),
-                'english_proficiency_status': 'approved' if record.english_proficient else 'pending',
-            })
+            company = record.edital_id.program_id.company_id or self.env.company
+
+            # Busca se a pessoa física já possui RA soberano nesta IES (ex: ex-Aluno Especial ou egresso)
+            existing_student = Student.search([
+                ('partner_id', '=', record.partner_id.id),
+                ('company_id', '=', company.id)
+            ], limit=1)
+
+            if existing_student:
+                # Reutilização soberana do mesmo RA e ficha cadastral
+                vals_update = {
+                    'curriculum_version_id': curriculum.id,
+                    'student_category': 'regular',
+                    'capes_status': 'enrolled',
+                    'admission_date': fields.Date.context_today(self),
+                }
+                if record.advisor_id:
+                    vals_update['advisor_id'] = record.advisor_id.id
+                if record.english_proficient:
+                    vals_update['english_proficiency_status'] = 'approved'
+                existing_student.write(vals_update)
+                student = existing_student
+            else:
+                # Criação do Aluno Regular com novo RA institucional
+                student = Student.create({
+                    'partner_id': record.partner_id.id,
+                    'company_id': company.id,
+                    'curriculum_version_id': curriculum.id,
+                    'advisor_id': record.advisor_id.id if record.advisor_id else False,
+                    'student_category': 'regular',
+                    'capes_status': 'enrolled',
+                    'admission_date': fields.Date.context_today(self),
+                    'english_proficiency_status': 'approved' if record.english_proficient else 'pending',
+                })
+
+            # Multi-Vínculo Acadêmico (Opção B - op.student.course)
+            CourseDetail = self.env['op.student.course']
+            course = self.env['op.course'].search([], limit=1)
+            course_id = course.id if course else False
+
+            if course_id:
+                CourseDetail.create({
+                    'student_id': student.id,
+                    'course_id': course_id,
+                    'course_type': 'regular',
+                    'program_id': record.edital_id.program_id.id,
+                    'curriculum_version_id': curriculum.id,
+                    'admission_date': fields.Date.context_today(self),
+                    'state': 'running',
+                })
+
             record.converted_student_id = student
             record.state = 'converted'
+

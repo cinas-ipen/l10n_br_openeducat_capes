@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>**Documento de Validação Técnica e Funcional: Macroprocesso 01 (MP1)**</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">**Documento de Validação Técnica e Funcional:
+Macroprocesso 01 (MP1)**</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-de-validação-técnica-e-funcional-macroprocesso-01-mp1" id="toc-documento-de-validação-técnica-e-funcional-macroprocesso-01-mp1"><strong>Documento
+de Validação Técnica e Funcional: Macroprocesso 01 (MP1)</strong></a>
+<ul>
+<li><a href="#governança-regimental-setup-curricular-e-regras-normativas-no-erp" id="toc-governança-regimental-setup-curricular-e-regras-normativas-no-erp"><strong>Governança
+Regimental, Setup Curricular e Regras Normativas no ERP</strong></a>
+<ul>
+<li><a href="#finalidade-do-macroprocesso-01-mp1" id="toc-finalidade-do-macroprocesso-01-mp1"><strong>1. Finalidade do
+Macroprocesso 01 (MP1)</strong></a></li>
+<li><a href="#a-arquitetura-do-motor-de-versionamento-op.curriculum.version" id="toc-a-arquitetura-do-motor-de-versionamento-op.curriculum.version"><strong>2.
+A Arquitetura do Motor de Versionamento
+(op.curriculum.version)</strong></a></li>
+<li><a href="#detalhamento-dos-10-subprocessos-do-macroprocesso-01" id="toc-detalhamento-dos-10-subprocessos-do-macroprocesso-01"><strong>3.
+Detalhamento dos 10 Subprocessos do Macroprocesso 01</strong></a></li>
+<li><a href="#tabela-de-parametrização-para-validação-com-stakeholders-mptrcs" id="toc-tabela-de-parametrização-para-validação-com-stakeholders-mptrcs"><strong>4.
+Tabela de Parametrização para Validação com Stakeholders
+(MPTRCS)</strong></a></li>
+<li><a href="#roteiro-prático-para-a-reunião-de-validação-checklist-cpg-mp" id="toc-roteiro-prático-para-a-reunião-de-validação-checklist-cpg-mp"><strong>5.
+Roteiro Prático para a Reunião de Validação (Checklist
+CPG-MP)</strong></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-de-validação-técnica-e-funcional-macroprocesso-01-mp1"><strong>Documento
+de Validação Técnica e Funcional: Macroprocesso 01 (MP1)</strong></h1>
+<h2 id="governança-regimental-setup-curricular-e-regras-normativas-no-erp"><strong>Governança
+Regimental, Setup Curricular e Regras Normativas no ERP</strong></h2>
+<h3 id="finalidade-do-macroprocesso-01-mp1"><strong>1. Finalidade do
+Macroprocesso 01 (MP1)</strong></h3>
+<p>O Macroprocesso 01 é o motor de <em>back-office</em> fundacional do
+ecossistema educacional OpenEduCat CAPES BR
+(l10n_br_openeducat_capes_academic). Ele é executado antes da publicação
+de qualquer edital de seleção ou da realização de matrículas
+discentes.</p>
+<p>Sua finalidade principal é criar um <strong>ambiente normativo
+isolado</strong> para governar uma geração inteira de estudantes de um
+Programa de Pós-Graduação (PPG). Esse isolamento garante:</p>
+<ul>
+<li><strong>Prevenção ao Hibridismo Normativo:</strong> Proibe que um
+discente combine casuisticamente as regras mais benéficas de
+regulamentos distintos (ex: prazos longos de um regimento antigo com
+carga menor de disciplinas de um regimento novo).</li>
+<li><strong>Tutela ao Ato Jurídico Perfeito:</strong> Assegura que
+matérias e créditos já integralizados pelo aluno sob a vigência de uma
+norma permanecem imutáveis, mesmo que o programa atualize suas regras no
+futuro.</li>
+<li><strong>Auditabilidade GoPG/CAPES:</strong> Garante que todas as
+validações do censo acadêmico enviadas via APIs RESTful (Fonte Prata) ou
+colhidas no Repositório Institucional (Fonte Ouro) tenham respaldo
+regimental exato.</li>
+</ul>
+<h3 id="a-arquitetura-do-motor-de-versionamento-op.curriculum.version"><strong>2.
+A Arquitetura do Motor de Versionamento
+(op.curriculum.version)</strong></h3>
+<p>Para superar a limitação dos ERPs multinacionais tradicionais (que
+amarram as regras de forma estática ao curso), o OpenEduCat centraliza a
+inteligência regulatória na entidade <strong>Versão de Currículo /
+Regimento (op.curriculum.version)</strong>.</p>
+<pre class="text"><code>+-------------------------------------------------------------------------+
+|                       PROGRAMA DE PÓS-GRADUAÇÃO                         |
+|                       op.program.capes (ex: MPTRCS)                     |
++-------------------------------------------------------------------------+
+                                     │ 1
+                                     │
+                                     │ N (One2many)
+                                     ▼
++-------------------------------------------------------------------------+
+|                  MOTOR DE VERSIONAMENTO REGIMENTAL                      |
+|                       op.curriculum.version                             |
+|  - Prazos e Cronometria            - Modos de PTT e Docência            |
+|  - Moeda de Crédito e Escala       - Regras de Disciplinas (Subject)    |
+|  - Proficiência Linguística        - Regras de Bancas (Committee)       |
++-------------------------------------------------------------------------+
+                                     ▲
+                                     │ 1
+                                     │ (Chave Irrevogável: curriculum_version_id)
+                                     │ N
++-------------------------------------------------------------------------+
+|                          PERFIL DO DISCENTE                             |
+|                              op.student                                 |
++-------------------------------------------------------------------------+</code></pre>
+<p>Cada discente recebe no ato da matrícula a chave relacional unívoca
+curriculum_version_id em seu perfil (op.student). As rotinas do sistema
+(validação de grade, agendamento de bancas, concessão de prorrogações e
+emissão de diplomas) consultam exclusivamente as propriedades dessa
+chave.</p>
+<h3 id="detalhamento-dos-10-subprocessos-do-macroprocesso-01"><strong>3.
+Detalhamento dos 10 Subprocessos do Macroprocesso 01</strong></h3>
+<p>Abaixo, cada um dos 10 subprocessos do MP1 é detalhado considerando a
+<strong>Lógica de Workflow</strong>, a <strong>Configuração para o
+MPTRCS/IPEN (Stakeholders Principais)</strong> e a <strong>Matriz de
+Parametrização para Outras IES/PPGs</strong>.</p>
+<h4 id="subprocesso-1.1-criação-e-isolamento-do-versionamento-curricular"><strong>Subprocesso
+1.1: Criação e Isolamento do Versionamento Curricular</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> A Secretaria Acadêmica ou
+Coordenação cadastra a versão regimental no ERP e estabelece o vínculo
+relacional <em>One2many</em> com o programa acadêmico
+(op.program.capes). Define-se o período de vigência e ativa-se o
+indicador booleano is_active para disponibilizar a norma para novos
+editais de seleção.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Nome da Versão (name):</em> “Regulamento MPTRCS 2020 (Revisado
+CTA)”.</li>
+<li><em>Vínculo de Programa (program_id):</em> Programa de Pós-Graduação
+em Tecnologia das Radiações em Ciências da Saúde (Código SNPG
+CAPES).</li>
+<li><em>Indicador de Vigência (is_active):</em> True (Versão ativa para
+as turmas correntes).</li>
+<li><strong>Matriz de Parametrização no ERP:</strong> Suporta
+coexistência de ilimitadas versões simultâneas no mesmo banco de dados
+(ex: “Regimento IPEN 2018”, “Regimento IPEN 2020”, “Regimento CDTN
+2026”, “Regimento UPM 2024”).</li>
+</ul>
+<h4 id="subprocesso-1.2-parametrização-cronológica-prazos-e-cronometria"><strong>Subprocesso
+1.2: Parametrização Cronológica, Prazos e Cronometria</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Configura os relógios
+temporais do sistema a partir da data de admissão (admission_date). O
+motor cronológico dispara notificações de acompanhamento e aciona a Ação
+Agendada (Cron Job) de jubilamento automático (pending_dismissal) em
+caso de estouro dos prazos regimentais.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Prazo Máximo de Titulação (max_months_defense):</em> <strong>24
+meses</strong>.</li>
+<li><em>Teto de Prorrogação Regular (max_extension_days):</em>
+<strong>90 dias</strong> (em caráter excepcional aprovado pela
+CPG-MP).</li>
+<li><em>Prazo Limite para Depósito Pós-Defesa
+(max_days_post_defense_deposit):</em> <strong>30 dias</strong>
+pós-defesa pública para upload da versão corrigida no Repositório
+Institucional.</li>
+<li><em>Tempo de Exposição do Candidato (presentation_max_minutes):</em>
+<strong>50 minutos</strong>.</li>
+<li><em>Tempo de Arguição por Examinador
+(arguing_max_minutes_per_member):</em> <strong>40 minutos</strong>.</li>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li><em>Prazo de Titulação:</em> Ajustável em meses (ex: 24 meses para
+Mestrado e 48 meses para Doutorado).</li>
+<li><em>Prorrogação Regular:</em> Ajustável em dias/meses (ex: 90 dias
+no IPEN vs. 180 dias/6 meses no Mackenzie e CDTN).</li>
+<li><em>Depósito Pós-Defesa:</em> Ajustável em dias (ex: 30 dias no
+IPEN/Mackenzie vs. 90 dias no CDTN Art. 50).</li>
+<li><em>Cronometria da Sessão:</em> Ajustável em minutos (ex: 45 min de
+exposição no CDTN Art. 48 §2º).</li>
+</ul>
+<h4 id="subprocesso-1.3-fator-de-conversão-de-carga-horária-e-escala-de-avaliação"><strong>Subprocesso
+1.3: Fator de Conversão de Carga Horária e Escala de
+Avaliação</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Define a “moeda” acadêmica
+impressa no histórico escolar consolidado (op.student.transcript.br) e a
+regra matemática de apuração de notas/conceitos para gravação na tabela
+imutável (<em>append-only</em>) do Livro-Razão Acadêmico
+(op.student.credit.ledger).</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Razão Carga Horária/Crédito (credit_hour_ratio):</em> <strong>15
+horas-aula</strong> por unidade de crédito.</li>
+<li><em>Escala de Avaliação (grading_scale_type):</em> ‘scale_abc_r’
+(Conceitos A, B e C conferem créditos; <strong>Conceito R é
+Reprovado</strong>; exigência de frequência mínima de 75%).</li>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li><em>Fator de Crédito:</em> 15 horas (IPEN e CDTN), 12 horas
+(Mackenzie Computação) ou 10 horas (Mackenzie ADN).</li>
+<li><em>Escalas e Notas de Corte:</em> Suporta notas numéricas de 0 a 10
+com corte 7.0 (Mackenzie) ou escalas com conceito “D” considerado
+<strong>Aprovado</strong> (CDTN Art. 38/42, onde D = 60% a 69%).</li>
+</ul>
+<h4 id="subprocesso-1.4-motor-de-integralização-e-silos-de-créditos"><strong>Subprocesso
+1.4: Motor de Integralização e Silos de Créditos</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Estabelece as metas globais
+e fracionadas de integralização acadêmica. O ERP divide as exigências em
+compartimentos (<em>buckets</em>) independentes que exigem cumprimento
+isolado para liberar a câmara de pré-requisitos da defesa.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Carga Total Mínima Exigida (min_credits):</em> <strong>100
+unidades de crédito</strong>.</li>
+<li><em>Silo de Disciplinas do Programa (min_subject_credits):</em>
+Mínimo de <strong>40 créditos</strong>.</li>
+<li><em>Silo de Seminários Gerais de Área (min_seminar_credits):</em>
+Mínimo de <strong>8 créditos</strong>.</li>
+<li><em>Silo de Preparo do Trabalho Final (min_thesis_credits):</em>
+Mínimo de <strong>52 créditos</strong>.</li>
+<li><em>Trava Carga Inicial de Calouros
+(min_first_semester_credits):</em> Mínimo de <strong>24
+créditos</strong> no 1º semestre de ingresso.</li>
+<li><em>Teto de Aproveitamento Externo (max_external_credits):</em> Até
+<strong>50% dos créditos em disciplinas</strong> (máximo 20 créditos
+externos).</li>
+<li><em>Teto de Créditos por Produção/Patente
+(max_publication_credits):</em> Até <strong>25% dos créditos em
+disciplinas</strong> (máximo 10 créditos por artigos Web of Science /
+Patente / Software).</li>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li><em>Metas Globais:</em> 100 créditos (IPEN), 50/60 créditos
+(Mackenzie), 24 créditos (Mestrado CDTN) ou 47 créditos (Doutorado
+CDTN).</li>
+<li><em>Carga Mínima de Ingressante:</em> Ajustável por regimento
+(previne bloqueios em cursos com metas totais menores).</li>
+<li><em>Tetos de Aproveitamento:</em> Configurável (ex: teto externo de
+40% no Mackenzie vs 50% no IPEN).</li>
+</ul>
+<h4 id="subprocesso-1.5-configuração-de-proficiência-linguística-proficiency_stage"><strong>Subprocesso
+1.5: Configuração de Proficiência Linguística
+(proficiency_stage)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Configura o momento exato em
+que o ERP exige a aprovação no exame de proficiência em língua
+estrangeira (Inglês, e Português no caso de discentes
+estrangeiros).</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Gatilho de Exigência (proficiency_stage):</em> ‘admission’ (Modo
+IPEN).</li>
+<li><em>Efeito Sistêmico:</em> A aprovação no exame de proficiência é
+condição <em>sine qua non</em> no ato do ingresso. O Odoo bloqueia a
+conversão do candidato aprovado em aluno regular (op.student) e a
+emissão do número de matrícula caso o comprovante não esteja
+homologado.</li>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li>‘admission’: Exigência na matrícula inicial (IPEN).</li>
+<li>‘qualification’: Exigência como pré-requisito para o agendamento da
+Qualificação (Mackenzie).</li>
+<li>‘defense’: Exigência para o depósito da Defesa Final.</li>
+</ul>
+<h4 id="subprocesso-1.6-parametrização-dinâmica-de-disciplinas-obrigatórias-op.curriculum.subject.rule"><strong>Subprocesso
+1.6: Parametrização Dinâmica de Disciplinas Obrigatórias
+(op.curriculum.subject.rule)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Elimina qualquer código de
+disciplina fixado em código (<em>hardcoded</em>). A obrigatoriedade é
+gerenciada pela tabela de regras op.curriculum.subject.rule, permitindo
+definir disciplinas comuns a todo o programa ou vinculadas
+especificamente a uma Área de Concentração.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Disciplinas Obrigatórias Gerais (Escopo scope =
+‘program’):</em></li>
+</ul>
+<ol type="1">
+<li>MP-01 - Fundamentos de Física em Ciências da Saúde.</li>
+<li>MP-02 - Proteção, Segurança e Logística Radiológica.</li>
+</ol>
+<ul>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li><em>Escopo program:</em> Disciplinas obrigatórias para todos os
+discentes daquela versão.</li>
+<li><em>Escopo area:</em> Disciplinas obrigatórias atreladas a uma Área
+de Concentração específica (area_id). O sistema consulta o perfil do
+aluno (op.student.area_id) e exige o cumprimento do conjunto específico
+de sua área.</li>
+</ul>
+<h4 id="subprocesso-1.7-parametrização-do-estágio-de-docência-supervisionado-teaching_internship_mode"><strong>Subprocesso
+1.7: Parametrização do Estágio de Docência / Supervisionado
+(teaching_internship_mode)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Adequa as travas de
+obrigatoriedade de atividades didáticas de ensino de acordo com as
+diretrizes da <strong>Portaria CAPES nº 221/2025</strong>.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Regra de Estágio de Docência (teaching_internship_mode):</em>
+‘not_applicable’ (Inaplicável).</li>
+<li><em>Justificativa:</em> Por se tratar de um Programa de
+Pós-Graduação Profissional, no qual a CAPES não concede bolsas de
+fomento acadêmico tradicionais, a trava é desativada nativamente pelo
+ERP.</li>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li>‘not_applicable’: Trava desativada (Cursos Profissionais ou
+isentos).</li>
+<li>‘scholarship_only’: Exigido exclusivamente para alunos bolsistas de
+fomento acadêmico.</li>
+<li>‘mandatory_all’: Exigido para todos os discentes do currículo.</li>
+<li>‘flexible_equivalence’: Exigido, mas aceita substituição por Estágio
+Supervisionado ou atividades práticas/profissionais equivalentes
+homologadas pela CPG.</li>
+</ul>
+<h4 id="subprocesso-1.8-regras-do-produto-técnico-tecnológico-ptt-ptt_validation_mode"><strong>Subprocesso
+1.8: Regras do Produto Técnico-Tecnológico (PTT)
+(ptt_validation_mode)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Define o fluxo de validação
+da entrega aplicada exigida em programas profissionais perante a
+taxonomia oficial da CAPES (21 tipos GTPT / 10 subcategorias Medicina
+II).</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Modo de Validação do PTT (ptt_validation_mode):</em>
+‘cpg_checklist’ (Modelo V1 / MPTRCS).</li>
+<li><em>Fluxo de Trabalho V1:</em></li>
+</ul>
+<ol type="1">
+<li><strong>Checklist no Portal:</strong> No requerimento de agendamento
+de defesa, o aluno seleciona o PTT gerado a partir do checklist de
+tipologias da CAPES e faz upload das evidências.</li>
+<li><strong>Dupla Anuência Eletrônica:</strong> O <strong>Orientador
+Principal</strong> e o <strong>Coorientador</strong> (quando houver)
+devem emitir o aceite eletrônico (“De acordo”) nos seus respectivos
+painéis.</li>
+<li><strong>Triagem da Secretaria:</strong> A secretaria acadêmica
+valida os anexos e marca o chamado como <code>ready_for_agenda</code>
+(Apto para Pauta).</li>
+<li><strong>Homologação CPG:</strong> O requerimento entra na pauta da
+Reunião da CPG (<code>op.cpg.meeting</code>). O colegiado avalia o PTT e
+delibera a aprovação formal que autoriza a realização da defesa.</li>
+</ol>
+<ul>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li>‘cpg_checklist’: Checklist + Dupla Anuência + Pauta CPG (Modelo V1 -
+MPTRCS).</li>
+<li>‘qualis_prior’: Exige avaliação prévia em câmara de peritos e
+atribuição de estrato Qualis (T1 a T5) antes da abertura da defesa.</li>
+<li>‘none’: Desativado para programas acadêmicos tradicionais.</li>
+</ul>
+<h4 id="subprocesso-1.9-regras-de-composição-de-comissões-julgadoras-op.curriculum.committee.rule"><strong>Subprocesso
+1.9: Regras de Composição de Comissões Julgadoras
+(op.curriculum.committee.rule)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Gerencia as regras de
+quórum, papéis, direitos de voto, endogenia de membros externos e
+impedimentos por parentesco para os ritos de Seminário de Área,
+Qualificação e Defesa Final.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Banca do Seminário Geral de Área (stage = ‘seminar’):</em></li>
+<li><strong>2 membros titulares Doutores</strong> (Coordenador da
+Atividade/Disciplina + 1 examinador Doutor convidado).</li>
+<li><em>Banca da Defesa Final de Dissertação (stage =
+‘defense’):</em></li>
+<li><strong>3 membros titulares Doutores</strong>.</li>
+<li><em>Papel do Orientador (advisor_vote_role):</em> voting_president
+(Preside a sessão e possui direito a voto ativo).</li>
+<li><em>Participação do Coorientador (coadvisor_participation):</em>
+forbidden_with_advisor (Participação vedada caso o orientador esteja
+presente na sessão - Regulamento MPTRCS Art. 10 §3º).</li>
+<li><em>Regra de Externos (external_rule):</em> min_one_external (Pelo
+menos 1 Doutor obrigatoriamente externo ao Programa e ao
+IPEN/CNEN).</li>
+<li><em>Exceção de Notória Especialização:</em> Permite especialista de
+mercado sem doutorado mediante parecer aprovado por <strong>2/3 do
+Colegiado</strong> (Regulamento MPTRCS Art. 46 §3º).</li>
+<li><em>Política de Presença (defense_location_policy):</em>
+hybrid_allowed (Presença física obrigatória do discente e do presidente
+na sede do IPEN, permitindo examinadores remotos).</li>
+<li><strong>Matriz de Parametrização no ERP:</strong></li>
+<li><em>Quórum:</em> 3 a 5 membros titulares; suplentes por par fixo (1
+int / 1 ext - Mackenzie) ou 1 para cada titular.</li>
+<li><em>Voto do Orientador:</em> Votante (voting_president -
+IPEN/Mackenzie) vs. Não-Votante (non_voting_president - CDTN Art. 44
+§4º).</li>
+<li><em>Membros Externos:</em> Mínimo 1 externo (IPEN/Mackenzie), Mínimo
+2 externos (CDTN Doutorado), ou Maioria Externa ao PPG.</li>
+<li><em>Impedimento Cível:</em> Trava automática para parentesco em
+linha reta ou colateral até 4º grau com o discente ou orientador.</li>
+<li><em>Modalidade:</em> Presencial, Híbrida ou 100% Remota autorizada
+(CDTN Art. 49).</li>
+</ul>
+<h4 id="subprocesso-1.10-tramitação-e-protocolo-de-migração-regimental"><strong>Subprocesso
+1.10: Tramitação e Protocolo de Migração Regimental</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Garante a transparência e o
+cumprimento estrito do direito de opção quando o programa aprova uma
+atualização em seu regulamento.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong></li>
+<li><em>Formulário de Solicitante no Portal:</em> Requerimento
+op.academic.request.regime_migration.</li>
+<li><em>Fluxo de Trabalho:</em></li>
+</ul>
+<ol type="1">
+<li>O estudante inicia a solicitação no Portal do Aluno.</li>
+<li>O Odoo gera e exibe um <strong>Quadro Comparativo de
+Impacto</strong> (demonstrando eventuais variações de carga de
+disciplinas e prazos).</li>
+<li>O discente assina digitalmente o <strong>Termo de Aceite
+Irrevogável</strong>.</li>
+<li>Após homologação na pauta da CPG, o Odoo encerra a leitura do
+Livro-Razão no regimento antigo (preservando o Ato Jurídico Perfeito de
+todas as disciplinas e notas já conquistadas) e passa a contabilizar a
+integralização na nova versão curriculum_version_id, vedando o
+hibridismo normativo.</li>
+</ol>
+<h3 id="tabela-de-parametrização-para-validação-com-stakeholders-mptrcs"><strong>4.
+Tabela de Parametrização para Validação com Stakeholders
+(MPTRCS)</strong></h3>
+<p>A tabela abaixo deve ser revisada e formalmente aprovada durante a
+reunião de trabalho com a Coordenação, Comissão de Pós-Graduação
+(CPG-MP) e Secretaria Acadêmica do MPTRCS/IPEN:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Item de Governança / Parâmetro</th>
+<th style="text-align: left;">Campo Técnico no Odoo</th>
+<th style="text-align: left;">Configuração Padrão MPTRCS (IPEN)</th>
+<th style="text-align: left;">Outras Opções Suportadas pelo ERP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Duração Regimental do
+Curso</strong></td>
+<td style="text-align: left;">max_months_defense</td>
+<td style="text-align: left;"><strong>24 Meses</strong></td>
+<td style="text-align: left;">Parametrizável (ex: 12 a 48 meses)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Teto Contínuo de
+Trancamento</strong></td>
+<td style="text-align: left;"><code>max_trancamento_days</code></td>
+<td style="text-align: left;"><strong>365 dias</strong> (Art. 22º,
+§3º)</td>
+<td style="text-align: left;">Parametrizável por regimento (ex: 180 a
+365 dias)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bloqueio no 1º
+Semestre</strong></td>
+<td style="text-align: left;"><code>block_first_semester_trancamento</code></td>
+<td style="text-align: left;"><strong>False</strong> (Permitido em
+qualquer tempo)</td>
+<td style="text-align: left;"><strong>True</strong> (Caso o regimento
+exija carência inicial)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Regra de Retorno
+Pós-Trancamento</strong></td>
+<td style="text-align: left;"><code>retorno_rule</code></td>
+<td style="text-align: left;"><strong>Matriz Vigente no Retorno</strong>
+(Ato Jurídico Perfeito preservado)</td>
+<td style="text-align: left;">Vinculação imediata à estrutura atual sem
+hibridismo.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Teto de Prorrogação
+Regular</strong></td>
+<td style="text-align: left;">max_extension_days</td>
+<td style="text-align: left;"><strong>90 Dias</strong> (Excepcional
+CPG)</td>
+<td style="text-align: left;">Parametrizável (ex: 180 a 365 dias)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Prazo de Depósito
+Pós-Defesa</strong></td>
+<td style="text-align: left;">max_days_post_defense_deposit</td>
+<td style="text-align: left;"><strong>30 Dias</strong></td>
+<td style="text-align: left;">Parametrizável (ex: 30 a 90 dias)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fator Carga
+Horária/Crédito</strong></td>
+<td style="text-align: left;">credit_hour_ratio</td>
+<td style="text-align: left;"><strong>15 Horas / Crédito</strong></td>
+<td style="text-align: left;">10h, 12h ou 15h por crédito</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Meta Global de
+Integralização</strong></td>
+<td style="text-align: left;">min_credits</td>
+<td style="text-align: left;"><strong>100 Créditos</strong></td>
+<td style="text-align: left;">Configurável (24, 47, 50, 60, 100)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bucket 1: Disciplinas
+Programa</strong></td>
+<td style="text-align: left;">min_subject_credits</td>
+<td style="text-align: left;"><strong>40 Créditos</strong> (mínimo)</td>
+<td style="text-align: left;">Configurável por versão regimental</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bucket 2: Seminários
+Gerais</strong></td>
+<td style="text-align: left;">min_seminar_credits</td>
+<td style="text-align: left;"><strong>8 Créditos</strong> (mínimo)</td>
+<td style="text-align: left;">Configurável por versão regimental</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bucket 3: Preparo
+Dissertação</strong></td>
+<td style="text-align: left;">min_thesis_credits</td>
+<td style="text-align: left;"><strong>52 Créditos</strong> (mínimo)</td>
+<td style="text-align: left;">Configurável por versão regimental</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Trava Carga Inicial
+Calouros</strong></td>
+<td style="text-align: left;">min_first_semester_credits</td>
+<td style="text-align: left;"><strong>24 Créditos</strong> (1º
+Semestre)</td>
+<td style="text-align: left;">Configurável conforme a meta do PPG</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gatilho de
+Proficiência</strong></td>
+<td style="text-align: left;">proficiency_stage</td>
+<td style="text-align: left;">‘admission’ (Matrícula Inicial)</td>
+<td style="text-align: left;">‘qualification’ ou ‘defense’</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Disciplinas
+Obrigatórias</strong></td>
+<td style="text-align: left;">op.curriculum.subject.rule</td>
+<td style="text-align: left;">MP-01 e MP-02 (Gerais)</td>
+<td style="text-align: left;">Por Programa ou por Área de
+Concentração</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Estágio de Docência (CAPES
+221)</strong></td>
+<td style="text-align: left;">teaching_internship_mode</td>
+<td style="text-align: left;">‘not_applicable’ (Profissional)</td>
+<td style="text-align: left;">‘scholarship_only’, ‘mandatory_all’,
+‘flexible’</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Mecânica de Validação de
+PTT</strong></td>
+<td style="text-align: left;">ptt_validation_mode</td>
+<td style="text-align: left;">‘cpg_checklist’ (Checklist + CPG)</td>
+<td style="text-align: left;">‘qualis_prior’ ou ‘none’</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Papel e Voto do
+Orientador</strong></td>
+<td style="text-align: left;">advisor_vote_role</td>
+<td style="text-align: left;">‘voting_president’ (Preside/Vota)</td>
+<td style="text-align: left;">‘non_voting_president’ (CDTN)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Participação
+Coorientador</strong></td>
+<td style="text-align: left;">coadvisor_participation</td>
+<td style="text-align: left;">‘forbidden_with_advisor’</td>
+<td style="text-align: left;">‘non_voting_additional’ ou
+‘full_voting’</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Endogenia de
+Externos</strong></td>
+<td style="text-align: left;">external_rule</td>
+<td style="text-align: left;">‘min_one_external’ (1 externo IPEN)</td>
+<td style="text-align: left;">‘min_two_external’ ou
+‘majority_external’</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Aprovação de
+Não-Doutor</strong></td>
+<td style="text-align: left;">non_phd_approval_level</td>
+<td style="text-align: left;">‘cpg_qualified’ (2/3 da CPG)</td>
+<td style="text-align: left;">‘cpg_simple’ ou ‘superior_council’</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modalidade da Sessão
+Defesa</strong></td>
+<td style="text-align: left;">defense_location_policy</td>
+<td style="text-align: left;">‘hybrid_allowed’ (Aluno na Sede)</td>
+<td style="text-align: left;">‘onsite_mandatory’ ou
+‘fully_remote_allowed’</td>
+</tr>
+</tbody>
+</table>
+<h3 id="roteiro-prático-para-a-reunião-de-validação-checklist-cpg-mp"><strong>5.
+Roteiro Prático para a Reunião de Validação (Checklist
+CPG-MP)</strong></h3>
+<p>Para conduzir a pauta de homologação do Macroprocesso 01 com a
+coordenação e a CPG do MPTRCS, recomenda-se passar pelos seguintes
+quatro pontos de confirmação:</p>
+<ol type="1">
+<li><strong>Confirmação da Régua de Créditos:</strong></li>
+</ol>
+<ul>
+<li>Ratificar a meta de 100 créditos (40 disciplinas, 8 seminários, 52
+dissertação) e a equivalência de 15 horas por crédito.</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Homologação das Disciplinas Obrigatórias
+Gerais:</strong></li>
+</ol>
+<ul>
+<li>Confirmar a vinculação compulsória das disciplinas MP-01 e MP-02 a
+todos os ingressantes do programa.</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Aprovação do Fluxo de PTT V1 (cpg_checklist):</strong></li>
+</ol>
+<ul>
+<li>Chancelar o procedimento no qual o aluno seleciona a entrega no
+checklist do portal, colhe a anuência eletrônica do
+Orientador/Coorientador, passa pela triagem da Secretaria e recebe a
+autorização de defesa na pauta da CPG.</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>Validação das Regras da Comissão Julgadora de
+Defesa:</strong></li>
+</ol>
+<ul>
+<li>Confirmar a banca de 3 Doutores (orientador preside e vota,
+coorientador não vota simultaneamente e no mínimo 1 membro externo ao
+IPEN/CNEN), a janela de 15 dias para agendamento e o prazo de 30 dias
+pós-defesa para depósito no repositório.</li>
+</ul>
+</body>
+</html>

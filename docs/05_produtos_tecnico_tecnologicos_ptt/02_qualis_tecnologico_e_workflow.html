@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 02: O Motor de Aderência e os Workflows de Validação do PTT</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 02: O Motor de Aderência e os Workflows de
+Validação do PTT</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-02-o-motor-de-aderência-e-os-workflows-de-validação-do-ptt" id="toc-documento-02-o-motor-de-aderência-e-os-workflows-de-validação-do-ptt">Documento
+02: O Motor de Aderência e os Workflows de Validação do PTT</a>
+<ul>
+<li><a href="#o-paradigma-da-aderência-e-flexibilidade-por-programa" id="toc-o-paradigma-da-aderência-e-flexibilidade-por-programa">1. O
+Paradigma da Aderência e Flexibilidade por Programa</a></li>
+<li><a href="#workflow-v1-modelo-checklist-dupla-anuência-homologação-cpg-mptrcs" id="toc-workflow-v1-modelo-checklist-dupla-anuência-homologação-cpg-mptrcs">2.
+Workflow V1: Modelo Checklist + Dupla Anuência + Homologação CPG
+(MPTRCS)</a></li>
+<li><a href="#workflow-v2-avaliação-e-estratificação-prévia-no-qualis-tecnológico-qualis_prior" id="toc-workflow-v2-avaliação-e-estratificação-prévia-no-qualis-tecnológico-qualis_prior">3.
+Workflow V2: Avaliação e Estratificação Prévia no Qualis Tecnológico
+(<code>qualis_prior</code>)</a></li>
+<li><a href="#o-registo-transacional-o-produto-capes.ptt.product" id="toc-o-registo-transacional-o-produto-capes.ptt.product">4. O Registo
+Transacional: O Produto (<code>capes.ptt.product</code>)</a></li>
+<li><a href="#estrutura-de-autoria-e-taxonomia-capes.ptt.author" id="toc-estrutura-de-autoria-e-taxonomia-capes.ptt.author">5. Estrutura
+de Autoria e Taxonomia (<code>capes.ptt.author</code>)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-02-o-motor-de-aderência-e-os-workflows-de-validação-do-ptt">Documento
+02: O Motor de Aderência e os Workflows de Validação do PTT</h1>
+<h2 id="o-paradigma-da-aderência-e-flexibilidade-por-programa">1. O
+Paradigma da Aderência e Flexibilidade por Programa</h2>
+<p>Nos Mestrados e Doutorados Profissionais, a entrega do Produto
+Técnico-Tecnológico (PTT) é condição estrutural para a titulação. O ERP
+OpenEduCat suporta múltiplos modos de validação de PTT via parâmetro
+<code>ptt_validation_mode</code>, garantindo que cada IES ou programa
+aplique as suas regras regimentais sem engessamento de código.</p>
+<h2 id="workflow-v1-modelo-checklist-dupla-anuência-homologação-cpg-mptrcs">2.
+Workflow V1: Modelo Checklist + Dupla Anuência + Homologação CPG
+(MPTRCS)</h2>
+<p>Para a primeira versão do sistema (aplicada ao MPTRCS/IPEN e
+customizável para outros PPGs), adota-se o modo
+<code>cpg_checklist</code>. O PTT não exige uma câmara prévia de
+avaliação complexa antes do pedido de defesa; sua validação é integrada
+ao fluxo de agendamento da dissertação:</p>
+<pre class="text"><code>[Aluno: Preenche Requerimento de Defesa no Portal]
+  │   └── Seleciona PTT do Checklist CAPES + Anexa Evidências
+  ▼
+[Orientador Principal: Emite Aceite / &quot;De acordo&quot;]
+  │
+  ▼
+[Coorientador (se houver): Emite Aceite / &quot;De acordo&quot;]
+  │
+  ▼
+[Secretaria Acadêmica: Triagem Técnico-Documental]
+  │   └── Valida conformidade do anexo e marca: ready_for_agenda
+  ▼
+[Pauta da Reunião da CPG (op.cpg.meeting)]
+  │   └── Colegiado avalia o PTT e delibera aprovação
+  ▼
+[Aprovação da Ata CPG] ──► [Workflow de Defesa Liberado]</code></pre>
+<ol type="1">
+<li><strong>Indicação e Checklist no Portal:</strong> No ato da
+submissão do requerimento de defesa da dissertação, o discente seleciona
+a tipologia do PTT gerado dentre as opções oficiais cadastradas da CAPES
+(21 tipos GTPT / 10 subcategorias Medicina II) e realiza o upload dos
+comprovantes.</li>
+<li><strong>Dupla Anuência Eletrônica (Orientador e
+Coorientador):</strong> O chamado é roteado para os painéis dos
+docentes. O Orientador e o Coorientador (quando houver) devem registrar
+o aceite eletrônico (“De acordo”), atestando que o PTT reflete os
+resultados do trabalho.</li>
+<li><strong>Triagem da Secretaria:</strong> A secretaria verifica se a
+documentação anexada corresponde à tipologia indicada e marca o chamado
+como <code>ready_for_agenda</code> (Apto para Pauta).</li>
+<li><strong>Pauta e Deliberação da CPG:</strong> O requerimento é
+incluído na pauta da reunião seguinte da CPG
+(<code>op.cpg.meeting</code>). A CPG avalia se o PTT cumpre o
+regulamento do programa e delibera a aprovação formal, liberando o
+agendamento da defesa.</li>
+</ol>
+<h2 id="workflow-v2-avaliação-e-estratificação-prévia-no-qualis-tecnológico-qualis_prior">3.
+Workflow V2: Avaliação e Estratificação Prévia no Qualis Tecnológico
+(<code>qualis_prior</code>)</h2>
+<p>Para programas que exigem que o PTT possua estrato atribuído (T1 a
+T5) antes da defesa, o sistema ativa o modo <code>qualis_prior</code>
+com a seguinte máquina de estados (<code>state</code> em
+<code>capes.ptt.product</code>):</p>
+<ol type="1">
+<li><strong><code>draft</code> (Rascunho):</strong> O discente preenche
+os metadados e a justificativa de aderência.</li>
+<li><strong><code>adherence_check</code> (Auditoria de
+Aderência):</strong> Decisão binária do orientador/comissão. Rejeição
+envia para <code>rejected</code> (TNC - Produto Não Classificado).</li>
+<li><strong><code>evaluating</code> (Em Avaliação Qualis):</strong>
+Atribuição de notas nas 4 dimensões (Impacto, Inovação, Aplicabilidade
+TRL 1-9 e Complexidade).</li>
+<li><strong><code>homologated</code> (Homologado):</strong> Consolidação
+do Estrato (T1 a T5), injeção no Livro-Razão e liberação do agendamento
+da defesa.</li>
+</ol>
+<h2 id="o-registo-transacional-o-produto-capes.ptt.product">4. O Registo
+Transacional: O Produto (<code>capes.ptt.product</code>)</h2>
+<p>A entidade central submetida pelo discente ou docente. É o objeto que
+será depositado na “Fonte Ouro” (DSpace).</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado / Conceito CAPES</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Regras de Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>type_id</code></td>
+<td style="text-align: left;">Tipo do Produto</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para <code>capes.ptt.type</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>student_id</code></td>
+<td style="text-align: left;">Discente Autor (Principal)</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para <code>op.student</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>thesis_id</code></td>
+<td style="text-align: left;">Tese / Dissertação Associada</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para <code>capes.thesis</code>. Produto
+que serve como TCC.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>title</code></td>
+<td style="text-align: left;">Título do Produto</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Nome exato do desenvolvimento.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">Nome do Produto (Identificador)</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Campo armazenado relacionado a
+<code>title</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>trl_level</code></td>
+<td style="text-align: left;">Nível de Maturidade (TRL)</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Níveis de <code>trl_1</code> a
+<code>trl_9</code> (Princípios básicos a sistema provado em ambiente
+real).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>final_stratum</code></td>
+<td style="text-align: left;">Estrato Qualis Tecnológico</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;"><code>T1</code>, <code>T2</code>,
+<code>T3</code>, <code>T4</code>, <code>T5</code>, <code>TNC</code>
+(computado a partir das avaliações).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>state</code></td>
+<td style="text-align: left;">Situação no Workflow</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;"><code>draft</code> (Rascunho),
+<code>adherence_check</code> (Auditoria de Aderência),
+<code>evaluating</code> (Em Avaliação Qualis), <code>homologated</code>
+(Homologado), <code>rejected</code> (Rejeitado/TNC).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adherence_justif</code></td>
+<td style="text-align: left;">Justificação de Aderência</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">OBRIGATÓRIO: Texto discursivo onde o autor
+defende a ligação do produto com a Linha de Pesquisa do PPG.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_adherent</code></td>
+<td style="text-align: left;">Validação de Aderência</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Campo de controlo da comissão. Se validado
+como <code>False</code>, o produto sofre glosa imediata e não segue para
+avaliação.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>target_audience</code></td>
+<td style="text-align: left;">Público-Alvo / Beneficiários</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Identificação do setor produtivo, governo
+ou sociedade civil impactada.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>financing_agency</code></td>
+<td style="text-align: left;">Agência de Financiamento</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para entidade parceira ou de fomento
+(se aplicável).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>repository_url</code></td>
+<td style="text-align: left;">URL do Produto (DSpace)</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Ligação OAI-PMH para a Fonte Ouro.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="estrutura-de-autoria-e-taxonomia-capes.ptt.author">5. Estrutura
+de Autoria e Taxonomia (<code>capes.ptt.author</code>)</h2>
+<p>Como os PTTs são frequentemente colaborativos (ex: desenvolvimento de
+um software clínico), os coautores precisam de rastreabilidade.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado / Conceito CAPES</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Regras de Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>product_id</code></td>
+<td style="text-align: left;">Produto Vinculado</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para
+<code>capes.ptt.product</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>partner_id</code></td>
+<td style="text-align: left;">Coautor</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para <code>res.partner</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>author_role</code></td>
+<td style="text-align: left;">Papel na Criação</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Desenvolvedor Principal, Orientador,
+Validador Técnico, Financiador.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ip_share</code></td>
+<td style="text-align: left;">Quota de Patente (%)</td>
+<td style="text-align: left;"><code>Float</code></td>
+<td style="text-align: left;">Percentagem de titularidade em caso de
+geração de Propriedade Intelectual.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

@@ -4,12 +4,17 @@
 
 A oferta semestral de disciplinas em `op.batch` e `op.session` obedece a travas de capacidade e quórum:
 
-* **Quórum Mínimo:** A secretaria cadastra a capacidade mínima da turma. Se a janela de matrícula fechar sem atingir o quórum, o Odoo emite um alerta, cancela a oferta e notifica os alunos para remanejamento.
-* **Equipe Docente Híbrida:** O sistema permite vincular a uma mesma turma 1 Coordenador (docente permanente) e até 3 outros professores portadores do título de Doutor (permanentes ou colaboradores).
+* **Quórum Mínimo e Cotas Especiais:** A secretaria cadastra a capacidade mínima da turma. Se a janela de matrícula fechar sem atingir o quórum, o Odoo emite um alerta, cancela a oferta e notifica os alunos para remanejamento. Para turmas que aceitam Alunos Especiais (`allow_special_students = True`), o sistema reserva a cota parametrizada em `special_seats_quota`.
+* **Equipe Docente Híbrida e Anuência Prévia:** O sistema permite vincular a uma mesma turma 1 Coordenador (docente permanente) e até 3 outros professores portadores do título de Doutor. Quando ativada a exigência `special_student_instructor_consent_required`, as solicitações de matrícula em disciplinas isoladas são roteadas para o aceite explícito do ministrante responsável.
 
-## 2. Inscrições Semestrais e Trava de Carga Inicial de Calouros
+## 2. Inscrições Semestrais, Trava de Calouros e Matrículas Intra-IES
 
 * **Carga Inicial Obrigatória (Calouros):** No semestre de admissão (calouros), o algoritmo impedirá a finalização da matrícula caso a seleção de disciplinas seja inferior ao mínimo parametrizado no regimento (`min_first_semester_credits`, ex: 24 créditos no IPEN MPTRCS).
+* **Matrícula Cruzada Intra-IES (Programas da Mesma IES):**
+  * O discente regular de um programa pode se inscrever em disciplinas ofertadas por outros PPGs da mesma IES mantenedora (`res.company`).
+  * O requerimento passa pelo crivo eletrônico do orientador (`intra_ies_advisor_approval_required`) e pelo aceite do docente da disciplina.
+  * Os créditos cursados com êxito são consolidados no histórico discente no valor integral (100% nominal), sem perda de equivalência, respeitando o limite teto regimental do programa de origem (`max_intra_ies_credits_percent`).
+  * *Observação IPEN:* Disciplinas cursadas no programa de Tecnologia Nuclear (USP) não se enquadram neste fluxo automático, sendo tratadas como extra-IES com necessidade de validação formal de equivalência e pauta na CPG do MPTRCS.
 * **Inscrição em Matrícula de Acompanhamento:** Para resolver o problema da "inatividade fictícia" durante a fase exclusiva de pesquisa e elaboração de dissertação (após o cumprimento dos créditos teóricos), o sistema força a inscrição compulsória semestral na disciplina contínua "Elaboração de Dissertação" (0 créditos teóricos), mantendo o discente com status "Ativo e Matriculado" perante a colheita passiva da CAPES (Fonte Prata).
 
 ## 3. Cancelamento de Matrícula em Disciplina (Artigo 41º do MPTRCS e Anuência Tácita)
@@ -26,7 +31,10 @@ Em estrita conformidade com o regulamento do programa (Artigo 41º), o estudante
 
 ## 4. Encerramento de Turmas e Injeção no Livro-Razão
 
-Após o encerramento do semestre, os docentes lançam notas/conceitos (A, B, C, R) e frequências (exigência mínima de 75%). A secretaria revisa os diários e comanda a consolidação. Nesse momento, os créditos são injetados na tabela imutável (*append-only*) `op.student.credit.ledger`, tornando-se definitivos.
+Após o encerramento do semestre, os docentes lançam notas/conceitos (A, B, C, R) e frequências (exigência mínima de 75%). A secretaria revisa os diários e comanda a consolidação. Nesse momento, os créditos são injetados na tabela imutável (*append-only*) `op.student.credit.ledger`, tornando-se definitivos:
+* Para alunos regulares em disciplinas do seu próprio PPG: classificados como `subject_internal`.
+* Para alunos regulares cursando disciplinas de outros PPGs da IES: classificados como `subject_intra_ies`.
+* Para alunos matriculados como especiais: classificados como `subject_special_quarantine` (em quarentena).
 
 ## 5. Ajuste Manual Retroativo (Fluxo de Exceção Auditado)
 

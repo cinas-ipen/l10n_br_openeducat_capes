@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Guia Técnico de Inicialização em Banco Zerado e Migração de Dados</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Guia Técnico de Inicialização em Banco Zerado e
+Migração de Dados</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#guia-técnico-de-inicialização-em-banco-zerado-e-migração-de-dados" id="toc-guia-técnico-de-inicialização-em-banco-zerado-e-migração-de-dados">Guia
+Técnico de Inicialização em Banco Zerado e Migração de Dados</a>
+<ul>
+<li><a href="#ecossistema-l10n_br_openeducat_capes-odoo-19.0-openeducat-19.0" id="toc-ecossistema-l10n_br_openeducat_capes-odoo-19.0-openeducat-19.0">Ecossistema
+l10n_br_openeducat_capes (Odoo 19.0 / OpenEduCat 19.0)</a></li>
+<li><a href="#topologia-de-instalação-e-subida-do-stack" id="toc-topologia-de-instalação-e-subida-do-stack">1. Topologia de
+Instalação e Subida do Stack</a></li>
+<li><a href="#criação-da-base-de-dados-limpa-sem-dados-demo" id="toc-criação-da-base-de-dados-limpa-sem-dados-demo">2. Criação da
+Base de Dados Limpa (Sem Dados Demo)</a></li>
+<li><a href="#instalação-e-ativação-dos-módulos" id="toc-instalação-e-ativação-dos-módulos">3. Instalação e Ativação dos
+Módulos</a></li>
+<li><a href="#parametrizações-iniciais-do-sistema" id="toc-parametrizações-iniciais-do-sistema">4. Parametrizações Iniciais
+do Sistema</a>
+<ul>
+<li><a href="#dados-da-empresa-mantenedora-ies-res.company" id="toc-dados-da-empresa-mantenedora-ies-res.company">4.1. Dados da
+Empresa Mantenedora / IES (<code>res.company</code>)</a></li>
+<li><a href="#parametrização-de-parâmetros-de-sistema-ir.config_parameter" id="toc-parametrização-de-parâmetros-de-sistema-ir.config_parameter">4.2.
+Parametrização de Parâmetros de Sistema
+(<code>ir.config_parameter</code>)</a></li>
+<li><a href="#configurações-estruturais-do-openeducat" id="toc-configurações-estruturais-do-openeducat">4.3. Configurações
+Estruturais do OpenEduCat</a></li>
+<li><a href="#usuários-operacionais-e-perfis-de-acesso" id="toc-usuários-operacionais-e-perfis-de-acesso">4.4. Usuários
+Operacionais e Perfis de Acesso</a></li>
+</ul></li>
+<li><a href="#sequência-rígida-de-carga-de-dados-resolução-de-chaves-estrangeiras" id="toc-sequência-rígida-de-carga-de-dados-resolução-de-chaves-estrangeiras">5.
+Sequência Rígida de Carga de Dados (Resolução de Chaves
+Estrangeiras)</a></li>
+<li><a href="#mapeamento-e-descrição-dos-13-passos-de-carga" id="toc-mapeamento-e-descrição-dos-13-passos-de-carga">6. Mapeamento e
+Descrição dos 13 Passos de Carga</a>
+<ul>
+<li><a href="#passo-01-instituição-de-ensino-superior-res.company" id="toc-passo-01-instituição-de-ensino-superior-res.company">Passo 01:
+Instituição de Ensino Superior (<code>res.company</code>)</a></li>
+<li><a href="#passo-02-programas-de-pós-graduação-op.program.capes" id="toc-passo-02-programas-de-pós-graduação-op.program.capes">Passo 02:
+Programas de Pós-Graduação (<code>op.program.capes</code>)</a></li>
+<li><a href="#passo-03-versões-curriculares-e-regimentos-op.curriculum.version" id="toc-passo-03-versões-curriculares-e-regimentos-op.curriculum.version">Passo
+03: Versões Curriculares e Regimentos
+(<code>op.curriculum.version</code>)</a></li>
+<li><a href="#passo-04-áreas-de-concentração-e-linhas-de-pesquisa-op.curriculum.subject.rule" id="toc-passo-04-áreas-de-concentração-e-linhas-de-pesquisa-op.curriculum.subject.rule">Passo
+04: Áreas de Concentração e Linhas de Pesquisa
+(<code>op.curriculum.subject.rule</code>)</a></li>
+<li><a href="#passo-05-corpo-docente-e-orientadores-op.faculty-res.partner" id="toc-passo-05-corpo-docente-e-orientadores-op.faculty-res.partner">Passo
+05: Corpo Docente e Orientadores (<code>op.faculty</code> /
+<code>res.partner</code>)</a></li>
+<li><a href="#passo-06-credenciamento-docente-perante-a-cpg-op.faculty.accreditation" id="toc-passo-06-credenciamento-docente-perante-a-cpg-op.faculty.accreditation">Passo
+06: Credenciamento Docente perante a CPG
+(<code>op.faculty.accreditation</code>)</a></li>
+<li><a href="#passo-07-catálogo-de-disciplinas-op.subject" id="toc-passo-07-catálogo-de-disciplinas-op.subject">Passo 07: Catálogo
+de Disciplinas (<code>op.subject</code>)</a></li>
+<li><a href="#passo-08-processos-seletivos-e-editais-op.admission.edital" id="toc-passo-08-processos-seletivos-e-editais-op.admission.edital">Passo
+08: Processos Seletivos e Editais
+(<code>op.admission.edital</code>)</a></li>
+<li><a href="#passo-09-identidade-soberana-discente-op.student-res.partner" id="toc-passo-09-identidade-soberana-discente-op.student-res.partner">Passo
+09: Identidade Soberana Discente (<code>op.student</code> /
+<code>res.partner</code>)</a></li>
+<li><a href="#passo-10-vínculos-de-curso-discente-op.student.course" id="toc-passo-10-vínculos-de-curso-discente-op.student.course">Passo 10:
+Vínculos de Curso Discente (<code>op.student.course</code>)</a></li>
+<li><a href="#passo-11-livro-razão-acadêmico-de-créditos-op.student.credit.ledger" id="toc-passo-11-livro-razão-acadêmico-de-créditos-op.student.credit.ledger">Passo
+11: Livro-Razão Acadêmico de Créditos
+(<code>op.student.credit.ledger</code>)</a></li>
+<li><a href="#passo-12-ritos-bipartidos-e-defesas-finais-capes.thesis" id="toc-passo-12-ritos-bipartidos-e-defesas-finais-capes.thesis">Passo
+12: Ritos Bipartidos e Defesas Finais
+(<code>capes.thesis</code>)</a></li>
+<li><a href="#passo-13-produtos-técnico-tecnológicos-capes.ptt.product" id="toc-passo-13-produtos-técnico-tecnológicos-capes.ptt.product">Passo
+13: Produtos Técnico-Tecnológicos
+(<code>capes.ptt.product</code>)</a></li>
+</ul></li>
+<li><a href="#metodologia-de-migração-de-dados-legados" id="toc-metodologia-de-migração-de-dados-legados">7. Metodologia de
+Migração de Dados Legados</a></li>
+<li><a href="#procedimento-prático-de-importação-na-interface-web-do-odoo-19" id="toc-procedimento-prático-de-importação-na-interface-web-do-odoo-19">8.
+Procedimento Prático de Importação na Interface Web do Odoo 19</a></li>
+<li><a href="#checklist-de-auditoria-pós-migração" id="toc-checklist-de-auditoria-pós-migração">9. Checklist de Auditoria
+Pós-Migração</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="guia-técnico-de-inicialização-em-banco-zerado-e-migração-de-dados">Guia
+Técnico de Inicialização em Banco Zerado e Migração de Dados</h1>
+<h2 id="ecossistema-l10n_br_openeducat_capes-odoo-19.0-openeducat-19.0">Ecossistema
+l10n_br_openeducat_capes (Odoo 19.0 / OpenEduCat 19.0)</h2>
+<p>Este documento estabelece o protocolo técnico operacional para
+administradores e equipes de TI responsáveis por disponibilizar o
+sistema a partir de uma instalação nova (banco de dados zerado),
+configurar a instituição e migrar dados históricos oriundos de sistemas
+legados.</p>
+<hr />
+<h2 id="topologia-de-instalação-e-subida-do-stack">1. Topologia de
+Instalação e Subida do Stack</h2>
+<p>Após clonar o repositório oficial e seguir os passos iniciais do
+<code>README.md</code>:</p>
+<ol type="1">
+<li><p><strong>Download das dependências externas:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/fetch_dependencies.sh</span></span></code></pre></div></li>
+<li><p><strong>Configuração de ambiente:</strong> Copie o arquivo
+<code>.env.example</code> para <code>.env</code> e configure a Master
+Password (<code>ODOO_ADMIN_PASSWD</code>), portas e credenciais do
+PostgreSQL 16.</p></li>
+<li><p><strong>Inicialização dos contêineres:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up <span class="at">-d</span> <span class="at">--build</span></span></code></pre></div></li>
+<li><p><strong>Verificação dos logs:</strong> Certifique-se de que o
+Odoo 19 e o PostgreSQL 16 subiram sem advertências críticas:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose logs <span class="at">-f</span> odoo</span></code></pre></div></li>
+</ol>
+<hr />
+<h2 id="criação-da-base-de-dados-limpa-sem-dados-demo">2. Criação da
+Base de Dados Limpa (Sem Dados Demo)</h2>
+<p>Para garantir integridade regulatória estrita e fé pública perante a
+CAPES, o banco de dados de produção <strong>nunca</strong> deve conter
+dados de demonstração (<em>demo data</em>):</p>
+<ol type="1">
+<li>Acesse o gerenciador de bancos de dados:
+<code>http://localhost:8069/web/database/manager</code> (ou IP
+configurado no <code>BIND_HOST</code>).</li>
+<li>Clique em <strong>Create Database</strong>:
+<ul>
+<li><strong>Database Name:</strong> Nome padronizado da
+instituição/programa (ex: <code>ppg_universidade_prod</code> ou
+<code>mptrcs_ipen_prod</code>).</li>
+<li><strong>Email:</strong> E-mail oficial do Administrador do Sistema
+(ex: <code>admin@instituicao.br</code>).</li>
+<li><strong>Password:</strong> Senha administrativa mestra de alta
+entropia.</li>
+<li><strong>Language:</strong>
+<code>Portuguese (BR) / Português (BR)</code>.</li>
+<li><strong>Country:</strong> <code>Brazil / Brasil</code>.</li>
+<li><strong>Demo data:</strong> ⏹️ <strong>DESMARCADO
+(UNCHECKED)</strong>. É mandatório que esta caixa permaneça
+desmarcada.</li>
+</ul></li>
+<li>Clique em <strong>Continue</strong> e aguarde a inicialização da
+base.</li>
+</ol>
+<hr />
+<h2 id="instalação-e-ativação-dos-módulos">3. Instalação e Ativação dos
+Módulos</h2>
+<p>Ao acessar o sistema pela primeira vez com o usuário
+administrador:</p>
+<ol type="1">
+<li>Acesse o menu <strong>Configurações</strong> (<code>Settings</code>)
+e role até o rodapé para ativar o <strong>Modo Desenvolvedor</strong>
+(<code>Activate Developer Mode</code>).</li>
+<li>Acesse o menu <strong>Aplicativos</strong> (<code>Apps</code>).</li>
+<li>Clique em <strong>Atualizar Lista de Aplicativos</strong>
+(<code>Update Apps List</code>).</li>
+<li>Na barra de pesquisa, remova o filtro padrão
+<code>Aplicativos</code> (<code>Apps</code>) para exibir todos os
+módulos técnicos.</li>
+<li>Localize e instale o submódulo final da cadeia de dependências:
+<ul>
+<li><strong><code>l10n_br_openeducat_capes_diploma</code></strong></li>
+<li><em>Nota Arquitetural:</em> Por conta da árvore de dependências do
+Odoo 19, instalar o módulo de diploma instala automaticamente em
+cascata: <code>openeducat_core</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_core</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_admission</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_academic</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_research</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_thesis</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_ptt</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_integration</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<code>l10n_br_openeducat_capes_diploma</code>.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="parametrizações-iniciais-do-sistema">4. Parametrizações Iniciais
+do Sistema</h2>
+<p>Antes de iniciar qualquer importação de dados, realize as seguintes
+configurações institucionais na interface:</p>
+<h3 id="dados-da-empresa-mantenedora-ies-res.company">4.1. Dados da
+Empresa Mantenedora / IES (<code>res.company</code>)</h3>
+<p>Acesse <strong>Configurações <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Usuários &amp; Empresas <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Empresas</strong>: * <strong>Nome:</strong> Nome oficial por extenso da
+IES (ex: <code>Universidade XYZQ</code> ou
+<code>Instituto de Pesquisas Energéticas e Nucleares - IPEN-CNEN/SP</code>).
+* <strong>CNPJ:</strong> CNPJ oficial formatado. * <strong>Código
+e-MEC:</strong> Código institucional no Ministério da Educação. *
+<strong>Endereço Completo:</strong> Logradouro, Bairro, Município, UF,
+CEP e Código IBGE do município.</p>
+<h3 id="parametrização-de-parâmetros-de-sistema-ir.config_parameter">4.2.
+Parametrização de Parâmetros de Sistema
+(<code>ir.config_parameter</code>)</h3>
+<p>Em <strong>Configurações <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Técnico <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Parâmetros do Sistema</strong>: * <code>web.base.url</code>: URL
+canônica acessível pelos usuários (ex:
+<code>https://posgraduacao.instituicao.br</code>). *
+<code>web.base.url.freeze</code>: Valor booleano <code>True</code> para
+evitar que o Odoo altere a URL base dinamicamente.</p>
+<h3 id="configurações-estruturais-do-openeducat">4.3. Configurações
+Estruturais do OpenEduCat</h3>
+<p>Acesse o menu <strong>OpenEduCat <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Configuração</strong> para validar ou cadastrar as entidades estruturais
+do calendário e organograma acadêmico: * <strong>Anos Acadêmicos
+(<code>op.academic.year</code>):</strong> Ex: “2022”, “2023”, “2024”,
+“2025”, “2026” com datas de início e término. * <strong>Períodos /
+Termos Acadêmicos (<code>op.academic.term</code>):</strong> Semestres
+letivos (ex: “1º Semestre 2024”, “2º Semestre 2024”). *
+<strong>Departamentos (<code>op.department</code>):</strong> Unidades
+acadêmicas da IES (ex: “Centro de Radiologia e Dosimetria”). *
+<strong>Nível e Programa Educacional (<code>op.program.level</code> e
+<code>op.program</code>):</strong> Definição de “Mestrado Profissional”
+e “Mestrado Profissional em Tecnologia das Radiações em Saúde”. *
+<strong>Cursos (<code>op.course</code>):</strong> Vinculados ao programa
+e departamento. * <strong>Turmas / Lotes Discentes
+(<code>op.batch</code>):</strong> Coortes anuais/semestrais (ex: “Turma
+MPTRCS 2024-1”) que amarram os discentes via
+<code>op.student.course.batch_id</code>. * <strong>Categorias Discentes
+(<code>op.category</code>):</strong> Segmentações de financiamento e
+bolsas (ex: “Regular”, “Bolsista CAPES”, “Bolsista CNPq”).</p>
+<h3 id="usuários-operacionais-e-perfis-de-acesso">4.4. Usuários
+Operacionais e Perfis de Acesso</h3>
+<p>Acesse <strong>Configurações <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Usuários &amp; Empresas <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Usuários</strong> para cadastrar ou validar os operadores do
+sistema:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Login</th>
+<th>Perfil / Função</th>
+<th>Senha Padrão (Ambiente de Testes)</th>
+<th>Grupo Odoo 19</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>admin</code></td>
+<td>Administrador Geral de TI</td>
+<td><code>admin</code></td>
+<td><code>base.group_system</code>,
+<code>group_op_back_office_admin</code></td>
+</tr>
+<tr>
+<td><code>secretaria</code></td>
+<td>Secretaria de Pós-Graduação</td>
+<td><code>secretaria123</code></td>
+<td><code>openeducat_core.group_op_back_office_admin</code></td>
+</tr>
+<tr>
+<td><code>coordenador</code></td>
+<td>Coordenador do Programa (Docente)</td>
+<td><code>coordenador123</code></td>
+<td><code>group_op_back_office_admin</code> + Titular CPG</td>
+</tr>
+<tr>
+<td><code>vicecoordenador</code></td>
+<td>Vice-Coordenador do Programa</td>
+<td><code>vicecoordenador123</code></td>
+<td><code>group_op_back_office_admin</code> + Titular CPG</td>
+</tr>
+<tr>
+<td><code>professor</code></td>
+<td>Docente e Orientador</td>
+<td><code>professor123</code></td>
+<td><code>openeducat_core.group_op_faculty</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>Aviso de Segurança:</em> Em ambientes de produção pública,
+substitua imediatamente as senhas padrão por senhas fortes com entropia
+mínima de 14 caracteres.</p>
+<hr />
+<h2 id="sequência-rígida-de-carga-de-dados-resolução-de-chaves-estrangeiras">5.
+Sequência Rígida de Carga de Dados (Resolução de Chaves
+Estrangeiras)</h2>
+<p>Na importação em lote de dados legados via planilhas CSV, a ordem de
+carga é estrita para evitar erros de integridade referencial
+(<em>Foreign Key Constraint Violations</em>):</p>
+<pre class="mermaid"><code>graph TD
+    S01[01. IES Mantenedora / res.company] --&gt; S02[02. Programas CAPES / op.program.capes]
+    S02 --&gt; S03[03. Versões Curriculares / op.curriculum.version]
+    S03 --&gt; S04[04. Áreas de Concentração / op.curriculum.subject.rule]
+    S01 --&gt; S05[05. Docentes / op.faculty / res.partner]
+    S05 --&gt; S06[06. Credenciamento CPG / op.faculty.accreditation]
+    S03 --&gt; S07[07. Disciplinas / op.subject]
+    S04 --&gt; S07
+    S03 --&gt; S08[08. Editais de Seleção / op.admission.edital]
+    S01 --&gt; S09[09. Discentes - Identidade / op.student]
+    S09 --&gt; S10[10. Vínculos de Curso / op.student.course]
+    S03 --&gt; S10
+    S07 --&gt; S11[11. Livro-Razão Acadêmico / op.student.credit.ledger]
+    S10 --&gt; S11
+    S10 --&gt; S12[12. Trabalhos Finais e Defesas / capes.thesis]
+    S05 --&gt; S12
+    S05 --&gt; S13[13. Produtos PTT / capes.ptt.product]</code></pre>
+<hr />
+<h2 id="mapeamento-e-descrição-dos-13-passos-de-carga">6. Mapeamento e
+Descrição dos 13 Passos de Carga</h2>
+<h3 id="passo-01-instituição-de-ensino-superior-res.company">Passo 01:
+Instituição de Ensino Superior (<code>res.company</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>res.company</code></li>
+<li><strong>Finalidade:</strong> Estabelece a pessoa jurídica
+mantenedora e âncora da identidade discente soberana.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code> (identificador
+externo XML ID), <code>name</code>, <code>cnpj</code> (validação Módulo
+11), <code>emec_code</code>, <code>street</code>, <code>city</code>,
+<code>zip</code>, <code>country_id/code</code> (<code>BR</code>).</li>
+</ul>
+<h3 id="passo-02-programas-de-pós-graduação-op.program.capes">Passo 02:
+Programas de Pós-Graduação (<code>op.program.capes</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.program.capes</code></li>
+<li><strong>Finalidade:</strong> Cadastra os programas stricto sensu
+vinculados à CAPES / SNPG.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>name</code>, <code>short_name</code>, <code>snpg_code</code>
+(Código SNPG da CAPES), <code>modality</code> (<code>academic</code> ou
+<code>professional</code>), <code>capes_grade</code> (<code>3</code> a
+<code>7</code>), <code>school_term</code> (<code>semestral</code>),
+<code>company_id/id</code>.</li>
+</ul>
+<h3 id="passo-03-versões-curriculares-e-regimentos-op.curriculum.version">Passo
+03: Versões Curriculares e Regimentos
+(<code>op.curriculum.version</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.curriculum.version</code></li>
+<li><strong>Finalidade:</strong> Blinda o Ato Jurídico Perfeito fixando
+matriz de créditos e regras regimentais.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>name</code>, <code>program_id/id</code>, <code>min_credits</code>,
+<code>min_subject_credits</code>, <code>thesis_credits</code>,
+<code>other_mandatory_credits</code>, <code>credit_hour_ratio</code>,
+<code>max_external_credits_percent</code>,
+<code>max_months_defense</code>, <code>allow_special_students</code>,
+<code>max_special_subjects_limit</code>,
+<code>special_credit_validity_months</code>,
+<code>special_incorporation_workflow</code>
+(<code>cpg_approval</code>/<code>direct_request</code>),
+<code>special_transcript_fail_policy</code>
+(<code>omit_on_regular</code>/<code>display_all</code>),
+<code>allow_intra_ies_credits</code>,
+<code>max_intra_ies_credits_percent</code>,
+<code>intra_ies_advisor_approval_required</code>,
+<code>retorno_rule</code>, <code>grading_scale_type</code>,
+<code>proficiency_stage</code>, <code>teaching_internship_mode</code>,
+<code>ptt_validation_mode</code>,
+<code>defense_location_policy</code>.</li>
+</ul>
+<h3 id="passo-04-áreas-de-concentração-e-linhas-de-pesquisa-op.curriculum.subject.rule">Passo
+04: Áreas de Concentração e Linhas de Pesquisa
+(<code>op.curriculum.subject.rule</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong>
+<code>op.curriculum.subject.rule</code></li>
+<li><strong>Finalidade:</strong> Estruturação das áreas de conhecimento
+do programa.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>name</code>, <code>curriculum_version_id/id</code>,
+<code>description</code>.</li>
+</ul>
+<h3 id="passo-05-corpo-docente-e-orientadores-op.faculty-res.partner">Passo
+05: Corpo Docente e Orientadores (<code>op.faculty</code> /
+<code>res.partner</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.faculty</code></li>
+<li><strong>Finalidade:</strong> Cadastra professores com
+identificadores biográficos internacionais (PIDs) e cria automaticamente
+o parceiro (<code>res.partner</code>).</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>name</code>, <code>cpf</code> (11 dígitos numéricos com validação
+Módulo 11), <code>email</code>, <code>orcid</code>,
+<code>lattes_url</code>, <code>gender</code> (<code>male</code> ou
+<code>female</code>), <code>birth_date</code>.</li>
+</ul>
+<h3 id="passo-06-credenciamento-docente-perante-a-cpg-op.faculty.accreditation">Passo
+06: Credenciamento Docente perante a CPG
+(<code>op.faculty.accreditation</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.faculty.accreditation</code></li>
+<li><strong>Finalidade:</strong> Histórico de credenciamento
+(Permanente, Colaborador, Visitante) por programa perante a CPG.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>faculty_id/id</code>, <code>program_id/id</code>,
+<code>category</code> (<code>permanent</code>,
+<code>collaborator</code>, <code>visitor</code>),
+<code>date_start</code>, <code>date_end</code>.</li>
+</ul>
+<h3 id="passo-07-catálogo-de-disciplinas-op.subject">Passo 07: Catálogo
+de Disciplinas (<code>op.subject</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.subject</code></li>
+<li><strong>Finalidade:</strong> Disciplinas oferecidas pelo PPG, cargas
+horárias e regras de acesso.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>code</code>, <code>name</code>, <code>program_id/id</code>,
+<code>rule_id/id</code> (Área de Concentração), <code>type</code>
+(<code>theory</code>, <code>practical</code>, <code>both</code>),
+<code>subject_type</code> (<code>compulsory</code> ou
+<code>elective</code>), <code>credits</code>, <code>hours</code>,
+<code>allow_special_students</code>, <code>special_seats_quota</code>,
+<code>special_student_instructor_consent_required</code>.</li>
+</ul>
+<h3 id="passo-08-processos-seletivos-e-editais-op.admission.edital">Passo
+08: Processos Seletivos e Editais
+(<code>op.admission.edital</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.admission.edital</code></li>
+<li><strong>Finalidade:</strong> Registro de editais para programas que
+admitem por turma/concurso.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>name</code>, <code>code</code>, <code>program_id/id</code>,
+<code>curriculum_version_id/id</code>, <code>academic_year</code>,
+<code>academic_term</code> (<code>1</code> ou <code>2</code>),
+<code>total_slots</code>, <code>affirmative_action_percent</code>,
+<code>start_date</code>, <code>end_date</code>, <code>state</code>
+(<code>draft</code>, <code>published</code>, <code>in_selection</code>,
+<code>homologated</code>, <code>cancelled</code>).</li>
+</ul>
+<h3 id="passo-09-identidade-soberana-discente-op.student-res.partner">Passo
+09: Identidade Soberana Discente (<code>op.student</code> /
+<code>res.partner</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.student</code></li>
+<li><strong>Finalidade:</strong> Cadastro permanente e vitalício da
+pessoa como estudante na IES, indexado por CPF e IES
+(<code>res.company</code>).</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>name</code>, <code>cpf</code> (11 dígitos numéricos com validação
+Módulo 11), <code>email</code>, <code>ra_number</code> (Registro
+Acadêmico perene), <code>gr_no</code>, <code>company_id/id</code>,
+<code>student_category</code> (<code>regular</code>,
+<code>special</code>, <code>alumni</code>), <code>gender</code>
+(<code>m</code>, <code>f</code>, <code>o</code>),
+<code>birth_date</code>, <code>admission_date</code>,
+<code>english_proficiency_status</code> (<code>pending</code>,
+<code>approved</code>, <code>exempt</code>),
+<code>portuguese_proficiency_status</code> (<code>not_applicable</code>,
+<code>pending</code>, <code>approved</code>).</li>
+</ul>
+<h3 id="passo-10-vínculos-de-curso-discente-op.student.course">Passo 10:
+Vínculos de Curso Discente (<code>op.student.course</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.student.course</code></li>
+<li><strong>Finalidade:</strong> Vinculação do discente a um
+curso/programa em determinado regime (Multi-Vínculo).</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>student_id/id</code>, <code>course_id/id</code>,
+<code>program_id/id</code>, <code>curriculum_version_id/id</code>,
+<code>course_type</code> (<code>regular</code> ou <code>special</code>),
+<code>state</code> (<code>running</code>, <code>finished</code>,
+<code>canceled</code>), <code>admission_date</code>,
+<code>completion_date</code>.</li>
+</ul>
+<h3 id="passo-11-livro-razão-acadêmico-de-créditos-op.student.credit.ledger">Passo
+11: Livro-Razão Acadêmico de Créditos
+(<code>op.student.credit.ledger</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>op.student.credit.ledger</code></li>
+<li><strong>Finalidade:</strong> Registro imutável
+(<em>append-only</em>) de integralização de créditos e notas.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>student_id/id</code>, <code>curriculum_version_id/id</code>,
+<code>subject_id/id</code>, <code>course_name</code>,
+<code>credit_type</code> (<code>subject_internal</code>,
+<code>subject_intra_ies</code>, <code>subject_special_quarantine</code>,
+<code>subject_special_incorporated</code>,
+<code>subject_extra_ies</code>, <code>apo</code>,
+<code>milestone</code>, <code>external</code>), <code>credits</code>,
+<code>hours</code>, <code>grade_concept</code> (<code>A</code>,
+<code>B</code>, <code>C</code>, <code>D</code>, <code>R</code>),
+<code>is_approved</code>, <code>date_earned</code>,
+<code>origin_ref</code>.</li>
+</ul>
+<h3 id="passo-12-ritos-bipartidos-e-defesas-finais-capes.thesis">Passo
+12: Ritos Bipartidos e Defesas Finais (<code>capes.thesis</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>capes.thesis</code></li>
+<li><strong>Finalidade:</strong> Histórico de bancas de qualificação e
+defesa, membros e handles do DSpace.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>student_id/id</code>, <code>work_plan_id/id</code> (obrigatório
+para defesas), <code>curriculum_version_id/id</code>,
+<code>title</code>, <code>doc_type</code> (<code>dissertation</code>,
+<code>thesis</code>, <code>tech_product</code>), <code>stage</code>
+(<code>seminar_area</code>, <code>qualification</code>,
+<code>defense</code>), <code>status</code> (<code>draft</code>,
+<code>scheduled</code>, <code>approved</code>, <code>disapproved</code>,
+<code>deposit_pending</code>, <code>final_version_submitted</code>,
+<code>homologated</code>), <code>defense_date</code>,
+<code>repository_url</code> (Handle DSpace),
+<code>advisor_id/id</code>.</li>
+</ul>
+<h3 id="passo-13-produtos-técnico-tecnológicos-capes.ptt.product">Passo
+13: Produtos Técnico-Tecnológicos (<code>capes.ptt.product</code>)</h3>
+<ul>
+<li><strong>Modelo:</strong> <code>capes.ptt.product</code></li>
+<li><strong>Finalidade:</strong> Acervo de produção técnica,
+classificação em eixos (E1-E4), tipologias (T01-T21) e TRL.</li>
+<li><strong>Campos Críticos:</strong> <code>id</code>,
+<code>title</code>, <code>name</code>, <code>thesis_id/id</code>,
+<code>student_id/id</code>, <code>axis_id/id</code>,
+<code>type_id/id</code>, <code>final_stratum</code> (<code>T1</code> a
+<code>T5</code>, <code>TNC</code>), <code>trl_level</code>
+(<code>trl_1</code> a <code>trl_9</code>),
+<code>adherence_justif</code>, <code>state</code> (<code>draft</code>,
+<code>adherence_check</code>, <code>evaluating</code>,
+<code>homologated</code>, <code>rejected</code>).</li>
+</ul>
+<hr />
+<h2 id="metodologia-de-migração-de-dados-legados">7. Metodologia de
+Migração de Dados Legados</h2>
+<p>Para migrações em larga escala a partir de sistemas legados (ex:
+planilhas legadas, sistemas legados acadêmicos universitários, bancos
+SQL antigos):</p>
+<ol type="1">
+<li><strong>Extração e Higienização:</strong>
+<ul>
+<li>Unifique CPFs: remova pontos, traços e espaços, mantendo exatamente
+11 dígitos com preenchimento à esquerda com zeros.</li>
+<li>Valide e-mails e converta nomes próprios para Title Case.</li>
+<li>Padronize datas no formato ISO-8601: <code>YYYY-MM-DD</code>.</li>
+</ul></li>
+<li><strong>Construção das Chaves Externas (XML IDs):</strong>
+<ul>
+<li>Utilize prefixos mnemônicos estruturados no campo <code>id</code>
+para permitir reimportações idempotentes sem duplicação de dados:
+<ul>
+<li>Programas: <code>prog_&lt;snpg_code&gt;</code> (ex:
+<code>prog_33002010001P0</code>)</li>
+<li>Regimentos: <code>reg_&lt;snpg_code&gt;_&lt;ano&gt;</code> (ex:
+<code>reg_33002010001P0_2024</code>)</li>
+<li>Docentes: <code>fac_&lt;cpf&gt;</code> (ex:
+<code>fac_11122233344</code>)</li>
+<li>Disciplinas: <code>sub_&lt;codigo&gt;</code> (ex:
+<code>sub_RAD5001</code>)</li>
+<li>Discentes: <code>stu_&lt;cpf&gt;</code> (ex:
+<code>stu_55566677788</code>)</li>
+<li>Vínculos: <code>link_&lt;cpf&gt;_&lt;tipo&gt;_&lt;ano&gt;</code>
+(ex: <code>link_55566677788_reg_2024</code>)</li>
+<li>Ledger: <code>led_&lt;cpf&gt;_&lt;disciplina&gt;_&lt;ano&gt;</code>
+(ex: <code>led_55566677788_RAD5001_2024</code>)</li>
+</ul></li>
+</ul></li>
+<li><strong>Execução em Lote e Verificação de Erros:</strong>
+<ul>
+<li>Utilize a interface do Odoo (<em>Importar Registros</em>) ou via
+script Python com a biblioteca <code>xmlrpc.client</code> /
+<code>odoo-bin shell</code>.</li>
+<li>Clique em <strong>Testar Importação</strong> (<em>Test Import</em>)
+antes de consolidar a gravação no banco de dados.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="procedimento-prático-de-importação-na-interface-web-do-odoo-19">8.
+Procedimento Prático de Importação na Interface Web do Odoo 19</h2>
+<p>Para cada um dos 13 arquivos CSV gerados:</p>
+<ol type="1">
+<li>Acesse a tela correspondente no Odoo (ex: <em>Ensino CAPES <span class="math inline">→</span> Configurações <span class="math inline">→</span> Versões Regimentais</em> ou <em>OpenEduCat
+<span class="math inline">→</span> Professores</em>).</li>
+<li>Clique no menu <strong>Favoritos</strong> (ou ícone de engrenagem no
+topo da lista) <span class="math inline">→</span> <strong>Importar
+Registros</strong>.</li>
+<li>Clique em <strong>Carregar Arquivo</strong> e selecione o CSV
+correspondente.</li>
+<li>O Odoo preencherá automaticamente o mapa “De / Para”:
+<ul>
+<li>Verifique se as colunas com notação de chave estrangeira (ex:
+<code>company_id/id</code>, <code>program_id/id</code>,
+<code>student_id/id</code>) foram mapeadas para o campo de ID Externo
+correspondente.</li>
+</ul></li>
+<li>Clique no botão <strong>Testar (Test)</strong>:
+<ul>
+<li><strong>Sucesso (Caixa Verde):</strong> <em>“Tudo parece
+correto”</em>. Clique em <strong>Importar</strong> para efetivar os
+registros.</li>
+<li><strong>Erro (Caixa Vermelha):</strong> O Odoo indicará a linha
+exata e a coluna com divergência (ex: <em>Chave externa não
+encontrada</em>). Corrija a dependência na planilha e teste
+novamente.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="checklist-de-auditoria-pós-migração">9. Checklist de Auditoria
+Pós-Migração</h2>
+<p>Após concluir a importação dos 13 passos em uma base de dados
+nova:</p>
+<ol type="1">
+<li>✅ <strong>Conferência de Créditos e Livro-Razão:</strong> Acesse
+discentes amostrais em <em>Alunos</em>, abra a visão do <em>Livro-Razão
+de Créditos</em> e valide se o total somado e a taxonomia de créditos
+coincidem com o acervo do sistema legado.</li>
+<li>✅ <strong>Validação do Ato Jurídico Perfeito:</strong> Confirme se
+cada aluno está vinculado à versão regimental correta correspondente ao
+seu ano/semestre de ingresso.</li>
+<li>✅ <strong>Auditoria de Quarentena e Trânsito:</strong> Verifique se
+eventuais disciplinas cursadas em regime especial permanecem com o tipo
+<code>subject_special_quarantine</code> e que não foram somadas
+indevidamente aos créditos de titulação.</li>
+<li>✅ <strong>Emissão do Histórico Escolar Consolidado:</strong> Em um
+discente titulado (<code>completed</code> / <code>homologated</code>),
+gere a impressão do <em>Histórico Escolar Oficial</em> em QWeb PDF e
+valide a ausência de inconsistências ou reprovações de regimes isolados
+(<code>omit_on_regular</code>).</li>
+<li>✅ <strong>Verificação de PTTs e DSpace:</strong> Confirme se os
+trabalhos finais de programas profissionais possuem seus produtos PTT
+classificados e os handles persistentes averbados.</li>
+<li>✅ <strong>Validação da Visão 360° Discente e Docente:</strong>
+Acesse a ficha de discentes e docentes para confirmar que os smart
+buttons (créditos, vínculos, defesas, orientandos, turmas lecionadas,
+linhas de pesquisa) estão calculando e exibindo valores reais e
+clicáveis.</li>
+<li>✅ <strong>Validação dos Menus Estruturais do OpenEduCat:</strong>
+Acesse <em>OpenEduCat <span class="math inline">→</span>
+Configuração</em> e confira se Anos Acadêmicos, Períodos Letivos,
+Departamentos, Cursos e Turmas (<code>op.batch</code>) estão visíveis e
+vinculados aos alunos.</li>
+<li>✅ <strong>Autenticação e Perfis de Usuário:</strong> Teste o login
+nos perfis padrão (<code>secretaria</code>, <code>coordenador</code>,
+<code>vicecoordenador</code>, <code>professor</code>) para certificar-se
+de que os privilégios e permissões de acesso estão de acordo com o
+manual operacional de cada cargo.</li>
+</ol>
+</body>
+</html>

@@ -42,10 +42,27 @@ class OpStudentCreditLedger(models.Model):
     )
     credit_type = fields.Selection([
         ('subject', 'Disciplinas Regulares'),
+        ('subject_internal', 'Disciplinas do Próprio Programa'),
+        ('subject_intra_ies', 'Disciplinas de outros PPGs da mesma IES (100% Equivalência)'),
+        ('subject_special_quarantine', 'Créditos em Quarentena (Aluno Especial)'),
+        ('subject_special_incorporated', 'Créditos de Aluno Especial Incorporados (Homologados CPG)'),
+        ('subject_extra_ies', 'Disciplinas Externas de Outras IES (Com Equivalência)'),
         ('apo', 'Atividades Programadas Obrigatórias (APO) / PTT'),
         ('milestone', 'Créditos por Qualificação e Defesa'),
         ('external', 'Aproveitamento de Créditos Externos')
     ], string='Natureza do Crédito', required=True, index=True)
+
+    incorporation_request_id = fields.Many2one(
+        'op.special.credit.incorporation.request',
+        string='Requerimento de Incorporação CPG',
+        index=True,
+        help='Vínculo formal com o processo de aproveitamento homologado pela CPG'
+    )
+    original_program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa Ofertante de Origem',
+        help='Programa acadêmico que ofertou a disciplina originalmente'
+    )
 
     subject_id = fields.Many2one(
         'op.subject',

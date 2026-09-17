@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 01: Interoperabilidade e APIs RESTful (Fonte Prata)</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 01: Interoperabilidade e APIs RESTful (Fonte
+Prata)</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-01-interoperabilidade-e-apis-restful-fonte-prata" id="toc-documento-01-interoperabilidade-e-apis-restful-fonte-prata">Documento
+01: Interoperabilidade e APIs RESTful (Fonte Prata)</a>
+<ul>
+<li><a href="#o-paradigma-da-interoperabilidade-ativa-ricapg" id="toc-o-paradigma-da-interoperabilidade-ativa-ricapg">1. O Paradigma
+da Interoperabilidade Ativa (RICA|PG)</a></li>
+<li><a href="#padronização-dos-endpoints-da-fonte-prata" id="toc-padronização-dos-endpoints-da-fonte-prata">2. Padronização dos
+Endpoints da Fonte Prata</a></li>
+<li><a href="#estrutura-do-payload-json-exemplo-discentes" id="toc-estrutura-do-payload-json-exemplo-discentes">3. Estrutura do
+Payload JSON (Exemplo Discentes)</a></li>
+<li><a href="#segurança-autenticação-e-lgpd" id="toc-segurança-autenticação-e-lgpd">4. Segurança, Autenticação e
+LGPD</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-01-interoperabilidade-e-apis-restful-fonte-prata">Documento
+01: Interoperabilidade e APIs RESTful (Fonte Prata)</h1>
+<h2 id="o-paradigma-da-interoperabilidade-ativa-ricapg">1. O Paradigma
+da Interoperabilidade Ativa (RICA|PG)</h2>
+<p>Com o advento do GoPG e da Rede de Integração da Comunidade Acadêmica
+da Pós-Graduação (RICA|PG), o OpenEduCat assume o papel de <strong>Fonte
+Prata</strong> de forma ativa e automatizada.</p>
+<p>O submódulo <code>l10n_br_openeducat_capes_integration</code> expõe
+controladores RESTful no Odoo sob a rota padronizada
+<code>/api/capes/v1/</code>, entregando payloads JSON tipados para
+varredura passiva pelos robôs da CAPES.</p>
+<h2 id="padronização-dos-endpoints-da-fonte-prata">2. Padronização dos
+Endpoints da Fonte Prata</h2>
+<p>As rotas expostas pela Fonte Prata compreendem:</p>
+<ul>
+<li><code>GET /api/capes/v1/students</code>: Devolve o cadastro de
+discentes ativos e titulados, incluindo PIDs (CPF, ORCiD, Lattes),
+etnia, gênero, data de admissão, status, orientador, status de
+proficiência e chave do regimento
+(<code>curriculum_version_id</code>).</li>
+<li><code>GET /api/capes/v1/faculty</code>: Devolve o corpo docente,
+PIDs, regime de trabalho e a timeline de credenciamento derivada do
+livro-razão <code>op.faculty.category.ledger</code>.</li>
+<li><code>GET /api/capes/v1/curriculums</code>: Expõe a matriz de
+disciplinas ativas, ementas, carga horária/créditos, regulamentos e
+modalidade de ensino.</li>
+<li><code>GET /api/capes/v1/projects_and_ptts</code>: Exporta os
+projetos de pesquisa cadastrados, relacionando-os com as dissertações
+defendidas e os Produtos Técnico-Tecnológicos (PTTs) com seus
+respectivos estratos Qualis calculados.</li>
+</ul>
+<h2 id="estrutura-do-payload-json-exemplo-discentes">3. Estrutura do
+Payload JSON (Exemplo Discentes)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;ies_emec_code&quot;</span><span class="fu">:</span> <span class="st">&quot;12345&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;program_snpg_code&quot;</span><span class="fu">:</span> <span class="st">&quot;33002010123P4&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;internal_id&quot;</span><span class="fu">:</span> <span class="st">&quot;OP-STU-2026-001&quot;</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;fiscal_name&quot;</span><span class="fu">:</span> <span class="st">&quot;João da Silva&quot;</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;pids&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;cpf&quot;</span><span class="fu">:</span> <span class="st">&quot;12345678909&quot;</span><span class="fu">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;orcid&quot;</span><span class="fu">:</span> <span class="st">&quot;0000-0002-1825-0097&quot;</span><span class="fu">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;lattes_url&quot;</span><span class="fu">:</span> <span class="st">&quot;http://lattes.cnpq.br/1234567890123456&quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;admission_date&quot;</span><span class="fu">:</span> <span class="st">&quot;2024-02-15&quot;</span><span class="fu">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;curriculum_version&quot;</span><span class="fu">:</span> <span class="st">&quot;Regimento IPEN 2024&quot;</span><span class="fu">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="st">&quot;Matriculado&quot;</span><span class="fu">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;english_proficiency&quot;</span><span class="fu">:</span> <span class="st">&quot;Approved&quot;</span><span class="fu">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;advisor_orcid&quot;</span><span class="fu">:</span> <span class="st">&quot;0000-0001-9876-5432&quot;</span><span class="fu">,</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;research_line&quot;</span><span class="fu">:</span> <span class="st">&quot;Medicina Nuclear e Dosimetria&quot;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;meta&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;timestamp&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-07-27T14:30:00Z&quot;</span><span class="fu">,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;total_records&quot;</span><span class="fu">:</span> <span class="dv">1</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h2 id="segurança-autenticação-e-lgpd">4. Segurança, Autenticação e
+LGPD</h2>
+<ul>
+<li><strong>Autenticação (OAuth 2.0 / mTLS):</strong> O acesso às rotas
+da Fonte Prata é protegido via <em>Client Credentials</em> com tokens de
+curta duração e Mutual TLS.</li>
+<li><strong>Privacy by Design:</strong> Dados estritamente privados
+(financeiro, telefones pessoais, prontuários de afastamentos médicos sem
+CID público) são removidos do serializador JSON.</li>
+</ul>
+</body>
+</html>

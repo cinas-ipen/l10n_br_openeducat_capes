@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 02: DSpace, OAI-PMH e Crosswalk Semântico (Fonte Ouro)</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 02: DSpace, OAI-PMH e Crosswalk Semântico
+(Fonte Ouro)</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#docs07_padroes_de_interoperabilidade_externa02_gopg_coleta_e_crosswalk_dspace.md" id="toc-docs07_padroes_de_interoperabilidade_externa02_gopg_coleta_e_crosswalk_dspace.md">docs/07_padroes_de_interoperabilidade_externa/02_gopg_coleta_e_crosswalk_dspace.md</a></li>
+<li><a href="#documento-02-dspace-oai-pmh-e-crosswalk-semântico-fonte-ouro" id="toc-documento-02-dspace-oai-pmh-e-crosswalk-semântico-fonte-ouro">Documento
+02: DSpace, OAI-PMH e Crosswalk Semântico (Fonte Ouro)</a>
+<ul>
+<li><a href="#a-fonte-ouro-e-a-trava-de-metadados" id="toc-a-fonte-ouro-e-a-trava-de-metadados">1. A Fonte Ouro e a Trava
+de Metadados</a></li>
+<li><a href="#o-contexto-e-prefixo-exclusivo-oai_capes" id="toc-o-contexto-e-prefixo-exclusivo-oai_capes">2. O Contexto e
+Prefixo Exclusivo <code>oai_capes</code></a></li>
+<li><a href="#matriz-de-mapeamento-crosswalk-xslt" id="toc-matriz-de-mapeamento-crosswalk-xslt">3. Matriz de Mapeamento
+(Crosswalk XSLT)</a></li>
+<li><a href="#orquestração-do-crosswalk-exemplo-de-sintaxe" id="toc-orquestração-do-crosswalk-exemplo-de-sintaxe">4. Orquestração do
+Crosswalk (Exemplo de Sintaxe)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h3 id="docs07_padroes_de_interoperabilidade_externa02_gopg_coleta_e_crosswalk_dspace.md">docs/07_padroes_de_interoperabilidade_externa/02_gopg_coleta_e_crosswalk_dspace.md</h3>
+<h1 id="documento-02-dspace-oai-pmh-e-crosswalk-semântico-fonte-ouro">Documento
+02: DSpace, OAI-PMH e Crosswalk Semântico (Fonte Ouro)</h1>
+<h2 id="a-fonte-ouro-e-a-trava-de-metadados">1. A Fonte Ouro e a Trava
+de Metadados</h2>
+<p>Enquanto o Odoo (Fonte Prata) detém a verdade sobre a “Vida
+Acadêmica”, o Repositório Institucional DSpace (Fonte Ouro) detém a
+verdade sobre o “Produto Final” (Teses, Dissertações e PTTs). O GoPG
+estabelece que a biblioteca digital é o fim da linha; a CAPES coleta o
+XML bibliográfico diretamente do DSpace via protocolo OAI-PMH (Open
+Archives Initiative Protocol for Metadata Harvesting).</p>
+<p>O desafio arquitetural resolvido pelo
+<code>l10n_br_openeducat_capes_integration</code> é garantir a total
+integridade dos metadados e arquivos antes do depósito no DSpace. O
+fluxo determina que: 1. O aluno defende a tese e obtém a aprovação da
+banca no Odoo (<code>approved</code>). 2. O discente realiza o upload do
+PDF final corrigido (com capa, folha de aprovação e ficha catalográfica)
+no Portal do Aluno Odoo (<code>final_pdf_file</code>). 3. A Secretaria
+Acadêmica realiza a conferência de formatação e efetua a validação
+(<code>secretariat_approval = True</code>), o que altera imediatamente o
+status do discente para “Titulado” (<code>homologated</code>) e gera o
+manifesto de metadados (<code>library_manifest_payload</code>). 4. A
+Secretaria encaminha a Ordem de Serviço com o PDF validado e o manifesto
+de metadados para a Biblioteca Central. 5. A Biblioteca Central realiza
+exclusivamente o depósito oficial no Repositório Institucional DSpace
+(Fonte Ouro) e informa o Handle permanente (URI) gerado. 6. O Handle é
+averbado no campo <code>repository_url</code> da classe
+<code>capes.thesis</code> no Odoo para fechamento da malha de
+interoperabilidade e exposição no protocolo OAI-PMH
+(<code>oai_capes</code>).</p>
+<h2 id="o-contexto-e-prefixo-exclusivo-oai_capes">2. O Contexto e
+Prefixo Exclusivo <code>oai_capes</code></h2>
+<p>Para que os robôs da Plataforma Sucupira diferenciem uma dissertação
+normal de um arquivo de som histórico presente na biblioteca da IES, o
+repositório DSpace deve ser configurado com um contexto OAI-PMH
+específico.</p>
+<p>A documentação determina a parametrização do container Tomcat/Solr do
+DSpace para expor o prefixo <code>oai_capes</code> (abandonando o uso
+genérico do <code>oai_dc</code> - Dublin Core, que é insuficiente para
+as ontologias da DAV).</p>
+<h2 id="matriz-de-mapeamento-crosswalk-xslt">3. Matriz de Mapeamento
+(Crosswalk XSLT)</h2>
+<p>O núcleo da interoperabilidade da Fonte Ouro é o arquivo de
+transformação XSLT (<code>oai_capes.xsl</code>) a ser injetado nas
+configurações do repositório institucional. Este arquivo faz a matriz
+“De / Para” (Crosswalk) traduzindo os metadados internos do DSpace
+(namespace <code>dim</code>) para as chaves XML obrigatórias da
+CAPES.</p>
+<p>A configuração de interoperabilidade garantirá o mapeamento dos
+seguintes Identificadores Persistentes Essenciais:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Metadado DSpace (dim)</th>
+<th style="text-align: left;">Tag XML Exposta
+(<code>oai_capes</code>)</th>
+<th style="text-align: left;">Origem da Informação (Odoo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>dc.identifier.uri</code></td>
+<td style="text-align: left;"><code>&lt;capes:identifier&gt;</code></td>
+<td style="text-align: left;">DOI ou Handle gerado pelo RI.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>dc.contributor.author</code></td>
+<td style="text-align: left;"><code>&lt;capes:author&gt;</code></td>
+<td style="text-align: left;"><code>capes.thesis.student_id</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>dc.identifier.orcid</code></td>
+<td style="text-align: left;"><code>&lt;capes:author_orcid&gt;</code></td>
+<td style="text-align: left;"><code>res.partner.orcid</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>dc.contributor.advisor</code></td>
+<td style="text-align: left;"><code>&lt;capes:advisor&gt;</code></td>
+<td style="text-align: left;"><code>capes.thesis.committee.member_role=&#39;advisor&#39;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>dc.subject.cnpq</code></td>
+<td style="text-align: left;"><code>&lt;capes:knowledge_area&gt;</code></td>
+<td style="text-align: left;"><code>op.program.capes.basic_area</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>dc.relation.ispartof</code></td>
+<td style="text-align: left;"><code>&lt;capes:program_code&gt;</code></td>
+<td style="text-align: left;"><code>op.program.capes.snpg_code</code>
+(Chave Mestra)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>local.capes.ptt.axis</code></td>
+<td style="text-align: left;"><code>&lt;capes:ptt_axis&gt;</code></td>
+<td style="text-align: left;"><code>capes.ptt.product.type_id.axis_id</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>local.capes.ptt.stratum</code></td>
+<td style="text-align: left;"><code>&lt;capes:ptt_stratum&gt;</code></td>
+<td style="text-align: left;"><code>capes.ptt.evaluation.final_stratum</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="orquestração-do-crosswalk-exemplo-de-sintaxe">4. Orquestração do
+Crosswalk (Exemplo de Sintaxe)</h2>
+<p>O administrador do repositório deve implementar o crosswalk para
+extrair e cruzar os identificadores organizacionais e biográficos
+injetados originariamente pelo Odoo.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">xsl:template</span> <span class="ot">match=</span><span class="st">&quot;dim:dim&quot;</span>&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">oai_capes:thesis</span> <span class="ot">xmlns:oai_capes=</span><span class="st">&quot;http://capes.gov.br/oai/oai_capes/&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_capes:programCode</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">xsl:value-of</span> <span class="ot">select=</span><span class="st">&quot;dim:field[@mdschema=&#39;local&#39;][@element=&#39;capes&#39;][@qualifier=&#39;snpg&#39;]&quot;</span>/&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_capes:programCode</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_capes:title</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">xsl:value-of</span> <span class="ot">select=</span><span class="st">&quot;dim:field[@mdschema=&#39;dc&#39;][@element=&#39;title&#39;]&quot;</span>/&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_capes:title</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_capes:author</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">oai_capes:name</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                &lt;<span class="kw">xsl:value-of</span> <span class="ot">select=</span><span class="st">&quot;dim:field[@mdschema=&#39;dc&#39;][@element=&#39;contributor&#39;][@qualifier=&#39;author&#39;]&quot;</span>/&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            &lt;/<span class="kw">oai_capes:name</span>&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">oai_capes:orcid</span>&gt;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                &lt;<span class="kw">xsl:value-of</span> <span class="ot">select=</span><span class="st">&quot;dim:field[@mdschema=&#39;dc&#39;][@element=&#39;identifier&#39;][@qualifier=&#39;orcid&#39;]&quot;</span>/&gt;</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            &lt;/<span class="kw">oai_capes:orcid</span>&gt;</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_capes:author</span>&gt;</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_capes:institutionRor</span>&gt;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">xsl:value-of</span> <span class="ot">select=</span><span class="st">&quot;dim:field[@mdschema=&#39;local&#39;][@element=&#39;ies&#39;][@qualifier=&#39;ror&#39;]&quot;</span>/&gt;</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_capes:institutionRor</span>&gt;</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">oai_capes:thesis</span>&gt;</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">xsl:template</span>&gt;</span></code></pre></div>
+<p>Através desta dupla malha — a Fonte Prata (Odoo) a entregar dados
+relacionais em JSON ativo, e a Fonte Ouro (DSpace) a entregar a
+materialidade científica selada em XML passivo —, o ecossistema
+<code>l10n_br_openeducat_capes</code> cumpre integralmente a totalidade
+dos requisitos para a modernização exigida pela governança do MEC/CAPES
+em 2026.</p>
+</body>
+</html>

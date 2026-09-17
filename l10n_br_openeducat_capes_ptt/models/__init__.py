@@ -22,3 +22,5 @@ from . import ptt_taxonomy
 from . import ptt_product
 from . import ptt_author
 from . import ptt_evaluation
+from . import op_student_ptt
+from . import op_faculty_ptt

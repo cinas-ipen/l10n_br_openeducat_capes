@@ -33,7 +33,10 @@ Para situações em que um candidato de elevado valor acadêmico ou tecnológico
 
 ## 5. Evasão Precoce, Vínculo de Orientação e Conversão de Matrícula
 
-* **Trava de Conversão em Aluno Regular (`op.student`):** Ao acionar o comando de conversão de candidato aprovado em aluno regular, o Odoo verifica o parâmetro `proficiency_stage`. Se configurado como `'admission'` (Modo IPEN), o sistema bloqueia a geração do registro e do número de matrícula caso o comprovante de proficiência não esteja deferido no dossiê do candidato.
+* **Trava de Conversão em Aluno Regular e Unicidade do RA (`op.student`):** Ao acionar o comando de conversão de candidato aprovado em aluno regular, o Odoo verifica o parâmetro `proficiency_stage`. Se configurado como `'admission'` (Modo IPEN), o sistema bloqueia a geração da matrícula caso o comprovante de proficiência não esteja deferido no dossiê do candidato.
+* **Preservação da Identidade Soberana da IES (RA Único por CPF):** Durante a conversão, o motor de admissão busca se a pessoa física (`partner_id` / CPF) já possui cadastro discente prévio em `op.student` na instituição mantenedora (`res.company`):
+  * *Discente já existente (ex: ex-Aluno Especial ou egresso):* O sistema **reutiliza obrigatoriamente** o registro de `op.student` e o **mesmo Registro Acadêmico (RA)** institucional perene. Cria-se um novo vínculo acadêmico em `op.student.course` atrelado ao programa de pós-graduação (ex: MPTRCS) e à versão curricular ativa (`curriculum_version_id`), preservando o histórico pregresso intacto.
+  * *Discente novo:* O sistema gera o novo registro de `op.student` com RA institucional permanente gerado pela sequência sequencial da IES.
 * **Gatilho de Evasão Precoce:** O sistema monitora a assiduidade nas primeiras 3 semanas letivas. Ingressantes sem registro de presença ou justificativa formal no portal têm a matrícula cancelada automaticamente como "Desistente", notificando a secretaria para convocar o próximo candidato da lista de espera.
 * **Associação de Orientação:** A formalização do vínculo entre orientador/coorientador e discente deve ser executada no sistema impreterivelmente até o 3º mês letivo, mediante solicitação do aluno e aceite eletrônico do docente via portal.
 * **Declaração de Perfil Profissional (Baseline de Egressos):** No momento da conversão de candidato aprovado em Aluno Regular (`op.student`), o sistema exige obrigatoriamente o preenchimento da ficha de perfil profissional e impacto da titulação (`capes.student.professional.profile`) no Portal do Aluno. O aceite formal dos termos de monitoramento da CAPES é restrição técnica para a emissão definitiva do registro acadêmico e relatórios de acompanhamento quadrienal.
@@ -115,7 +118,13 @@ O Plano de Trabalho atinge o estado `homologated` somente após o parecer favor�
 
 ## 7. Regime de Alunos Especiais (Disciplinas Isoladas)
 
-O sistema disponibiliza um fluxo paralelo e simplificado de admissão para candidatos a disciplinas isoladas (sem vínculo regular com o PPG):
+O sistema disponibiliza um fluxo paralelo e simplificado de admissão para candidatos a disciplinas isoladas (sem vínculo regular conducente a título de pós-graduação):
 
-* **Controle de Teto:** O ERP limita a quantidade máxima de créditos/disciplinas que um aluno especial pode cursar (ex: máximo de 8 créditos).
-* **Restrição de Direitos:** Alunos especiais não possuem orientador, não submetem plano de trabalho e não recebem status de aluno regular. O sistema emite ao final apenas uma Declaração/Certificado de Aproveitamento de Estudos.
+* **Atribuição do Registro Acadêmico (RA) Perene:** O candidato aprovado para cursar disciplinas isoladas recebe um Registro Acadêmico (RA) definitivo e perene da IES gerado em `op.student`, associado de forma única ao seu CPF. Se futuramente for aprovado como aluno regular em qualquer programa da IES, este mesmo RA e ficha cadastral serão mantidos.
+* **Governança no Programa e Oferta:**
+  * O ERP verifica se o regimento do programa autoriza discentes especiais (`allow_special_students = True`). No caso do **MPTRCS/IPEN**, o regimento padrão estabelece `allow_special_students = False`, bloqueando inscrições isoladas no programa.
+  * Em programas que admitem alunos especiais, a inscrição requer que a disciplina autorize (`allow_special_students = True` em `op.subject`), respeite a cota de vagas (`special_seats_quota`) e possua o aceite expresso do professor responsável (`special_student_instructor_consent_required`).
+* **Controle de Teto Regimental:** O sistema controla a quantidade máxima de disciplinas/créditos permitidos para a categoria (`max_special_subjects_limit`).
+* **Armazenamento em Quarentena e Restrição de Direitos:** Alunos especiais não possuem orientador, não submetem plano de trabalho e não recebem status de regular. Os créditos concluídos são armazenados no livro-razão no estado `subject_special_quarantine`. O sistema emite ao final apenas uma Declaração/Certidão de Estudos Isolados.
+* **Regra de Aproveitamento e Política de Reprovações:** Ao ingressar futuramente como regular, o aproveitamento segue a janela decadencial de 36 meses e requer homologação da CPG. Reprovações ocorridas no regime especial figuram apenas na certidão de estudos isolados, não constando no histórico escolar oficial de titulação regular (política `omit_on_regular`).
+

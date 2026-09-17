@@ -4,153 +4,8 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>README</title>
+  <title>OpenEduCat CAPES - Especificação Técnica do Sistema</title>
   <style>
-html {
-color: #1a1a1a;
-background-color: #fdfdfd;
-}
-body {
-margin: 0 auto;
-max-width: 36em;
-padding-left: 50px;
-padding-right: 50px;
-padding-top: 50px;
-padding-bottom: 50px;
-hyphens: auto;
-overflow-wrap: break-word;
-text-rendering: optimizeLegibility;
-font-kerning: normal;
-}
-@media (max-width: 600px) {
-body {
-font-size: 0.9em;
-padding: 12px;
-}
-h1 {
-font-size: 1.8em;
-}
-}
-@media print {
-html {
-background-color: white;
-}
-body {
-background-color: transparent;
-color: black;
-font-size: 12pt;
-}
-p, h2, h3 {
-orphans: 3;
-widows: 3;
-}
-h2, h3, h4 {
-page-break-after: avoid;
-}
-}
-p {
-margin: 1em 0;
-}
-a {
-color: #1a1a1a;
-}
-a:visited {
-color: #1a1a1a;
-}
-img {
-max-width: 100%;
-}
-svg {
-height: auto;
-max-width: 100%;
-}
-h1, h2, h3, h4, h5, h6 {
-margin-top: 1.4em;
-}
-h5, h6 {
-font-size: 1em;
-font-style: italic;
-}
-h6 {
-font-weight: normal;
-}
-ol, ul {
-padding-left: 1.7em;
-margin-top: 1em;
-}
-li > ol, li > ul {
-margin-top: 0;
-}
-blockquote {
-margin: 1em 0 1em 1.7em;
-padding-left: 1em;
-border-left: 2px solid #e6e6e6;
-color: #606060;
-}
-code {
-font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-font-size: 85%;
-margin: 0;
-hyphens: manual;
-}
-pre {
-margin: 1em 0;
-overflow: auto;
-}
-pre code {
-padding: 0;
-overflow: visible;
-overflow-wrap: normal;
-}
-.sourceCode {
-background-color: transparent;
-overflow: visible;
-}
-hr {
-border: none;
-border-top: 1px solid #1a1a1a;
-height: 1px;
-margin: 1em 0;
-}
-table {
-margin: 1em 0;
-border-collapse: collapse;
-width: 100%;
-overflow-x: auto;
-display: block;
-font-variant-numeric: lining-nums tabular-nums;
-}
-table caption {
-margin-bottom: 0.75em;
-}
-tbody {
-margin-top: 0.5em;
-border-top: 1px solid #1a1a1a;
-border-bottom: 1px solid #1a1a1a;
-}
-th {
-border-top: 1px solid #1a1a1a;
-padding: 0.25em 0.5em 0.25em 0.5em;
-}
-td {
-padding: 0.125em 0.5em 0.25em 0.5em;
-}
-header {
-margin-bottom: 4em;
-text-align: center;
-}
-#TOC li {
-list-style: none;
-}
-#TOC ul {
-padding-left: 1.3em;
-}
-#TOC > ul {
-padding-left: 0;
-}
-#TOC a:not(:hover) {
-text-decoration: none;
-}
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -231,14 +86,241 @@ code span.va { color: #19177c; }
 code span.vs { color: #4070a0; } 
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
 </head>
 <body>
+<header id="title-block-header">
+<h1 class="title">OpenEduCat CAPES - Especificação Técnica do
+Sistema</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#ecossistema-l10n_br_openeducat_capes" id="toc-ecossistema-l10n_br_openeducat_capes">Ecossistema
+<code>l10n_br_openeducat_capes</code></a>
+<ul>
+<li><a href="#módulos-de-localização-brasileira-do-openeducat-para-pós-graduação-stricto-sensu-odoo-19.0" id="toc-módulos-de-localização-brasileira-do-openeducat-para-pós-graduação-stricto-sensu-odoo-19.0">Módulos
+de Localização Brasileira do OpenEduCat para Pós-Graduação <em>Stricto
+Sensu</em> (Odoo 19.0)</a></li>
+<li><a href="#topologia-do-monorepo-8-submódulos" id="toc-topologia-do-monorepo-8-submódulos">🏛️ Topologia do Monorepo (8
+Submódulos)</a>
+<ul>
+<li><a href="#árvore-de-dependências-entre-submódulos" id="toc-árvore-de-dependências-entre-submódulos">Árvore de Dependências
+entre Submódulos</a></li>
+</ul></li>
+<li><a href="#execução-via-docker-e-docker-compose" id="toc-execução-via-docker-e-docker-compose">🐳 Execução via Docker e
+Docker Compose</a>
+<ul>
+<li><a href="#pré-requisitos" id="toc-pré-requisitos">1.
+Pré-requisitos</a></li>
+<li><a href="#baixar-dependências-do-openeducat" id="toc-baixar-dependências-do-openeducat">2. Baixar Dependências do
+OpenEduCat</a></li>
+<li><a href="#configurar-variáveis-de-ambiente" id="toc-configurar-variáveis-de-ambiente">3. Configurar Variáveis de
+Ambiente</a></li>
+<li><a href="#iniciar-o-ambiente-docker" id="toc-iniciar-o-ambiente-docker">4. Iniciar o Ambiente Docker</a></li>
+<li><a href="#acessar-a-aplicação" id="toc-acessar-a-aplicação">5.
+Acessar a Aplicação</a></li>
+<li><a href="#perfis-de-usuário-pré-configurados-para-testes" id="toc-perfis-de-usuário-pré-configurados-para-testes">6. Perfis de
+Usuário Pré-Configurados para Testes</a></li>
+</ul></li>
+<li><a href="#transição-para-ip-externo-servidor-de-produção" id="toc-transição-para-ip-externo-servidor-de-produção">🌐 Transição
+para IP Externo / Servidor de Produção</a></li>
+<li><a href="#fluxos-chave-de-arquitetura-e-regras-de-negócio" id="toc-fluxos-chave-de-arquitetura-e-regras-de-negócio">🔄 Fluxos Chave
+de Arquitetura e Regras de Negócio</a>
+<ul>
+<li><a href="#identidade-soberana-discente-arquitetura-multi-vínculo-opção-b" id="toc-identidade-soberana-discente-arquitetura-multi-vínculo-opção-b">1.
+Identidade Soberana Discente &amp; Arquitetura Multi-Vínculo (Opção
+B)</a></li>
+<li><a href="#ciclo-de-vida-do-aluno-especial-quarentena-e-decadência-de-36-meses" id="toc-ciclo-de-vida-do-aluno-especial-quarentena-e-decadência-de-36-meses">2.
+Ciclo de Vida do Aluno Especial, Quarentena e Decadência de 36
+Meses</a></li>
+<li><a href="#trânsito-acadêmico-intra-ies-vs-extra-ies-diferenciação-regulatória-ipenusp" id="toc-trânsito-acadêmico-intra-ies-vs-extra-ies-diferenciação-regulatória-ipenusp">3.
+Trânsito Acadêmico Intra-IES vs Extra-IES (Diferenciação Regulatória
+IPEN/USP)</a></li>
+<li><a href="#versionamento-regimental-dinâmico-op.curriculum.version" id="toc-versionamento-regimental-dinâmico-op.curriculum.version">4.
+Versionamento Regimental Dinâmico
+(<code>op.curriculum.version</code>)</a></li>
+<li><a href="#imutabilidade-e-taxonomia-do-livro-razão-acadêmico-op.student.credit.ledger" id="toc-imutabilidade-e-taxonomia-do-livro-razão-acadêmico-op.student.credit.ledger">5.
+Imutabilidade e Taxonomia do Livro-Razão Acadêmico
+(<code>op.student.credit.ledger</code>)</a></li>
+<li><a href="#depósito-da-versão-final-titulação-fluxo-institucional-biblioteca" id="toc-depósito-da-versão-final-titulação-fluxo-institucional-biblioteca">6.
+Depósito da Versão Final &amp; Titulação (Fluxo Institucional /
+Biblioteca)</a></li>
+<li><a href="#qualis-tecnológico-ptt-capes.ptt.product" id="toc-qualis-tecnológico-ptt-capes.ptt.product">7. Qualis Tecnológico
+PTT (<code>capes.ptt.product</code>)</a></li>
+<li><a href="#gestão-de-diplomas-livros-de-registro-e-titulação-mec-702025-físico-em-papel" id="toc-gestão-de-diplomas-livros-de-registro-e-titulação-mec-702025-físico-em-papel">8.
+Gestão de Diplomas, Livros de Registro e Titulação (MEC 70/2025 &amp;
+Físico em Papel)</a></li>
+<li><a href="#governança-colegiada-da-cpg-op.cpg.committee-op.cpg.member-op.cpg.meeting" id="toc-governança-colegiada-da-cpg-op.cpg.committee-op.cpg.member-op.cpg.meeting">9.
+Governança Colegiada da CPG (<code>op.cpg.committee</code>,
+<code>op.cpg.member</code>, <code>op.cpg.meeting</code>)</a></li>
+<li><a href="#visão-360-integrada-do-discente-e-docente" id="toc-visão-360-integrada-do-discente-e-docente">10. Visão 360°
+Integrada do Discente e Docente</a></li>
+<li><a href="#integração-estrutural-com-configurações-nativas-do-openeducat" id="toc-integração-estrutural-com-configurações-nativas-do-openeducat">11.
+Integração Estrutural com Configurações Nativas do OpenEduCat</a></li>
+</ul></li>
+<li><a href="#perfil-de-referência-e-validação-regulatória" id="toc-perfil-de-referência-e-validação-regulatória">📊 Perfil de
+Referência e Validação Regulatória</a></li>
+<li><a href="#documentação-técnica-completa-docs" id="toc-documentação-técnica-completa-docs">📚 Documentação Técnica
+Completa (<code>docs/</code>)</a></li>
+<li><a href="#comandos-úteis" id="toc-comandos-úteis">🛠️ Comandos
+Úteis</a></li>
+<li><a href="#governança-e-contribuição" id="toc-governança-e-contribuição">🤝 Governança e Contribuição</a></li>
+<li><a href="#licença" id="toc-licença">📄 Licença</a></li>
+</ul></li>
+</ul>
+</nav>
 <h1 id="ecossistema-l10n_br_openeducat_capes">Ecossistema
 <code>l10n_br_openeducat_capes</code></h1>
 <h3 id="módulos-de-localização-brasileira-do-openeducat-para-pós-graduação-stricto-sensu-odoo-19.0">Módulos
 de Localização Brasileira do OpenEduCat para Pós-Graduação <em>Stricto
 Sensu</em> (Odoo 19.0)</h3>
-<p><a href="https://www.odoo.com/"><img role="img" aria-label="Odoo Version" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NCIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJPZG9vOiAxOS4wIj48dGl0bGU+T2RvbzogMTkuMDwvdGl0bGU+PGZpbHRlciBpZD0iYmx1ciI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTYiLz48L2ZpbHRlcj48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI3NCIgaGVpZ2h0PSIyMCIgcng9IjMiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjM5IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iMzkiIHdpZHRoPSIzNSIgaGVpZ2h0PSIyMCIgZmlsbD0icHVycGxlIi8+PHJlY3Qgd2lkdGg9Ijc0IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyMDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIyOTAiPk9kb288L3RleHQ+PHRleHQgeD0iMjA1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjI5MCI+T2RvbzwvdGV4dD48L2c+PHRleHQgeD0iMjA1IiB5PSIxNDAiIHRleHRMZW5ndGg9IjI5MCI+T2RvbzwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI1NTUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIyNTAiPjE5LjA8L3RleHQ+PHRleHQgeD0iNTU1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjI1MCI+MTkuMDwvdGV4dD48L2c+PHRleHQgeD0iNTU1IiB5PSIxNDAiIHRleHRMZW5ndGg9IjI1MCI+MTkuMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="Odoo Version" /></a> <a href="https://openeducat.org/"><img role="img" aria-label="OpenEduCat Version" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iT3BlbkVkdUNhdDogMTkuMCI+PHRpdGxlPk9wZW5FZHVDYXQ6IDE5LjA8L3RpdGxlPjxmaWx0ZXIgaWQ9ImJsdXIiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE2Ii8+PC9maWx0ZXI+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTE0IiBoZWlnaHQ9IjIwIiByeD0iMyIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNzkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI3OSIgd2lkdGg9IjM1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3ZWM2Ii8+PHJlY3Qgd2lkdGg9IjExNCIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxnIHRyYW5zZm9ybT0ic2NhbGUoLjEpIj48ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0iIzAxMDEwMSI+PHRleHQgeD0iNDA1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iNjkwIj5PcGVuRWR1Q2F0PC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSI2OTAiPk9wZW5FZHVDYXQ8L3RleHQ+PC9nPjx0ZXh0IHg9IjQwNSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSI2OTAiPk9wZW5FZHVDYXQ8L3RleHQ+PC9nPjxnIHRyYW5zZm9ybT0ic2NhbGUoLjEpIj48ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZmlsbD0iIzAxMDEwMSI+PHRleHQgeD0iOTU1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iMjUwIj4xOS4wPC90ZXh0Pjx0ZXh0IHg9Ijk1NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIyNTAiPjE5LjA8L3RleHQ+PC9nPjx0ZXh0IHg9Ijk1NSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIyNTAiPjE5LjA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="OpenEduCat Version" /></a> <a href="https://www.gov.br/capes/"><img role="img" aria-label="GoPG CAPES" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDgiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iQ0FQRVM6IEdvUEcgQ29tcGxpYW50Ij48dGl0bGU+Q0FQRVM6IEdvUEcgQ29tcGxpYW50PC90aXRsZT48ZmlsdGVyIGlkPSJibHVyIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNiIvPjwvZmlsdGVyPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjE0OCIgaGVpZ2h0PSIyMCIgcng9IjMiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNDciIHdpZHRoPSIxMDEiIGhlaWdodD0iMjAiIGZpbGw9IiM2N2FjMDkiLz48cmVjdCB3aWR0aD0iMTQ4IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyNDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzNzAiPkNBUEVTPC90ZXh0Pjx0ZXh0IHg9IjI0NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIzNzAiPkNBUEVTPC90ZXh0PjwvZz48dGV4dCB4PSIyNDUiIHk9IjE0MCIgdGV4dExlbmd0aD0iMzcwIj5DQVBFUzwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI5NjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSI5MTAiPkdvUEcgQ29tcGxpYW50PC90ZXh0Pjx0ZXh0IHg9Ijk2NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSI5MTAiPkdvUEcgQ29tcGxpYW50PC90ZXh0PjwvZz48dGV4dCB4PSI5NjUiIHk9IjE0MCIgdGV4dExlbmd0aD0iOTEwIj5Hb1BHIENvbXBsaWFudDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="GoPG CAPES" /></a> <a href="https://www.in.gov.br/"><img role="img" aria-label="Portaria MEC 70/2025" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMzYiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iTUVDOiBQb3J0YXJpYSA3MC8yMDI1IChEaXBsb21hIERpZ2l0YWwpIj48dGl0bGU+TUVDOiBQb3J0YXJpYSA3MC8yMDI1IChEaXBsb21hIERpZ2l0YWwpPC90aXRsZT48ZmlsdGVyIGlkPSJibHVyIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNiIvPjwvZmlsdGVyPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjIzNiIgaGVpZ2h0PSIyMCIgcng9IjMiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjMzIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iMzMiIHdpZHRoPSIyMDMiIGhlaWdodD0iMjAiIGZpbGw9IiNlYTcyMzMiLz48cmVjdCB3aWR0aD0iMjM2IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIxNzUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIyMzAiPk1FQzwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMjMwIj5NRUM8L3RleHQ+PC9nPjx0ZXh0IHg9IjE3NSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIyMzAiPk1FQzwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIxMzM1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjgiIGZpbHRlcj0idXJsKCNibHVyKSIgdGV4dExlbmd0aD0iMTkzMCI+UG9ydGFyaWEgNzAvMjAyNSAoRGlwbG9tYSBEaWdpdGFsKTwvdGV4dD48dGV4dCB4PSIxMzM1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjE5MzAiPlBvcnRhcmlhIDcwLzIwMjUgKERpcGxvbWEgRGlnaXRhbCk8L3RleHQ+PC9nPjx0ZXh0IHg9IjEzMzUiIHk9IjE0MCIgdGV4dExlbmd0aD0iMTkzMCI+UG9ydGFyaWEgNzAvMjAyNSAoRGlwbG9tYSBEaWdpdGFsKTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="Portaria MEC 70/2025" /></a> <a href="LICENSE"><img role="img" aria-label="License LGPL-3.0" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTIiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iTGljZW5zZTogTEdQTC0zLjAiPjx0aXRsZT5MaWNlbnNlOiBMR1BMLTMuMDwvdGl0bGU+PGZpbHRlciBpZD0iYmx1ciI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTYiLz48L2ZpbHRlcj48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMTIiIGhlaWdodD0iMjAiIHJ4PSIzIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI1MSIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjUxIiB3aWR0aD0iNjEiIGhlaWdodD0iMjAiIGZpbGw9IiMwMDdlYzYiLz48cmVjdCB3aWR0aD0iMTEyIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSIyNjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSI0MTAiPkxpY2Vuc2U8L3RleHQ+PHRleHQgeD0iMjY1IiB5PSIxNTAiIGZpbGwtb3BhY2l0eT0iLjMiIHRleHRMZW5ndGg9IjQxMCI+TGljZW5zZTwvdGV4dD48L2c+PHRleHQgeD0iMjY1IiB5PSIxNDAiIHRleHRMZW5ndGg9IjQxMCI+TGljZW5zZTwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI4MDUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSI1MTAiPkxHUEwtMy4wPC90ZXh0Pjx0ZXh0IHg9IjgwNSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSI1MTAiPkxHUEwtMy4wPC90ZXh0PjwvZz48dGV4dCB4PSI4MDUiIHk9IjE0MCIgdGV4dExlbmd0aD0iNTEwIj5MR1BMLTMuMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="License LGPL-3.0" /></a> <a href="https://www.docker.com/"><img role="img" aria-label="Docker Ready" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTEiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iRG9ja2VyOiBSZWFkeSI+PHRpdGxlPkRvY2tlcjogUmVhZHk8L3RpdGxlPjxmaWx0ZXIgaWQ9ImJsdXIiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE2Ii8+PC9maWx0ZXI+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iMTExIiBoZWlnaHQ9IjIwIiByeD0iMyIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNjYiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI2NiIgd2lkdGg9IjQ1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3ZWM2Ii8+PHJlY3Qgd2lkdGg9IjExMSIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxpbWFnZSB4PSI1IiB5PSIzIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5Qm1hV3hzUFNJak1qUTVOa1ZFSWlCeWIyeGxQU0pwYldjaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TkNBeU5DSWdlRzFzYm5NOUltaDBkSEE2THk5M2QzY3Vkek11YjNKbkx6SXdNREF2YzNabklqNDhkR2wwYkdVK1JHOWphMlZ5UEM5MGFYUnNaVDQ4Y0dGMGFDQmtQU0pOTVRNdU9UZ3pJREV4TGpBM09HZ3lMakV4T1dFdU1UZzJMakU0TmlBd0lEQXdMakU0TmkwdU1UZzFWamt1TURBMllTNHhPRFl1TVRnMklEQWdNREF0TGpFNE5pMHVNVGcyYUMweUxqRXhPV0V1TVRnMUxqRTROU0F3SURBd0xTNHhPRFV1TVRnMWRqRXVPRGc0WXpBZ0xqRXdNaTR3T0RNdU1UZzFMakU0TlM0eE9EVnRMVEl1T1RVMExUVXVORE5vTWk0eE1UaGhMakU0Tmk0eE9EWWdNQ0F3TUM0eE9EWXRMakU0TmxZekxqVTNOR0V1TVRnMkxqRTROaUF3SURBd0xTNHhPRFl0TGpFNE5XZ3RNaTR4TVRoaExqRTROUzR4T0RVZ01DQXdNQzB1TVRnMUxqRTROWFl4TGpnNE9HTXdJQzR4TURJdU1EZ3lMakU0TlM0eE9EVXVNVGcxYlRBZ01pNDNNVFpvTWk0eE1UaGhMakU0Tnk0eE9EY2dNQ0F3TUM0eE9EWXRMakU0TmxZMkxqSTVZUzR4T0RZdU1UZzJJREFnTURBdExqRTROaTB1TVRnMWFDMHlMakV4T0dFdU1UZzFMakU0TlNBd0lEQXdMUzR4T0RVdU1UZzFkakV1T0RnM1l6QWdMakV3TWk0d09ESXVNVGcxTGpFNE5TNHhPRFp0TFRJdU9UTWdNR2d5TGpFeVlTNHhPRFl1TVRnMklEQWdNREF1TVRnMExTNHhPRFpXTmk0eU9XRXVNVGcxTGpFNE5TQXdJREF3TFM0eE9EVXRMakU0TlVnNExqRmhMakU0TlM0eE9EVWdNQ0F3TUMwdU1UZzFMakU0TlhZeExqZzROMk13SUM0eE1ESXVNRGd6TGpFNE5TNHhPRFV1TVRnMmJTMHlMamsyTkNBd2FESXVNVEU1WVM0eE9EWXVNVGcySURBZ01EQXVNVGcxTFM0eE9EWldOaTR5T1dFdU1UZzFMakU0TlNBd0lEQXdMUzR4T0RVdExqRTROVWcxTGpFek5tRXVNVGcyTGpFNE5pQXdJREF3TFM0eE9EWXVNVGcxZGpFdU9EZzNZekFnTGpFd01pNHdPRFF1TVRnMUxqRTROaTR4T0RadE5TNDRPVE1nTWk0M01UVm9NaTR4TVRoaExqRTROaTR4T0RZZ01DQXdNQzR4T0RZdExqRTROVlk1TGpBd05tRXVNVGcyTGpFNE5pQXdJREF3TFM0eE9EWXRMakU0Tm1ndE1pNHhNVGhoTGpFNE5TNHhPRFVnTUNBd01DMHVNVGcxTGpFNE5YWXhMamc0T0dNd0lDNHhNREl1TURneUxqRTROUzR4T0RVdU1UZzFiUzB5TGpreklEQm9NaTR4TW1FdU1UZzFMakU0TlNBd0lEQXdMakU0TkMwdU1UZzFWamt1TURBMllTNHhPRFV1TVRnMUlEQWdNREF0TGpFNE5DMHVNVGcyYUMweUxqRXlZUzR4T0RVdU1UZzFJREFnTURBdExqRTROQzR4T0RWMk1TNDRPRGhqTUNBdU1UQXlMakE0TXk0eE9EVXVNVGcxTGpFNE5XMHRNaTQ1TmpRZ01HZ3lMakV4T1dFdU1UZzFMakU0TlNBd0lEQXdMakU0TlMwdU1UZzFWamt1TURBMllTNHhPRFV1TVRnMUlEQWdNREF0TGpFNE5DMHVNVGcyYUMweUxqRXlZUzR4T0RZdU1UZzJJREFnTURBdExqRTROaTR4T0RaMk1TNDRPRGRqTUNBdU1UQXlMakE0TkM0eE9EVXVNVGcyTGpFNE5XMHRNaTQ1TWlBd2FESXVNVEpoTGpFNE5TNHhPRFVnTUNBd01DNHhPRFF0TGpFNE5WWTVMakF3Tm1FdU1UZzFMakU0TlNBd0lEQXdMUzR4T0RRdExqRTRObWd0TWk0eE1tRXVNVGcxTGpFNE5TQXdJREF3TFM0eE9EUXVNVGcxZGpFdU9EZzRZekFnTGpFd01pNHdPREl1TVRnMUxqRTROUzR4T0RWTk1qTXVOell6SURrdU9EbGpMUzR3TmpVdExqQTFNUzB1TmpjeUxTNDFNUzB4TGprMU5DMHVOVEV0TGpNek9DNHdNREV0TGpZM05pNHdNeTB4TGpBeExqQTROeTB1TWpRNExURXVOeTB4TGpZMU15MHlMalV6TFRFdU56RTJMVEl1TlRZMmJDMHVNelEwTFM0eE9Ua3RMakl5Tmk0ek1qZGpMUzR5T0RRdU5ETTRMUzQwT1M0NU1qSXRMall4TWlBeExqUXpMUzR5TXk0NU55MHVNRGtnTVM0NE9ESXVOREF6SURJdU5qWXhMUzQxT1RVdU16TXlMVEV1TlRVdU5ERXpMVEV1TnpRMExqUXlTQzQzTlRGaExqYzFNUzQzTlRFZ01DQXdNQzB1TnpVdU56UTRJREV4TGpNM05pQXhNUzR6TnpZZ01DQXdNQzQyT1RJZ05DNHdOakpqTGpVME5TQXhMalF5T0NBeExqTTFOU0F5TGpRNElESXVOREVnTXk0eE1qUWdNUzR4T0M0M01qTWdNeTR4SURFdU1UTTNJRFV1TWpjMUlERXVNVE0zTGprNE15NHdNRE1nTVM0NU5qTXRMakE0TmlBeUxqa3pMUzR5TmpaaE1USXVNalE0SURFeUxqSTBPQ0F3SURBd015NDRNak10TVM0ek9EbGpMams0TFM0MU5qY2dNUzQ0TmkweExqSTRPQ0F5TGpZeExUSXVNVE0ySURFdU1qVXlMVEV1TkRFNElERXVPVGs0TFRJdU9UazNJREl1TlRVekxUUXVOR2d1TWpJeFl6RXVNemN5SURBZ01pNHlNVFV0TGpVME9TQXlMalk0TFRFdU1EQTVMak13T1MwdU1qa3pMalUxTFM0Mk5TNDNNRGN0TVM0d05EWnNMakE1T0MwdU1qZzRXaUl2UGp3dmMzWm5QZz09Ii8+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI0MjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzOTAiPkRvY2tlcjwvdGV4dD48dGV4dCB4PSI0MjUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuMyIgdGV4dExlbmd0aD0iMzkwIj5Eb2NrZXI8L3RleHQ+PC9nPjx0ZXh0IHg9IjQyNSIgeT0iMTQwIiB0ZXh0TGVuZ3RoPSIzOTAiPkRvY2tlcjwvdGV4dD48L2c+PGcgdHJhbnNmb3JtPSJzY2FsZSguMSkiPjxnIGFyaWEtaGlkZGVuPSJ0cnVlIiBmaWxsPSIjMDEwMTAxIj48dGV4dCB4PSI4NzUiIHk9IjE1MCIgZmlsbC1vcGFjaXR5PSIuOCIgZmlsdGVyPSJ1cmwoI2JsdXIpIiB0ZXh0TGVuZ3RoPSIzNTAiPlJlYWR5PC90ZXh0Pjx0ZXh0IHg9Ijg3NSIgeT0iMTUwIiBmaWxsLW9wYWNpdHk9Ii4zIiB0ZXh0TGVuZ3RoPSIzNTAiPlJlYWR5PC90ZXh0PjwvZz48dGV4dCB4PSI4NzUiIHk9IjE0MCIgdGV4dExlbmd0aD0iMzUwIj5SZWFkeTwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" alt="Docker Ready" /></a></p>
+<p><a href="https://www.odoo.com/"><img role="img" aria-label="Odoo Version" src="https://img.shields.io/badge/Odoo-19.0-purple.svg" alt="Odoo Version" /></a> <a href="https://openeducat.org/"><img role="img" aria-label="OpenEduCat Version" src="https://img.shields.io/badge/OpenEduCat-19.0-blue.svg" alt="OpenEduCat Version" /></a> <a href="https://www.gov.br/capes/"><img role="img" aria-label="GoPG CAPES" src="https://img.shields.io/badge/CAPES-GoPG%20Compliant-green.svg" alt="GoPG CAPES" /></a> <a href="https://www.in.gov.br/"><img role="img" aria-label="Portaria MEC 70/2025" src="https://img.shields.io/badge/MEC-Portaria%2070%2F2025%20(Diploma%20Digital)-orange.svg" alt="Portaria MEC 70/2025" /></a> <a href="LICENSE"><img role="img" aria-label="License LGPL-3.0" src="https://img.shields.io/badge/License-LGPL--3.0-blue.svg" alt="License LGPL-3.0" /></a> <a href="https://www.docker.com/"><img role="img" aria-label="Docker Ready" src="https://img.shields.io/badge/Docker-Ready-blue?logo=docker" alt="Docker Ready" /></a></p>
 <p>O <strong><code>l10n_br_openeducat_capes</code></strong> é uma suíte
 completa de módulos de localização brasileira para o <strong>Odoo
 19.0</strong> e <strong>OpenEduCat 19.0</strong>, projetada para
@@ -258,14 +340,14 @@ Submódulos)</h2>
 Design</em> (DDD) em 8 submódulos desacoplados com dependências
 estritas:</p>
 <pre class="text"><code>l10n_br_openeducat_capes/
-├── l10n_br_openeducat_capes_core         # PIDs biográficos (ORCiD, Lattes, CPF), IES, PPGs (Código SNPG)
-├── l10n_br_openeducat_capes_admission    # Editais de Seleção, Cotas, Fases Dinâmicas e Conversão em Aluno
-├── l10n_br_openeducat_capes_academic     # Versionamento Regimental (op.curriculum.version) e Livro-Razão (append-only)
+├── l10n_br_openeducat_capes_core         # Identidade Soberana Discente (RA perene), PIDs biográficos (ORCiD, Lattes, CPF), IES, PPGs (Código SNPG)
+├── l10n_br_openeducat_capes_admission    # Editais de Seleção, Cotas, Fases Dinâmicas e Conversão em Aluno com Preservação de RA
+├── l10n_br_openeducat_capes_academic     # Versionamento Regimental (op.curriculum.version), Multi-Vínculo, Aluno Especial, Trânsito Intra-IES e Livro-Razão (append-only)
 ├── l10n_br_openeducat_capes_research     # Projetos de Pesquisa, Linhas de Pesquisa e Taxonomia CRediT
 ├── l10n_br_openeducat_capes_thesis       # Ritos Bipartidos (Seminários/Qualificação/Defesa), Bancas e Versão Final PDF
 ├── l10n_br_openeducat_capes_ptt          # Produtos Técnico-Tecnológicos, 4 Eixos, 21 Tipos, TRL 1-9 e Qualis Tecnológico
 ├── l10n_br_openeducat_capes_integration  # Barramento REST JSON v1 (Fonte Prata) e Crosswalk DSpace OAI-PMH (Fonte Ouro)
-└── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e XAdES</code></pre>
+└── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e Registro Externo (IPEN -&gt; USP)</code></pre>
 <h3 id="árvore-de-dependências-entre-submódulos">Árvore de Dependências
 entre Submódulos</h3>
 <pre class="mermaid"><code>graph TD
@@ -332,6 +414,61 @@ barra de busca e instale os submódulos na ordem: 1.
 <code>l10n_br_openeducat_capes_ptt</code> 7.
 <code>l10n_br_openeducat_capes_integration</code> 8.
 <code>l10n_br_openeducat_capes_diploma</code></p>
+<h3 id="perfis-de-usuário-pré-configurados-para-testes">6. Perfis de
+Usuário Pré-Configurados para Testes</h3>
+<p>Para testar o cotidiano dos diferentes atores do Programa de
+Pós-Graduação no cenário de referência:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Login</th>
+<th>Perfil / Papel</th>
+<th>Senha de Teste</th>
+<th>Atribuições Principais</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>admin</code></td>
+<td>Administrador de TI / Sistema</td>
+<td><code>admin</code></td>
+<td>Gestão de parâmetros globais, base de dados e módulos Odoo.</td>
+</tr>
+<tr>
+<td><code>secretaria</code></td>
+<td>Secretaria Acadêmica</td>
+<td><code>secretaria123</code></td>
+<td>Matrículas, cadastros discentes, livro-razão, históricos e
+diplomas.</td>
+</tr>
+<tr>
+<td><code>coordenador</code></td>
+<td>Coordenador do Programa</td>
+<td><code>coordenador123</code></td>
+<td>Presidência da CPG, homologação de bancas, acompanhamento de
+prazos.</td>
+</tr>
+<tr>
+<td><code>vicecoordenador</code></td>
+<td>Vice-Coordenador do Programa</td>
+<td><code>vicecoordenador123</code></td>
+<td>Apoio à coordenação e substituição em deliberações colegiadas.</td>
+</tr>
+<tr>
+<td><code>professor</code></td>
+<td>Docente e Orientador</td>
+<td><code>professor123</code></td>
+<td>Diário de classe, notas, planos de trabalho e pareceres de
+orientandos.</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="transição-para-ip-externo-servidor-de-produção">🌐 Transição
 para IP Externo / Servidor de Produção</h2>
@@ -347,7 +484,117 @@ para IP Externo / Servidor de Produção</h2>
 <hr />
 <h2 id="fluxos-chave-de-arquitetura-e-regras-de-negócio">🔄 Fluxos Chave
 de Arquitetura e Regras de Negócio</h2>
-<h3 id="depósito-da-versão-final-titulação-fluxo-institucional-biblioteca">1.
+<h3 id="identidade-soberana-discente-arquitetura-multi-vínculo-opção-b">1.
+Identidade Soberana Discente &amp; Arquitetura Multi-Vínculo (Opção
+B)</h3>
+<ul>
+<li><strong>Cadastro Perene na Mantenedora
+(<code>op.student</code>):</strong> Cada discente possui um Registro
+Acadêmico (RA) único e vitalício gerado por sequência automática,
+indexado ao seu CPF e à empresa mantenedora (<code>company_id</code>).
+Uma restrição Python impede duplicidade discente na mesma IES.</li>
+<li><strong>Desacoplamento de Vínculos de Curso
+(<code>op.student.course</code>):</strong> O aluno pode transitar por
+múltiplos regimes ao longo de sua trajetória (Aluno Especial, Mestrado
+Regular, Doutorado Regular) sem duplicar seu cadastro pessoal nem seu
+RA.</li>
+<li><strong>Conversão com Preservação de Identidade:</strong> Na
+admissão regular (<code>op.admission.edital</code>), o sistema detecta
+se o candidato aprovado já possui cadastro discente na IES (por exemplo,
+como ex-aluno especial), reutiliza o registro existente, preserva o RA
+soberano e apenas instancia o novo vínculo de curso regular.</li>
+</ul>
+<h3 id="ciclo-de-vida-do-aluno-especial-quarentena-e-decadência-de-36-meses">2.
+Ciclo de Vida do Aluno Especial, Quarentena e Decadência de 36
+Meses</h3>
+<ul>
+<li><strong>Quarentena de Créditos
+(<code>subject_special_quarantine</code>):</strong> Disciplinas cursadas
+no regime especial são lançadas no Livro-Razão imutável sob uma
+taxonomia de quarentena. Elas <strong>não pontuam</strong> para
+integralização de programas regulares nem geram direitos automáticos de
+titulação.</li>
+<li><strong>Decadência Prescricional de 36 Meses (3 Anos):</strong> Em
+alinhamento com a legislação educacional, os créditos especiais possuem
+validade máxima de 3 anos para aproveitamento.</li>
+<li><strong>Incorporação Formal via CPG
+(<code>op.special.credit.incorporation.request</code>):</strong> Ao
+ingressar como regular, o discente submete requerimento de
+aproveitamento que passa por parecer de mérito do orientador e
+homologação da CPG. Aprovado, gera lançamentos <em>append-only</em>
+convalidadores do tipo <code>subject_special_incorporated</code>.</li>
+<li><strong>Histórico Oficial Limpo
+(<code>omit_on_regular</code>):</strong> Na emissão do histórico escolar
+oficial de conclusão do aluno regular, as disciplinas de regime especial
+mantidas em quarentena (não incorporadas) e eventuais reprovações
+daquele período são omitidas, garantindo fé pública e conformidade
+documental.</li>
+</ul>
+<h3 id="trânsito-acadêmico-intra-ies-vs-extra-ies-diferenciação-regulatória-ipenusp">3.
+Trânsito Acadêmico Intra-IES vs Extra-IES (Diferenciação Regulatória
+IPEN/USP)</h3>
+<ul>
+<li><strong>Trânsito Intra-IES
+(<code>subject_intra_ies</code>):</strong> Discentes regulares podem
+cursar disciplinas oferecidas por outros programas de pós-graduação da
+mesma IES mantenedora (<code>company_id</code>). Os créditos são
+integralizados a <strong>100% de seu valor nominal original</strong>,
+regulados por teto percentual definido no regimento curricular
+(<code>max_intra_ies_credits_percent</code>).</li>
+<li><strong>Diferenciação Regulatória do Caso IPEN / USP:</strong>
+<ul>
+<li>O <strong>MPTRCS</strong> é um programa de pós-graduação exclusivo
+do <strong>IPEN</strong> (IES = IPEN-CNEN/SP).</li>
+<li>O outro programa de pós-graduação em funcionamento nas instalações
+do IPEN (<strong>Tecnologia Nuclear</strong>) é formalmente vinculado à
+<strong>Universidade de São Paulo (USP)</strong> (IES = USP).</li>
+<li>Consequentemente, para os alunos do MPTRCS, o programa de Tecnologia
+Nuclear da USP constitui juridicamente <strong>outra IES
+(Extra-IES)</strong>. Seus créditos entram como
+<code>subject_extra_ies</code>, exigindo parecer e autorização da CPG e
+computando contra o teto regimental de créditos externos (Art. 31º §1º -
+máximo de 20 créditos).</li>
+</ul></li>
+</ul>
+<h3 id="versionamento-regimental-dinâmico-op.curriculum.version">4.
+Versionamento Regimental Dinâmico
+(<code>op.curriculum.version</code>)</h3>
+<ul>
+<li>Todas as regras de quórum de bancas, prazos limite, prorrogações,
+proficiência em idiomas, matriz de créditos (totais, disciplinas,
+dissertação, seminário geral, teto externo, teto intra-IES) e
+parametrizações de alunos especiais são 100% configuráveis por programa
+e regimento.</li>
+<li>Sem <em>hardcode</em> no código Python, respeitando o princípio do
+<strong>Ato Jurídico Perfeito (CF/88)</strong>.</li>
+</ul>
+<h3 id="imutabilidade-e-taxonomia-do-livro-razão-acadêmico-op.student.credit.ledger">5.
+Imutabilidade e Taxonomia do Livro-Razão Acadêmico
+(<code>op.student.credit.ledger</code>)</h3>
+<ul>
+<li>Tabelas de auditoria operadas estritamente em modo
+<em>append-only</em> (<code>unlink</code> bloqueado).</li>
+<li>Taxonomia exaustiva de 8 naturezas de crédito:
+<ol type="1">
+<li><code>subject_internal</code>: Disciplinas regulares do próprio
+programa.</li>
+<li><code>subject_intra_ies</code>: Disciplinas cursadas em outros PPGs
+da mesma IES (100% nominal).</li>
+<li><code>subject_special_quarantine</code>: Disciplinas em regime
+especial mantidas em quarentena.</li>
+<li><code>subject_special_incorporated</code>: Disciplinas especiais
+formalmente convalidadas pela CPG.</li>
+<li><code>subject_extra_ies</code>: Disciplinas cursadas em outras IES e
+aprovadas pela CPG.</li>
+<li><code>apo</code>: Atividades Programadas Obrigatórias / Produção
+Técnica.</li>
+<li><code>milestone</code>: Créditos conferidos por ritos de
+Qualificação e Defesa.</li>
+<li><code>external</code>: Aproveitamento de créditos externos
+legados.</li>
+</ol></li>
+</ul>
+<h3 id="depósito-da-versão-final-titulação-fluxo-institucional-biblioteca">6.
 Depósito da Versão Final &amp; Titulação (Fluxo Institucional /
 Biblioteca)</h3>
 <p>Em alinhamento com as melhores práticas institucionais, o discente
@@ -370,25 +617,7 @@ Odoo.</p>
     B-&gt;&gt;DS: Realiza Upload Oficial e Curadoria no DSpace
     DS--&gt;&gt;B: Gera Handle (URI Persistente)
     B-&gt;&gt;ERP: Averba Handle (repository_url)</code></pre>
-<h3 id="versionamento-regimental-dinâmico-op.curriculum.version">2.
-Versionamento Regimental Dinâmico
-(<code>op.curriculum.version</code>)</h3>
-<ul>
-<li>Todas as regras de quórum de bancas, prazos limite, prorrogações,
-proficiência em idiomas e fatores de conversão de créditos (disciplinas,
-exames, trabalhos de conclusão, atividades complementares) são 100%
-parametrizáveis por programa e regimento.</li>
-<li>Sem <em>hardcode</em> no código Python.</li>
-</ul>
-<h3 id="imutabilidade-do-livro-razão-op.student.credit.ledger">3.
-Imutabilidade do Livro-Razão
-(<code>op.student.credit.ledger</code>)</h3>
-<ul>
-<li>Tabelas operadas estritamente em modo <em>append-only</em>.</li>
-<li>Impedimento absoluto de recálculos destrutivos ou exclusão de
-créditos já consolidados no histórico escolar.</li>
-</ul>
-<h3 id="qualis-tecnológico-ptt-capes.ptt.product">4. Qualis Tecnológico
+<h3 id="qualis-tecnológico-ptt-capes.ptt.product">7. Qualis Tecnológico
 PTT (<code>capes.ptt.product</code>)</h3>
 <ul>
 <li>Taxonomia oficial de <strong>4 Eixos Estruturantes</strong> e
@@ -396,17 +625,67 @@ PTT (<code>capes.ptt.product</code>)</h3>
 <li>Avaliação multidimensional em escala <strong>TRL 1-9</strong> com
 calculadora automatizada de estratos (<strong>T1 a T5</strong>).</li>
 </ul>
-<h3 id="gestão-de-diplomas-livros-de-registro-e-titulação-mec-702025-físico-em-papel">5.
+<h3 id="gestão-de-diplomas-livros-de-registro-e-titulação-mec-702025-físico-em-papel">8.
 Gestão de Diplomas, Livros de Registro e Titulação (MEC 70/2025 &amp;
 Físico em Papel)</h3>
 <ul>
-<li>Governança parametrizável para Universidades Autônomas e para
+<li><strong>Governança Dual de Registro:</strong> Suporte nativo tanto
+para Universidades com Autonomia Registradora Direta quanto para
 Institutos de Pesquisa (como o <strong>IPEN-CNEN/SP</strong>), cujos
 diplomas são remetidos para escrituração na IES Registradora Externa
 (<strong>USP</strong>).</li>
-<li>Suporte híbrido a Diplomas Físicos em Papel (com protocolo de
-remessa, Livro de Registro e Folha) e Diplomas Nato-Digitais em
-XML/XAdES (Portaria MEC nº 70/2025).</li>
+<li><strong>Emissão Híbrida e Filtragem:</strong> Suporte a Diplomas
+Físicos em Papel (com controle de Livro de Registro e Folha) e Diplomas
+Nato-Digitais em XML/XAdES (Portaria MEC nº 70/2025), com exclusão
+automática de registros residuais em quarentena do dossiê de
+titulação.</li>
+</ul>
+<h3 id="governança-colegiada-da-cpg-op.cpg.committee-op.cpg.member-op.cpg.meeting">9.
+Governança Colegiada da CPG (<code>op.cpg.committee</code>,
+<code>op.cpg.member</code>, <code>op.cpg.meeting</code>)</h3>
+<ul>
+<li><strong>Composição Regimental Estrita:</strong> Mandato colegiado
+trienal estruturado formalmente com <strong>6 Membros Titulares</strong>
+(Coordenador, Vice-Coordenador, 3 Docentes Titulares e 1 Representante
+Discente) e <strong>4 Suplentes</strong> (3 Docentes Suplentes e 1
+Representante Discente).</li>
+<li><strong>Reuniões Mensais &amp; Pautas Abertas:</strong> Gestão de
+calendário de reuniões ordinárias com pauta deliberativa para
+requerimentos discentes (<code>op.academic.request</code>),
+credenciamento docente e aprovação de bancas.</li>
+<li><strong>Assinatura Eletrônica por Clique Auditável
+(<code>op.cpg.approval.log</code>):</strong> Cada homologação registra
+de forma perene e imutável o <code>User ID</code>,
+<code>Timestamp UTC</code>, <code>Ação</code> e o
+<code>Endereço IP</code> dos membros votantes, gerando a Ata Oficial em
+QWeb PDF.</li>
+</ul>
+<h3 id="visão-360-integrada-do-discente-e-docente">10. Visão 360°
+Integrada do Discente e Docente</h3>
+<ul>
+<li><strong>Prontuário Discente 360° (<code>op.student</code>):</strong>
+Acesso em 1 clique a toda a vida acadêmica via smart buttons (vínculos
+de curso, livro-razão, trabalhos finais, produtos PTT, requerimentos e
+diplomas digitais), emissão instantânea do <em>Histórico Escolar Oficial
+em PDF</em> a partir do cabeçalho da ficha e aba de auditoria tabular
+com todas as notas e créditos cumpridos.</li>
+<li><strong>Ficha Docente 360° (<code>op.faculty</code>):</strong>
+Contadores e navegação direta para orientandos ativos, egressos
+titulados, disciplinas lecionadas, linhas de pesquisa vinculadas e
+participações em bancas examinadoras.</li>
+</ul>
+<h3 id="integração-estrutural-com-configurações-nativas-do-openeducat">11.
+Integração Estrutural com Configurações Nativas do OpenEduCat</h3>
+<ul>
+<li>Total compatibilidade e dados sincronizados nos menus do OpenEduCat:
+<strong>Anos Acadêmicos</strong> (<code>op.academic.year</code>),
+<strong>Períodos/Termos</strong> (<code>op.academic.term</code>),
+<strong>Departamentos</strong> (<code>op.department</code>),
+<strong>Programas Educacionais</strong> (<code>op.program</code>),
+<strong>Cursos</strong> (<code>op.course</code>), <strong>Turmas / Lotes
+de Alunos</strong> (<code>op.batch</code> amarrado aos vínculos
+discentes) e <strong>Categorias Discentes</strong>
+(<code>op.category</code>).</li>
 </ul>
 <hr />
 <h2 id="perfil-de-referência-e-validação-regulatória">📊 Perfil de
@@ -415,8 +694,11 @@ Referência e Validação Regulatória</h2>
 foi parametrizado e validado contra o perfil do <strong>Mestrado
 Profissional em Tecnologia das Radiações em Saúde (MP-TRCS)</strong> do
 <strong>IPEN-CNEN/SP</strong> (com registro de diplomas na
-<strong>USP</strong>): - As regras específicas e listas de verificação
-desse perfil encontram-se documentadas no diretório <a href="docs/09_validacoes_mptrcs"><code>docs/09_validacoes_mptrcs/</code></a>.
+<strong>USP</strong>): - O regimento veda o regime de alunos especiais
+(<code>allow_special_students = False</code>), tratando disciplinas do
+programa USP Tecnologia Nuclear formalmente como Extra-IES. - As regras
+específicas e listas de verificação desse perfil encontram-se
+documentadas no diretório <a href="docs/09_validacoes_mptrcs"><code>docs/09_validacoes_mptrcs/</code></a>.
 - Modelos de dados e planilhas de importação de exemplo estão
 disponíveis em <a href="import_templates/exemplos_referencia/mptrcs_ipen"><code>import_templates/exemplos_referencia/mptrcs_ipen/</code></a>.</p>
 <hr />
@@ -428,12 +710,13 @@ diretório <a href="docs"><code>docs/</code></a>:</p>
 <li><strong><a href="docs/01_arquitetura_sistemica">01_arquitetura_sistemica</a>:</strong>
 Visão Geral do GoPG, Fonte Ouro/Prata e Topologia do Monorepo.</li>
 <li><strong><a href="docs/02_governanca_regimental_e_creditos">02_governanca_regimental_e_creditos</a>:</strong>
-Motor de Versionamento Curricular e Livro-Razão Imutável.</li>
+Motor de Versionamento Curricular, Aluno Especial, Trânsito Intra-IES e
+Livro-Razão Imutável.</li>
 <li><strong><a href="docs/03_dicionarios__de_dados_dav">03_dicionarios__de_dados_dav</a>:</strong>
 Especificação dos Dicionários de Dados da DAV Módulos 01 a 06.</li>
 <li><strong><a href="docs/04_processos_da_vida_academica">04_processos_da_vida_academica</a>:</strong>
-Editais de Admissão, Matrículas de Acompanhamento e Trava de
-Prazos.</li>
+Editais de Admissão, Matrículas de Acompanhamento, Preservação de RA e
+Trava de Prazos.</li>
 <li><strong><a href="docs/05_produtos_tecnico_tecnologicos_ptt">05_produtos_tecnico_tecnologicos_ptt</a>:</strong>
 Taxonomia GTPT, Qualis Tecnológico e Motor de Estratificação.</li>
 <li><strong><a href="docs/06_titulacao_e_conformidade_documental">06_titulacao_e_conformidade_documental</a>:</strong>
@@ -447,13 +730,20 @@ dos 10 Macroprocessos Acadêmicos de Ponta a Ponta.</li>
 <li><strong><a href="docs/09_validacoes_mptrcs">09_validacoes_mptrcs</a>:</strong>
 Perfil de Referência e Checklists de Validação MP-TRCS
 IPEN-CNEN/SP.</li>
-<li><strong><a href="docs/guia_de_migracao_e_transicao_legacy.md">Guia
-de Migração e Transição do Sistema Legado</a>:</strong> Manual detalhado
-para zerar bases de teste e migrar dados do sistema antigo.</li>
+<li><strong><a href="docs/10_implantacao_e_migracao">10_implantacao_e_migracao</a>:</strong>
+Guia de Inicialização em Banco Zerado, Sequência Rígida de Carga (Passos
+01 a 13) e Migração de Dados Legados.</li>
+<li><strong><a href="docs/11_manuais_operacionais">11_manuais_operacionais</a>:</strong>
+Manuais Operacionais de Uso Cotidiano por Perfil (Secretaria,
+Coordenação, Professores e Alunos).</li>
 <li><strong><a href="import_templates">Templates CSV Universais e
-Exemplos</a>:</strong> Planilhas pré-formatadas genéricas para
-importação nativa e exemplos de referência.</li>
-<li><strong>Relatório Executivo HTML Autocontido:</strong> <a href="docs/documentacao_executiva_capes.html">docs/documentacao_executiva_capes.html</a></li>
+Exemplos</a>:</strong> Esqueletos CSV padronizados com dicionário de
+campos e datasets sintéticos completos (Universidade XYZQ e
+MPTRCS).</li>
+<li><strong>Documentação Executiva e Arquitetural (Quarto
+Source):</strong> <a href="docs/documentacao_executiva_capes.qmd"><code>docs/documentacao_executiva_capes.qmd</code></a></li>
+<li><strong>Relatório Executivo HTML Autocontido (Renderizado):</strong>
+<a href="docs/documentacao_executiva_capes.html"><code>docs/documentacao_executiva_capes.html</code></a></li>
 </ul>
 <hr />
 <h2 id="comandos-úteis">🛠️ Comandos Úteis</h2>

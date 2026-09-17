@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- ÁREAS DE CONCENTRAÇÃO                                         -->
+    <!-- ============================================================ -->
+    <record id="view_op_program_concentration_area_tree" model="ir.ui.view">
+        <field name="name">op.program.concentration.area.tree</field>
+        <field name="model">op.program.concentration.area</field>
+        <field name="arch" type="xml">
+            <list string="Áreas de Concentração">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="program_id"/>
+                <field name="research_line_count"/>
+                <field name="faculty_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_program_concentration_area_form" model="ir.ui.view">
+        <field name="name">op.program.concentration.area.form</field>
+        <field name="model">op.program.concentration.area</field>
+        <field name="arch" type="xml">
+            <form string="Área de Concentração">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nome da Área de Concentração"/>
+                        <h1><field name="name" placeholder="Ex: Tecnologia Nuclear de Materiais"/></h1>
+                    </div>
+                    <group>
+                        <group string="Programa e Identificação">
+                            <field name="program_id"/>
+                            <field name="code"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Estatísticas">
+                            <field name="research_line_count"/>
+                            <field name="faculty_count"/>
+                        </group>
+                    </group>
+                    <group string="Descrição e Escopo Temático">
+                        <field name="description" nolabel="1" placeholder="Detalhamento temático da área..."/>
+                    </group>
+                    <notebook>
+                        <page string="Linhas de Pesquisa" name="lines">
+                            <field name="research_line_ids">
+                                <list>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Corpo Docente Credenciado" name="faculty">
+                            <field name="faculty_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_program_concentration_area_search" model="ir.ui.view">
+        <field name="name">op.program.concentration.area.search</field>
+        <field name="model">op.program.concentration.area</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Áreas de Concentração">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="program_id"/>
+                <filter string="Ativas" name="filter_active" domain="[('active', '=', True)]"/>
+                <group>
+                    <filter string="Programa PPG" name="group_by_program" context="{'group_by': 'program_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_op_program_concentration_area" model="ir.actions.act_window">
+        <field name="name">Áreas de Concentração</field>
+        <field name="res_model">op.program.concentration.area</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_program_concentration_area_search"/>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- LINHAS DE PESQUISA                                            -->
+    <!-- ============================================================ -->
+    <record id="view_op_program_research_line_tree" model="ir.ui.view">
+        <field name="name">op.program.research.line.tree</field>
+        <field name="model">op.program.research.line</field>
+        <field name="arch" type="xml">
+            <list string="Linhas de Pesquisa">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="area_id"/>
+                <field name="program_id"/>
+                <field name="faculty_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_program_research_line_form" model="ir.ui.view">
+        <field name="name">op.program.research.line.form</field>
+        <field name="model">op.program.research.line</field>
+        <field name="arch" type="xml">
+            <form string="Linha de Pesquisa">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nome da Linha de Pesquisa"/>
+                        <h1><field name="name" placeholder="Ex: Radiofarmácia e Aplicações Clínicas"/></h1>
+                    </div>
+                    <group>
+                        <group string="Enquadramento Temático">
+                            <field name="area_id"/>
+                            <field name="program_id" readonly="1"/>
+                            <field name="code"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Métricas">
+                            <field name="faculty_count"/>
+                        </group>
+                    </group>
+                    <group string="Descrição e Objetivos de Investigação">
+                        <field name="description" nolabel="1" placeholder="Objetivos científicos e tecnológicos desta linha de pesquisa..."/>
+                    </group>
+                    <notebook>
+                        <page string="Docentes Atuantes" name="faculty">
+                            <field name="faculty_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_program_research_line_search" model="ir.ui.view">
+        <field name="name">op.program.research.line.search</field>
+        <field name="model">op.program.research.line</field>
+        <field name="arch" type="xml">
+            <search string="Pesquisar Linhas de Pesquisa">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="area_id"/>
+                <field name="program_id"/>
+                <filter string="Ativas" name="filter_active" domain="[('active', '=', True)]"/>
+                <group>
+                    <filter string="Área de Concentração" name="group_by_area" context="{'group_by': 'area_id'}"/>
+                    <filter string="Programa PPG" name="group_by_program" context="{'group_by': 'program_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_op_program_research_line" model="ir.actions.act_window">
+        <field name="name">Linhas de Pesquisa</field>
+        <field name="res_model">op.program.research.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_program_research_line_search"/>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_op_program_concentration_area"
+              name="Áreas de Concentração"
+              parent="menu_op_program_capes_root"
+              action="action_op_program_concentration_area"
+              sequence="20"/>
+
+    <menuitem id="menu_op_program_research_line"
+              name="Linhas de Pesquisa"
+              parent="menu_op_program_capes_root"
+              action="action_op_program_research_line"
+              sequence="30"/>
+</odoo>

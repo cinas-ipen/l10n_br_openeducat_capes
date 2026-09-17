@@ -50,7 +50,10 @@ A entidade central submetida pelo discente ou docente. É o objeto que será dep
 | `student_id` | Discente Autor (Principal) | `Many2one` | FK para `op.student`. |
 | `thesis_id` | Tese / Dissertação Associada| `Many2one` | FK para `capes.thesis`. Produto que serve como TCC. |
 | `title` | Título do Produto | `Char` | Nome exato do desenvolvimento. |
-| `trl_level` | Nível de Maturidade (TRL) | `Selection` | Níveis de 1 (Princípios básicos observados) a 9 (Sistema provado em ambiente real). |
+| `name` | Nome do Produto (Identificador) | `Char` | Campo armazenado relacionado a `title`. |
+| `trl_level` | Nível de Maturidade (TRL) | `Selection` | Níveis de `trl_1` a `trl_9` (Princípios básicos a sistema provado em ambiente real). |
+| `final_stratum` | Estrato Qualis Tecnológico | `Selection` | `T1`, `T2`, `T3`, `T4`, `T5`, `TNC` (computado a partir das avaliações). |
+| `state` | Situação no Workflow | `Selection` | `draft` (Rascunho), `adherence_check` (Auditoria de Aderência), `evaluating` (Em Avaliação Qualis), `homologated` (Homologado), `rejected` (Rejeitado/TNC). |
 | `adherence_justif`| Justificação de Aderência | `Text` | OBRIGATÓRIO: Texto discursivo onde o autor defende a ligação do produto com a Linha de Pesquisa do PPG. |
 | `is_adherent` | Validação de Aderência | `Boolean` | Campo de controlo da comissão. Se validado como `False`, o produto sofre glosa imediata e não segue para avaliação. |
 | `target_audience` | Público-Alvo / Beneficiários | `Text` | Identificação do setor produtivo, governo ou sociedade civil impactada. |

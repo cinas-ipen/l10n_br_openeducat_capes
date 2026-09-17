@@ -162,13 +162,16 @@ Abaixo, cada um dos 7 subprocessos do MP2 é detalhado considerando a **Lógica 
   4. **d) Reprovado sem Direito a Revisão:** Inviabilidade técnica ou falta de aderência grave. Encaminhado à CPG para deliberação sobre concessão de prazo extraordinário para novo tema ou desligamento. 
 * **Homologação:** O plano atinge o estado homologated após a chancela formal na Ata de Reunião da CPG (op.cpg.meeting), atuando como chave de desbloqueio para a carreira acadêmica.
 
-#### **Subprocesso 2.7: Admissão de Alunos Especiais (Disciplinas Isoladas)**
+#### **Subprocesso 2.7: Admissão de Alunos Especiais (Disciplinas Isoladas) e Aproveitamento**
 
-* **Descrição Operacional:** Gerencia o fluxo de admissão para candidatos interessados em cursar disciplinas avulsas sem vínculo regular de pós-graduação. 
+* **Descrição Operacional:** Gerencia o fluxo de admissão para candidatos interessados em cursar disciplinas avulsas sem vínculo regular de pós-graduação, bem como a conservação do Registro Acadêmico (RA) perene e o eventual aproveitamento futuro de estudos. 
 * **Configuração Específica MPTRCS/IPEN:** 
-  * *Teto de Créditos:* O ERP limita a inscrição a no máximo **8 unidades de crédito** em disciplinas isoladas. 
-  * *Restrição de Direitos:* Alunos especiais não possuem orientador, não submetem plano de trabalho e não recebem status de aluno regular. Ao final do período, o sistema emite apenas uma Certidão / Declaração de Aproveitamento de Estudos. 
-* **Matriz de Parametrização no ERP:** Teto de créditos avulsos parametrizável por programa (ex: 8, 12 ou 16 créditos) e regra de aproveitamento futuro em caso de aprovação posterior no processo seletivo regular.
+  * *Permissão de Alunos Especiais no MPTRCS (`allow_special_students`):* **`False` (Desabilitado por Padrão)**. O MPTRCS não disponibiliza vagas para alunos especiais em suas disciplinas regulares exclusivas.
+  * *Manutenção do RA Perene:* Se um candidato cursou disciplinas isoladas em outro programa e posteriormente for aprovado no processo seletivo regular do MPTRCS, o Odoo preserva o seu RA original da IES (`op.student`), associando-o ao novo vínculo regular (`op.student.course`).
+  * *Aproveitamento de Estudos de Disciplinas Anteriores:* O aluno regular pode submeter requerimento de aproveitamento (`op.special.credit.incorporation.request`) no portal discente, desde que as disciplinas tenham sido cursadas em até **36 meses (3 anos)** da data de ingresso regular. O pleito é submetido ao parecer do orientador e homologação formal da CPG.
+  * *Política de Reprovações:* Em consonância com a regra regimental (`special_transcript_fail_policy = 'omit_on_regular'`), eventuais reprovações obtidas no regime especial anterior não figuram no Histórico Escolar Oficial de titulação do MPTRCS.
+  * *Disciplinas do Programa de Tecnologia Nuclear (USP):* Como o programa de Tecnologia Nuclear é academicamente vinculado à USP (outra IES), suas disciplinas são enquadradas formalmente como **extra-IES**, exigindo deliberação da CPG para convalidação e submetendo-se ao teto de créditos externos (`max_external_credits_percent`).
+* **Matriz de Parametrização no ERP:** Parâmetros livres por regimento para admissão de especiais (`allow_special_students`), teto de disciplinas (`max_special_subjects_limit`), validade temporal (`special_credit_validity_months`, default 36 meses), aprovação de CPG e política de exibição no histórico.
 
 ### **4. Tabela de Parametrização para Validação com Stakeholders (MPTRCS)**
 
@@ -185,7 +188,12 @@ A tabela abaixo deve ser revisada e formalmente chancelada durante a reunião de
 | **Prazo Limite de Orientação** | `max_months_advisor_link` | **3º Mês Letivo** | Configurável (ex: 1º ao 6º mês) |
 | **Teto de Orientandos por Docente** | `max_active_advisees` | **8 Alunos Ativos** (Medicina II) | Configurable por área de avaliação CAPES |
 | **Trava Ética no Plano de Trabalho** | `cep_required_gate` | **Habilitado** (Bloqueia Bancas s/ CEP) | Ativado / Desativado |
-| **Teto de Créditos Aluno Especial** | `max_special_student_credits` | **8 Créditos** | Configurable (ex: 8, 12 ou 16 créditos) |
+| **Permissão Aluno Especial no PPG** | `allow_special_students` | **`False` (Desabilitado)** | `True` (Habilitado com cotas) |
+| **Teto de Disciplinas Especiais** | `max_special_subjects_limit` | **2 Disciplinas (8 Créditos)** | Parametrizável por regimento |
+| **Validade de Créditos Especiais** | `special_credit_validity_months` | **36 Meses (3 Anos)** | Parametrizável (ex: 12, 24, 36, 48 meses) |
+| **Política de Reprovações Especial** | `special_transcript_fail_policy` | **`omit_on_regular` (Omite no Histórico)** | `display_all` (Exibe todas as ocorrências) |
+| **Aproveitamento Intra-IES** | `allow_intra_ies_credits` | **Habilitado (100% Equivalência)** | Ativado / Desativado |
+| **Disciplinas Tecnologia Nuclear (USP)** | `credit_type` / equivalência | **Tratada como Extra-IES (Aprovação CPG)** | Regulada por teto externo |
 | **Declaração de Perfil (Baseline)** | `capes.student.professional.profile` | **Obrigatório no Ingresso** (Monitoramento CAPES) | Ativado por padrão para Programas Profissionais |
 
 ### **5. Roteiro Prático para a Reunião de Validação (Checklist CPG-MP)**

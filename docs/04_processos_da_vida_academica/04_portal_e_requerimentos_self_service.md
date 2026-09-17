@@ -32,4 +32,13 @@ Aprovação da Ata pelo colegiado dispara autonomamente três ações no sistema
 * **Congelamento da Reunião:** O registro da reunião e sua pauta são travados em modo Read-Only.
 * **Publicação:** O PDF da Ata com os selos de auditoria é marcado como "Publicado" para transparência ativa.
 
+## 6. Requerimentos Especiais: Aproveitamento de Estudos e Trânsito Intra-IES
 
+* **Requerimento de Aproveitamento de Aluno Especial (`op.special.credit.incorporation.request`):**
+  * O discente regular seleciona na esteira do portal as disciplinas previamente cursadas no regime isolado (armazenadas em `subject_special_quarantine`).
+  * O motor verifica a validade temporal ($\le 36$ meses da admissão regular) e o teto regimental de disciplinas.
+  * O requerimento é submetido à anuência do Orientador e encaminhado para triagem e pauta da CPG.
+  * A aprovação em Ata CPG injeta os créditos no livro-razão como `subject_special_incorporated`, habilitando sua exibição no histórico oficial de titulação.
+* **Requerimento de Inscrição em Disciplina Intra-IES:**
+  * O discente solicita cursar disciplina de outro PPG da mesma IES.
+  * O portal dispara notificações para coleta da anuência eletrônica do orientador e do docente ministrante da disciplina receptora, garantindo transparência interdepartamental.

@@ -30,6 +30,19 @@ Esta entidade concentra parâmetros vitais que balizam o motor cronológico, a a
   * Teto Efetivo de Créditos Externos (`max_external_subject_credits`): Campo computado automaticamente (`min_subject_credits * max_external_credits_percent / 100`, ex: 20.0 créditos).
   * Valor em horas-aula de cada crédito (`credit_hour_ratio`: ex: 15h no IPEN/CDTN vs 10h/12h no Mackenzie).
   * Escala de conceitos e nota de corte para aprovação (`grading_scale_type`), suportando o conceito "D" como aprovado (CDTN) ou "C" (IPEN/Mackenzie).
+* **Governança de Alunos Especiais (Disciplinas Isoladas):**
+  * Permissão de Alunos Especiais no Programa (`allow_special_students`): Booleano parametrizável. No MPTRCS do IPEN, por diretriz regimental, o valor padrão é **`False`** (o programa não admite alunos especiais em suas disciplinas exclusivas).
+  * Limite Máximo de Disciplinas Isoladas (`max_special_subjects_limit`): Quantidade máxima de disciplinas que um aluno especial pode cursar (ex: até 2 disciplinas ou 8 créditos).
+  * Prazo Decadencial de Validade de Créditos (`special_credit_validity_months`): Prazo limite em meses (padrão **36 meses / 3 anos**) contado da conclusão da disciplina isolada para que o aluno, uma vez aprovado como aluno regular, possa requerer a integralização em seu histórico.
+  * Fluxo de Homologação de Aproveitamento (`special_incorporation_workflow`): `cpg_approval` (exige parecer do orientador e homologação em ata da CPG) ou `direct_request` (incorporação direta via requerimento dentro do prazo de validade).
+  * Política de Exibição de Reprovações no Histórico (`special_transcript_fail_policy`):
+    * `omit_on_regular` (**Padrão MPTRCS**): Reprovações ("R" ou "F") obtidas enquanto discente sob vínculo de aluno especial figuram exclusivamente na certidão interna de estudos isolados; ao ingressar como Aluno Regular, o Histórico Escolar Oficial de titulação exibe apenas as disciplinas formalmente deferidas e aproveitadas pela CPG.
+    * `display_all`: Qualquer reprovação sofrida em regime especial é transportada e exibida no histórico final do curso regular.
+* **Governança de Disciplinas Intra-IES vs. Extra-IES:**
+  * Permissão de Cursar Disciplinas em outros PPGs da mesma IES (`allow_intra_ies_credits`): Booleano parametrizável (default `True`).
+  * Teto de Créditos Intra-IES (`max_intra_ies_credits_percent`): Percentual máximo da carga teórica que pode ser cumprido em outros programas da mesma instituição mantenedora (`res.company`). Disciplinas intra-IES mantêm **100% de equivalência nominal de créditos** (sem fator de conversão redutor).
+  * Exigência de Anuência do Orientador (`intra_ies_advisor_approval_required`): Booleano (default `True`).
+  * **Distinção Regulatória no Contexto IPEN (MPTRCS vs. Tecnologia Nuclear):** No caso singular do IPEN, o programa acadêmico tradicional de Tecnologia Nuclear é institucionalmente titulado e registrado pela Universidade de São Paulo (USP) — ou seja, perante o MEC e a CAPES, pertence a outra IES registradora. Dessa forma, para os alunos regulares do MPTRCS (programa exclusivo do IPEN), disciplinas cursadas na Tecnologia Nuclear da USP são classificadas juridicamente como **extra-IES**. Elas não operam sob a regra automática intra-IES, exigindo abertura de processo formal de equivalência e aprovação prévia da CPG do MPTRCS, respeitando o teto de créditos externos (`max_external_credits_percent`).
 * **Parametrização do Momento da Proficiência (`proficiency_stage`):**
   * `admission`: Exigência na matrícula inicial (Regra IPEN).
   * `qualification`: Exigência no Exame de Qualificação.
@@ -47,8 +60,10 @@ Esta entidade concentra parâmetros vitais que balizam o motor cronológico, a a
 * **Política de Modalidade da Defesa (`defense_location_policy`):**
   * `onsite_mandatory` (Presencial obrigatório), `hybrid_allowed` (Presença física do aluno/presidente), ou `fully_remote_allowed` (100% remota autorizada).
 
-## 3. O Vínculo Único e Irrevogável do Discente
+## 3. A Separação entre Identidade Soberana e Vínculo Acadêmico (Opção B)
 
-A arquitetura do sistema bloqueia categoricamente a dubiedade normativa. O perfil do discente (`op.student`) receberá um campo relacional obrigatório denominado `curriculum_version_id`.
+A arquitetura do sistema consagra a separação entre a **Pessoa Acadêmica Soberana** (`op.student`), que detém o Registro Acadêmico (RA) unificado e irrevogável emitido pela IES sob a âncora do CPF, e os **Vínculos Acadêmicos de Curso** (`op.student.course` / histórico de matrículas).
 
-Toda a lógica de verificação de pré-requisitos consultará exclusivamente as propriedades desta chave estrangeira. Este vínculo é irrevogável por período letivo; o discente não pode ter o seu versionamento alterado sem a passagem por um fluxo de migração auditável.
+* Cada vínculo regular ativo referencia obrigatoriamente um `curriculum_version_id` específico.
+* Toda a lógica de verificação de pré-requisitos, prazos e integralização consulta as propriedades da versão regimental vinculada ao percurso ativo do discente.
+* Este modelo garante que um aluno especial possa transitar para aluno regular no MPTRCS preservando seu RA institucional único, mantendo o histórico de auditoria intacto e permitindo a incorporação estrita das disciplinas válidas e homologadas pela CPG sob a chancela do Ato Jurídico Perfeito.

@@ -9,7 +9,9 @@ O histórico escolar de pós-graduação (`op.student.transcript.br`) é um docu
 A engine de relatórios nativa do Odoo (QWeb) é utilizada para fazer um *JOIN* complexo entre quatro domínios isolados do banco de dados:
 
 1. **A Base Regimental (`op.curriculum.version`):** O cabeçalho do documento imprime a portaria MEC de reconhecimento do curso e as exigências totais do regimento escolhido pelo aluno (Ato Jurídico Perfeito).
-2. **O Livro-Razão (`op.student.credit.ledger`):** O corpo principal itera exclusivamente sobre o livro-razão imutável, listando disciplinas cursadas, conceitos (A, B, C, R), frequência e totalização de horas-aula vs. créditos integralizados.
+2. **O Livro-Razão (`op.student.credit.ledger`) e Filtro de Aluno Especial:** O corpo principal itera exclusivamente sobre o livro-razão imutável, consolidando as disciplinas oficiais do percurso regular:
+   * *Disciplinas Computadas:* Inclui disciplinas próprias (`subject_internal`), de outros PPGs da IES (`subject_intra_ies`), disciplinas externas convalidadas (`subject_extra_ies`) e disciplinas de regime especial formalmente deferidas pela CPG (`subject_special_incorporated`).
+   * *Expurgo de Reprovações e Quarentena de Aluno Especial:* Em estrita observância à parametrização regimental (`special_transcript_fail_policy = 'omit_on_regular'`, padrão MPTRCS), o Histórico Oficial de Titulação omite automaticamente quaisquer reprovações ("R" ou "F") ou disciplinas avulsas não aproveitadas obtidas no regime de aluno especial. Essas atividades figuram exclusivamente na *Certidão de Estudos Isolados*, preservando a idoneidade e o foco exclusivo do percurso de titulação regular.
 3. **O Produto Intelectual (`capes.thesis`):** Extração do Título Exato da tese homologada, data da defesa e identificador persistente do Repositório Institucional (URI/Handle).
 4. **O Veredito Final (`capes.thesis.committee`):** Listagem nominal de todos os membros da banca examinadora com as respectivas titulações e IES de origem, corroborando a aprovação pública.
 

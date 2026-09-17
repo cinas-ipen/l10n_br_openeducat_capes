@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>**Validação Técnica MP9 - Gestão do Corpo Docente e Rastreabilidade GoPG**</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">**Validação Técnica MP9 - Gestão do Corpo Docente e
+Rastreabilidade GoPG**</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#validação-técnica-mp9---gestão-do-corpo-docente-e-rastreabilidade-gopg" id="toc-validação-técnica-mp9---gestão-do-corpo-docente-e-rastreabilidade-gopg"><strong>Validação
+Técnica MP9 - Gestão do Corpo Docente e Rastreabilidade
+GoPG</strong></a>
+<ul>
+<li><a href="#introdução-e-finalidade" id="toc-introdução-e-finalidade"><strong>1. Introdução e
+Finalidade</strong></a></li>
+<li><a href="#entidade-de-vínculo-docente-op.faculty.program.link" id="toc-entidade-de-vínculo-docente-op.faculty.program.link"><strong>2.
+Entidade de Vínculo Docente (op.faculty.program.link)</strong></a></li>
+<li><a href="#o-livro-razão-de-categorias-timeline-de-credenciamento" id="toc-o-livro-razão-de-categorias-timeline-de-credenciamento"><strong>3.
+O Livro-Razão de Categorias (Timeline de Credenciamento)</strong></a>
+<ul>
+<li><a href="#gestão-de-exceções-e-override-de-credenciamento" id="toc-gestão-de-exceções-e-override-de-credenciamento"><strong>3.1.
+Gestão de Exceções e Override de Credenciamento</strong></a></li>
+</ul></li>
+<li><a href="#painel-de-produção-e-orientação-prevenção-de-sobrecarga" id="toc-painel-de-produção-e-orientação-prevenção-de-sobrecarga"><strong>4.
+Painel de Produção e Orientação (Prevenção de
+Sobrecarga)</strong></a></li>
+<li><a href="#resumo-para-stakeholders-parametrização-mptrcs" id="toc-resumo-para-stakeholders-parametrização-mptrcs"><strong>5.
+Resumo para Stakeholders (Parametrização MPTRCS)</strong></a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="validação-técnica-mp9---gestão-do-corpo-docente-e-rastreabilidade-gopg"><strong>Validação
+Técnica MP9 - Gestão do Corpo Docente e Rastreabilidade
+GoPG</strong></h1>
+<h2 id="introdução-e-finalidade"><strong>1. Introdução e
+Finalidade</strong></h2>
+<p>O <strong>Macroprocesso 09</strong> é fundamental para a governança
+docente exigida pela CAPES. A agência não solicita apenas um “retrato”
+atual, mas o “filme” (<em>timeline</em>) de toda a vida acadêmica e
+credenciamento. Este macroprocesso garante que toda alteração de status,
+categoria ou regime seja registrada cronologicamente.</p>
+<h2 id="entidade-de-vínculo-docente-op.faculty.program.link"><strong>2.
+Entidade de Vínculo Docente (op.faculty.program.link)</strong></h2>
+<p>A arquitetura adota uma tabela relacional entre o Docente
+(op.faculty) e o Programa (op.program.capes).</p>
+<ul>
+<li><strong>Multi-Vínculo:</strong> Permite atuações simultâneas em
+diferentes PPGs sem conflito de dados.<br />
+</li>
+<li><strong>Histórico de Vínculos:</strong> Mantém o registro histórico
+para auditoria da CAPES sobre em qual período o docente estava vinculado
+a qual programa.</li>
+</ul>
+<h2 id="o-livro-razão-de-categorias-timeline-de-credenciamento"><strong>3. O
+Livro-Razão de Categorias (Timeline de Credenciamento)</strong></h2>
+<p>Para atender à auditoria da CAPES, o sistema implementa a estrutura
+op.faculty.category.ledger.</p>
+<ul>
+<li><strong>Categoria:</strong> Permanente, Colaborador, Visitante ou
+Assistente.<br />
+</li>
+<li><strong>Período de Vigência:</strong> Data de Início e Data de
+Fim.<br />
+</li>
+<li><strong>Documento Comprobatório:</strong> Obrigatório.<br />
+</li>
+<li><strong>Auditabilidade:</strong> Registro <em>append-only</em>
+(apenas inserção).</li>
+</ul>
+<h3 id="gestão-de-exceções-e-override-de-credenciamento"><strong>3.1.
+Gestão de Exceções e Override de Credenciamento</strong></h3>
+<p>Em situações excepcionais (ex: pandemia ou deliberações
+extraordinárias do Conselho Superior), o programa pode necessitar
+prorrogar credenciamentos fora dos prazos padrão.</p>
+<ul>
+<li><strong>Fluxo de Override (op.administrative.override):</strong> O
+sistema permite uma excepcionalidade administrativa que não viola a
+imutabilidade do Ledger. A secretaria abre um requerimento de override
+anexando a Portaria do Conselho Superior/CPG.<br />
+</li>
+<li><strong>Trava de Auditoria:</strong> O sistema só permite a
+prorrogação se o override_id estiver vinculado a uma Ata da CPG
+(op.cpg.meeting) que contenha a deliberação de aprovação. O registro
+original de vencimento permanece, mas é anotado com uma referência de
+exceção, garantindo total transparência para auditorias externas.</li>
+</ul>
+<h2 id="painel-de-produção-e-orientação-prevenção-de-sobrecarga"><strong>4.
+Painel de Produção e Orientação (Prevenção de Sobrecarga)</strong></h2>
+<ul>
+<li><strong>Monitoramento Real-Time:</strong> Cruzamento com o
+Livro-Razão de alunos regulares (op.student.credit.ledger).<br />
+</li>
+<li><strong>Alerta de Sobrecarga:</strong> Bloqueio automático para
+novos vínculos se o limite (ex: 8 alunos no IPEN) for atingido, salvo
+exceções aprovadas pelo comitê.</li>
+</ul>
+<h2 id="resumo-para-stakeholders-parametrização-mptrcs"><strong>5.
+Resumo para Stakeholders (Parametrização MPTRCS)</strong></h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Funcionalidade</th>
+<th style="text-align: left;">Trava/Regra Sistêmica</th>
+<th style="text-align: left;">Benefício para o Programa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Timeline de
+Credenciamento</strong></td>
+<td style="text-align: left;">Livro-Razão (category.ledger)</td>
+<td style="text-align: left;">Evita glosas da CAPES por falta de
+comprovação.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Exceções (Override)</strong></td>
+<td style="text-align: left;">Vinculação à Ata/Portaria</td>
+<td style="text-align: left;">Segurança jurídica para situações de força
+maior.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Limite de
+Orientandos</strong></td>
+<td style="text-align: left;">Trava automática (teto 8 alunos)</td>
+<td style="text-align: left;">Qualidade da orientação e
+conformidade.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ata de
+Credenciamento</strong></td>
+<td style="text-align: left;">Anexo PDF obrigatório</td>
+<td style="text-align: left;">Origem legal preservada.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Este macroprocesso transforma a gestão docente em um fluxo de
+auditoria em tempo real.</em></p>
+</body>
+</html>

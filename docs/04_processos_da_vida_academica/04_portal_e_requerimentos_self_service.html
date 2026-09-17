@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 04: Portal Discente, Requerimentos e Governança CPG</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 04: Portal Discente, Requerimentos e
+Governança CPG</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-04-portal-discente-requerimentos-e-governança-cpg" id="toc-documento-04-portal-discente-requerimentos-e-governança-cpg">Documento
+04: Portal Discente, Requerimentos e Governança CPG</a>
+<ul>
+<li><a href="#descentralização-via-portal-self-service-op.academic.request" id="toc-descentralização-via-portal-self-service-op.academic.request">1.
+Descentralização via Portal Self-Service
+(<code>op.academic.request</code>)</a></li>
+<li><a href="#a-esteira-de-triagem-da-secretaria" id="toc-a-esteira-de-triagem-da-secretaria">2. A Esteira de Triagem da
+Secretaria</a></li>
+<li><a href="#orquestração-da-reunião-e-pauta-da-cpg-macroprocesso-10" id="toc-orquestração-da-reunião-e-pauta-da-cpg-macroprocesso-10">3.
+Orquestração da Reunião e Pauta da CPG (Macroprocesso 10)</a></li>
+<li><a href="#o-motor-de-template-da-ata-qweb-e-o-clique-auditável" id="toc-o-motor-de-template-da-ata-qweb-e-o-clique-auditável">4. O Motor
+de Template da Ata (QWeb) e o Clique Auditável</a></li>
+<li><a href="#gatilho-de-execução-autônoma" id="toc-gatilho-de-execução-autônoma">5. Gatilho de Execução
+Autônoma</a></li>
+<li><a href="#requerimentos-especiais-aproveitamento-de-estudos-e-trânsito-intra-ies" id="toc-requerimentos-especiais-aproveitamento-de-estudos-e-trânsito-intra-ies">6.
+Requerimentos Especiais: Aproveitamento de Estudos e Trânsito
+Intra-IES</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-04-portal-discente-requerimentos-e-governança-cpg">Documento
+04: Portal Discente, Requerimentos e Governança CPG</h1>
+<h2 id="descentralização-via-portal-self-service-op.academic.request">1.
+Descentralização via Portal Self-Service
+(<code>op.academic.request</code>)</h2>
+<p>Todas as solicitações discentes (migração de regimento, prorrogações,
+trancamentos, aproveitamento de créditos externos, mudança de
+orientador) são iniciadas no Portal do Aluno. A classe
+<code>op.academic.request</code> herda <code>mail.thread</code>,
+garantindo histórico imutável com selo de data, hora, usuário e endereço
+IP.</p>
+<h2 id="a-esteira-de-triagem-da-secretaria">2. A Esteira de Triagem da
+Secretaria</h2>
+<p>Os requerimentos submetidos não caem diretamente na mesa dos
+pareceristas. O sistema institui a etapa de <strong>Triagem da
+Secretaria</strong>:</p>
+<ol type="1">
+<li>O chamado entra no dashboard com o status
+<code>waiting_screening</code>.</li>
+<li>A secretaria acadêmica valida se a documentação anexada está
+completa e se não há pendências na biblioteca ou setor financeiro.</li>
+<li>Se válida, a secretaria clica em “Aprovar Triagem”, alterando o
+status para <code>ready_for_agenda</code> (Apto para Pauta).</li>
+</ol>
+<h2 id="orquestração-da-reunião-e-pauta-da-cpg-macroprocesso-10">3.
+Orquestração da Reunião e Pauta da CPG (Macroprocesso 10)</h2>
+<p>A secretaria abre um registro de reunião da CPG
+(<code>op.cpg.meeting</code>) e puxa todos os chamados em
+<code>ready_for_agenda</code> para compor a pauta oficial, juntamente
+com os itens administrativos livres.</p>
+<h2 id="o-motor-de-template-da-ata-qweb-e-o-clique-auditável">4. O Motor
+de Template da Ata (QWeb) e o Clique Auditável</h2>
+<p>Durante a reunião do colegiado:</p>
+<ol type="1">
+<li>A secretaria registra o quórum de membros presentes
+(<code>op.cpg.member</code>) e preenche o resultado das deliberações
+(<em>Deferido</em>, <em>Indeferido</em>, <em>Aprovado com
+Ressalvas</em>).</li>
+<li>O motor de relatórios QWeb do Odoo compila instantaneamente a Ata da
+Reunião em formato PDF formatado.</li>
+<li><strong>Clique Auditável:</strong> Os membros presentes recebem uma
+notificação no ERP e clicam no botão <strong>“Aprovar Ata”</strong>. O
+sistema grava o ID do usuário, carimbo de data/hora e IP de conexão,
+dispensando tokens externos para atos internos.</li>
+</ol>
+<h2 id="gatilho-de-execução-autônoma">5. Gatilho de Execução
+Autônoma</h2>
+<p>Aprovação da Ata pelo colegiado dispara autonomamente três ações no
+sistema:</p>
+<ul>
+<li><strong>Atualização Discente:</strong> O status dos requerimentos
+pautados avança para “Deferido” ou “Indeferido”, aplicando
+automaticamente os efeitos no banco de dados (ex: injetando dias de
+prorrogação ou atualizando o regimento).</li>
+<li><strong>Congelamento da Reunião:</strong> O registro da reunião e
+sua pauta são travados em modo Read-Only.</li>
+<li><strong>Publicação:</strong> O PDF da Ata com os selos de auditoria
+é marcado como “Publicado” para transparência ativa.</li>
+</ul>
+<h2 id="requerimentos-especiais-aproveitamento-de-estudos-e-trânsito-intra-ies">6.
+Requerimentos Especiais: Aproveitamento de Estudos e Trânsito
+Intra-IES</h2>
+<ul>
+<li><strong>Requerimento de Aproveitamento de Aluno Especial
+(<code>op.special.credit.incorporation.request</code>):</strong>
+<ul>
+<li>O discente regular seleciona na esteira do portal as disciplinas
+previamente cursadas no regime isolado (armazenadas em
+<code>subject_special_quarantine</code>).</li>
+<li>O motor verifica a validade temporal (<span class="math inline"> ≤ 36</span> meses da admissão regular) e o teto
+regimental de disciplinas.</li>
+<li>O requerimento é submetido à anuência do Orientador e encaminhado
+para triagem e pauta da CPG.</li>
+<li>A aprovação em Ata CPG injeta os créditos no livro-razão como
+<code>subject_special_incorporated</code>, habilitando sua exibição no
+histórico oficial de titulação.</li>
+</ul></li>
+<li><strong>Requerimento de Inscrição em Disciplina Intra-IES:</strong>
+<ul>
+<li>O discente solicita cursar disciplina de outro PPG da mesma
+IES.</li>
+<li>O portal dispara notificações para coleta da anuência eletrônica do
+orientador e do docente ministrante da disciplina receptora, garantindo
+transparência interdepartamental.</li>
+</ul></li>
+</ul>
+</body>
+</html>

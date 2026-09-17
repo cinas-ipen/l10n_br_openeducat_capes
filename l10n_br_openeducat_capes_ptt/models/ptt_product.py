@@ -34,6 +34,12 @@ class CapesPttProduct(models.Model):
         tracking=True,
         help='Denominação oficial do desenvolvimento técnico-tecnológico'
     )
+    name = fields.Char(
+        string='Nome do Produto (Identificador)',
+        related='title',
+        readonly=False,
+        store=True
+    )
     type_id = fields.Many2one(
         'capes.ptt.type',
         string='Tipologia do Produto (GTPT)',

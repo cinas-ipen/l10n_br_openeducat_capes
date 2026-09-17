@@ -23,4 +23,10 @@ Foi projetado no módulo `l10n_br_openeducat_capes_academic` o requerimento `op.
 2. O discente submete o pleito mediante a assinatura digital de um termo de aceitação irrevogável.
 3. Após aprovação eletrônica do colegiado, o código Odoo executa a migração sistêmica: ele encerra a leitura do livro-razão de créditos associada à versão antiga e abre a contabilidade na nova versão atrelada ao aluno (`curriculum_version_id`), acionando os novos gatilhos cronológicos.
 
+## 5. O Ato Jurídico Perfeito no Aproveitamento de Disciplinas de Aluno Especial
 
+O aproveitamento de disciplinas cursadas no regime de Aluno Especial em momento anterior ao ingresso regular segue com rigor a preservação do Ato Jurídico Perfeito:
+
+* **Inviolabilidade da Nota e Carga:** A disciplina cursada sob regime especial permanece intacta no Livro-Razão primitivo com seu conceito e frequência originais. O sistema não permite reclassificação nem recálculo de notas.
+* **Mecanismo Append-Only de Incorporação:** Ao ser deferido o requerimento de aproveitamento (`op.special.credit.incorporation.request`), o sistema insere um novo evento contábil no livro-razão com tipologia `subject_special_incorporated`, vinculando o ato deliberativo da CPG e preservando o registro histórico da quarentena original.
+* **Preclusão Temporal (Decadência):** Transcorrido o prazo decadencial regimental (padrão de 36 meses entre a conclusão da disciplina e o ingresso regular), a prerrogativa de aproveitamento é extinta por imperativo legal, impedindo a revalidação anacrônica de conteúdos programáticos defasados.

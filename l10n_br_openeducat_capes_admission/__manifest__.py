@@ -34,6 +34,7 @@
         'views/admission_edital_views.xml',
         'views/student_work_plan_views.xml',
         'views/student_professional_profile_views.xml',
+        'views/op_student_admission_views.xml',
     ],
     'installable': True,
     'application': False,

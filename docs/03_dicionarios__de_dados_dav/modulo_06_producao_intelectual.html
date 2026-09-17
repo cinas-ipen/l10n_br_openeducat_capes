@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Dicionário de Dados DAV: Módulo 06 - Produção Intelectual</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Dicionário de Dados DAV: Módulo 06 - Produção
+Intelectual</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#dicionário-de-dados-dav-módulo-06---produção-intelectual" id="toc-dicionário-de-dados-dav-módulo-06---produção-intelectual">Dicionário
+de Dados DAV: Módulo 06 - Produção Intelectual</a>
+<ul>
+<li><a href="#produção-intelectual-capes.intellectual.production" id="toc-produção-intelectual-capes.intellectual.production">1. Produção
+Intelectual (<code>capes.intellectual.production</code>)</a></li>
+<li><a href="#detalhamento-livros-periódicos-e-eventos" id="toc-detalhamento-livros-periódicos-e-eventos">2. Detalhamento
+(Livros, Periódicos e Eventos)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="dicionário-de-dados-dav-módulo-06---produção-intelectual">Dicionário
+de Dados DAV: Módulo 06 - Produção Intelectual</h1>
+<p><strong>Objetivo:</strong> Mapear as produções acadêmicas e
+bibliográficas, com metadados para interoperabilidade OAI-PMH extraídos
+do JSON 3 e 4.</p>
+<h2 id="produção-intelectual-capes.intellectual.production">1. Produção
+Intelectual (<code>capes.intellectual.production</code>)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado JSON DAV</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>capes_id</code></td>
+<td style="text-align: left;">Identificador na Capes</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sucupira_id</code></td>
+<td style="text-align: left;">Id Sucupira (Relacionada)</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>main_author</code></td>
+<td style="text-align: left;">Autor da produção</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Nome responsável.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>title</code></td>
+<td style="text-align: left;">Título da produção</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Idioma principal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>alt_title</code></td>
+<td style="text-align: left;">Título alternativo</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Em outro idioma.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>prod_type</code></td>
+<td style="text-align: left;">Tipo de produção</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Bibliográfica, Artística, Técnica,
+Tecnológica.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>doc_type</code></td>
+<td style="text-align: left;">Tipo de documento</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Tabela COAR (Resource Types).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>language</code></td>
+<td style="text-align: left;">Idioma principal</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Lista ISO 639.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pub_date</code></td>
+<td style="text-align: left;">Data da publicação</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>access_rule</code></td>
+<td style="text-align: left;">Permissão de acesso</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Acesso aberto, restrito, embargado.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>embargo_end</code></td>
+<td style="text-align: left;">Liberação do texto completo</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>uid_type</code></td>
+<td style="text-align: left;">Tipo de identificador único</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">DOI, Handle, Ark, dArk, PubMed Id.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>uid_uri</code></td>
+<td style="text-align: left;">URI do identificador único</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">URL persistente.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>license_uri</code></td>
+<td style="text-align: left;">URI da licença autoral</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Creative Commons, etc.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>source_uri</code></td>
+<td style="text-align: left;">URI da fonte original</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Repositório/Editora oficial.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>related_uri</code></td>
+<td style="text-align: left;">Produção relacionada (URI)</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Vínculo com projetos/produtos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>abstract_main</code></td>
+<td style="text-align: left;">Resumo no idioma principal</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Texto.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>abstract_alt</code></td>
+<td style="text-align: left;">Resumo em outro idioma</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Texto.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>keywords_main</code></td>
+<td style="text-align: left;">Palavra-chave principal</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Vocabulário controlado.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>keywords_alt</code></td>
+<td style="text-align: left;">Palavra-chave outro idioma</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Vocabulário controlado.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pages_total</code></td>
+<td style="text-align: left;">Número total de páginas</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>page_start</code></td>
+<td style="text-align: left;">Página inicial</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>page_end</code></td>
+<td style="text-align: left;">Página final</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>resp_type</code></td>
+<td style="text-align: left;">Tipo de responsabilidade</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Autor, Organizador, Editor, Tradutor…</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>contrib_type</code></td>
+<td style="text-align: left;">Tipo de contribuição</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Taxonomia CRediT.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="detalhamento-livros-periódicos-e-eventos">2. Detalhamento
+(Livros, Periódicos e Eventos)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado JSON DAV</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>book_title</code></td>
+<td style="text-align: left;">Título do livro</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Texto livre.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>collection_title</code></td>
+<td style="text-align: left;">Título da coleção</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Texto livre.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>isbn</code></td>
+<td style="text-align: left;">Número do ISBN</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>book_edition</code></td>
+<td style="text-align: left;">Número da edição do livro</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>book_volume</code></td>
+<td style="text-align: left;">Volume do livro na coleção</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pub_place</code></td>
+<td style="text-align: left;">Local de publicação</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Cidade/Editora.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>journal_title</code></td>
+<td style="text-align: left;">Título do periódico</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Texto livre.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>issn</code></td>
+<td style="text-align: left;">Número do ISSN</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>journal_vol</code></td>
+<td style="text-align: left;">Número do volume (Periódico)</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>journal_ed</code></td>
+<td style="text-align: left;">Número da edição (Periódico)</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>event_title</code></td>
+<td style="text-align: left;">Título do evento</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Exclui número da edição.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>event_nature</code></td>
+<td style="text-align: left;">Natureza trabalho no evento</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Resumo, Resumo expandido, Trabalho
+Curto/Completo.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>funder_agency</code></td>
+<td style="text-align: left;">Agência de fomento</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Tabela Financiador Capes.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

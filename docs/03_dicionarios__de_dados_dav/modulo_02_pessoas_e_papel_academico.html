@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Dicionário de Dados DAV: Módulo 02 - Pessoas, Papéis Acadêmicos, Visões 360°, Governança CPG e Perfis de Acesso</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Dicionário de Dados DAV: Módulo 02 - Pessoas, Papéis
+Acadêmicos, Visões 360°, Governança CPG e Perfis de Acesso</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#dicionário-de-dados-dav-módulo-02---pessoas-papéis-acadêmicos-visões-360-governança-cpg-e-perfis-de-acesso" id="toc-dicionário-de-dados-dav-módulo-02---pessoas-papéis-acadêmicos-visões-360-governança-cpg-e-perfis-de-acesso">Dicionário
+de Dados DAV: Módulo 02 - Pessoas, Papéis Acadêmicos, Visões 360°,
+Governança CPG e Perfis de Acesso</a>
+<ul>
+<li><a href="#classe-base-pessoa-res.partner-censo-demográfico-capes" id="toc-classe-base-pessoa-res.partner-censo-demográfico-capes">1.
+Classe Base: Pessoa (<code>res.partner</code>) &amp; Censo Demográfico
+CAPES</a>
+<ul>
+<li><a href="#identificadores-persistentes-pids-e-formação" id="toc-identificadores-persistentes-pids-e-formação">1.1.
+Identificadores Persistentes (PIDs) e Formação</a></li>
+</ul></li>
+<li><a href="#docente-op.faculty-visão-360-e-timeline-gopg" id="toc-docente-op.faculty-visão-360-e-timeline-gopg">2. Docente
+(<code>op.faculty</code>), Visão 360° e Timeline GoPG</a>
+<ul>
+<li><a href="#cadastro-e-visão-360-do-docente" id="toc-cadastro-e-visão-360-do-docente">2.1. Cadastro e Visão 360° do
+Docente</a></li>
+<li><a href="#vínculo-com-programa-op.faculty.program.link" id="toc-vínculo-com-programa-op.faculty.program.link">2.2. Vínculo com
+Programa (<code>op.faculty.program.link</code>)</a></li>
+<li><a href="#livro-razão-de-categorias-docentes-op.faculty.category.ledger" id="toc-livro-razão-de-categorias-docentes-op.faculty.category.ledger">2.3.
+Livro-Razão de Categorias Docentes
+(<code>op.faculty.category.ledger</code>)</a></li>
+</ul></li>
+<li><a href="#discente-pós-graduando-op.student-visão-360-e-vínculos" id="toc-discente-pós-graduando-op.student-visão-360-e-vínculos">3.
+Discente / Pós-Graduando (<code>op.student</code>), Visão 360° e
+Vínculos</a>
+<ul>
+<li><a href="#visão-360-do-discente-na-ficha-cadastral" id="toc-visão-360-do-discente-na-ficha-cadastral">3.1. Visão 360° do
+Discente na Ficha Cadastral</a></li>
+<li><a href="#entidade-de-vínculo-acadêmico-op.student.course" id="toc-entidade-de-vínculo-acadêmico-op.student.course">3.2. Entidade
+de Vínculo Acadêmico (<code>op.student.course</code>)</a></li>
+</ul></li>
+<li><a href="#gestão-de-afastamentos-capes.leave_of_absence" id="toc-gestão-de-afastamentos-capes.leave_of_absence">4. Gestão de
+Afastamentos (<code>capes.leave_of_absence</code>)</a></li>
+<li><a href="#governança-do-colegiado-cpg-macroprocesso-10" id="toc-governança-do-colegiado-cpg-macroprocesso-10">5. Governança do
+Colegiado CPG (Macroprocesso 10)</a>
+<ul>
+<li><a href="#composição-do-conselho-op.cpg.committee-e-op.cpg.member" id="toc-composição-do-conselho-op.cpg.committee-e-op.cpg.member">5.1.
+Composição do Conselho (<code>op.cpg.committee</code> e
+<code>op.cpg.member</code>)</a></li>
+<li><a href="#membros-da-cpg-op.cpg.member" id="toc-membros-da-cpg-op.cpg.member">5.2. Membros da CPG
+(<code>op.cpg.member</code>)</a></li>
+<li><a href="#reuniões-e-deliberações-da-cpg-op.cpg.meeting" id="toc-reuniões-e-deliberações-da-cpg-op.cpg.meeting">5.3. Reuniões e
+Deliberações da CPG (<code>op.cpg.meeting</code>)</a></li>
+</ul></li>
+<li><a href="#perfil-profissional-e-declaração-de-impacto-baseline-de-egressos---capes" id="toc-perfil-profissional-e-declaração-de-impacto-baseline-de-egressos---capes">6.
+Perfil Profissional e Declaração de Impacto (Baseline de Egressos -
+CAPES)</a></li>
+<li><a href="#perfis-de-usuários-e-controle-de-acesso-no-odoo-19-res.users" id="toc-perfis-de-usuários-e-controle-de-acesso-no-odoo-19-res.users">7.
+Perfis de Usuários e Controle de Acesso no Odoo 19
+(<code>res.users</code>)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="dicionário-de-dados-dav-módulo-02---pessoas-papéis-acadêmicos-visões-360-governança-cpg-e-perfis-de-acesso">Dicionário
+de Dados DAV: Módulo 02 - Pessoas, Papéis Acadêmicos, Visões 360°,
+Governança CPG e Perfis de Acesso</h1>
+<p><strong>Objetivo:</strong> Mapear a herança biográfica, as extensões
+de papéis acadêmicos, a higienização onomástica brasileira
+(<code>_parse_brazilian_name</code>), as visões integradas 360° de
+discentes e docentes, os status de proficiência linguística, a timeline
+de credenciamento docente, a infraestrutura de governança colegiada
+(CPG) e a matriz de perfis de usuários com base no JSON da CAPES, no
+GoPG e no Odoo 19.</p>
+<h2 id="classe-base-pessoa-res.partner-censo-demográfico-capes">1.
+Classe Base: Pessoa (<code>res.partner</code>) &amp; Censo Demográfico
+CAPES</h2>
+<p>A criação ou importação de contatos adota o algoritmo inteligente de
+parsing onomástico brasileiro (<code>_parse_brazilian_name</code>), que
+divide o nome completo preservando obrigatoriamente
+<code>first_name</code>, <code>middle_name</code> e
+<code>last_name</code> sem gerar campos nulos na presença de sobrenomes
+múltiplos, garantindo ainda a unicidade nominal estrita de 100% dos
+registros.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>capes_id</code></td>
+<td>Identificador na Capes</td>
+<td><code>Integer</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>internal_code</code></td>
+<td>Identificador na Instituição</td>
+<td><code>Char</code></td>
+<td>Alfanumérico.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>Nome da pessoa</td>
+<td><code>Char</code></td>
+<td>Texto livre (inclui nome social).</td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td>Primeiro Nome</td>
+<td><code>Char</code></td>
+<td>Derivado pelo algoritmo onomástico.</td>
+</tr>
+<tr>
+<td><code>middle_name</code></td>
+<td>Nome do Meio</td>
+<td><code>Char</code></td>
+<td>Preenchido com sobrenomes intermediários.</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>Sobrenome Final</td>
+<td><code>Char</code></td>
+<td>Sobrenome de família final.</td>
+</tr>
+<tr>
+<td><code>fiscal_name</code></td>
+<td>Nome fiscal da pessoa</td>
+<td><code>Char</code></td>
+<td>Texto exato Receita Federal.</td>
+</tr>
+<tr>
+<td><code>cpf</code></td>
+<td>Número do CPF</td>
+<td><code>Char</code></td>
+<td>Numérico (Receita Federal, validação Módulo 11).</td>
+</tr>
+<tr>
+<td><code>mother_name</code></td>
+<td>Nome da mãe (Filiação)</td>
+<td><code>Char</code></td>
+<td>Texto livre. Mandatório para Censo/MEC.</td>
+</tr>
+<tr>
+<td><code>birth_date</code></td>
+<td>Data de nascimento</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>Sexo biológico</td>
+<td><code>Selection</code></td>
+<td><code>male</code> (Masculino), <code>female</code> (Feminino),
+<code>other</code> (Outro).</td>
+</tr>
+<tr>
+<td><code>race_color</code></td>
+<td>Raça/Cor</td>
+<td><code>Selection</code></td>
+<td><code>white</code> (Branca), <code>black</code> (Preta),
+<code>brown</code> (Parda), <code>yellow</code> (Amarela),
+<code>indigenous</code> (Indígena), <code>not_declared</code> (Não
+declarada).</td>
+</tr>
+<tr>
+<td><code>has_disability</code></td>
+<td>Pessoa com deficiência (PCD)</td>
+<td><code>Boolean</code></td>
+<td>Sim (<code>True</code>); Não (<code>False</code>).</td>
+</tr>
+<tr>
+<td><code>nationality</code></td>
+<td>Nacionalidade</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>res.country</code> (Ex: <code>base.br</code>).</td>
+</tr>
+<tr>
+<td><code>birth_country_id</code></td>
+<td>País de nascimento</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>res.country</code>.</td>
+</tr>
+<tr>
+<td><code>birth_state</code></td>
+<td>UF do nascimento</td>
+<td><code>Selection</code></td>
+<td>AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI,
+RJ, RN, RS, RO, RR, SC, SP, SE, TO.</td>
+</tr>
+<tr>
+<td><code>birth_city_name</code></td>
+<td>Município do nascimento</td>
+<td><code>Char</code></td>
+<td>Nome oficial do município de nascimento.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>Endereço de e-mail</td>
+<td><code>Char</code></td>
+<td>Texto livre com formato de e-mail válido.</td>
+</tr>
+<tr>
+<td><code>social_url</code></td>
+<td>URL da Rede Social</td>
+<td><code>Char</code></td>
+<td>Alfanumérico.</td>
+</tr>
+<tr>
+<td><code>is_internal</code></td>
+<td>Pertence ao Quadro da IES</td>
+<td><code>Boolean</code></td>
+<td>Computado. Utilizado nas travas de bancas.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="identificadores-persistentes-pids-e-formação">1.1.
+Identificadores Persistentes (PIDs) e Formação</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>orcid</code></td>
+<td>Identificador ORCiD</td>
+<td><code>Char</code></td>
+<td>Formato <code>0000-0000-0000-0000</code>. Obrigatório GoPG.</td>
+</tr>
+<tr>
+<td><code>lattes_url</code></td>
+<td>Identificador Lattes</td>
+<td><code>Char</code></td>
+<td>Link canônico ou ID de 16 dígitos. Obrigatório GoPG.</td>
+</tr>
+<tr>
+<td><code>researcher_id</code></td>
+<td>Identificador ResearcherID</td>
+<td><code>Char</code></td>
+<td>Alfanumérico.</td>
+</tr>
+<tr>
+<td><code>scopus_id</code></td>
+<td>Scopus Author ID</td>
+<td><code>Char</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>academic_level</code></td>
+<td>Nível acadêmico</td>
+<td><code>Selection</code></td>
+<td><code>elem</code> (Fundamental), <code>sec</code> (Médio),
+<code>grad</code> (Graduação), <code>post</code> (Pós-Graduação).</td>
+</tr>
+<tr>
+<td><code>highest_degree</code></td>
+<td>Grau acadêmico máximo</td>
+<td><code>Selection</code></td>
+<td><code>bachelor</code> (Bacharelado/Licenciatura), <code>spec</code>
+(Especialização), <code>master</code> (Mestrado), <code>phd</code>
+(Doutorado).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="docente-op.faculty-visão-360-e-timeline-gopg">2. Docente
+(<code>op.faculty</code>), Visão 360° e Timeline GoPG</h2>
+<h3 id="cadastro-e-visão-360-do-docente">2.1. Cadastro e Visão 360° do
+Docente</h3>
+<p>A ficha do docente centraliza todas as interações e indicadores
+acadêmicos por meio de smart buttons e campos computados dinâmicos:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo / Smart Button</th>
+<th>Descrição / Regra de Negócio</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Origem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>partner_id</code></td>
+<td>Vínculo com Pessoa Física</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>res.partner</code>. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>work_regime</code></td>
+<td>Regime de dedicação</td>
+<td><code>Selection</code></td>
+<td>Dedicação exclusiva, Integral, Parcial.</td>
+</tr>
+<tr>
+<td><code>workload</code></td>
+<td>Carga horária de atuação</td>
+<td><code>Integer</code></td>
+<td>Horas semanais.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Situação funcional</td>
+<td><code>Selection</code></td>
+<td>Ativo, Inativo, Falecido.</td>
+</tr>
+<tr>
+<td><code>is_retired</code></td>
+<td>Indicação de aposentadoria</td>
+<td><code>Boolean</code></td>
+<td>Sim; Não.</td>
+</tr>
+<tr>
+<td><code>degree_area</code></td>
+<td>Área de Conhec. Titulação</td>
+<td><code>Many2one</code></td>
+<td>Tabela CAPES.</td>
+</tr>
+<tr>
+<td><code>degree_level</code></td>
+<td>Nível acadêmico da titulação</td>
+<td><code>Selection</code></td>
+<td>Mestrado, Doutorado.</td>
+</tr>
+<tr>
+<td><code>degree_ies</code></td>
+<td>IES da titulação</td>
+<td><code>Char</code></td>
+<td>Texto livre (Ex: “Universidade de São Paulo”).</td>
+</tr>
+<tr>
+<td><code>advisees_count</code> <em>(Smart Button)</em></td>
+<td>Orientandos Ativos</td>
+<td><code>Integer</code></td>
+<td>Computado de <code>op.student</code> com status ativo.</td>
+</tr>
+<tr>
+<td><code>alumni_count</code> <em>(Smart Button)</em></td>
+<td>Orientandos Egressos / Titulados</td>
+<td><code>Integer</code></td>
+<td>Computado de <code>op.student</code> com categoria
+<code>alumni</code>.</td>
+</tr>
+<tr>
+<td><code>courses_count</code> <em>(Smart Button)</em></td>
+<td>Disciplinas Lecionadas</td>
+<td><code>Integer</code></td>
+<td>Computado de turmas/disciplinas sob responsabilidade do
+docente.</td>
+</tr>
+<tr>
+<td><code>research_lines_count</code> <em>(Smart Button)</em></td>
+<td>Linhas de Pesquisa Ativas</td>
+<td><code>Integer</code></td>
+<td>Computado de <code>research_line_ids</code>.</td>
+</tr>
+<tr>
+<td><code>theses_committee_count</code> <em>(Smart Button)</em></td>
+<td>Bancas Examinadoras</td>
+<td><code>Integer</code></td>
+<td>Computado de comissões julgadoras em <code>capes.thesis</code>.</td>
+</tr>
+<tr>
+<td><code>research_line_ids</code></td>
+<td>Linhas de Pesquisa Vinculadas</td>
+<td><code>Many2many</code></td>
+<td>Relação com <code>op.program.research.line</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vínculo-com-programa-op.faculty.program.link">2.2. Vínculo com
+Programa (<code>op.faculty.program.link</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição / Regra GoPG</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>faculty_id</code></td>
+<td>Docente</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.faculty</code>.</td>
+</tr>
+<tr>
+<td><code>program_id</code></td>
+<td>Programa de Pós-Graduação</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.program.capes</code>.</td>
+</tr>
+<tr>
+<td><code>active_advisees_count</code></td>
+<td>Número Orientandos Ativos</td>
+<td><code>Integer</code></td>
+<td>Computado. Trava teto (ex: máx 8 no IPEN).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="livro-razão-de-categorias-docentes-op.faculty.category.ledger">2.3.
+Livro-Razão de Categorias Docentes
+(<code>op.faculty.category.ledger</code>)</h3>
+<p><em>Estrutura Append-Only para o “filme” de credenciamento exigido
+pela CAPES.</em></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV / GoPG</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>program_link_id</code></td>
+<td>Vínculo Docente-Programa</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.faculty.program.link</code>.</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>Categoria de Atuação</td>
+<td><code>Selection</code></td>
+<td>Permanente, Colaborador, Visitante, Assistente.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>Início do Credenciamento</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>Fim do Credenciamento</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD (Validade máx 2 anos no IPEN).</td>
+</tr>
+<tr>
+<td><code>document_ref</code></td>
+<td>Portaria / Ata da CPG</td>
+<td><code>Char</code></td>
+<td>Referência formal do ato de credenciamento.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="discente-pós-graduando-op.student-visão-360-e-vínculos">3.
+Discente / Pós-Graduando (<code>op.student</code>), Visão 360° e
+Vínculos</h2>
+<p>A entidade <code>op.student</code> representa a Pessoa Acadêmica
+Soberana perante a IES (<code>res.company</code>), possuindo Registro
+Acadêmico (RA) único e perene ancorado no CPF.</p>
+<h3 id="visão-360-do-discente-na-ficha-cadastral">3.1. Visão 360° do
+Discente na Ficha Cadastral</h3>
+<p>A partir do formulário do discente, a secretaria e a coordenação
+possuem visão global e imediata de toda a vida acadêmica: * <strong>Ação
+no Cabeçalho (<em>Header Action</em>):</strong> Botão <strong>“Imprimir
+Histórico Escolar”</strong>, gerando o Histórico Oficial em QWeb PDF
+instantaneamente. * <strong>Smart Buttons Integrados:</strong> *
+<strong>Vínculos de Curso</strong> (<code>course_count</code>): Total de
+percursos do discente (<code>op.student.course</code>). *
+<strong>Livro-Razão</strong> (<code>credit_ledger_count</code>): Acesso
+rápido aos lançamentos de créditos. * <strong>Trabalhos Finais /
+Defesas</strong> (<code>thesis_count</code>): Ritos de Qualificação e
+Defesa (<code>capes.thesis</code>). * <strong>Produtos PTT</strong>
+(<code>ptt_count</code>): Acervo de produção técnica tecnológica do
+aluno (<code>capes.ptt.product</code>). * <strong>Requerimentos</strong>
+(<code>request_count</code>): Processos acadêmicos autuados
+(<code>op.academic.request</code>). * <strong>Diplomas Digitais</strong>
+(<code>diploma_count</code>): Dossiês de diplomação vinculados
+(<code>op.student.transcript.br</code>). * <strong>Aba Integrada de
+Livro-Razão:</strong> O notebook da ficha exibe a tabela completa de
+lançamentos com colunas para Disciplina, Natureza do Crédito, Créditos,
+Horas, Conceito Final, Data e Situação de Aprovação.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>Registro Acadêmico (RA)</td>
+<td><code>Char</code></td>
+<td>Alfanumérico. <strong>Imutável e Único por CPF e IES
+(<code>res.company</code>)</strong>.</td>
+</tr>
+<tr>
+<td><code>partner_id</code></td>
+<td>Vínculo com Pessoa Física</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>res.partner</code> (âncora soberana por CPF).
+Obrigatório.</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td>Instituição de Ensino (IES)</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>res.company</code>. Escopo de governança
+institucional.</td>
+</tr>
+<tr>
+<td><code>student_category</code></td>
+<td>Categoria Discente Atual</td>
+<td><code>Selection</code></td>
+<td><code>regular</code> (Regular), <code>special</code> (Especial /
+Não-Vinculado), <code>alumni</code> (Egresso/Titulado).</td>
+</tr>
+<tr>
+<td><code>curriculum_version_id</code></td>
+<td>Regimento Ativo (Ato Perfeito)</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.curriculum.version</code> do vínculo acadêmico
+principal ativo.</td>
+</tr>
+<tr>
+<td><code>course_detail_ids</code></td>
+<td>Histórico de Vínculos/Cursos</td>
+<td><code>One2many</code></td>
+<td>Relação com <code>op.student.course</code> (Múltiplos Vínculos
+Acadêmicos - Opção B).</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Situação do Discente</td>
+<td><code>Selection</code></td>
+<td>Matriculado, Abandono, Desligado, pending_dismissal, Titulado,
+Falecido.</td>
+</tr>
+<tr>
+<td><code>admission_date</code></td>
+<td>Data de ingresso oficial</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD. Inicia o relógio de prazos do curso regular.</td>
+</tr>
+<tr>
+<td><code>status_date</code></td>
+<td>Data da situação</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>advisor_id</code></td>
+<td>Orientador Principal</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.faculty</code> (aplicável a alunos regulares).</td>
+</tr>
+<tr>
+<td><code>coadvisor_id</code></td>
+<td>Coorientador</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.faculty</code>.</td>
+</tr>
+<tr>
+<td><code>english_proficiency_status</code></td>
+<td>Status Proficiência Inglês</td>
+<td><code>Selection</code></td>
+<td><code>pending</code> (Pendente), <code>approved</code> (Aprovado),
+<code>exempt</code> (Isento). Trava de matrícula/qualificação.</td>
+</tr>
+<tr>
+<td><code>portuguese_proficiency_status</code></td>
+<td>Status Proficiência Português</td>
+<td><code>Selection</code></td>
+<td><code>not_applicable</code> (N/A), <code>pending</code> (Pendente),
+<code>approved</code> (Aprovado). Exigido para estrangeiros.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="entidade-de-vínculo-acadêmico-op.student.course">3.2. Entidade
+de Vínculo Acadêmico (<code>op.student.course</code>)</h3>
+<ul>
+<li><strong>Campos Principais:</strong> <code>student_id</code>,
+<code>course_id</code>, <code>batch_id</code> (Turma / Lote de
+Ingresso), <code>curriculum_version_id</code>, <code>course_type</code>
+(<code>regular</code> / <code>special</code>), <code>state</code>
+(<code>running</code>, <code>finished</code>, <code>canceled</code>),
+<code>admission_date</code>, <code>completion_date</code>.</li>
+</ul>
+<h2 id="gestão-de-afastamentos-capes.leave_of_absence">4. Gestão de
+Afastamentos (<code>capes.leave_of_absence</code>)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>Discente Afastado</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.student</code>.</td>
+</tr>
+<tr>
+<td><code>faculty_id</code></td>
+<td>Docente Afastado</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.faculty</code>.</td>
+</tr>
+<tr>
+<td><code>leave_type</code></td>
+<td>Tipo de afastamento</td>
+<td><code>Selection</code></td>
+<td>Saúde própria, Doença família, Maternidade, Paternidade, Serviço
+Militar.</td>
+</tr>
+<tr>
+<td><code>cid_code</code></td>
+<td>Código CID Médico</td>
+<td><code>Char</code></td>
+<td>Obrigatório se motivo de saúde.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>Data início afastamento</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>Data encerramento</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD. Trava de teto de 365 dias.</td>
+</tr>
+<tr>
+<td><code>attachment_ids</code></td>
+<td>Atestados / Comprovantes</td>
+<td><code>Many2many</code></td>
+<td>Documentos em PDF anexados ao chamado.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="governança-do-colegiado-cpg-macroprocesso-10">5. Governança do
+Colegiado CPG (Macroprocesso 10)</h2>
+<h3 id="composição-do-conselho-op.cpg.committee-e-op.cpg.member">5.1.
+Composição do Conselho (<code>op.cpg.committee</code> e
+<code>op.cpg.member</code>)</h3>
+<p>A comissão deliberativa colegiada opera sob mandato formal (trienal)
+com quórum regimental estrito composto por: * <strong>6 Membros
+Titulares:</strong> 1. Coordenador do Programa (Presidente Nato) 2.
+Vice-Coordenador do Programa (Vice-Presidente) 3. Três Docentes
+Permanentes Titulares 4. Um Representante Discente Titular * <strong>4
+Membros Suplentes:</strong> 1. Três Docentes Permanentes Suplentes 2. Um
+Representante Discente Suplente</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição da Entidade</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Identificação da Gestão</td>
+<td><code>Char</code></td>
+<td>Ex: “Mandato CPG MPTRCS 2025-2028”.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>Início do Mandato</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>Término do Mandato</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD (Mandato de 3 anos).</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Situação da Gestão</td>
+<td><code>Selection</code></td>
+<td>Ativa, Encerrada.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="membros-da-cpg-op.cpg.member">5.2. Membros da CPG
+(<code>op.cpg.member</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>committee_id</code></td>
+<td>Gestão CPG</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.cpg.committee</code>.</td>
+</tr>
+<tr>
+<td><code>partner_id</code></td>
+<td>Membro da CPG</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>res.partner</code>.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td>Cargo na Mesa / Conselho</td>
+<td><code>Selection</code></td>
+<td>Coordenador, Vice-Coordenador, Titular, Suplente, Repres.
+Discente.</td>
+</tr>
+<tr>
+<td><code>mandate_origin</code></td>
+<td>Origem do Mandato</td>
+<td><code>Selection</code></td>
+<td>Eleito pelos Pares, Indicado Reitoria/Conselho, Eleição
+Discente.</td>
+</tr>
+<tr>
+<td><code>document_ref</code></td>
+<td>Número da Portaria / Ata</td>
+<td><code>Char</code></td>
+<td>Documento de indicação/eleição.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reuniões-e-deliberações-da-cpg-op.cpg.meeting">5.3. Reuniões e
+Deliberações da CPG (<code>op.cpg.meeting</code>)</h3>
+<p>O sistema gerencia o calendário mensal de reuniões ordinárias da CPG,
+controlando o fluxo pauta-aberta <span class="math inline">→</span>
+em-aprovação <span class="math inline">→</span> publicada: *
+<strong>Atas QWeb PDF (<code>minutes_pdf</code>):</strong> Compilação
+automática das deliberações com histórico de pauta. * <strong>Assinatura
+Eletrônica por Clique Auditável
+(<code>op.cpg.approval.log</code>):</strong> Cada homologação registra
+de forma imutável o <code>user_id</code>, <code>timestamp</code>,
+<code>action</code> (“Aprovação da Ata”) e <code>ip_address</code> do
+votante. * <strong>Deliberação de Processos
+(<code>agenda_request_ids</code>):</strong> Requerimentos acadêmicos
+pautados e resolvidos diretamente em sessão colegiada.</p>
+<h2 id="perfil-profissional-e-declaração-de-impacto-baseline-de-egressos---capes">6.
+Perfil Profissional e Declaração de Impacto (Baseline de Egressos -
+CAPES)</h2>
+<p><strong>Objetivo:</strong> Capturar a linha de base
+(<em>baseline</em>) profissional do discente no momento do ingresso,
+atendendo às exigências da CAPES para avaliação do impacto da titulação
+na carreira, especialmente em Mestrados Profissionais.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição / Regra de Negócio</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Opções / Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>Vínculo com o Discente</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.student</code>. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>company_name</code></td>
+<td>Nome da Empresa / Empregador</td>
+<td><code>Char</code></td>
+<td>Nome empresarial da organização empregadora. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>company_city</code></td>
+<td>Cidade da Empresa</td>
+<td><code>Char</code></td>
+<td>Município da sede/filial onde o aluno atua.</td>
+</tr>
+<tr>
+<td><code>company_sector</code></td>
+<td>Setor de Atuação da Empresa</td>
+<td><code>Selection</code></td>
+<td><code>tech</code>, <code>health</code>, <code>industry</code>,
+<code>gov</code>, <code>education</code>, <code>services</code>.</td>
+</tr>
+<tr>
+<td><code>company_size</code></td>
+<td>Porte da Empresa (Funcionários)</td>
+<td><code>Selection</code></td>
+<td><code>micro</code>, <code>small</code>, <code>medium</code>,
+<code>large</code>, <code>enterprise</code>.</td>
+</tr>
+<tr>
+<td><code>current_role</code></td>
+<td>Cargo / Função Atual</td>
+<td><code>Char</code></td>
+<td>Cargo ou função exercida na organização. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>professional_area</code></td>
+<td>Área de Atuação Específica</td>
+<td><code>Char</code></td>
+<td>Departamento ou área técnica de lotação na empresa.</td>
+</tr>
+<tr>
+<td><code>mp_alignment</code></td>
+<td>Alinhamento com o Mestrado Prof.</td>
+<td><code>Selection</code></td>
+<td><code>yes</code>, <code>partial</code>, <code>no</code>.</td>
+</tr>
+<tr>
+<td><code>tenure_range</code></td>
+<td>Tempo na Empresa</td>
+<td><code>Selection</code></td>
+<td><code>lt_1</code>, <code>1_3</code>, <code>3_5</code>,
+<code>gt_5</code>.</td>
+</tr>
+<tr>
+<td><code>salary_range</code></td>
+<td>Faixa Salarial Atual</td>
+<td><code>Selection</code></td>
+<td><code>r1</code> a <code>r5</code>. <em>Protegido por sigilo
+estatístico.</em></td>
+</tr>
+<tr>
+<td><code>capes_terms_accepted</code></td>
+<td>Aceite Termos CAPES e Programa</td>
+<td><code>Boolean</code></td>
+<td><strong>Obrigatório (<code>True</code>)</strong>.</td>
+</tr>
+<tr>
+<td><code>acceptance_timestamp</code></td>
+<td>Data e Hora do Aceite Digital</td>
+<td><code>Datetime</code></td>
+<td>Carimbo de tempo e IP gerados na submissão.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="perfis-de-usuários-e-controle-de-acesso-no-odoo-19-res.users">7.
+Perfis de Usuários e Controle de Acesso no Odoo 19
+(<code>res.users</code>)</h2>
+<p>Para operação do sistema em ambientes de produção e homologação, os
+seguintes perfis e privilégios são configurados:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Login</th>
+<th>Papel Institucional</th>
+<th>Grupo de Segurança Odoo 19</th>
+<th>Vínculo de Domínio</th>
+<th>Atribuições Principais</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>admin</code></td>
+<td>Administrador de TI / Sistema</td>
+<td><code>base.group_system</code>,
+<code>group_op_back_office_admin</code></td>
+<td>-</td>
+<td>Configuração de módulos, parametrizações globais e auditoria do
+stack.</td>
+</tr>
+<tr>
+<td><code>secretaria</code></td>
+<td>Secretaria de Pós-Graduação</td>
+<td><code>openeducat_core.group_op_back_office_admin</code></td>
+<td>Secretaria do PPG</td>
+<td>Cadastros discentes, matrículas, lançamentos de créditos, emissão de
+históricos e diplomas.</td>
+</tr>
+<tr>
+<td><code>coordenador</code></td>
+<td>Coordenador do PPG</td>
+<td><code>openeducat_core.group_op_back_office_admin</code></td>
+<td>FK Docente Coordenador + CPG</td>
+<td>Presidência da CPG, homologação de bancas, acompanhamento de prazos
+e deliberações.</td>
+</tr>
+<tr>
+<td><code>vicecoordenador</code></td>
+<td>Vice-Coordenador do PPG</td>
+<td><code>openeducat_core.group_op_back_office_admin</code></td>
+<td>FK Docente Vice-Coord. + CPG</td>
+<td>Substituição da coordenação e deliberações na CPG.</td>
+</tr>
+<tr>
+<td><code>professor</code></td>
+<td>Docente e Orientador</td>
+<td><code>openeducat_core.group_op_faculty</code></td>
+<td>FK <code>op.faculty</code></td>
+<td>Diário de classe, notas, pareceres sobre planos de trabalho e
+requerimentos de orientandos.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

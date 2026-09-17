@@ -1,0 +1,10 @@
+id,name,code,type,subject_type,program_id/id,grade_weightage
+sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,RAD501,theory,compulsory,prog_mptrcs,4
+sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,RAD502,theory,compulsory,prog_mptrcs,4
+sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,RAD503,theory,compulsory,prog_mptrcs,2
+sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,RAD510,theory,elective,prog_mptrcs,4
+sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,RAD511,theory,elective,prog_mptrcs,4
+sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,RAD512,theory,elective,prog_mptrcs,4
+sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,RAD520,theory,elective,prog_mptrcs,4
+sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,RAD521,theory,elective,prog_mptrcs,4
+sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,RAD522,theory,elective,prog_mptrcs,4

@@ -47,6 +47,11 @@ class OpStudentWorkPlan(models.Model):
         store=True,
         readonly=True
     )
+    research_line_id = fields.Many2one(
+        'op.program.research.line',
+        string='Linha de Pesquisa (Entidade)',
+        help='Vínculo formal com a ontologia de Linhas de Pesquisa do PPG'
+    )
     research_line = fields.Char(
         string='Linha de Pesquisa',
         required=True,

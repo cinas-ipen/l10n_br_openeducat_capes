@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Dicionário de Dados DAV: Módulo 03 - Formação, Disciplinas e Turmas</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Dicionário de Dados DAV: Módulo 03 - Formação,
+Disciplinas e Turmas</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#dicionário-de-dados-dav-módulo-03---formação-disciplinas-e-turmas" id="toc-dicionário-de-dados-dav-módulo-03---formação-disciplinas-e-turmas">Dicionário
+de Dados DAV: Módulo 03 - Formação, Disciplinas e Turmas</a>
+<ul>
+<li><a href="#disciplina-op.subject" id="toc-disciplina-op.subject">1.
+Disciplina (<code>op.subject</code>)</a></li>
+<li><a href="#turma-op.batch-op.session" id="toc-turma-op.batch-op.session">2. Turma (<code>op.batch</code> /
+<code>op.session</code>)</a>
+<ul>
+<li><a href="#ministrantes-da-turma" id="toc-ministrantes-da-turma">2.1
+Ministrantes da Turma</a></li>
+</ul></li>
+<li><a href="#requerimento-de-aproveitamento-de-créditos-de-aluno-especial-op.special.credit.incorporation.request" id="toc-requerimento-de-aproveitamento-de-créditos-de-aluno-especial-op.special.credit.incorporation.request">3.
+Requerimento de Aproveitamento de Créditos de Aluno Especial
+(<code>op.special.credit.incorporation.request</code>)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="dicionário-de-dados-dav-módulo-03---formação-disciplinas-e-turmas">Dicionário
+de Dados DAV: Módulo 03 - Formação, Disciplinas e Turmas</h1>
+<p><strong>Objetivo:</strong> Mapear o catálogo de disciplinas, ofertas
+e instâncias de turmas baseadas no JSON DAV.</p>
+<h2 id="disciplina-op.subject">1. Disciplina
+(<code>op.subject</code>)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado JSON DAV</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">Identificador da disciplina</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico (PK Odoo / CAPES).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>code</code></td>
+<td style="text-align: left;">Código da disciplina no PPG</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Alfanumérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">Nome da disciplina</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Texto livre.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>syllabus</code></td>
+<td style="text-align: left;">Ementa da disciplina</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Texto explicativo.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>basic_bibliography</code></td>
+<td style="text-align: left;">Bibliografia Básica</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Referências essenciais.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>complementary_bibliography</code></td>
+<td style="text-align: left;">Bibliografia Complementar</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Referências complementares.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>phea_indicator</code></td>
+<td style="text-align: left;">Processos Híbridos (PHEA)</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Sim; Não.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>teaching_language</code></td>
+<td style="text-align: left;">Idioma de Oferta</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Português (<code>pt</code>), Inglês
+(<code>en</code>), Espanhol (<code>es</code>), Outro
+(<code>other</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>grade_weightage</code></td>
+<td style="text-align: left;">Carga horária / Peso da disciplina</td>
+<td style="text-align: left;"><code>Float</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>credits</code></td>
+<td style="text-align: left;">Créditos da Disciplina</td>
+<td style="text-align: left;"><code>Float</code></td>
+<td style="text-align: left;">Numérico (campo armazenado relacionado a
+<code>grade_weightage</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>type</code></td>
+<td style="text-align: left;">Natureza didática</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Teórica (<code>theory</code>), Prática
+(<code>practical</code>), Teórico-Prática (<code>both</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>subject_type</code></td>
+<td style="text-align: left;">Indicador de obrigatoriedade</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Obrigatória (<code>compulsory</code>),
+Eletiva (<code>elective</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>program_id</code></td>
+<td style="text-align: left;">Programa Ofertante</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para
+<code>op.program.capes</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>allow_special_students</code></td>
+<td style="text-align: left;">Permite Alunos Especiais</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Sim; Não. Configuração por
+disciplina.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>special_student_instructor_consent_required</code></td>
+<td style="text-align: left;">Exige Anuência do Docente</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Sim; Não. Bloqueia matrícula sem aceite do
+professor.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>special_seats_quota</code></td>
+<td style="text-align: left;">Cota de Vagas Alunos Especiais</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Limite numérico de vagas avulsas na
+disciplina.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>active</code></td>
+<td style="text-align: left;">Situação de atividade no catálogo</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Ativo / Inativo.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="turma-op.batch-op.session">2. Turma (<code>op.batch</code> /
+<code>op.session</code>)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado JSON DAV</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>capes_id</code></td>
+<td style="text-align: left;">Identificador da turma</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>batch_code</code></td>
+<td style="text-align: left;">Código da turma</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Alfanumérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>academic_year</code></td>
+<td style="text-align: left;">Ano de oferta da turma</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">AAAA.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>academic_term</code></td>
+<td style="text-align: left;">Período letivo da turma</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">1°, 2°, 3°, 4°, 5°, 6°.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>language</code></td>
+<td style="text-align: left;">Idioma da turma</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Tabela Idiomas Capes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>phea_indicator</code></td>
+<td style="text-align: left;">Utilização de PHEA (Híbrido)</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Sim; Não.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>allow_special_students</code></td>
+<td style="text-align: left;">Admite Aluno Especial na Oferta</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Herda da disciplina ou ajusta por
+turma.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>special_seats_quota</code></td>
+<td style="text-align: left;">Cota Máxima de Alunos Especiais</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Teto de matriculados em regime especial na
+turma.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>prog_content</code></td>
+<td style="text-align: left;">Conteúdo Programático</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Temas e unidades de estudo.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>complem_biblio</code></td>
+<td style="text-align: left;">Bibliografia Complementar</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Obras adicionais.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ministrantes-da-turma">2.1 Ministrantes da Turma</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado JSON DAV</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>faculty_id</code></td>
+<td style="text-align: left;">Ministrante da turma</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">Docente vinculado.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_responsible</code></td>
+<td style="text-align: left;">Responsável pela turma</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Sim; Não.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="requerimento-de-aproveitamento-de-créditos-de-aluno-especial-op.special.credit.incorporation.request">3.
+Requerimento de Aproveitamento de Créditos de Aluno Especial
+(<code>op.special.credit.incorporation.request</code>)</h2>
+<p>Entidade de workflow para homologação de disciplinas cursadas em
+regime especial e sua transferência do estado de quarentena para o
+histórico regular do discente.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Descrição da Regra</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Validação / Regra de Negócio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>student_id</code></td>
+<td style="text-align: left;">Discente Requerente</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para <code>op.student</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>target_program_id</code></td>
+<td style="text-align: left;">Programa de Destino (Regular)</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para <code>op.program.capes</code> (ex:
+MPTRCS).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>target_curriculum_version_id</code></td>
+<td style="text-align: left;">Versão Curricular Ativa</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para
+<code>op.curriculum.version</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>quarantine_ledger_ids</code></td>
+<td style="text-align: left;">Disciplinas Selecionadas</td>
+<td style="text-align: left;"><code>Many2many</code></td>
+<td style="text-align: left;">Filtro estrito: apenas linhas de
+<code>credit_type = &#39;subject_special_quarantine&#39;</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>state</code></td>
+<td style="text-align: left;">Estado do Workflow</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;"><code>draft</code> (Rascunho),
+<code>submitted</code> (Submetido), <code>advisor_approved</code>
+(Parecer Orientador), <code>cpg_approved</code> (Deferido CPG),
+<code>rejected</code> (Indeferido).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_within_validity</code></td>
+<td style="text-align: left;">Verificação de Prazo Decadencial</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Computado. Trava: data de conclusão da
+disciplina <span class="math inline">≤</span> 36 meses da admissão
+regular.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_within_subject_limit</code></td>
+<td style="text-align: left;">Verificação do Teto de Disciplinas</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Computado. Trava: total de disciplinas
+<span class="math inline">≤</span>
+<code>max_special_subjects_limit</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>cpg_resolution_number</code></td>
+<td style="text-align: left;">Número do Ato / Resolução CPG</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Obrigatório para transição ao estado
+<code>cpg_approved</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>cpg_resolution_date</code></td>
+<td style="text-align: left;">Data da Reunião / Deliberação</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">Data oficial de homologação do
+aproveitamento.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>advisor_opinion</code></td>
+<td style="text-align: left;">Parecer do Orientador</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Justificativa de aderência à pesquisa da
+dissertação.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

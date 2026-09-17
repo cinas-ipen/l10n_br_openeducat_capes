@@ -129,6 +129,47 @@ class OpCurriculumVersion(models.Model):
         for record in self:
             record.max_external_subject_credits = (record.min_subject_credits * record.max_external_credits_percent) / 100.0
 
+    # Governança de Alunos Especiais (Disciplinas Isoladas)
+    allow_special_students = fields.Boolean(
+        string='Permite Alunos Especiais no Programa',
+        default=False,
+        help='Indica se o programa admite alunos especiais para cursar disciplinas isoladas. Padrão False no MPTRCS.'
+    )
+    max_special_subjects_limit = fields.Integer(
+        string='Limite Máximo de Disciplinas Isoladas',
+        default=2,
+        help='Quantidade máxima de disciplinas isoladas que um aluno especial pode cursar no programa.'
+    )
+    special_credit_validity_months = fields.Integer(
+        string='Prazo Decadencial de Aproveitamento Especial (meses)',
+        default=36,
+        help='Prazo máximo em meses (padrão 36 meses / 3 anos) para requerer aproveitamento de disciplinas de aluno especial após ingresso regular.'
+    )
+    special_incorporation_workflow = fields.Selection([
+        ('cpg_approval', 'Exige Parecer e Deliberação da CPG'),
+        ('direct_request', 'Incorporação Direta via Requerimento')
+    ], string='Workflow de Incorporação Especial', default='cpg_approval', required=True)
+    special_transcript_fail_policy = fields.Selection([
+        ('omit_on_regular', 'Omitir Reprovações e Não-Aproveitadas no Histórico Regular (Padrão MPTRCS)'),
+        ('display_all', 'Exibir Todas as Ocorrências de Regime Especial')
+    ], string='Política de Reprovações de Aluno Especial no Histórico', default='omit_on_regular', required=True)
+
+    # Governança de Disciplinas Intra-IES vs. Extra-IES
+    allow_intra_ies_credits = fields.Boolean(
+        string='Permite Cursar Disciplinas Intra-IES',
+        default=True,
+        help='Permite que discentes regulares deste programa cursem disciplinas em outros PPGs da mesma instituição.'
+    )
+    max_intra_ies_credits_percent = fields.Float(
+        string='Teto de Disciplinas Intra-IES (%)',
+        default=0.0,
+        help='Percentual máximo de créditos que podem vir de outros PPGs da mesma IES. 0.0 indica sem teto específico.'
+    )
+    intra_ies_advisor_approval_required = fields.Boolean(
+        string='Exige Anuência do Orientador para Intra-IES',
+        default=True
+    )
+
     # Parametrizações de Domínio Específico
     proficiency_stage = fields.Selection([
         ('admission', 'Na Admissão (Entrada - IPEN)'),

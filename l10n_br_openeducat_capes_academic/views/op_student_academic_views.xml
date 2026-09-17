@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_student_form_academic_360" model="ir.ui.view">
+        <field name="name">op.student.form.academic.360</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+        <field name="arch" type="xml">
+            <!-- Smart Buttons de Desempenho Acadêmico -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_credit_ledger" type="object" class="oe_stat_button" icon="fa-balance-scale">
+                    <field name="credit_ledger_count" widget="statinfo" string="Créditos"/>
+                </button>
+                <button name="action_view_special_requests" type="object" class="oe_stat_button" icon="fa-file-text-o">
+                    <field name="special_req_count" widget="statinfo" string="Aproveitamentos"/>
+                </button>
+            </xpath>
+
+            <!-- Aba do Histórico Escolar & Livro-Razão de Créditos -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Histórico Escolar &amp; Livro-Razão" name="credit_ledger_page">
+                    <group string="Consolidação e Integralização de Créditos">
+                        <group>
+                            <field name="total_disciplinas_credits" readonly="1"/>
+                            <field name="total_complementar_credits" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_conferred_credits" readonly="1" class="oe_subtotal_footer_separator"/>
+                        </group>
+                    </group>
+                    <group string="Lançamentos Oficiais Imutáveis (Append-Only)">
+                        <field name="credit_ledger_ids" nolabel="1" readonly="1">
+                            <list decoration-success="is_approved" decoration-muted="not is_approved">
+                                <field name="date_earned"/>
+                                <field name="credit_type"/>
+                                <field name="course_name"/>
+                                <field name="hours"/>
+                                <field name="credits"/>
+                                <field name="grade_concept"/>
+                                <field name="is_approved"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

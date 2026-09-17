@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 02: Operacionalização de Turmas, Matrículas e Ajustes Retroativos</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 02: Operacionalização de Turmas, Matrículas
+e Ajustes Retroativos</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-02-operacionalização-de-turmas-matrículas-e-ajustes-retroativos" id="toc-documento-02-operacionalização-de-turmas-matrículas-e-ajustes-retroativos">Documento
+02: Operacionalização de Turmas, Matrículas e Ajustes Retroativos</a>
+<ul>
+<li><a href="#oferta-de-turmas-e-regras-de-composição-docente" id="toc-oferta-de-turmas-e-regras-de-composição-docente">1. Oferta de
+Turmas e Regras de Composição Docente</a></li>
+<li><a href="#inscrições-semestrais-trava-de-calouros-e-matrículas-intra-ies" id="toc-inscrições-semestrais-trava-de-calouros-e-matrículas-intra-ies">2.
+Inscrições Semestrais, Trava de Calouros e Matrículas Intra-IES</a></li>
+<li><a href="#cancelamento-de-matrícula-em-disciplina-artigo-41º-do-mptrcs-e-anuência-tácita" id="toc-cancelamento-de-matrícula-em-disciplina-artigo-41º-do-mptrcs-e-anuência-tácita">3.
+Cancelamento de Matrícula em Disciplina (Artigo 41º do MPTRCS e Anuência
+Tácita)</a></li>
+<li><a href="#encerramento-de-turmas-e-injeção-no-livro-razão" id="toc-encerramento-de-turmas-e-injeção-no-livro-razão">4. Encerramento
+de Turmas e Injeção no Livro-Razão</a></li>
+<li><a href="#ajuste-manual-retroativo-fluxo-de-exceção-auditado" id="toc-ajuste-manual-retroativo-fluxo-de-exceção-auditado">5. Ajuste
+Manual Retroativo (Fluxo de Exceção Auditado)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-02-operacionalização-de-turmas-matrículas-e-ajustes-retroativos">Documento
+02: Operacionalização de Turmas, Matrículas e Ajustes Retroativos</h1>
+<h2 id="oferta-de-turmas-e-regras-de-composição-docente">1. Oferta de
+Turmas e Regras de Composição Docente</h2>
+<p>A oferta semestral de disciplinas em <code>op.batch</code> e
+<code>op.session</code> obedece a travas de capacidade e quórum:</p>
+<ul>
+<li><strong>Quórum Mínimo e Cotas Especiais:</strong> A secretaria
+cadastra a capacidade mínima da turma. Se a janela de matrícula fechar
+sem atingir o quórum, o Odoo emite um alerta, cancela a oferta e
+notifica os alunos para remanejamento. Para turmas que aceitam Alunos
+Especiais (<code>allow_special_students = True</code>), o sistema
+reserva a cota parametrizada em <code>special_seats_quota</code>.</li>
+<li><strong>Equipe Docente Híbrida e Anuência Prévia:</strong> O sistema
+permite vincular a uma mesma turma 1 Coordenador (docente permanente) e
+até 3 outros professores portadores do título de Doutor. Quando ativada
+a exigência <code>special_student_instructor_consent_required</code>, as
+solicitações de matrícula em disciplinas isoladas são roteadas para o
+aceite explícito do ministrante responsável.</li>
+</ul>
+<h2 id="inscrições-semestrais-trava-de-calouros-e-matrículas-intra-ies">2.
+Inscrições Semestrais, Trava de Calouros e Matrículas Intra-IES</h2>
+<ul>
+<li><strong>Carga Inicial Obrigatória (Calouros):</strong> No semestre
+de admissão (calouros), o algoritmo impedirá a finalização da matrícula
+caso a seleção de disciplinas seja inferior ao mínimo parametrizado no
+regimento (<code>min_first_semester_credits</code>, ex: 24 créditos no
+IPEN MPTRCS).</li>
+<li><strong>Matrícula Cruzada Intra-IES (Programas da Mesma
+IES):</strong>
+<ul>
+<li>O discente regular de um programa pode se inscrever em disciplinas
+ofertadas por outros PPGs da mesma IES mantenedora
+(<code>res.company</code>).</li>
+<li>O requerimento passa pelo crivo eletrônico do orientador
+(<code>intra_ies_advisor_approval_required</code>) e pelo aceite do
+docente da disciplina.</li>
+<li>Os créditos cursados com êxito são consolidados no histórico
+discente no valor integral (100% nominal), sem perda de equivalência,
+respeitando o limite teto regimental do programa de origem
+(<code>max_intra_ies_credits_percent</code>).</li>
+<li><em>Observação IPEN:</em> Disciplinas cursadas no programa de
+Tecnologia Nuclear (USP) não se enquadram neste fluxo automático, sendo
+tratadas como extra-IES com necessidade de validação formal de
+equivalência e pauta na CPG do MPTRCS.</li>
+</ul></li>
+<li><strong>Inscrição em Matrícula de Acompanhamento:</strong> Para
+resolver o problema da “inatividade fictícia” durante a fase exclusiva
+de pesquisa e elaboração de dissertação (após o cumprimento dos créditos
+teóricos), o sistema força a inscrição compulsória semestral na
+disciplina contínua “Elaboração de Dissertação” (0 créditos teóricos),
+mantendo o discente com status “Ativo e Matriculado” perante a colheita
+passiva da CAPES (Fonte Prata).</li>
+</ul>
+<h2 id="cancelamento-de-matrícula-em-disciplina-artigo-41º-do-mptrcs-e-anuência-tácita">3.
+Cancelamento de Matrícula em Disciplina (Artigo 41º do MPTRCS e Anuência
+Tácita)</h2>
+<p>Em estrita conformidade com o regulamento do programa (Artigo 41º), o
+estudante pode solicitar o cancelamento da inscrição em uma disciplina.
+O processo obedece aos seguintes parâmetros e salvaguardas
+sistêmicas:</p>
+<ul>
+<li><strong>Parametrização Flexível de Prazos:</strong> A CPG-MP define
+o prazo limite para cancelamento por meio de três opções configuráveis
+no calendário acadêmico do ERP:
+<ol type="1">
+<li><em>Dias corridos:</em> Contados a partir da data de início das
+aulas de cada disciplina específica.</li>
+<li><em>Parâmetro Individual por Disciplina:</em> Janela personalizada
+de cancelamento vinculada ao plano de ensino da disciplina.</li>
+<li><em>Data Fixa Global:</em> Prazo limite uniforme definido no
+calendário geral do semestre.</li>
+</ol></li>
+<li><strong>Anuência Obrigatória do Orientador:</strong> O requerimento
+submetido pelo discente via Portal do Aluno é encaminhado
+obrigatoriamente para a anuência eletrônica do orientador, garantindo o
+controle acadêmico exigido.</li>
+<li><strong>Proteção Contra Omissão (Anuência Tácita / SLA):</strong>
+Caso o discente protocole o pedido de cancelamento <strong>dentro do
+prazo regulamentar</strong>, mas o orientador não se manifeste dentro do
+SLA estipulado (ex: 5 dias úteis, acionado por razões de viagem ou
+saúde), o sistema aplica o princípio da <strong>anuência
+tácita</strong>. O Odoo concede automaticamente o deferimento do
+cancelamento em favor do aluno, blindando o discente contra prejuízos
+acadêmicos decorrentes de impasses burocráticos.</li>
+<li><strong>Efeitos no Histórico e Prazos:</strong> O cancelamento
+aprovado remove o discente da pauta sem atribuir conceito reprovativo
+“R” e sem figurar no histórico escolar final. Contudo, o ato <strong>não
+possui efeito suspensivo</strong> sobre os prazos máximos regimentais de
+titulação do curso.</li>
+</ul>
+<h2 id="encerramento-de-turmas-e-injeção-no-livro-razão">4. Encerramento
+de Turmas e Injeção no Livro-Razão</h2>
+<p>Após o encerramento do semestre, os docentes lançam notas/conceitos
+(A, B, C, R) e frequências (exigência mínima de 75%). A secretaria
+revisa os diários e comanda a consolidação. Nesse momento, os créditos
+são injetados na tabela imutável (<em>append-only</em>)
+<code>op.student.credit.ledger</code>, tornando-se definitivos: * Para
+alunos regulares em disciplinas do seu próprio PPG: classificados como
+<code>subject_internal</code>. * Para alunos regulares cursando
+disciplinas de outros PPGs da IES: classificados como
+<code>subject_intra_ies</code>. * Para alunos matriculados como
+especiais: classificados como <code>subject_special_quarantine</code>
+(em quarentena).</p>
+<h2 id="ajuste-manual-retroativo-fluxo-de-exceção-auditado">5. Ajuste
+Manual Retroativo (Fluxo de Exceção Auditado)</h2>
+<p>Para atender a determinações judiciais ou retificações homologadas
+pela CPG, o sistema implementa o formulário de exceção
+<code>op.academic.request.grade_adjustment</code>:</p>
+<ol type="1">
+<li>O docente ou secretaria abre o chamado informando: Aluno,
+Disciplina, Semestre, Conceito Original, Conceito Pretendido e
+Justificativa Detalhada com anexo de provas documentais.</li>
+<li>O pedido é roteado para aprovação eletrônica do Coordenador do
+Programa.</li>
+<li>Após o clique do Coordenador, a secretaria executa a retificação no
+Livro-Razão. O ERP sobrescreve o dado e gera um selo de auditoria
+indelével no histórico escolar, registrando o responsável, a data, a
+hora e o motivo da alteração.</li>
+</ol>
+</body>
+</html>

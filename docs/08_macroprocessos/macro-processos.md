@@ -20,6 +20,8 @@ Este é o processo fundacional de back-office. Antes de qualquer edital ser publ
   * *Carga Total Exigida:* Fixada na meta global do programa (ex: 100 créditos no MPTRCS/IPEN, 50 no Mackenzie Computação, 60 no Mackenzie ADN, 24/47 no CDTN).
   * *Matriz de Distribuição Obrigatória:* Divisão da integralização em silos/buckets parametrizáveis.
   * *Tetos de Aproveitamento Externo e Produção Técnica:* Configuração das propriedades de validação em Python: teto de disciplinas externas (ex: até 50% no IPEN vs. 40% no Mackenzie) e bonificação por produções (teto de 25%).
+  * *Governança de Alunos Especiais:* Parametrização regimental de permissão (`allow_special_students`, default `False` para MPTRCS), teto de disciplinas isoladas (`max_special_subjects_limit`), prazo decadencial de aproveitamento (`special_credit_validity_months`, padrão 36 meses), fluxo deliberativo CPG e política de reprovações (`special_transcript_fail_policy = 'omit_on_regular'`).
+  * *Governança Intra-IES vs. Extra-IES:* Configuração da permissão de créditos intra-IES (`allow_intra_ies_credits`) com 100% de equivalência nominal e teto `max_intra_ies_credits_percent`. No IPEN, o programa de Tecnologia Nuclear (titulado pela USP) é parametrizado como extra-IES, exigindo aprovação prévia da CPG e submissão ao teto externo.
 * **Parametrização de Proficiência Linguística (`proficiency_stage`):**
   * Configuração do gatilho: `admission` (matrícula inicial - IPEN), `qualification` ou `defense`.
 * **Parametrização Dinâmica de Disciplinas Obrigatórias (`op.curriculum.subject.rule`):**
@@ -102,7 +104,11 @@ Abandona-se a matrícula direta e manual em favor da concorrência pública para
 
 **2.7. Adendo de Matrículas Especiais (Disciplinas Isoladas)**
 
-* O sistema disponibiliza um fluxo de admissão não conducente a título para candidatos em disciplinas isoladas. O ERP controla o teto de disciplinas avulsas, não emite vínculo de aluno regular e gera apenas um certificado de aproveitamento futuro.
+* O sistema disponibiliza um fluxo de admissão não conducente a título para candidatos em disciplinas isoladas.
+* **Emissão do RA Perene:** O candidato recebe um Registro Acadêmico (RA) definitivo da IES em `op.student`, unívoco por CPF e mantido perenemente mesmo se futuramente o aluno ingressar como regular.
+* **Governança Regimental:** O ERP checa a permissão regimental do programa (`allow_special_students`), sendo desabilitada por padrão no MPTRCS. Nos programas que permitem, a matrícula exige aceite do docente (`special_student_instructor_consent_required`) e respeito à cota de vagas (`special_seats_quota`).
+* **Livro-Razão em Quarentena:** As disciplinas concluídas com êxito são gravadas como `subject_special_quarantine`, servindo apenas para emissão de certidão de disciplinas isoladas. Não entram em cálculos de titulação regular até que ocorra posterior aprovação em processo seletivo e homologação de aproveitamento pela CPG dentro do prazo decadencial de 36 meses.
+* **Expurgo de Reprovações:** Reprovações ocorridas sob vínculo de aluno especial não contam para jubilação do curso regular e não constam no histórico oficial de conclusão (política `omit_on_regular`).
 
 ---
 
@@ -118,9 +124,10 @@ Gerencia a operacionalização do dia a dia letivo, desde a oferta de turmas at�
 * **Composição de Equipe Docente:** O ERP permitirá que o Coordenador da disciplina (docente permanente) vincule à turma até 3 (três) outros professores portadores do título de Doutor (permanentes ou colaboradores).
 * O sistema configura o **Prazo de Matrícula** fixado no calendário acadêmico.
 
-**3.2. Inscrição Semestral em Disciplinas e Trava de Carga Inicial**
+**3.2. Inscrição Semestral em Disciplinas, Trava de Calouros e Matrículas Intra-IES**
 
 * **Disciplinas Regulares:** O aluno seleciona o elenco de turmas ofertadas. O ERP submete a grade à validação eletrônica do orientador e homologação da secretaria.
+* **Matrículas Intra-IES:** O discente pode requerer matrícula em turmas de outros PPGs da mesma IES mantenedora (`res.company`). O processo exige anuência do orientador e aceite do docente responsável. Os créditos integralizados contam com 100% de peso nominal, respeitando o teto `max_intra_ies_credits_percent`. No IPEN, disciplinas da Tecnologia Nuclear (USP) são consideradas extra-IES e requerem validação pela CPG.
 * **Trava de Matrícula Inicial:** No semestre de admissão (calouros), o algoritmo impedirá a finalização da matrícula caso a seleção de disciplinas seja inferior ao mínimo parametrizado no regimento (`min_first_semester_credits`, ex: 24 créditos no IPEN MPTRCS).
 * **Matrícula de Acompanhamento (Ato Estudantil):** Alunos que concluíram os créditos teóricos devem, semestralmente, solicitar via portal a matrícula na atividade de "Elaboração de Dissertação", submetendo-se à validação do orientador e homologação da secretaria.
 
@@ -139,7 +146,10 @@ Gerencia a operacionalização do dia a dia letivo, desde a oferta de turmas at�
 
 **3.5. Consolidação no Livro-Razão Acadêmico (Ato Finalizado)**
 
-* Ao acionar a consolidação, a secretaria transforma os conceitos em um ato finalizado. O sistema injeta os créditos na tabela *append-only* do Livro-Razão (`op.student.credit.ledger`). Os registros tornam-se nativamente imutáveis e travados pela interface padrão.
+* Ao acionar a consolidação, a secretaria transforma os conceitos em um ato finalizado. O sistema injeta os créditos na tabela *append-only* do Livro-Razão (`op.student.credit.ledger`). Os registros tornam-se nativamente imutáveis e categorizados:
+  * `subject_internal`: Disciplinas regulares do PPG do aluno.
+  * `subject_intra_ies`: Disciplinas de outros programas da mesma instituição mantenedora.
+  * `subject_special_quarantine`: Disciplinas cursadas sob vínculo de Aluno Especial, mantidas em quarentena.
 
 **3.6. Ajuste Manual Retroativo (Fluxo de Exceção e Demandas Judiciais)**
 
@@ -269,7 +279,7 @@ Orquestra os ritos acadêmicos de passagem e consolidação do grau, aplicando r
 
 Processo integrado de auditoria de back-office e consolidação documental para encerramento do vínculo acadêmico, operacionalizado para atender tanto instituições com autonomia registradora direta quanto institutos de pesquisa (como o IPEN) que encaminham o registro para uma Universidade Registradora Externa (como a USP), com suporte a diplomas digitais (Portaria MEC nº 70/2025) e físicos em papel com Livro de Registro.
 
-* **Geração de Histórico Escolar Consolidado e Auditável (IPEN):** O módulo de emissão compila o relatório oficial de notas e créditos do discente acessando diretamente as tabelas *append-only* do `op.student.credit.ledger`. O documento exibe de forma detalhada o título final da dissertação defendida, a composição completa da banca examinadora (identificando os membros externos) e a carga horária em horas convertida de acordo com o fator do regimento do aluno (ex: 100 créditos = 1.500 horas de atividades no IPEN). O documento é selado com uma chave Hash SHA-256 e QR Code de verificação pública.
+* **Geração de Histórico Escolar Consolidado e Auditável (IPEN):** O módulo de emissão compila o relatório oficial de notas e créditos do discente acessando diretamente as tabelas *append-only* do `op.student.credit.ledger`. O documento exibe de forma detalhada o título final da dissertação defendida, a composição completa da banca examinadora (identificando os membros externos) e a carga horária em horas convertida de acordo com o fator do regimento do aluno (ex: 100 créditos = 1.500 horas de atividades no IPEN). Em conformidade com a política regimental (`special_transcript_fail_policy = 'omit_on_regular'`), o histórico oficial de titulação omite reprovações e créditos avulsos não aproveitados cursados no passado como aluno especial, listando unicamente as disciplinas formalmente integradas ao percurso regular. O documento é selado com uma chave Hash SHA-256 e QR Code de verificação pública.
 * **Empacotamento do Dossiê e Remessa Interinstitucional (IPEN $\rightarrow$ USP):** O OpenEduCat compila o **Pacote de Titulação** contendo o histórico validado, a ata de defesa assinada e o link do DSpace (Handle/URI). Nos casos de institutos de pesquisa como o IPEN, o sistema gera o protocolo de remessa física/digital (`physical_dispatch_date`) para averbação na Pró-Reitoria de Pós-Graduação da Universidade Registradora (USP).
 * **Averbação do Registro e Expedição (Papel / Nato-Digital):**
     * *Modalidade Físico em Papel (`paper_hybrid`):* Registro do número do Livro de Registro (`registration_book_number`) e da Folha (`registration_page_number`) emitidos pela USP, com arquivamento do dossiê físico/digital.
@@ -353,7 +363,7 @@ Transforma o ERP na ferramenta oficial de orquestração do programa. Este macro
 
 **10.2. Triagem da Secretaria (A Esteira de Requerimentos)**
 
-* Todos os chamados no Portal do Aluno que demandam deliberação colegiada (como prorrogações excepcionais de prazos, trancamentos fora do fluxo legal, homologação de planos de trabalho, mudança de orientador sem anuência) caem em uma fila unificada no dashboard da secretaria com o status "Aguardando Triagem CPG".
+* Todos os chamados no Portal do Aluno que demandam deliberação colegiada (como aproveitamento de disciplinas cursadas como aluno especial `op.special.credit.incorporation.request`, prorrogações excepcionais de prazos, trancamentos fora do fluxo legal, homologação de planos de trabalho, equivalência de disciplinas extra-IES da USP, mudança de orientador sem anuência) caem em uma fila unificada no dashboard da secretaria com o status "Aguardando Triagem CPG".
 * A secretaria atua como filtro técnico: confere a integridade dos documentos anexados e, com um clique, altera o status dos requerimentos aprovados na triagem para "Apto para Pauta".
 
 **10.3. Orquestração da Reunião (`op.cpg.meeting`)**

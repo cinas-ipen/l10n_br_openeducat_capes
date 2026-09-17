@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 03: Motor Cronológico, Trava de Prazos e Jubilamento</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 03: Motor Cronológico, Trava de Prazos e
+Jubilamento</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-03-motor-cronológico-trava-de-prazos-e-jubilamento" id="toc-documento-03-motor-cronológico-trava-de-prazos-e-jubilamento">Documento
+03: Motor Cronológico, Trava de Prazos e Jubilamento</a>
+<ul>
+<li><a href="#o-relógio-implacável-da-pós-graduação" id="toc-o-relógio-implacável-da-pós-graduação">1. O Relógio Implacável
+da Pós-Graduação</a></li>
+<li><a href="#regras-algorítmicas-de-trancamento-de-matrícula" id="toc-regras-algorítmicas-de-trancamento-de-matrícula">2. Regras
+Algorítmicas de Trancamento de Matrícula</a></li>
+<li><a href="#prorrogações-de-prazo-e-exceções-capes-90-dias" id="toc-prorrogações-de-prazo-e-exceções-capes-90-dias">3. Prorrogações
+de Prazo e Exceções CAPES (&gt; 90 Dias)</a></li>
+<li><a href="#jubilamento-automático-pending_dismissal" id="toc-jubilamento-automático-pending_dismissal">4. Jubilamento
+Automático (<code>pending_dismissal</code>)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-03-motor-cronológico-trava-de-prazos-e-jubilamento">Documento
+03: Motor Cronológico, Trava de Prazos e Jubilamento</h1>
+<h2 id="o-relógio-implacável-da-pós-graduação">1. O Relógio Implacável
+da Pós-Graduação</h2>
+<p>Na avaliação quadrienal da CAPES, o “Tempo Médio de Titulação” é uma
+métrica central. O ERP atua como um motor cronológico fiscalizador
+acionado a partir da data oficial de admissão do discente
+(<code>admission_date</code>).</p>
+<p>O parâmetro vital de controle é o campo
+<code>max_months_defense</code> registrado no regimento do aluno
+(<code>op.curriculum.version</code>), fixado em <strong>24
+meses</strong> para o Mestrado Profissional do IPEN.</p>
+<h2 id="regras-algorítmicas-de-trancamento-de-matrícula">2. Regras
+Algorítmicas de Trancamento de Matrícula</h2>
+<p>O trancamento de matrícula pausa a contagem do relógio cronológico
+(<code>max_months_defense</code>), mas obedece rigorosamente às
+restrições configuradas na <code>op.curriculum.version</code> e ao rito
+de aprovação da CPG:</p>
+<ul>
+<li><strong>Categorias Legais Exigidas:</strong> Conforme o regulamento
+(ex: Art. 22º do MPTRCS), o estudante pode pleitear a suspensão nos
+casos de Serviço Militar, Problemas de Saúde Incapacitantes (com
+atestado e CID <code>cid_code</code>), Acompanhamento de Cônjuge/Parente
+de 1º Grau ou Demais casos previstos em lei/excepcionais. <strong>Nenhum
+trancamento é efetivado de forma automática pelo sistema</strong>: todas
+as solicitações protocoladas no portal dependem obrigatoriamente de
+triagem documental prévia da secretaria e de aprovação formal em pauta
+de reunião da CPG.</li>
+<li><strong>Flexibilidade de Período (Parametrizável):</strong> Em
+conformidade com o Art. 22º, §1º, o sistema permite que o pedido seja
+submetido em qualquer época do curso (sem trava restritiva padrão para o
+1º semestre no MPTRCS). Programas que exijam o bloqueio no primeiro
+semestre devem ativar o parâmetro booleano
+<code>block_first_semester_trancamento</code> = <code>True</code> na
+versão curricular.</li>
+<li><strong>Limite Contínuo Personalizado:</strong> O algoritmo valida o
+somatório dos períodos de trancamento com base no parâmetro regimental
+<code>max_trancamento_days</code> (configurado para o teto contínuo de
+365 dias no MPTRCS, Art. 22º, §3º).</li>
+<li><strong>Retorno e Ato Jurídico Perfeito (Art. 23º):</strong> Ao
+retornar do trancamento, o discente é vinculado à estrutura curricular
+vigente na data de retorno. O sistema preserva integralmente as notas e
+créditos obtidos anteriormente no Livro-Razão
+(<code>op.student.credit.ledger</code>), mas submete o aluno às normas
+vigentes para as etapas futuras, vedando o hibridismo normativo.</li>
+</ul>
+<h2 id="prorrogações-de-prazo-e-exceções-capes-90-dias">3. Prorrogações
+de Prazo e Exceções CAPES (&gt; 90 Dias)</h2>
+<ul>
+<li><strong>Prorrogação Regular:</strong> O aluno e orientador solicitam
+extensão de prazo via portal. O sistema valida se o aluno já possui o
+Plano de Trabalho homologado e foi aprovado no Seminário Geral de Área /
+Exame de Qualificação. As prorrogações regulares são limitadas ao teto
+configurado no regimento do aluno (<code>max_extension_days</code>, ex:
+90 dias no IPEN ou até 6/12 meses no CDTN e Mackenzie).</li>
+<li><strong>Trava Documental para Prorrogações Extraordinárias:</strong>
+Em situações de contingência nacional (ex: pandemias ou calamidades
+públicas), a CPG pode conceder prorrogações superiores ao teto
+configurado no regimento do aluno (<code>max_extension_days</code>).
+Para liberar esta trava no Odoo, a secretaria é obrigada a anexar o
+arquivo PDF da Portaria ou Comunicado Oficial publicado pela CAPES
+reconhecendo a excepcionalidade.</li>
+</ul>
+<h2 id="jubilamento-automático-pending_dismissal">4. Jubilamento
+Automático (<code>pending_dismissal</code>)</h2>
+<p>Diariamente, à meia-noite, uma Ação Agendada (Cron Job) do Odoo varre
+os prazos de todos os discentes ativos:</p>
+<ol type="1">
+<li><strong>Estouro de Prazo Limite:</strong> Estudantes que
+ultrapassarem a data limite de defesa (ingresso + 24 meses +
+trancamentos + prorrogações) sem depósito registrado da dissertação têm
+o status alterado para <code>pending_dismissal</code>.</li>
+<li><strong>Reprovação Dupla:</strong> O sistema monitora reprovações
+acumuladas. Ocorrendo duas reprovações em disciplinas ou duas
+reprovações no Seminário Geral de Área / Exame de Qualificação, o Odoo
+altera o status para <code>pending_dismissal</code>.</li>
+<li><strong>Desligamento Efetuado:</strong> O status
+<code>pending_dismissal</code> cessa imediatamente a exportação do
+discente como “Matriculado Ativo” para os endpoints da CAPES (Fonte
+Prata), isolando o programa contra deterioração nos indicadores
+estatísticos.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lógica Python de Verificação do Jubilamento Automático</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _check_dismissal_deadlines(<span class="va">self</span>):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    active_students <span class="op">=</span> <span class="va">self</span>.env[<span class="st">&#39;op.student&#39;</span>].search([(<span class="st">&#39;status&#39;</span>, <span class="st">&#39;=&#39;</span>, <span class="st">&#39;Matriculado&#39;</span>)])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> student <span class="kw">in</span> active_students:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        deadline <span class="op">=</span> student._compute_absolute_deadline() <span class="co"># Ingresso + max_months + prorrogações ativas</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> datetime.today().date() <span class="op">&gt;</span> deadline <span class="kw">and</span> <span class="kw">not</span> student.has_defended():</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            student.status <span class="op">=</span> <span class="st">&#39;pending_dismissal&#39;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            student.message_post(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                body<span class="op">=</span><span class="st">&quot;Transição automática para Pendente de Desligamento: Prazo máximo de defesa excedido sem depósito registrado.&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
+</body>
+</html>

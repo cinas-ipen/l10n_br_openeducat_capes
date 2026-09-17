@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 01: Motor de Versionamento Curricular e Parametrização</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 01: Motor de Versionamento Curricular e
+Parametrização</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-01-motor-de-versionamento-curricular-e-parametrização" id="toc-documento-01-motor-de-versionamento-curricular-e-parametrização">Documento
+01: Motor de Versionamento Curricular e Parametrização</a>
+<ul>
+<li><a href="#o-desafio-da-parametrização-acadêmica-no-stricto-sensu" id="toc-o-desafio-da-parametrização-acadêmica-no-stricto-sensu">1. O
+Desafio da Parametrização Acadêmica no Stricto Sensu</a></li>
+<li><a href="#a-entidade-de-versionamento-op.curriculum.version" id="toc-a-entidade-de-versionamento-op.curriculum.version">2. A Entidade
+de Versionamento (<code>op.curriculum.version</code>)</a></li>
+<li><a href="#a-separação-entre-identidade-soberana-e-vínculo-acadêmico-opção-b" id="toc-a-separação-entre-identidade-soberana-e-vínculo-acadêmico-opção-b">3.
+A Separação entre Identidade Soberana e Vínculo Acadêmico (Opção
+B)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-01-motor-de-versionamento-curricular-e-parametrização">Documento
+01: Motor de Versionamento Curricular e Parametrização</h1>
+<h2 id="o-desafio-da-parametrização-acadêmica-no-stricto-sensu">1. O
+Desafio da Parametrização Acadêmica no Stricto Sensu</h2>
+<p>A arquitetura nativa do OpenEduCat baseia-se na premissa
+norte-americana e europeia de que um curso ou programa de pós-graduação
+(<code>op.course</code> ou <code>op.program</code>) detém regras
+estáticas e universais para todos os alunos ali matriculados. No cenário
+acadêmico brasileiro, devido à autonomia universitária e à necessidade
+de atender às métricas evolutivas da CAPES, os programas atualizam
+constantemente os seus regulamentos.</p>
+<p>Essa realidade exige que o ERP suporte a coexistência de discentes no
+mesmo programa operando sob conjuntos de regras drasticamente
+diferentes. Para solucionar essa lacuna arquitetural, o módulo
+<code>l10n_br_openeducat_capes_academic</code> isola as regras do nível
+de programa e as transfere para uma nova entidade dinâmica de
+versionamento.</p>
+<h2 id="a-entidade-de-versionamento-op.curriculum.version">2. A Entidade
+de Versionamento (<code>op.curriculum.version</code>)</h2>
+<p>O modelo <code>op.curriculum.version</code> atua como o motor
+orquestrador de regras e o cérebro das validações sistêmicas do
+OpenEduCat. Cada programa de pós-graduação
+(<code>op.program.capes</code>) possuirá uma relação <em>One2many</em>
+com suas respectivas versões de currículo.</p>
+<p>Esta entidade concentra parâmetros vitais que balizam o motor
+cronológico, a avaliação acadêmica e as bancas de titulação,
+incluindo:</p>
+<ul>
+<li><strong>Prazos Temporais e Cronometria:</strong>
+<ul>
+<li>Prazo máximo para exame de qualificação/seminário de área e prazo
+limite em meses para a defesa (<code>max_months_defense</code>).</li>
+<li>Teto máximo de prorrogação regular e extraordinária
+(<code>max_extension_days</code>).</li>
+<li>Prazo limite para entrega do PDF definitivo pós-defesa
+(<code>max_days_post_defense_deposit</code>), configurável de 30 dias
+(IPEN/Mackenzie) a 90 dias (CDTN).</li>
+<li>Minutagem de exposição e arguição
+(<code>presentation_max_minutes</code>,
+<code>arguing_max_minutes_per_member</code>).</li>
+</ul></li>
+<li><strong>Regras de Trancamento e Flexibilidade:</strong>
+<ul>
+<li>Prazo máximo de trancamento contínuo
+(<code>max_trancamento_days</code>): Parametrizável (ex: 365 dias no
+MPTRCS).</li>
+<li>Bloqueio de trancamento no 1º semestre
+(<code>block_first_semester_trancamento</code>): Booleano parametrizável
+(True/False).</li>
+<li>Regra de Retorno (<code>retorno_rule</code>): Define a vinculação
+automática à estrutura curricular vigente no retorno, aplicando o Ato
+Jurídico Perfeito sobre créditos já integralizados e exigindo
+cumprimento da nova matriz para pendências.</li>
+</ul></li>
+<li><strong>Matriz de Carga Horária, Créditos e Aproveitamento (Sucupira
+/ CAPES / Regimento):</strong>
+<ul>
+<li>Créditos Totais Exigidos (<code>min_credits</code>): Total geral
+necessário para titulação (ex: 100 créditos no MP-TRCS v2).</li>
+<li>Créditos Mínimos em Disciplinas (<code>min_subject_credits</code>):
+Créditos exigidos em disciplinas presenciais do programa (ex: 40
+créditos no MP-TRCS v2).</li>
+<li>Créditos da Dissertação / Tese (<code>thesis_credits</code>):
+Créditos atribuídos ao Trabalho Final de Curso (ex: 52 créditos no
+MP-TRCS v2).</li>
+<li>Créditos em Outras Atividades Obrigatórias
+(<code>other_mandatory_credits</code>): Créditos atribuídos a Seminários
+Gerais de Área ou Estágios (ex: 8 créditos no MP-TRCS v2).</li>
+<li>Teto de Aproveitamento de Créditos Externos
+(<code>max_external_credits_percent</code>): Percentual máximo de
+disciplinas cursadas fora do PPG (ex: 50% no MP-TRCS v2).</li>
+<li>Teto Efetivo de Créditos Externos
+(<code>max_external_subject_credits</code>): Campo computado
+automaticamente
+(<code>min_subject_credits * max_external_credits_percent / 100</code>,
+ex: 20.0 créditos).</li>
+<li>Valor em horas-aula de cada crédito (<code>credit_hour_ratio</code>:
+ex: 15h no IPEN/CDTN vs 10h/12h no Mackenzie).</li>
+<li>Escala de conceitos e nota de corte para aprovação
+(<code>grading_scale_type</code>), suportando o conceito “D” como
+aprovado (CDTN) ou “C” (IPEN/Mackenzie).</li>
+</ul></li>
+<li><strong>Governança de Alunos Especiais (Disciplinas
+Isoladas):</strong>
+<ul>
+<li>Permissão de Alunos Especiais no Programa
+(<code>allow_special_students</code>): Booleano parametrizável. No
+MPTRCS do IPEN, por diretriz regimental, o valor padrão é
+<strong><code>False</code></strong> (o programa não admite alunos
+especiais em suas disciplinas exclusivas).</li>
+<li>Limite Máximo de Disciplinas Isoladas
+(<code>max_special_subjects_limit</code>): Quantidade máxima de
+disciplinas que um aluno especial pode cursar (ex: até 2 disciplinas ou
+8 créditos).</li>
+<li>Prazo Decadencial de Validade de Créditos
+(<code>special_credit_validity_months</code>): Prazo limite em meses
+(padrão <strong>36 meses / 3 anos</strong>) contado da conclusão da
+disciplina isolada para que o aluno, uma vez aprovado como aluno
+regular, possa requerer a integralização em seu histórico.</li>
+<li>Fluxo de Homologação de Aproveitamento
+(<code>special_incorporation_workflow</code>): <code>cpg_approval</code>
+(exige parecer do orientador e homologação em ata da CPG) ou
+<code>direct_request</code> (incorporação direta via requerimento dentro
+do prazo de validade).</li>
+<li>Política de Exibição de Reprovações no Histórico
+(<code>special_transcript_fail_policy</code>):
+<ul>
+<li><code>omit_on_regular</code> (<strong>Padrão MPTRCS</strong>):
+Reprovações (“R” ou “F”) obtidas enquanto discente sob vínculo de aluno
+especial figuram exclusivamente na certidão interna de estudos isolados;
+ao ingressar como Aluno Regular, o Histórico Escolar Oficial de
+titulação exibe apenas as disciplinas formalmente deferidas e
+aproveitadas pela CPG.</li>
+<li><code>display_all</code>: Qualquer reprovação sofrida em regime
+especial é transportada e exibida no histórico final do curso
+regular.</li>
+</ul></li>
+</ul></li>
+<li><strong>Governança de Disciplinas Intra-IES vs. Extra-IES:</strong>
+<ul>
+<li>Permissão de Cursar Disciplinas em outros PPGs da mesma IES
+(<code>allow_intra_ies_credits</code>): Booleano parametrizável (default
+<code>True</code>).</li>
+<li>Teto de Créditos Intra-IES
+(<code>max_intra_ies_credits_percent</code>): Percentual máximo da carga
+teórica que pode ser cumprido em outros programas da mesma instituição
+mantenedora (<code>res.company</code>). Disciplinas intra-IES mantêm
+<strong>100% de equivalência nominal de créditos</strong> (sem fator de
+conversão redutor).</li>
+<li>Exigência de Anuência do Orientador
+(<code>intra_ies_advisor_approval_required</code>): Booleano (default
+<code>True</code>).</li>
+<li><strong>Distinção Regulatória no Contexto IPEN (MPTRCS
+vs. Tecnologia Nuclear):</strong> No caso singular do IPEN, o programa
+acadêmico tradicional de Tecnologia Nuclear é institucionalmente
+titulado e registrado pela Universidade de São Paulo (USP) — ou seja,
+perante o MEC e a CAPES, pertence a outra IES registradora. Dessa forma,
+para os alunos regulares do MPTRCS (programa exclusivo do IPEN),
+disciplinas cursadas na Tecnologia Nuclear da USP são classificadas
+juridicamente como <strong>extra-IES</strong>. Elas não operam sob a
+regra automática intra-IES, exigindo abertura de processo formal de
+equivalência e aprovação prévia da CPG do MPTRCS, respeitando o teto de
+créditos externos (<code>max_external_credits_percent</code>).</li>
+</ul></li>
+<li><strong>Parametrização do Momento da Proficiência
+(<code>proficiency_stage</code>):</strong>
+<ul>
+<li><code>admission</code>: Exigência na matrícula inicial (Regra
+IPEN).</li>
+<li><code>qualification</code>: Exigência no Exame de Qualificação.</li>
+<li><code>defense</code>: Exigência no momento do depósito da Defesa
+Final.</li>
+</ul></li>
+<li><strong>Disciplinas Obrigatórias Dinâmicas
+(<code>op.curriculum.subject.rule</code>):</strong>
+<ul>
+<li>Configuração de obrigatoriedade parametrizável (<em>no
+hardcoded</em>), podendo ter escopo geral do programa ou específico por
+Área de Concentração (<code>area_id</code>).</li>
+</ul></li>
+<li><strong>Regra de Estágio de Docência / Supervisionado
+(<code>teaching_internship_mode</code> - Portaria CAPES nº
+221/2025):</strong>
+<ul>
+<li><code>not_applicable</code> (Inaplicável para Programas
+Profissionais ou isentos), <code>scholarship_only</code> (Bolsistas),
+<code>mandatory_all</code> (Todos), ou <code>flexible_equivalence</code>
+(Permite substituição por Estágio Supervisionado e atividades
+práticas).</li>
+</ul></li>
+<li><strong>Validação de PTT
+(<code>ptt_validation_mode</code>):</strong>
+<ul>
+<li><code>cpg_checklist</code> (Checklist + Dupla Anuência + Pauta CPG),
+<code>qualis_prior</code> (Estrato Qualis T1-T5 prévio), ou
+<code>none</code> (Cursos Acadêmicos).</li>
+</ul></li>
+<li><strong>Regras de Composição de Bancas e Votação
+(<code>op.curriculum.committee.rule</code>):</strong>
+<ul>
+<li>Quórum de titulares e suplentes (ex: 3 membros no Mestrado; 3 a 5 no
+Doutorado; 2 suplentes fixos ou 1 suplente por titular).</li>
+<li>Voto do Orientador (<code>voting_president</code> no IPEN/Mackenzie
+vs. <code>non_voting_president</code> no CDTN).</li>
+<li>Quórum de membros externos ao PPG (mínimo 1 externo, mínimo 2
+externos, ou maioria externa).</li>
+</ul></li>
+<li><strong>Política de Modalidade da Defesa
+(<code>defense_location_policy</code>):</strong>
+<ul>
+<li><code>onsite_mandatory</code> (Presencial obrigatório),
+<code>hybrid_allowed</code> (Presença física do aluno/presidente), ou
+<code>fully_remote_allowed</code> (100% remota autorizada).</li>
+</ul></li>
+</ul>
+<h2 id="a-separação-entre-identidade-soberana-e-vínculo-acadêmico-opção-b">3.
+A Separação entre Identidade Soberana e Vínculo Acadêmico (Opção B)</h2>
+<p>A arquitetura do sistema consagra a separação entre a <strong>Pessoa
+Acadêmica Soberana</strong> (<code>op.student</code>), que detém o
+Registro Acadêmico (RA) unificado e irrevogável emitido pela IES sob a
+âncora do CPF, e os <strong>Vínculos Acadêmicos de Curso</strong>
+(<code>op.student.course</code> / histórico de matrículas).</p>
+<ul>
+<li>Cada vínculo regular ativo referencia obrigatoriamente um
+<code>curriculum_version_id</code> específico.</li>
+<li>Toda a lógica de verificação de pré-requisitos, prazos e
+integralização consulta as propriedades da versão regimental vinculada
+ao percurso ativo do discente.</li>
+<li>Este modelo garante que um aluno especial possa transitar para aluno
+regular no MPTRCS preservando seu RA institucional único, mantendo o
+histórico de auditoria intacto e permitindo a incorporação estrita das
+disciplinas válidas e homologadas pela CPG sob a chancela do Ato
+Jurídico Perfeito.</li>
+</ul>
+</body>
+</html>

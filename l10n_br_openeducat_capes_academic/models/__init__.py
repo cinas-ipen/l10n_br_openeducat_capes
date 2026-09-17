@@ -24,3 +24,8 @@ from . import academic_request
 from . import faculty_accreditation
 from . import cpg_governance
 from . import op_subject_extension
+from . import special_credit_incorporation
+from . import student_course_extension
+from . import op_student_academic
+from . import op_faculty_academic
+

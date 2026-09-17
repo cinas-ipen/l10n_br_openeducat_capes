@@ -2,7 +2,7 @@
 title: "Documentação Arquitetural e Executiva do Ecossistema l10n_br_openeducat_capes"
 subtitle: "Sistema de Gestão de Pós-Graduação Stricto Sensu em Conformidade com o Programa GoPG da CAPES, Portarias MEC/CAPES e Regulamento MP-TRCS v2"
 author: "Grupo de Pesquisa CINAS / IPEN-CNEN/SP"
-date: "2026-09-11"
+date: "2026-09-17"
 format:
   html:
     theme:
@@ -99,14 +99,14 @@ O monorepo `l10n_br_openeducat_capes` é composto por 8 submódulos isolados que
 
 ```text
 l10n_br_openeducat_capes/
-├── l10n_br_openeducat_capes_core         # PIDs biográficos (ORCiD, Lattes, CPF), IES, PPGs (Código SNPG)
-├── l10n_br_openeducat_capes_admission    # Editais de Seleção, Cotas, Fases Dinâmicas e Conversão em Aluno
-├── l10n_br_openeducat_capes_academic     # Versionamento Regimental (op.curriculum.version) e Livro-Razão (append-only)
+├── l10n_br_openeducat_capes_core         # Identidade Soberana Discente (RA perene), PIDs biográficos (ORCiD, Lattes, CPF), IES, PPGs (Código SNPG)
+├── l10n_br_openeducat_capes_admission    # Editais de Seleção, Cotas, Fases Dinâmicas e Conversão em Aluno com Reuso de RA
+├── l10n_br_openeducat_capes_academic     # Versionamento Regimental (op.curriculum.version), Multi-Vínculo, Aluno Especial, Trânsito Intra-IES e Livro-Razão (append-only)
 ├── l10n_br_openeducat_capes_research     # Projetos de Pesquisa, Linhas de Pesquisa e Taxonomia CRediT
 ├── l10n_br_openeducat_capes_thesis       # Ritos Bipartidos (Seminários/Qualificação/Defesa), Bancas e Versão Final PDF
 ├── l10n_br_openeducat_capes_ptt          # Produtos Técnico-Tecnológicos, 4 Eixos, 21 Tipos, TRL 1-9 e Qualis Tecnológico
 ├── l10n_br_openeducat_capes_integration  # Barramento REST JSON v1 (Fonte Prata) e Crosswalk DSpace OAI-PMH (Fonte Ouro)
-└── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e XAdES
+└── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e Registro Externo (IPEN -> USP)
 ```
 
 ## Árvore de Dependências e Segurança (Odoo 19)
@@ -115,13 +115,62 @@ Em conformidade com as diretrizes do Odoo 19:
 * **Views XML:** Todas as visões em lista utilizam rigorosamente a tag `<list>` (substituindo `<tree>`). As visões de busca (`<search>`) utilizam agrupamentos `<group>` sem os atributos legados `expand="0"` e `string`.
 * **Grupos de Segurança:** Os arquivos `security/ir.model.access.csv` utilizam os grupos oficiais do OpenEduCat 19 (`openeducat_core.group_op_faculty` e `openeducat_core.group_op_back_office_admin`).
 
+## Identidade Soberana Discente na IES e Arquitetura Multi-Vínculo
+
+Na pós-graduação stricto sensu, um mesmo discente pode transitar por múltiplos regimes e cursos ao longo de sua trajetória na instituição: cursar disciplinas isoladas como **Aluno Especial**, ingressar posteriormente como **Aluno Regular de Mestrado**, realizar trânsito intra-IES em outros programas, e futuramente retornar como **Aluno Regular de Doutorado**.
+
+Para modelar essa realidade com rigor relacional e sem redundância cadastral, o ecossistema adota a **Arquitetura Multi-Vínculo (Opção B)**:
+
+```{mermaid}
+erDiagram
+    RES_PARTNER ||--|| OP_STUDENT : "1:1 Pessoa Física / CPF"
+    RES_COMPANY ||--o{ OP_STUDENT : "1:N Mantenedora / IES"
+    OP_STUDENT ||--|{ OP_STUDENT_COURSE : "1:N Vínculos de Curso"
+    OP_PROGRAM_CAPES ||--o{ OP_STUDENT_COURSE : "1:N Programa de Pós"
+    OP_CURRICULUM_VERSION ||--o{ OP_STUDENT_COURSE : "1:N Regimento Curricular"
+    OP_STUDENT ||--o{ OP_STUDENT_CREDIT_LEDGER : "1:N Livro-Razão Acadêmico"
+
+    OP_STUDENT {
+        string ra_number "RA Perene Único na IES"
+        string gr_no "Identificador Legado Odoo"
+        string student_category "regular / special / alumni"
+        many2one company_id "IES Soberana"
+    }
+
+    OP_STUDENT_COURSE {
+        selection course_type "regular / special"
+        selection state "running / finished / canceled"
+        date admission_date "Início do Vínculo"
+        date completion_date "Conclusão ou Término"
+    }
+
+    OP_STUDENT_CREDIT_LEDGER {
+        selection credit_type "internal / intra_ies / quarantine / incorporated / extra_ies / apo / milestone"
+        float credits "Valor Nominal de Créditos"
+        boolean is_approved "Status de Aprovação"
+    }
+```
+
+1. **Entidade Pessoal e Identidade Soberana (`op.student`):**
+   * Vinculada de forma biunívoca à pessoa física (`res.partner`) e à IES mantenedora (`company_id`).
+   * Possui um **Registro Acadêmico (RA)** vitalício e perene (`ra_number` / `gr_no`), gerado por sequência automática e imutável no tempo.
+   * Trava de unicidade relacional: a restrição Python `@api.constrains('partner_id', 'company_id')` impede a criação de registros discentes duplicados para a mesma pessoa dentro da mesma instituição.
+
+2. **Vínculos Acadêmicos Desacoplados (`op.student.course`):**
+   * Cada ingresso em programa (seja especial ou regular) é registrado como uma linha de detalhe em `op.student.course`.
+   * Campos especializados `course_type` (`regular` vs `special`), `program_id` e `curriculum_version_id` definem as regras jurídicas ativas daquele período letivo.
+
+3. **Conversão de Candidato e Preservação do RA:**
+   * No submódulo `l10n_br_openeducat_capes_admission`, a ação `action_convert_to_student` pesquisa previamente se o candidato aprovado já possui registro em `op.student` na IES (por exemplo, por ter sido Aluno Especial no passado).
+   * Em caso positivo, o cadastro discente existente é reutilizado, seu RA é integralmente preservado, sua categoria é atualizada para `regular`, e um novo vínculo de curso (`op.student.course`) é instanciado para o novo programa de pós-graduação.
+
 ---
 
 # Governança Regimental, Motor Curricular e Livro-Razão de Créditos
 
 ## O Motor de Versionamento Regimental (`op.curriculum.version`)
 
-Para solucionar a variação de regimentos entre turmas e garantir o **Ato Jurídico Perfeito (CF/88)**, o modelo `op.curriculum.version` isola as regras do curso e as associa diretamente ao discente (`op.student.curriculum_version_id`).
+Para solucionar a variação de regimentos entre turmas e garantir o **Ato Jurídico Perfeito (CF/88)**, o modelo `op.curriculum.version` isola as regras do curso e as associa dinamicamente ao vínculo discente.
 
 ### Matriz de Créditos (CAPES / Sucupira / Regimento MP-TRCS v2)
 
@@ -158,16 +207,74 @@ def _check_regimen_parameters(self):
             )
 ```
 
+### Parametrização para Aluno Especial
+
+Para evitar regras fixas em código (*hardcoded*), o modelo parametriza toda a política de alunos especiais:
+
+* **`allow_special_students` (Permite Alunos Especiais):** Booleano (Padrão: `False` para o MPTRCS, respeitando a vedação regimental).
+* **`max_special_subjects_limit` (Limite Máximo de Disciplinas Especiais):** Inteiro (Padrão: 2 disciplinas).
+* **`special_credit_validity_months` (Validade dos Créditos Especiais):** Inteiro (Padrão: 36 meses / 3 anos).
+* **`special_incorporation_workflow` (Fluxo de Aproveitamento):** Seleção entre `cpg_approval` (Requer parecer e homologação pela CPG) e `direct_request` (Aproveitamento direto de plano).
+* **`special_transcript_fail_policy` (Política de Histórico Oficial):** Seleção entre `omit_on_regular` (Oculta disciplinas não aproveitadas e reprovações do período especial no histórico oficial de titulação do aluno regular) e `display_all`.
+
+### Governança do Trânsito Acadêmico Intra-IES
+
+Quando uma Universidade ou IES possui múltiplos programas de pós-graduação, discentes regulares podem cursar disciplinas oferecidas por outros PPGs da mesma mantenedora:
+
+* **`allow_intra_ies_credits` (Permite Créditos Intra-IES):** Booleano (Padrão: `True`).
+* **`max_intra_ies_credits_percent` (Teto de Créditos Intra-IES):** Percentual sobre o mínimo de disciplinas (Padrão: `30%`).
+* **`intra_ies_advisor_approval_required` (Exige Anuência do Orientador):** Booleano (Padrão: `True`).
+* **Equivalência Nominal:** As disciplinas cursadas em outros PPGs da mesma IES são incorporadas com **100% de seu valor nominal original de créditos**, sem defasagem ou glosa de carga horária.
+
+:::{.callout-warning}
+### Contexto Institucional Específico: IPEN-CNEN/SP e USP
+O Programa de Pós-Graduação em Mestrado Profissional em Tecnologia das Radiações em Ciências da Saúde (**MPTRCS**) é um programa próprio e exclusivo do **IPEN** (IES = IPEN-CNEN/SP).
+
+O outro programa de pós-graduação em funcionamento nas dependências físicas do IPEN (**Tecnologia Nuclear**) é formalmente vinculado e expedido pela **Universidade de São Paulo (USP)** (IES = USP).
+
+Consequentemente, sob a ótica jurídica e regulatória:
+* Para um aluno do MPTRCS, o programa de Tecnologia Nuclear da USP constitui **outra IES (Extra-IES)**.
+* Os créditos obtidos em disciplinas da USP não entram como `subject_intra_ies`, mas sim como **`subject_extra_ies`**, dependendo de requerimento expresso e homologação pela CPG, e computando contra o teto regimental de créditos externos (Art. 31º §1º - máximo de 20 créditos).
+:::
+
+---
+
 ## O Livro-Razão Acadêmico Imutável (`op.student.credit.ledger`)
 
 Para evitar recálculos retroativos em históricos passados, a integralização opera sob a arquitetura *Append-Only*:
 
-* **Imutabilidade Estrita (`unlink` bloqueado):** O sistema impede o apagamento de lançamentos no livro-razão.
-* **Categorias de Crédito (`credit_type`):**
-  * `subject`: Disciplinas Regulares.
-  * `apo`: Atividades Programadas Obrigatórias / Produção Técnica.
-  * `milestone`: Créditos por Qualificação e Defesa.
-  * `external`: Aproveitamento de Créditos Externos.
+* **Imutabilidade Estrita (`unlink` bloqueado):** O sistema impede o apagamento de lançamentos no livro-razão acadêmico.
+* **Taxonomia Completa de Lançamento (`credit_type`):**
+  1. `subject_internal`: Disciplinas regulares cursadas no próprio programa de pós-graduação.
+  2. `subject_intra_ies`: Disciplinas cursadas em outros programas de pós-graduação da mesma IES.
+  3. `subject_special_quarantine`: Disciplinas cursadas na condição de Aluno Especial (mantidas em **quarentena**).
+  4. `subject_special_incorporated`: Disciplinas especiais formalmente incorporadas e convalidadas por Resolução da CPG.
+  5. `subject_extra_ies`: Disciplinas cursadas em outras IES e aproveitadas após deliberação da CPG.
+  6. `apo`: Atividades Programadas Obrigatórias / Produção Técnica.
+  7. `milestone`: Créditos conferidos por ritos de Qualificação e Defesa.
+  8. `external`: Aproveitamento de créditos externos legados.
+
+### Ciclo de Vida da Quarentena e Incorporação de Créditos
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> RegimeEspecial : Matrícula Isolada (Aluno Especial)
+    RegimeEspecial --> Quarentena : Conclusão com Aproveitamento
+    Quarentena --> Expirado : Decorridos > 36 Meses (Decadência Legal)
+    Quarentena --> Requerimento : Discente Ingressa como Regular
+    Requerimento --> AnaliseOrientador : Parecer de Aderência à Pesquisa
+    AnaliseOrientador --> DeliberacaoCPG : Submissão à CPG
+    DeliberacaoCPG --> Indeferido : Reprovado pela CPG (Permanece em Quarentena)
+    DeliberacaoCPG --> Convalidado : Homologação da CPG (Resolução)
+    Convalidado --> LivroRazaoIncorporado : Novo Registro Append-Only (subject_special_incorporated)
+    LivroRazaoIncorporado --> IntegralizacaoRegular : Computa nos Créditos de Titulação
+```
+
+1. **Quarentena Inicial:** Ao cursar disciplinas como Aluno Especial, as notas e créditos são gravados no Livro-Razão sob o tipo `subject_special_quarantine`. Esses lançamentos **não pontuam** para integralização de programas regulares nem são computados para titulação.
+2. **Decadência Legal de 36 Meses:** O Artigo 5º da Portaria CAPES e normas institucionais estabelecem o prazo prescricional de 3 anos (36 meses) para aproveitamento de estudos anteriores.
+3. **Requerimento Formal (`op.special.credit.incorporation.request`):** O aluno regular solicita a incorporação das disciplinas especiais, indicando o vínculo regular e as justificativas.
+4. **Homologação da CPG e Convalidação:** Uma vez deferido pela CPG, o sistema gera novos registros imutáveis no Livro-Razão com tipo `subject_special_incorporated`, referenciando o número da Resolução da CPG e a data da ata.
+5. **Histórico Oficial Limpo (`omit_on_regular`):** Na emissão do histórico escolar oficial de conclusão do aluno regular, as disciplinas mantidas em quarentena (não incorporadas) e eventuais reprovações do período de aluno especial são omitidas, refletindo apenas a trajetória regular e os créditos legitimamente integralizados.
 
 ---
 
@@ -178,13 +285,13 @@ Varredura e auditoria automatizada realizada sobre os arquivos da pasta `metadad
 | Entidade CAPES DAV | Metadados | Modelo Odoo Mapeado | Descrição do Mapeamento |
 | :--- | :---: | :--- | :--- |
 | **PROGRAMA DE PÓS-GRADUAÇÃO** | 45 | `op.program.capes`, `res.company` | SNPG code, Nota CAPES, Grande Área, Área de Avaliação, Subárea, Especialidade, Coordenadores, Idioma. |
-| **CURSO / REGIMENTO** | 39 | `op.curriculum.version` | Créditos Totais (`min_credits`), Disciplinas (`min_subject_credits`), Tese (`thesis_credits`), Atividades (`other_mandatory_credits`), Prazos e Bancas. |
-| **PESSOA (Docentes / Alunos / Egressos)** | 83 | `res.partner`, `op.faculty`, `op.student`, `op.faculty.accreditation` | CPF, Lattes ID, ORCID ID, Scopus Author ID, ResearcherID, Vínculo de Bolsa, Credenciamento CPG. |
+| **CURSO / REGIMENTO** | 39 | `op.curriculum.version` | Créditos Totais (`min_credits`), Disciplinas (`min_subject_credits`), Tese (`thesis_credits`), Prazos, Bancas, Parâmetros de Aluno Especial e Intra-IES. |
+| **PESSOA (Docentes / Alunos / Egressos)** | 83 | `res.partner`, `op.faculty`, `op.student`, `op.student.course`, `op.faculty.accreditation` | CPF, Lattes ID, ORCID ID, Scopus ID, RA Soberano Perene (`ra_number`/`gr_no`), Multi-Vínculo (`course_type`), Vínculo de Bolsa, Credenciamento CPG. |
 | **PRODUÇÃO INTELECTUAL & PTT** | 33 | `capes.intellectual.production`, `capes.ptt.product`, `capes.ptt.author`, `capes.ptt.evaluation` | DOI, Handle, ISBN, ISSN, Estrato Qualis, Tipologia PTT (T01-T21), TRL 1-9, Contribuição CRediT, Acesso Aberto/Embargado. |
 | **PROJETO DE PESQUISA** | 22 | `capes.research.project`, `capes.project.member` | Nome, Coordenador, Fomento, Natureza (Básica/Aplicada), Cooperação, 14 Papéis CRediT. |
-| **DISCIPLINA & TURMA** | 22 | `op.subject` (via `op_subject_extension.py`) | Código, Nome, Ementa (`syllabus`), Bibliografia Básica (`basic_bibliography`), Bibliografia Complementar (`complementary_bibliography`), PHEA (`phea_indicator`), Idioma. |
+| **DISCIPLINA & TURMA** | 22 | `op.subject` (via `op_subject_extension.py`) | Código, Nome, Ementa (`syllabus`), Bibliografia Básica/Complementar, PHEA, Vagas de Aluno Especial (`special_seats_quota`), Anuência do Docente (`special_student_instructor_consent_required`). |
 | **INSTITUIÇÃO, CAMPUS & ENDEREÇO** | 42 | `res.company`, `res.partner` | Nome da IES, Sigla, CNPJ, Código IBGE, CEP, Atuação da IES. |
-| **ÁREA DE CONCENTRAÇÃO & LINHAS** | 10 | `op.curriculum.subject.rule`, `capes.research.project` | Nome da Área, Descrição, Linhas de Pesquisa. |
+| **ÁREA DE CONCENTRAÇÃO & LINHAS** | 10 | `op.program.concentration.area`, `op.program.research.line`, `op.curriculum.subject.rule` | Nome da Área, Código, Descrição, Linhas de Pesquisa vinculadas. |
 | **RITOS ACADÊMICOS & BANCAS** | 9 | `capes.thesis`, `capes.thesis.committee` | Ritos, Qualificação, Defesa, Membros Efetivos/Suplentes, Voto Orientador, Endogenia. |
 
 ---
@@ -193,7 +300,13 @@ Varredura e auditoria automatizada realizada sobre os arquivos da pasta `metadad
 
 ## Editais de Seleção e Admissão (`l10n_br_openeducat_capes_admission`)
 * **Editais (`op.admission.edital`):** Vagas, cotas sociais/raciais, comissão de seleção e etapas.
+* **Preservação de RA na Conversão:** Verificação automática de identidade perene discente na mantenedora. Ex-alunos especiais convertidos em regulares mantêm seu número de RA original, assegurando unicidade biográfica perante a IES e a CAPES.
 * **Plano de Trabalho Discente (`op.student.work_plan`):** Submissão de planos com triagem pela Secretaria Acadêmica e controle de pendências éticas (CEP/CEUA).
+
+## Matrícula de Acompanhamento e Trânsito Intra-IES (`l10n_br_openeducat_capes_academic`)
+* **Matrícula Regimental Semestral:** Obrigatoriedade de matrícula em disciplinas ou acompanhamento de dissertação para manter o vínculo ativo.
+* **Matrícula Cruzada Intra-IES:** Inscrição em turmas de outros PPGs da mesma instituição, com validação de pré-requisitos, anuência do docente ministrante e controle do teto percentual curricular (`max_intra_ies_credits_percent`).
+* **Controle de Cotas para Alunos Especiais:** Disciplinas controlam vagas remanescentes (`special_seats_quota`) e bloqueio automático de matrículas isoladas quando vedado pelo regimento do curso ofertante.
 
 ## Motor Cronológico e Jubilamento (`pending_dismissal`)
 * **Relógio Acadêmico (24 meses no MP-TRCS):** Calculado a partir da data de ingresso.
@@ -201,11 +314,19 @@ Varredura e auditoria automatizada realizada sobre os arquivos da pasta `metadad
 * **Trancamento (`max_trancamento_days` = 365 dias):** Suspensão regimental contínua sem trava de 1º semestre (`block_first_semester_trancamento` = False).
 * **Cron Job Noturno de Jubilamento:** Varre diariamente o estouro de prazos ou dupla reprovação em disciplinas/ritos e altera o aluno para `pending_dismissal`, interrompendo a exportação para a CAPES para proteger os indicadores do PPG.
 
-## Governança da CPG (`op.cpg.governance` & `op.cpg.meeting`)
-* **Atas de Reunião em QWeb PDF:** Compilação automática da pauta e deliberações.
-* **Aprovação Auditável:** Registro do User ID, Timestamp e IP dos membros da comissão.
+## Governança da CPG (`op.cpg.committee`, `op.cpg.member` & `op.cpg.meeting`)
+* **Composição do Conselho Colegiado:** Mandato formal com 6 Membros Titulares (Coordenador, Vice-Coordenador, 3 Docentes Titulares, 1 Representante Discente Titular) e 4 Suplentes (3 Docentes Suplentes, 1 Representante Discente Suplente).
+* **Atas de Reunião em QWeb PDF:** Calendário mensal de reuniões ordinárias com compilação automática da pauta, deliberação de processos discentes (`op.academic.request`) e geração de atas oficiais em PDF.
+* **Assinatura Eletrônica por Clique Auditável (`op.cpg.approval.log`):** Registro imutável de User ID, Timestamp, Ação e endereço IP dos membros votantes em cada deliberação colegiada.
 
----
+## Visão 360° do Discente e do Docente
+* **Prontuário Discente 360° (`op.student`):**
+  * Botão de ação direta no cabeçalho (*Header Action*) para emissão instantânea do *Histórico Escolar Oficial em PDF*.
+  * Smart buttons para navegação em 1 clique: Vínculos de Curso, Livro-Razão Acadêmico, Trabalhos Finais e Bancas, Produtos PTT, Requerimentos e Diplomas Digitais.
+  * Aba integrada no formulário com a listagem exaustiva de lançamentos do Livro-Razão (disciplinas, créditos, horas, conceitos e aprovação).
+* **Ficha Docente 360° (`op.faculty`):**
+  * Smart buttons com contadores em tempo real: Orientandos Ativos, Orientandos Titulados/Egressos, Disciplinas Ministradas, Linhas de Pesquisa Ativas e Bancas Examinadoras.
+
 
 # Ritos Acadêmicos, Bancas e Depósito no DSpace (`l10n_br_openeducat_capes_thesis`)
 
@@ -216,7 +337,8 @@ Ao acionar a ação de agendamento da Defesa Final (`stage == 'defense'`), a eng
 1. **Plano de Trabalho Homologado CPG.**
 2. **Pendência Ética CEP/CEUA Liberada.**
 3. **Proficiência em Língua Estrangeira Aprovada (`proficiency_stage`).**
-4. **Créditos Mínimos em Disciplinas Cumpridos (`subject_credits >= curriculum.min_subject_credits`, ex: 40h) e Seminário Geral (`other_mandatory_credits`, ex: 8h).**
+4. **Créditos Mínimos em Disciplinas Cumpridos:** Varre o Livro-Razão filtrando exclusivamente créditos válidos (`subject_internal`, `subject_intra_ies`, `subject_special_incorporated`, `subject_extra_ies`, `apo`). Disciplinas em quarentena (`subject_special_quarantine`) são sumariamente desconsideradas.
+5. **Seminário Geral Cumprido (`other_mandatory_credits`, 8 créditos).**
 
 ```python
 if record.stage == 'defense':
@@ -224,10 +346,21 @@ if record.stage == 'defense':
         ('student_id', '=', record.student_id.id),
         ('is_approved', '=', True)
     ])
-    subject_credits = sum(ledger_records.filtered(lambda l: l.credit_type in ('subject', 'external', 'apo')).mapped('credits'))
-    if subject_credits < curriculum.min_subject_credits:
+    valid_subject_credits = sum(
+        ledger_records.filtered(
+            lambda l: l.credit_type in (
+                'subject_internal',
+                'subject_intra_ies',
+                'subject_special_incorporated',
+                'subject_extra_ies',
+                'external',
+                'apo'
+            )
+        ).mapped('credits')
+    )
+    if valid_subject_credits < curriculum.min_subject_credits:
         raise ValidationError(
-            f"Integralização de disciplinas insuficiente (Art. 39º). O aluno possui {subject_credits:.1f} créditos em disciplinas, "
+            f"Integralização de disciplinas insuficiente (Art. 39º). O aluno possui {valid_subject_credits:.1f} créditos válidos, "
             f"mas o regimento exige o mínimo de {curriculum.min_subject_credits} créditos em disciplinas do programa."
         )
 ```
@@ -270,6 +403,7 @@ $$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \tex
 * **Modelo `capes.digital.diploma`:** Geração do XML oficial do diploma, dossiê acadêmico e controle de registro físico em papel.
 * **Governança Dual de Registro (`issuing_ies_type`):** Suporte nativo a Universidades com Autonomia Registradora Direta e a Institutos de Pesquisa sem autonomia universitária (como o **IPEN-CNEN/SP**), cujos diplomas são remetidos para escrituração na Universidade Registradora Externa (**USP**).
 * **Suporte Híbrido de Emissão (`emission_format`):** Permite a emissão em Papel/Físico com Livro de Registro (`registration_book_number`) e Folha (`registration_page_number`), a emissão Nato-Digital (XML + XAdES-BES + RVDD MEC 70/2025) ou ambos simultaneamente.
+* **Filtragem de Quarentena no Dossiê de Titulação:** Ao computar os créditos para expedição do diploma e do dossiê acadêmico oficial, qualquer lançamento residual de aluno especial em quarentena (`subject_special_quarantine`) é excluído, impedindo que disciplinas não homologadas componham a titulação.
 * **Assinatura XAdES-BES ICP-Brasil & Hash SHA-256:** Selagem criptográfica do Pacote de Titulação e emissão de QR Code de autenticação pública (`/valida-documento`).
 
 ---
@@ -280,9 +414,14 @@ $$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \tex
 | :--- | :--- | :--- | :--- |
 | **Portaria CAPES nº 158/2023** | Governança GoPG | Fim da alimentação manual duplicada; interoperabilidade ativa. | APIs RESTful JSON Fonte Prata e barramento OAI-PMH `oai_capes`. |
 | **Instrução Normativa nº 1/2026** | Coleta RICA\|PG | Coleta automatizada passiva de discentes, docentes e projetos. | Endpoints `/api/capes/v1/` com Privacy by Design (LGPD). |
+| **Identidade Discente Soberana** | Vida Acadêmica | Unicidade perene do discente na IES e preservação do RA. | `op.student` indexado por CPF e IES (`company_id`) com RA imutável e multi-vínculo via `op.student.course`. |
+| **Portaria CAPES (Quarentena)** | Aluno Especial | Validade limitada a 3 anos e necessidade de convalidação. | Quarentena `subject_special_quarantine`, decadência de 36 meses e modelo `op.special.credit.incorporation.request`. |
+| **Governança Intra-IES** | Multi-Programas | Trânsito de discentes entre cursos da mesma mantenedora. | Créditos `subject_intra_ies` com 100% do valor nominal regulados por teto percentual curricular. |
+| **Distinção Regulatória IPEN/USP** | Caso MPTRCS | Tratamento do programa USP Tecnologia Nuclear como Extra-IES. | Lançamento como `subject_extra_ies` exigindo homologação da CPG e respeitando teto de 20 créditos externos. |
 | **Portaria CAPES nº 221/2025** | Estágio Docência | Validação flexível de estágio de docência para bolsistas. | Parâmetro `teaching_internship_mode` na versão curricular. |
 | **Portaria MEC nº 70/2025 & Registro Físico** | Diplomas e Registros | Emissão Nato-Digital (XML/XAdES) e Registro Físico/Papel com Livro/Folha. | Modelo `capes.digital.diploma` com seleção `digital`, `paper_hybrid` e governança IPEN $\rightarrow$ USP. |
 | **Diretrizes GTPT / Medicina II** | Produção Técnica | Classificação rígida em 4 eixos, 21 tipos e TRL 1-9. | Taxonomia XML estática, Quotas de PI e motor Qualis Tecnológico. |
 | **Governança de Bancas** | Bancas Examinadoras | Impedimento por parentesco até 4º grau e controle de endogenia. | Checagem de `civil_relationship_flag` e quórum externo. |
-| **Ato Jurídico Perfeito (CF/88)** | Direitos do Aluno | Preservação das regras de ingresso até a diplomação. | Entidade `op.curriculum.version` associada ao aluno (`student_id`). |
+| **Ato Jurídico Perfeito (CF/88)** | Direitos do Aluno | Preservação das regras de ingresso até a diplomação. | Entidade `op.curriculum.version` associada ao vínculo do aluno. |
 | **Regulamento MP-TRCS v2 Art. 31º** | Matriz de Créditos | Distribuição de 100 créditos (40 disc. + 52 tese + 8 atividades). | Desdobramento de 5 campos em `op.curriculum.version`. |
+

@@ -30,9 +30,11 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
         'views/res_company_views.xml',
         'views/res_partner_views.xml',
         'views/op_program_capes_views.xml',
+        'views/op_program_concentration_views.xml',
         'views/op_faculty_views.xml',
         'views/op_student_views.xml',
     ],

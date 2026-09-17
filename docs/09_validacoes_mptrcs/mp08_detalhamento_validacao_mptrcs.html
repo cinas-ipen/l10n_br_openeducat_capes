@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>**Validação Técnica MP8 - Interoperabilidade e Envio de Dados (GoPG/CAPES)**</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">**Validação Técnica MP8 - Interoperabilidade e Envio
+de Dados (GoPG/CAPES)**</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#validação-técnica-mp8---interoperabilidade-e-envio-de-dados-gopgcapes" id="toc-validação-técnica-mp8---interoperabilidade-e-envio-de-dados-gopgcapes"><strong>Validação
+Técnica MP8 - Interoperabilidade e Envio de Dados
+(GoPG/CAPES)</strong></a>
+<ul>
+<li><a href="#introdução-e-finalidade" id="toc-introdução-e-finalidade"><strong>1. Introdução e
+Finalidade</strong></a></li>
+<li><a href="#a-arquitetura-das-fontes-de-dados-ouro-e-prata" id="toc-a-arquitetura-das-fontes-de-dados-ouro-e-prata"><strong>2. A
+Arquitetura das Fontes de Dados (Ouro e Prata)</strong></a></li>
+<li><a href="#workflow-de-interoperabilidade-o-motor-de-integração" id="toc-workflow-de-interoperabilidade-o-motor-de-integração"><strong>3.
+Workflow de Interoperabilidade (O Motor de Integração)</strong></a></li>
+<li><a href="#endpoints-da-api-fonte-prata" id="toc-endpoints-da-api-fonte-prata"><strong>4. Endpoints da API (Fonte
+Prata)</strong></a></li>
+<li><a href="#segurança-criptográfica-lgpd-e-compliance" id="toc-segurança-criptográfica-lgpd-e-compliance"><strong>5. Segurança
+Criptográfica (LGPD e Compliance)</strong></a></li>
+<li><a href="#sincronização-com-o-dspace-fonte-ouro" id="toc-sincronização-com-o-dspace-fonte-ouro"><strong>6. Sincronização
+com o DSpace (Fonte Ouro)</strong></a></li>
+<li><a href="#resumo-de-validação-para-stakeholders-ipen" id="toc-resumo-de-validação-para-stakeholders-ipen"><strong>7. Resumo de
+Validação para Stakeholders (IPEN)</strong></a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="validação-técnica-mp8---interoperabilidade-e-envio-de-dados-gopgcapes"><strong>Validação
+Técnica MP8 - Interoperabilidade e Envio de Dados
+(GoPG/CAPES)</strong></h1>
+<h2 id="introdução-e-finalidade"><strong>1. Introdução e
+Finalidade</strong></h2>
+<p>O <strong>Macroprocesso 08</strong> é o elo de conexão do ecossistema
+do IPEN com o ecossistema federal de fomento. Sua função é garantir que
+todos os dados de vida acadêmica, titulação e produção científica (PTTs)
+sejam transmitidos à CAPES e ao MEC com integridade, segurança e
+automação total, eliminando a “Fonte Bronze” (digitação manual na
+Plataforma Sucupira).</p>
+<p>O sistema opera sob o paradigma do <strong>GoPG (Governança
+Colaborativa de Informações da Pós-Graduação)</strong>, que estabelece o
+fluxo unificado de dados a partir das fontes primárias.</p>
+<h2 id="a-arquitetura-das-fontes-de-dados-ouro-e-prata"><strong>2. A
+Arquitetura das Fontes de Dados (Ouro e Prata)</strong></h2>
+<p>Para que o MPTRCS tenha nota máxima na avaliação, a
+interoperabilidade deve ser precisa:</p>
+<ul>
+<li><strong>Fonte Ouro (DSpace/Repositório):</strong> É a fonte da
+verdade da produção acadêmica e científica. A Biblioteca Central realiza
+o upload oficial e a curadoria do PDF final da dissertação e PTT no
+DSpace, exposto via OAI-PMH (<code>oai_capes</code>), gerando o
+<strong>Handle (URI persistente)</strong> averbado no Odoo
+(<code>repository_url</code>).<br />
+</li>
+<li><strong>Fonte Prata (OpenEduCat/Odoo):</strong> É a fonte da verdade
+da vida acadêmica (alunos, docentes, disciplinas, créditos, bancas). O
+Odoo expõe endpoints RESTful que são consumidos pelos robôs coletores da
+CAPES.</li>
+</ul>
+<h2 id="workflow-de-interoperabilidade-o-motor-de-integração"><strong>3.
+Workflow de Interoperabilidade (O Motor de Integração)</strong></h2>
+<p>O processo segue uma lógica de dupla malha de dados:</p>
+<ol type="1">
+<li><strong>Camada Passiva (REST API):</strong> O Odoo expõe rotas
+seguras para que a RICA|PG (Rede de Integração da Comunidade Acadêmica
+da Pós-Graduação) realize a varredura automática.<br />
+</li>
+<li><strong>Camada de Metadados (OAI-PMH):</strong> O DSpace expõe o
+protocolo OAI-PMH com o prefixo oai_capes. O Odoo garante que os
+metadados que chegam ao DSpace já contenham os PIDs (Identificadores
+Persistentes) corretos, como o ORCiD e o DOI, injetados durante o fluxo
+do MP05 e MP06.</li>
+</ol>
+<h2 id="endpoints-da-api-fonte-prata"><strong>4. Endpoints da API (Fonte
+Prata)</strong></h2>
+<p>O submódulo l10n_br_openeducat_capes_integration centraliza a
+inteligência de conectividade. Os principais <em>endpoints</em> expostos
+são:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Endpoint</th>
+<th style="text-align: left;">Objetivo</th>
+<th style="text-align: left;">Dados Transmitidos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">/api/capes/v1/students</td>
+<td style="text-align: left;">Censo Acadêmico</td>
+<td style="text-align: left;">Vínculos, PIDs (CPF/ORCiD), status,
+regimento.</td>
+</tr>
+<tr>
+<td style="text-align: left;">/api/capes/v1/faculty</td>
+<td style="text-align: left;">Credenciamento Docente</td>
+<td style="text-align: left;">Timeline de credenciamento (Ledger),
+Lattes, carga horária.</td>
+</tr>
+<tr>
+<td style="text-align: left;">/api/capes/v1/curriculums</td>
+<td style="text-align: left;">Estrutura Curricular</td>
+<td style="text-align: left;">Disciplinas, ementas, cargas, regras de
+versionamento.</td>
+</tr>
+<tr>
+<td style="text-align: left;">/api/capes/v1/projects_and_ptts</td>
+<td style="text-align: left;">Produção Acadêmica</td>
+<td style="text-align: left;">Projetos, dissertações defendidas e PTTs
+com estratos Qualis.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="segurança-criptográfica-lgpd-e-compliance"><strong>5. Segurança
+Criptográfica (LGPD e Compliance)</strong></h2>
+<p>A transmissão de dados sensíveis segue diretrizes rigorosas:</p>
+<ul>
+<li><strong>Autenticação:</strong> O acesso é protegido via <em>OAuth
+2.0</em> com <em>Mutual TLS</em> (mTLS), garantindo que apenas o
+servidor homologado pela RICA|PG consiga requisitar os dados.<br />
+</li>
+<li><strong>Privacy by Design:</strong> O serializador JSON do Odoo foi
+configurado para <strong>excluir</strong> dados de natureza estritamente
+privada (como contatos telefônicos pessoais, prontuários de saúde ou
+informações financeiras), enviando apenas o necessário para a avaliação
+da CAPES.</li>
+</ul>
+<h2 id="sincronização-com-o-dspace-fonte-ouro"><strong>6. Sincronização
+com o DSpace (Fonte Ouro)</strong></h2>
+<p>Para que a CAPES valide a “Fonte Ouro”, o MPTRCS deve garantir a
+consistência através do mapeamento semântico (Crosswalk):</p>
+<ol type="1">
+<li><strong>Averbação de Identificadores &amp; Manifesto:</strong> O
+Odoo, ao titular o discente e emitir o manifesto de metadados
+(<code>library_manifest_payload</code>), encaminha os dados e PIDs (DOI,
+ORCiD, SNPG) para a Biblioteca Central realizar o upload no DSpace e
+averbar o Handle de volta no Odoo.<br />
+</li>
+<li><strong>Transformação XSLT:</strong> O DSpace utiliza o arquivo
+oai_capes.xsl para transformar os metadados internos (padrão Dublin Core
+dim) para o XML exigido pela CAPES, garantindo que o snpg_code e o orcid
+do autor estejam presentes.</li>
+</ol>
+<h2 id="resumo-de-validação-para-stakeholders-ipen"><strong>7. Resumo de
+Validação para Stakeholders (IPEN)</strong></h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Requisito</th>
+<th style="text-align: left;">Trava/Regra Sistêmica</th>
+<th style="text-align: left;">Benefício para o Programa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>PIDs (ORCiD/DOI)</strong></td>
+<td style="text-align: left;">Obrigatório em
+op.student/capes.thesis</td>
+<td style="text-align: left;">Evita glosas na avaliação por dados
+duplicados ou nulos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Barramento REST</strong></td>
+<td style="text-align: left;">OAuth 2.0 / mTLS</td>
+<td style="text-align: left;">Segurança total contra vazamento de
+dados.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Integração DSpace</strong></td>
+<td style="text-align: left;">Averbação do Handle</td>
+<td style="text-align: left;">Garante a “Fonte Ouro” como verídica.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sincronia Semântica</strong></td>
+<td style="text-align: left;">Prefixo oai_capes</td>
+<td style="text-align: left;">Permite que o robô da CAPES diferencie
+PTTs de bibliografia comum.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Este macroprocesso transforma o MPTRCS em um programa
+“nativamente interoperável”, eliminando a dependência do preenchimento
+manual da Plataforma Sucupira e garantindo que o IPEN responda aos
+indicadores da CAPES de forma automática, precisa e auditável.</em></p>
+</body>
+</html>

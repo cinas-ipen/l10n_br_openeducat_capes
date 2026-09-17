@@ -33,6 +33,7 @@
         'security/ir.model.access.csv',
         'views/research_project_views.xml',
         'views/project_member_views.xml',
+        'views/op_faculty_research_views.xml',
     ],
     'installable': True,
     'application': False,

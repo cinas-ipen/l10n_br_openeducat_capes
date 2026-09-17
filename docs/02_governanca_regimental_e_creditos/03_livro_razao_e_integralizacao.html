@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 03: Livro-Razão e Integralização Parametrizada de Créditos</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 03: Livro-Razão e Integralização
+Parametrizada de Créditos</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-03-livro-razão-e-integralização-parametrizada-de-créditos" id="toc-documento-03-livro-razão-e-integralização-parametrizada-de-créditos">Documento
+03: Livro-Razão e Integralização Parametrizada de Créditos</a>
+<ul>
+<li><a href="#o-livro-razão-acadêmico-op.student.credit.ledger" id="toc-o-livro-razão-acadêmico-op.student.credit.ledger">1. O
+Livro-Razão Acadêmico (<code>op.student.credit.ledger</code>)</a></li>
+<li><a href="#a-variação-institucional-e-a-matriz-de-integração-híbrida" id="toc-a-variação-institucional-e-a-matriz-de-integração-híbrida">2. A
+Variação Institucional e a Matriz de Integração Híbrida</a></li>
+<li><a href="#classificação-e-aproveitamento-de-atividades" id="toc-classificação-e-aproveitamento-de-atividades">3. Classificação e
+Aproveitamento de Atividades</a></li>
+<li><a href="#o-ciclo-de-quarentena-e-incorporação-de-créditos-de-aluno-especial" id="toc-o-ciclo-de-quarentena-e-incorporação-de-créditos-de-aluno-especial">4.
+O Ciclo de Quarentena e Incorporação de Créditos de Aluno
+Especial</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-03-livro-razão-e-integralização-parametrizada-de-créditos">Documento
+03: Livro-Razão e Integralização Parametrizada de Créditos</h1>
+<h2 id="o-livro-razão-acadêmico-op.student.credit.ledger">1. O
+Livro-Razão Acadêmico (<code>op.student.credit.ledger</code>)</h2>
+<p>Para garantir a imutabilidade do Ato Jurídico Perfeito e blindar a
+instituição contra cálculos retroativos indevidos causados pela
+alteração do cadastro de disciplinas, a arquitetura abandona consultas
+fluídas de notas e implementa a entidade
+<code>op.student.credit.ledger</code> (Livro-Razão de Créditos).</p>
+<p>Este modelo obedece ao padrão de arquitetura de software
+<em>append-only</em> (apenas inserção). Quando uma turma é consolidada e
+fechada, o sistema realiza os lançamentos oficiais dos créditos
+conquistados pelo aluno nesta tabela. A ausência de permissões para
+ações nativas de <code>unlink</code> (deleção) ou recálculos em lote
+garante que eventos consolidados no passado tornem-se imutáveis.</p>
+<h2 id="a-variação-institucional-e-a-matriz-de-integração-híbrida">2. A
+Variação Institucional e a Matriz de Integração Híbrida</h2>
+<p>A arquitetura do livro-razão foi projetada para lidar com a extrema
+variação nas regras de integralização exigidas pelos institutos de
+pesquisa e universidades brasileiras dentro da mesma base de dados,
+utilizando o motor de cálculo atrelado à versão do currículo.</p>
+<p>Através de campos calculados via framework Odoo (decorador Python
+<code>@api.depends</code>), o sistema processa múltiplos cenários de
+forma independente:</p>
+<ul>
+<li><strong>Cálculo Paramétrico de Carga Horária:</strong> O algoritmo
+interpreta que 1 crédito equivale a 15 horas de trabalho para os
+discentes submetidos aos regimentos do IPEN e do CDTN, mas computa 1
+crédito como 12 horas para estudantes vinculados às matrizes
+curriculares do Mestrado Profissional do Mackenzie.</li>
+<li><strong>Metas de Integralização Distintas:</strong> O motor afere
+automaticamente se o aluno atingiu a meta de integralização baseada no
+seu vínculo: 100 unidades de crédito exigidas no IPEN, 50 unidades no
+Mackenzie, e variações de 24 (Mestrado) ou 47 (Doutorado) créditos no
+CDTN.</li>
+</ul>
+<h2 id="classificação-e-aproveitamento-de-atividades">3. Classificação e
+Aproveitamento de Atividades</h2>
+<p>O livro-razão no <code>l10n_br_openeducat_capes</code> extrapola a
+medição de disciplinas convencionais em sala de aula. A entidade
+categoriza e injeta os lançamentos obedecendo às tipologias
+regulamentares refinadas para o ambiente multi-programas e
+multi-vínculos:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo da classificação no Ledger</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OpStudentCreditLedger(models.Model):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    _name <span class="op">=</span> <span class="st">&#39;op.student.credit.ledger&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    credit_type <span class="op">=</span> fields.Selection([</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&#39;subject_internal&#39;</span>, <span class="st">&#39;Disciplinas do Próprio Programa&#39;</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&#39;subject_intra_ies&#39;</span>, <span class="st">&#39;Disciplinas de outros PPGs da mesma IES (100</span><span class="sc">% E</span><span class="st">quivalência)&#39;</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&#39;subject_special_quarantine&#39;</span>, <span class="st">&#39;Créditos em Quarentena (Aluno Especial)&#39;</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&#39;subject_special_incorporated&#39;</span>, <span class="st">&#39;Créditos de Aluno Especial Incorporados (Homologados CPG)&#39;</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&#39;subject_extra_ies&#39;</span>, <span class="st">&#39;Disciplinas Externas de Outras IES (Com Equivalência)&#39;</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&#39;apo&#39;</span>, <span class="st">&#39;Atividades Programadas Obrigatórias (APO) / Produção Técnica&#39;</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&#39;milestone&#39;</span>, <span class="st">&#39;Créditos por Qualificação e Defesa&#39;</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ], string<span class="op">=</span><span class="st">&quot;Natureza do Crédito&quot;</span>, required<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<ul>
+<li><strong>Disciplinas Intra-IES:</strong> Cursadas pelo aluno regular
+em outros programas da mesma instituição (<code>res.company</code>).
+Integram-se com 100% do valor nominal de carga horária e créditos,
+respeitando o limite parametrizado em
+<code>max_intra_ies_credits_percent</code>.</li>
+<li><strong>Disciplinas Extra-IES (Casos Externos e USP/IPEN):</strong>
+Disciplinas cursadas fora da instituição mantenedora. No caso do MPTRCS
+(IPEN), disciplinas cursadas no programa de Tecnologia Nuclear (titulado
+pela USP) são tratadas formalmente como <code>subject_extra_ies</code>,
+exigindo parecer e aprovação da CPG e respeitando a trava de teto
+<code>max_external_credits_percent</code> (ex: máx. 50% de
+<code>min_subject_credits</code>, limitando a 20.0 créditos no
+IPEN).</li>
+<li><strong>Atividades Programadas (APO):</strong> Suporta a modelagem
+de atividades extraclasse exigidas em programas profissionais,
+convertendo publicações de artigos, depósitos de patentes ou
+desenvolvimento de software em unidades de crédito essenciais.</li>
+<li><strong>Injeção Automática de Ritos:</strong> Ao aprovar transições
+de estado nas máquinas de workflow de qualificação e defesa (módulo
+<code>capes.thesis</code>), o sistema injeta automaticamente os créditos
+bonificados previstos nos regimentos diretamente no livro-razão.</li>
+<li><strong>Validação por Categoria para Titulação (Artigos 31º e 39º do
+Regulamento MP-TRCS):</strong> Para o agendamento da Defesa Final, a
+engine valida no livro-razão se o discente cumpriu separadamente os
+<code>min_subject_credits</code> (40 créditos em disciplinas) e os
+<code>other_mandatory_credits</code> (8 créditos do Seminário Geral de
+Área), além da meta total de <code>min_credits</code> (100
+créditos).</li>
+</ul>
+<h2 id="o-ciclo-de-quarentena-e-incorporação-de-créditos-de-aluno-especial">4.
+O Ciclo de Quarentena e Incorporação de Créditos de Aluno Especial</h2>
+<p>Para estudantes admitidos inicialmente como Alunos Especiais
+(disciplinas isoladas):</p>
+<ol type="1">
+<li><strong>Lançamento Primitivo em Quarentena:</strong> As disciplinas
+concluídas com aprovação recebem o tipo
+<code>subject_special_quarantine</code>. Esses créditos não são somados
+ao total de integralização de nenhum curso regular e servem
+exclusivamente para a emissão de Certidão de Estudos Isolados.</li>
+<li><strong>Requerimento de Incorporação
+(<code>op.special.credit.incorporation.request</code>):</strong> Quando
+o aluno ingressa regularmente em um PPG (ex: MPTRCS), o aproveitamento
+não é automático. O discente submete um requerimento formal indicando
+quais disciplinas deseja integralizar.</li>
+<li><strong>Travas Sistêmicas de Admissibilidade:</strong>
+<ul>
+<li><em>Verificação Decadencial:</em> O sistema calcula o intervalo
+entre a data de conclusão da disciplina e a data de ingresso regular.
+Caso supere o limite regimental
+(<code>special_credit_validity_months</code>, padrão de <strong>36 meses
+/ 3 anos</strong>), o sistema rejeita a linha como “Crédito
+Prescrito”.</li>
+<li><em>Verificação de Teto:</em> O sistema bloqueia requisições que
+excedam o limite máximo de disciplinas isoladas permitido pelo regimento
+(<code>max_special_subjects_limit</code>).</li>
+</ul></li>
+<li><strong>Deliberação Colegiada:</strong> O pedido tramita com parecer
+do orientador e julgamento pela CPG, registrando o número da resolução e
+a data da reunião.</li>
+<li><strong>Efeito Append-Only no Livro-Razão:</strong> Ao deferir o
+pedido, o sistema gera lançamentos adicionais no livro-razão com
+tipologia <code>subject_special_incorporated</code>, vinculados ao
+<code>curriculum_version_id</code> ativo do aluno e com apontador para o
+requerimento deferido, mantendo a linha original de quarentena intacta
+para fins de auditoria.</li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_faculty_form_ptt_360" model="ir.ui.view">
+        <field name="name">op.faculty.form.ptt.360</field>
+        <field name="model">op.faculty</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_faculty_form"/>
+        <field name="arch" type="xml">
+            <!-- Smart Button de Produtos PTT Orientados / Coautorados -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_faculty_ptts" type="object" class="oe_stat_button" icon="fa-cogs">
+                    <field name="ptt_count" widget="statinfo" string="PTTs Coautoria"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

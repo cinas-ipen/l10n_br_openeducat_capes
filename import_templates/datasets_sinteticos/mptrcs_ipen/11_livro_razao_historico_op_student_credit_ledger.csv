@@ -1,0 +1,535 @@
+id,student_id/id,curriculum_version_id/id,subject_id/id,course_name,credit_type,credits,hours,grade_concept,is_approved,date_earned,origin_ref
+led_stu_mptrcs_t1_01_rad501,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_01_rad502,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_01_rad503,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_01_rad510,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_01_rad511,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_01_rad512,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_01_rad520,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_01_rad521,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_01_rad522,stu_mptrcs_t1_01,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_01_apo,stu_mptrcs_t1_01,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_01_def,stu_mptrcs_t1_01,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_02_rad501,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_02_rad502,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_02_rad503,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_02_rad510,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_02_rad511,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_02_rad512,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_02_rad520,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_02_rad521,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_02_rad522,stu_mptrcs_t1_02,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_02_apo,stu_mptrcs_t1_02,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_02_def,stu_mptrcs_t1_02,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_03_rad501,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_03_rad502,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_03_rad503,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_03_rad510,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_03_rad511,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_03_rad512,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_03_rad520,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_03_rad521,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_03_rad522,stu_mptrcs_t1_03,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_03_apo,stu_mptrcs_t1_03,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_03_def,stu_mptrcs_t1_03,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_04_rad501,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_04_rad502,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_04_rad503,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_04_rad510,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_04_rad511,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_04_rad512,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_04_rad520,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_04_rad521,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_04_rad522,stu_mptrcs_t1_04,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_04_apo,stu_mptrcs_t1_04,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_04_def,stu_mptrcs_t1_04,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_05_rad501,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_05_rad502,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_05_rad503,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_05_rad510,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_05_rad511,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_05_rad512,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_05_rad520,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_05_rad521,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_05_rad522,stu_mptrcs_t1_05,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_05_apo,stu_mptrcs_t1_05,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_05_def,stu_mptrcs_t1_05,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_06_rad501,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_06_rad502,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_06_rad503,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_06_rad510,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_06_rad511,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_06_rad512,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_06_rad520,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_06_rad521,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_06_rad522,stu_mptrcs_t1_06,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_06_apo,stu_mptrcs_t1_06,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_06_def,stu_mptrcs_t1_06,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_07_rad501,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_07_rad502,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_07_rad503,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_07_rad510,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_07_rad511,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_07_rad512,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_07_rad520,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_07_rad521,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_07_rad522,stu_mptrcs_t1_07,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_07_apo,stu_mptrcs_t1_07,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_07_def,stu_mptrcs_t1_07,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_08_rad501,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_08_rad502,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_08_rad503,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_08_rad510,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_08_rad511,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_08_rad512,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_08_rad520,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_08_rad521,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_08_rad522,stu_mptrcs_t1_08,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_08_apo,stu_mptrcs_t1_08,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_08_def,stu_mptrcs_t1_08,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_09_rad501,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_09_rad502,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_09_rad503,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_09_rad510,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_09_rad511,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_09_rad512,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_09_rad520,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_09_rad521,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_09_rad522,stu_mptrcs_t1_09,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_09_apo,stu_mptrcs_t1_09,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_09_def,stu_mptrcs_t1_09,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_10_rad501,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_10_rad502,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_10_rad503,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_10_rad510,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_10_rad511,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_10_rad512,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_10_rad520,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_10_rad521,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_10_rad522,stu_mptrcs_t1_10,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_10_apo,stu_mptrcs_t1_10,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_10_def,stu_mptrcs_t1_10,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_11_rad501,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_11_rad502,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_11_rad503,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_11_rad510,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_11_rad511,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_11_rad512,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_11_rad520,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_11_rad521,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_11_rad522,stu_mptrcs_t1_11,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_11_apo,stu_mptrcs_t1_11,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_11_def,stu_mptrcs_t1_11,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_12_rad501,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_12_rad502,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_12_rad503,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_12_rad510,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_12_rad511,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_12_rad512,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_12_rad520,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_12_rad521,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_12_rad522,stu_mptrcs_t1_12,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_12_apo,stu_mptrcs_t1_12,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_12_def,stu_mptrcs_t1_12,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_13_rad501,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_13_rad502,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_13_rad503,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_13_rad510,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_13_rad511,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_13_rad512,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_13_rad520,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_13_rad521,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_13_rad522,stu_mptrcs_t1_13,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_13_apo,stu_mptrcs_t1_13,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_13_def,stu_mptrcs_t1_13,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_14_rad501,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_14_rad502,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_14_rad503,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_14_rad510,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_14_rad511,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_14_rad512,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_14_rad520,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_14_rad521,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_14_rad522,stu_mptrcs_t1_14,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_14_apo,stu_mptrcs_t1_14,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_14_def,stu_mptrcs_t1_14,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t1_15_rad501,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_15_rad502,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_15_rad503,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2022-06-30,Turma 1 Sem 1
+led_stu_mptrcs_t1_15_rad510,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_15_rad511,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_15_rad512,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_15_rad520,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_15_rad521,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_15_rad522,stu_mptrcs_t1_15,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2022-12-15,Turma 1 Sem 2
+led_stu_mptrcs_t1_15_apo,stu_mptrcs_t1_15,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2023-11-30,Turma 1 APO
+led_stu_mptrcs_t1_15_def,stu_mptrcs_t1_15,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2024-04-15,Turma 1 Defesa
+led_stu_mptrcs_t2_01_rad501,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_01_rad502,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_01_rad503,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_01_rad510,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_01_rad511,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_01_rad512,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_01_rad520,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_01_rad521,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_01_rad522,stu_mptrcs_t2_01,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_01_apo,stu_mptrcs_t2_01,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_01_def,stu_mptrcs_t2_01,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_02_rad501,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_02_rad502,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_02_rad503,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_02_rad510,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_02_rad511,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_02_rad512,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_02_rad520,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_02_rad521,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_02_rad522,stu_mptrcs_t2_02,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_02_apo,stu_mptrcs_t2_02,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_02_def,stu_mptrcs_t2_02,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_03_rad501,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_03_rad502,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_03_rad503,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_03_rad510,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_03_rad511,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_03_rad512,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_03_rad520,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_03_rad521,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_03_rad522,stu_mptrcs_t2_03,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_03_apo,stu_mptrcs_t2_03,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_03_def,stu_mptrcs_t2_03,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_04_rad501,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_04_rad502,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_04_rad503,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_04_rad510,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_04_rad511,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_04_rad512,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_04_rad520,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_04_rad521,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_04_rad522,stu_mptrcs_t2_04,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_04_apo,stu_mptrcs_t2_04,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_04_def,stu_mptrcs_t2_04,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_05_rad501,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_05_rad502,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_05_rad503,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_05_rad510,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_05_rad511,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_05_rad512,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_05_rad520,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_05_rad521,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_05_rad522,stu_mptrcs_t2_05,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_05_apo,stu_mptrcs_t2_05,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_05_def,stu_mptrcs_t2_05,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_06_rad501,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_06_rad502,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_06_rad503,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_06_rad510,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_06_rad511,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_06_rad512,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_06_rad520,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_06_rad521,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_06_rad522,stu_mptrcs_t2_06,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_06_apo,stu_mptrcs_t2_06,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_06_def,stu_mptrcs_t2_06,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_07_rad501,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_07_rad502,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_07_rad503,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_07_rad510,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_07_rad511,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_07_rad512,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_07_rad520,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_07_rad521,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_07_rad522,stu_mptrcs_t2_07,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_07_apo,stu_mptrcs_t2_07,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_07_def,stu_mptrcs_t2_07,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_08_rad501,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_08_rad502,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_08_rad503,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_08_rad510,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_08_rad511,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_08_rad512,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_08_rad520,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_08_rad521,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_08_rad522,stu_mptrcs_t2_08,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_08_apo,stu_mptrcs_t2_08,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_08_def,stu_mptrcs_t2_08,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_09_rad501,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_09_rad502,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_09_rad503,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_09_rad510,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_09_rad511,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_09_rad512,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_09_rad520,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_09_rad521,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_09_rad522,stu_mptrcs_t2_09,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_09_apo,stu_mptrcs_t2_09,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_09_def,stu_mptrcs_t2_09,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_10_rad501,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_10_rad502,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_10_rad503,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_10_rad510,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_10_rad511,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_10_rad512,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_10_rad520,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_10_rad521,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_10_rad522,stu_mptrcs_t2_10,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_10_apo,stu_mptrcs_t2_10,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_10_def,stu_mptrcs_t2_10,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_11_rad501,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_11_rad502,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_11_rad503,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_11_rad510,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_11_rad511,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_11_rad512,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_11_rad520,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_11_rad521,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_11_rad522,stu_mptrcs_t2_11,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_11_apo,stu_mptrcs_t2_11,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_11_def,stu_mptrcs_t2_11,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_12_rad501,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_12_rad502,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_12_rad503,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_12_rad510,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_12_rad511,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_12_rad512,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_12_rad520,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_12_rad521,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_12_rad522,stu_mptrcs_t2_12,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_12_apo,stu_mptrcs_t2_12,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_12_def,stu_mptrcs_t2_12,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_13_rad501,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_13_rad502,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_13_rad503,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_13_rad510,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_13_rad511,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_13_rad512,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_13_rad520,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_13_rad521,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_13_rad522,stu_mptrcs_t2_13,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_13_apo,stu_mptrcs_t2_13,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_13_def,stu_mptrcs_t2_13,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_14_rad501,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_14_rad502,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_14_rad503,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_14_rad510,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_14_rad511,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_14_rad512,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_14_rad520,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_14_rad521,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_14_rad522,stu_mptrcs_t2_14,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_14_apo,stu_mptrcs_t2_14,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_14_def,stu_mptrcs_t2_14,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t2_15_rad501,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_15_rad502,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_15_rad503,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2023-06-30,Turma 2 Sem 1
+led_stu_mptrcs_t2_15_rad510,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_15_rad511,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_15_rad512,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_15_rad520,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_15_rad521,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_15_rad522,stu_mptrcs_t2_15,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2023-12-15,Turma 2 Sem 2
+led_stu_mptrcs_t2_15_apo,stu_mptrcs_t2_15,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2024-11-30,Turma 2 APO
+led_stu_mptrcs_t2_15_def,stu_mptrcs_t2_15,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2025-04-15,Turma 2 Defesa
+led_stu_mptrcs_t3_01_rad501,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_01_rad502,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_01_rad503,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_01_rad510,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_01_rad511,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_01_rad512,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_01_rad520,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_01_rad521,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_01_rad522,stu_mptrcs_t3_01,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_01_apo,stu_mptrcs_t3_01,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_01_def,stu_mptrcs_t3_01,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_02_rad501,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_02_rad502,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_02_rad503,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_02_rad510,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_02_rad511,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_02_rad512,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_02_rad520,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_02_rad521,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_02_rad522,stu_mptrcs_t3_02,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_02_apo,stu_mptrcs_t3_02,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_02_def,stu_mptrcs_t3_02,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_03_rad501,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_03_rad502,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_03_rad503,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_03_rad510,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_03_rad511,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_03_rad512,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_03_rad520,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_03_rad521,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_03_rad522,stu_mptrcs_t3_03,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_03_apo,stu_mptrcs_t3_03,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_03_def,stu_mptrcs_t3_03,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_04_rad501,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_04_rad502,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_04_rad503,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_04_rad510,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_04_rad511,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_04_rad512,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_04_rad520,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_04_rad521,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_04_rad522,stu_mptrcs_t3_04,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_04_apo,stu_mptrcs_t3_04,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_04_def,stu_mptrcs_t3_04,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_05_rad501,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_05_rad502,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_05_rad503,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_05_rad510,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_05_rad511,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_05_rad512,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_05_rad520,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_05_rad521,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_05_rad522,stu_mptrcs_t3_05,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_05_apo,stu_mptrcs_t3_05,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_05_def,stu_mptrcs_t3_05,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_06_rad501,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_06_rad502,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_06_rad503,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_06_rad510,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_06_rad511,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_06_rad512,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_06_rad520,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_06_rad521,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_06_rad522,stu_mptrcs_t3_06,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_06_apo,stu_mptrcs_t3_06,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_06_def,stu_mptrcs_t3_06,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_07_rad501,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_07_rad502,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_07_rad503,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_07_rad510,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_07_rad511,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_07_rad512,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_07_rad520,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_07_rad521,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_07_rad522,stu_mptrcs_t3_07,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_07_apo,stu_mptrcs_t3_07,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_07_def,stu_mptrcs_t3_07,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_08_rad501,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_08_rad502,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_08_rad503,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_08_rad510,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_08_rad511,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_08_rad512,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_08_rad520,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_08_rad521,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_08_rad522,stu_mptrcs_t3_08,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_08_apo,stu_mptrcs_t3_08,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_08_def,stu_mptrcs_t3_08,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_09_rad501,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_09_rad502,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_09_rad503,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_09_rad510,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_09_rad511,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_09_rad512,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_09_rad520,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_09_rad521,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_09_rad522,stu_mptrcs_t3_09,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_09_apo,stu_mptrcs_t3_09,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_09_def,stu_mptrcs_t3_09,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_10_rad501,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_10_rad502,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_10_rad503,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_10_rad510,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_10_rad511,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_10_rad512,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_10_rad520,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_10_rad521,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_10_rad522,stu_mptrcs_t3_10,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_10_apo,stu_mptrcs_t3_10,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_10_def,stu_mptrcs_t3_10,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_11_rad501,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_11_rad502,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_11_rad503,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_11_rad510,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_11_rad511,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_11_rad512,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_11_rad520,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_11_rad521,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_11_rad522,stu_mptrcs_t3_11,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_11_apo,stu_mptrcs_t3_11,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_11_def,stu_mptrcs_t3_11,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_12_rad501,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_12_rad502,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_12_rad503,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_12_rad510,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_12_rad511,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_12_rad512,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_12_rad520,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_12_rad521,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_12_rad522,stu_mptrcs_t3_12,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_12_apo,stu_mptrcs_t3_12,reg_mptrcs_v2,,Seminários de Acompanhamento e Desenvolvimento de PTT,apo,8,120,A,True,2025-11-30,Turma 3 APO
+led_stu_mptrcs_t3_12_def,stu_mptrcs_t3_12,reg_mptrcs_v2,,Defesa Pública de Dissertação e Produto Tecnológico,milestone,52,780,A,True,2026-04-15,Turma 3 Defesa
+led_stu_mptrcs_t3_13_rad501,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_13_rad502,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_13_rad503,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_13_rad510,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_13_rad511,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_13_rad512,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_13_rad520,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_13_rad521,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_13_rad522,stu_mptrcs_t3_13,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_14_rad501,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_14_rad502,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_14_rad503,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_14_rad510,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_14_rad511,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_14_rad512,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_14_rad520,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_14_rad521,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_14_rad522,stu_mptrcs_t3_14,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,A,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_15_rad501,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_15_rad502,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_15_rad503,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2024-06-30,Turma 3 Sem 1
+led_stu_mptrcs_t3_15_rad510,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad510,Dosimetria Física e Clínica em Radioterapia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_15_rad511,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad511,Controle de Qualidade em Aceleradores Lineares,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_15_rad512,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad512,Braquiterapia Avançada e Implante de Sementes,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_15_rad520,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad520,Radiofarmácia e Radioimunologia,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_15_rad521,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad521,Instrumentação em PET/SPECT e Imagem Molecular,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t3_15_rad522,stu_mptrcs_t3_15,reg_mptrcs_v2,sub_mptrcs_rad522,Gerenciamento de Rejeitos Radioativos em Serviços de Saúde,subject_internal,4,60,B,True,2024-12-15,Turma 3 Sem 2
+led_stu_mptrcs_t4_01_rad501,stu_mptrcs_t4_01,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_01_rad502,stu_mptrcs_t4_01,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_01_rad503,stu_mptrcs_t4_01,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_02_rad501,stu_mptrcs_t4_02,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_02_rad502,stu_mptrcs_t4_02,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_02_rad503,stu_mptrcs_t4_02,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_03_rad501,stu_mptrcs_t4_03,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_03_rad502,stu_mptrcs_t4_03,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_03_rad503,stu_mptrcs_t4_03,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_04_rad501,stu_mptrcs_t4_04,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_04_rad502,stu_mptrcs_t4_04,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_04_rad503,stu_mptrcs_t4_04,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_05_rad501,stu_mptrcs_t4_05,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_05_rad502,stu_mptrcs_t4_05,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_05_rad503,stu_mptrcs_t4_05,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_06_rad501,stu_mptrcs_t4_06,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_06_rad502,stu_mptrcs_t4_06,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_06_rad503,stu_mptrcs_t4_06,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_07_rad501,stu_mptrcs_t4_07,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_07_rad502,stu_mptrcs_t4_07,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_07_rad503,stu_mptrcs_t4_07,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_08_rad501,stu_mptrcs_t4_08,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_08_rad502,stu_mptrcs_t4_08,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_08_rad503,stu_mptrcs_t4_08,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_09_rad501,stu_mptrcs_t4_09,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_09_rad502,stu_mptrcs_t4_09,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_09_rad503,stu_mptrcs_t4_09,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_10_rad501,stu_mptrcs_t4_10,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_10_rad502,stu_mptrcs_t4_10,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_10_rad503,stu_mptrcs_t4_10,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_11_rad501,stu_mptrcs_t4_11,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_11_rad502,stu_mptrcs_t4_11,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_11_rad503,stu_mptrcs_t4_11,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_12_rad501,stu_mptrcs_t4_12,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_12_rad502,stu_mptrcs_t4_12,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_12_rad503,stu_mptrcs_t4_12,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_13_rad501,stu_mptrcs_t4_13,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_13_rad502,stu_mptrcs_t4_13,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_13_rad503,stu_mptrcs_t4_13,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_14_rad501,stu_mptrcs_t4_14,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_14_rad502,stu_mptrcs_t4_14,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_14_rad503,stu_mptrcs_t4_14,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,A,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_15_rad501,stu_mptrcs_t4_15,reg_mptrcs_v2,sub_mptrcs_rad501,Fundamentos de Radiobiologia e Proteção Radiológica,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_15_rad502,stu_mptrcs_t4_15,reg_mptrcs_v2,sub_mptrcs_rad502,Metodologia Científica e Elaboração de PTT,subject_internal,4,60,B,True,2025-06-30,Turma 4 Sem 1
+led_stu_mptrcs_t4_15_rad503,stu_mptrcs_t4_15,reg_mptrcs_v2,sub_mptrcs_rad503,Seminários Gerais em Tecnologia das Radiações,subject_internal,2,30,B,True,2025-06-30,Turma 4 Sem 1

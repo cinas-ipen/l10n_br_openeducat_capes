@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Manual Operacional do Usuário: Corpo Docente e Orientadores</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Manual Operacional do Usuário: Corpo Docente e
+Orientadores</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#manual-operacional-do-usuário-corpo-docente-e-orientadores" id="toc-manual-operacional-do-usuário-corpo-docente-e-orientadores">Manual
+Operacional do Usuário: Corpo Docente e Orientadores</a>
+<ul>
+<li><a href="#ecossistema-l10n_br_openeducat_capes-odoo-19.0" id="toc-ecossistema-l10n_br_openeducat_capes-odoo-19.0">Ecossistema
+l10n_br_openeducat_capes (Odoo 19.0)</a></li>
+<li><a href="#perfil-de-acesso-e-portal-docente" id="toc-perfil-de-acesso-e-portal-docente">1. Perfil de Acesso e Portal
+Docente</a></li>
+<li><a href="#gestão-didática-das-disciplinas" id="toc-gestão-didática-das-disciplinas">2. Gestão Didática das
+Disciplinas</a>
+<ul>
+<li><a href="#diário-de-classe-e-frequência" id="toc-diário-de-classe-e-frequência">2.1. Diário de Classe e
+Frequência</a></li>
+<li><a href="#lançamento-de-notas-e-conceitos-finais" id="toc-lançamento-de-notas-e-conceitos-finais">2.2. Lançamento de Notas
+e Conceitos Finais</a></li>
+<li><a href="#anuência-para-alunos-especiais-e-matrículas-intra-ies" id="toc-anuência-para-alunos-especiais-e-matrículas-intra-ies">2.3.
+Anuência para Alunos Especiais e Matrículas Intra-IES</a></li>
+</ul></li>
+<li><a href="#gestão-da-orientação-discente" id="toc-gestão-da-orientação-discente">3. Gestão da Orientação
+Discente</a>
+<ul>
+<li><a href="#acompanhamento-do-plano-de-trabalho-discente" id="toc-acompanhamento-do-plano-de-trabalho-discente">3.1.
+Acompanhamento do Plano de Trabalho Discente</a></li>
+<li><a href="#parecer-de-aproveitamento-de-créditos-especiais" id="toc-parecer-de-aproveitamento-de-créditos-especiais">3.2. Parecer de
+Aproveitamento de Créditos Especiais</a></li>
+<li><a href="#solicitação-de-prorrogação-de-prazo-de-defesa" id="toc-solicitação-de-prorrogação-de-prazo-de-defesa">3.3. Solicitação
+de Prorrogação de Prazo de Defesa</a></li>
+</ul></li>
+<li><a href="#projetos-de-pesquisa-e-taxonomia-credit" id="toc-projetos-de-pesquisa-e-taxonomia-credit">4. Projetos de Pesquisa
+e Taxonomia CRediT</a></li>
+<li><a href="#cadastramento-de-produtos-técnico-tecnológicos-ptt" id="toc-cadastramento-de-produtos-técnico-tecnológicos-ptt">5.
+Cadastramento de Produtos Técnico-Tecnológicos (PTT)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="manual-operacional-do-usuário-corpo-docente-e-orientadores">Manual
+Operacional do Usuário: Corpo Docente e Orientadores</h1>
+<h2 id="ecossistema-l10n_br_openeducat_capes-odoo-19.0">Ecossistema
+l10n_br_openeducat_capes (Odoo 19.0)</h2>
+<p>Este manual é destinado aos professores, pesquisadores e orientadores
+credenciados perante os Programas de Pós-Graduação, orientando suas
+atividades didáticas e de orientação científica.</p>
+<hr />
+<h2 id="perfil-de-acesso-e-portal-docente">1. Perfil de Acesso e Portal
+Docente</h2>
+<ul>
+<li><strong>Grupo de Segurança:</strong>
+<code>openeducat_core.group_op_faculty</code> (Corpo Docente)</li>
+<li><strong>Usuário Padrão de Homologação/Treinamento:</strong>
+<code>professor</code> / Senha: <code>professor123</code></li>
+<li><strong>Acesso:</strong> Interface web do Odoo ou Portal do
+Professor (<code>/my</code>).</li>
+<li><strong>Visão 360° do Docente:</strong> Ao acessar sua ficha em
+<strong>OpenEduCat <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Professores</strong>, visualize nos smart buttons do topo:
+<ul>
+<li><strong>Orientandos Ativos:</strong> Alunos regulares sob sua
+orientação direta em curso.</li>
+<li><strong>Orientandos Titulados:</strong> Egressos que defenderam
+dissertação ou tese sob sua orientação.</li>
+<li><strong>Disciplinas Lecionadas:</strong> Turmas sob sua regência
+pedagógica.</li>
+<li><strong>Linhas de Pesquisa:</strong> Linhas do programa às quais seu
+perfil está associado.</li>
+<li><strong>Bancas Examinadoras:</strong> Participações como presidente
+ou avaliador em comissões julgadoras.</li>
+</ul></li>
+<li><strong>PIDs Biográficos Obrigatórios:</strong> No primeiro acesso,
+certifique-se de que seu cadastro em <strong>Meu Perfil</strong>
+contenha:
+<ul>
+<li><strong>CPF</strong> (11 dígitos, validação Módulo 11).</li>
+<li><strong>ORCiD ID</strong> (no padrão
+<code>0000-0000-0000-0000</code>).</li>
+<li><strong>Currículo Lattes</strong> (Link canônico ou ID Lattes de 16
+dígitos).</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="gestão-didática-das-disciplinas">2. Gestão Didática das
+Disciplinas</h2>
+<h3 id="diário-de-classe-e-frequência">2.1. Diário de Classe e
+Frequência</h3>
+<ol type="1">
+<li>Acesse <strong>Portal Docente <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Minhas Disciplinas</strong>.</li>
+<li>Selecione a turma ativa no período letivo:
+<ul>
+<li><strong>Plano de Ensino:</strong> Cadastre a ementa, bibliografia
+básica e complementar, e cronograma das aulas.</li>
+<li><strong>Frequência e Presença:</strong> Registre os lançamentos de
+presença por aula ministrada.</li>
+</ul></li>
+</ol>
+<h3 id="lançamento-de-notas-e-conceitos-finais">2.2. Lançamento de Notas
+e Conceitos Finais</h3>
+<ol type="1">
+<li>Ao término do semestre letivo, acesse a aba <strong>Avaliações &amp;
+Notas</strong>.</li>
+<li>Lance as notas numéricas ou conceitos regimentais (ex:
+<code>A</code>, <code>B</code>, <code>C</code> - Aprovado;
+<code>D</code>, <code>R</code> - Reprovado).</li>
+<li>Clique em <strong>Consolidar e Enviar para a Secretaria</strong>:
+<ul>
+<li>O sistema realiza a validação de consistência e grava os lançamentos
+definitivos no Livro-Razão Acadêmico do discente.</li>
+<li><em>Atenção:</em> Uma vez consolidado, qualquer alteração posterior
+exige processo formal de retificação de notas homologado pela CPG.</li>
+</ul></li>
+</ol>
+<h3 id="anuência-para-alunos-especiais-e-matrículas-intra-ies">2.3.
+Anuência para Alunos Especiais e Matrículas Intra-IES</h3>
+<ul>
+<li>Se a sua disciplina estiver configurada com a exigência de
+consentimento prévio do docente
+(<code>special_student_instructor_consent_required = True</code>):
+<ol type="1">
+<li>Você receberá uma notificação no sistema informando a solicitação de
+vaga formulada por aluno especial ou aluno de outro programa da
+IES.</li>
+<li>Acesse <strong>Minhas Disciplinas <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Solicitações de Inscrição</strong>.</li>
+<li>Clique em <strong>Conceder Anuência</strong> ou <strong>Recusar
+Justificadamente</strong>.</li>
+</ol></li>
+</ul>
+<hr />
+<h2 id="gestão-da-orientação-discente">3. Gestão da Orientação
+Discente</h2>
+<h3 id="acompanhamento-do-plano-de-trabalho-discente">3.1.
+Acompanhamento do Plano de Trabalho Discente</h3>
+<ol type="1">
+<li>Acesse <strong>Ensino CAPES <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Meus Orientandos</strong>.</li>
+<li>Ao receber a submissão do Plano de Trabalho Discente
+(<code>op.student.work_plan</code>):
+<ul>
+<li>Analise o cronograma de atividades, aderência à linha de pesquisa do
+PPG e orçamento.</li>
+<li>Verifique as pendências éticas: se a pesquisa envolver seres humanos
+ou animais, marque a necessidade de submissão ao <strong>CEP</strong>
+(Plataforma Brasil) ou <strong>CEUA</strong>.</li>
+<li>Emita o parecer e clique em <strong>Aprovar Plano de
+Trabalho</strong>.</li>
+</ul></li>
+</ol>
+<h3 id="parecer-de-aproveitamento-de-créditos-especiais">3.2. Parecer de
+Aproveitamento de Créditos Especiais</h3>
+<ol type="1">
+<li>Quando seu orientando solicita a incorporação de disciplinas
+cursadas como Aluno Especial:
+<ul>
+<li>Você receberá o processo com status <code>submitted</code>.</li>
+<li>Acesse <strong>Meus Orientandos <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Requerimentos de Créditos</strong>.</li>
+<li>Avalie se a disciplina cursada possui mérito científico, aderência à
+dissertação/tese e se foi concluída há <strong>menos de 36
+meses</strong>.</li>
+<li>Emita o parecer fundamentado e clique em <strong>Aprovar como
+Orientador</strong> (<code>action_advisor_approve</code>). O processo é
+então encaminhado à CPG.</li>
+</ul></li>
+</ol>
+<h3 id="solicitação-de-prorrogação-de-prazo-de-defesa">3.3. Solicitação
+de Prorrogação de Prazo de Defesa</h3>
+<ol type="1">
+<li>Caso o orientando necessite de prazo adicional para concluir a
+pesquisa:
+<ul>
+<li>Acesse o prontuário do orientando e clique em <strong>Solicitar
+Prorrogação de Prazo</strong>.</li>
+<li>Indique o número de dias solicitados (respeitando o limite
+regimental do curso, ex: 90 dias no MPTRCS).</li>
+<li>Anexe o relatório de qualificação e cronograma detalhado de
+finalização.</li>
+<li>Encaminhe para julgamento da CPG.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="projetos-de-pesquisa-e-taxonomia-credit">4. Projetos de Pesquisa
+e Taxonomia CRediT</h2>
+<ol type="1">
+<li>Acesse <strong>Pesquisa <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Projetos de Pesquisa</strong>
+(<code>capes.research.project</code>).</li>
+<li>Vincule seu orientando ao projeto de pesquisa correspondente.</li>
+<li>Para cada membro da equipe, atribua a contribuição científica
+segundo a taxonomia internacional <strong>CRediT</strong> (14 papéis:
+Conceitualização, Metodologia, Software, Validação, Investigação,
+Redação original, etc.). Essa informação é coletada diretamente pela
+CAPES na avaliação quadrienal.</li>
+</ol>
+<hr />
+<h2 id="cadastramento-de-produtos-técnico-tecnológicos-ptt">5.
+Cadastramento de Produtos Técnico-Tecnológicos (PTT)</h2>
+<ol type="1">
+<li>Acesse <strong>Produção Intelectual <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Cadastrar PTT</strong> (<code>capes.ptt.product</code>).</li>
+<li>Indique o Trabalho Final / Discente associado ao produto.</li>
+<li>Preencha a classificação metodológica nos <strong>4 Eixos</strong> e
+selecione uma das <strong>21 Tipologias</strong> da CAPES.</li>
+<li>Indique o nível de maturidade tecnológica (<strong>TRL 1 a
+9</strong>, campos <code>trl_1</code> a <code>trl_9</code>).</li>
+<li>O sistema simula o estrato Qualis (<code>final_stratum</code>:
+<code>T1</code> a <code>T5</code>) para conferência antes da submissão à
+Coordenação.</li>
+</ol>
+</body>
+</html>

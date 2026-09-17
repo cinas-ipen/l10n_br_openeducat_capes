@@ -78,6 +78,12 @@ class CapesThesis(models.Model):
         required=True,
         tracking=True
     )
+    name = fields.Char(
+        string='Título Final (Identificador)',
+        related='title',
+        readonly=False,
+        store=True
+    )
     title_alt = fields.Char(
         string='Título Traduzido (Inglês)',
         tracking=True

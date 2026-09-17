@@ -65,6 +65,20 @@
                             <field name="defense_location_policy"/>
                         </group>
                     </group>
+                    <group>
+                        <group string="Governança de Alunos Especiais (Disciplinas Isoladas)">
+                            <field name="allow_special_students"/>
+                            <field name="max_special_subjects_limit" invisible="not allow_special_students"/>
+                            <field name="special_credit_validity_months"/>
+                            <field name="special_incorporation_workflow"/>
+                            <field name="special_transcript_fail_policy"/>
+                        </group>
+                        <group string="Governança de Disciplinas Intra-IES vs Extra-IES">
+                            <field name="allow_intra_ies_credits"/>
+                            <field name="max_intra_ies_credits_percent" invisible="not allow_intra_ies_credits"/>
+                            <field name="intra_ies_advisor_approval_required" invisible="not allow_intra_ies_credits"/>
+                        </group>
+                    </group>
                     <notebook>
                         <page string="Disciplinas Obrigatórias">
                             <field name="subject_rule_ids">

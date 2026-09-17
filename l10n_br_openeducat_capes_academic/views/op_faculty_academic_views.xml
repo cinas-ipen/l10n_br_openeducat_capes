@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_faculty_form_academic_360" model="ir.ui.view">
+        <field name="name">op.faculty.form.academic.360</field>
+        <field name="model">op.faculty</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_faculty_form"/>
+        <field name="arch" type="xml">
+            <!-- Smart Button de Credenciamentos CPG -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_accreditations" type="object" class="oe_stat_button" icon="fa-certificate">
+                    <field name="accreditation_count" widget="statinfo" string="Credenc. CPG"/>
+                </button>
+            </xpath>
+
+            <!-- Aba de Credenciamento CPG -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Credenciamento CPG" name="faculty_accreditations_page">
+                    <field name="program_link_ids" nolabel="1">
+                        <list>
+                            <field name="program_id"/>
+                            <field name="active_advisees_count"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

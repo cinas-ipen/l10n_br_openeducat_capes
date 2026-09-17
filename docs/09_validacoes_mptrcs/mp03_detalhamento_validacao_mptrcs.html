@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>**Validação Técnica MP3 - Vida Estudantil e Matrículas**</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">**Validação Técnica MP3 - Vida Estudantil e
+Matrículas**</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#validação-técnica-mp3---vida-estudantil-e-matrículas" id="toc-validação-técnica-mp3---vida-estudantil-e-matrículas"><strong>Validação
+Técnica MP3 - Vida Estudantil e Matrículas</strong></a>
+<ul>
+<li><a href="#introdução" id="toc-introdução"><strong>1.
+Introdução</strong></a></li>
+<li><a href="#estrutura-de-oferta-e-turmas-op.batch-e-op.session" id="toc-estrutura-de-oferta-e-turmas-op.batch-e-op.session"><strong>2.
+Estrutura de Oferta e Turmas (op.batch e op.session)</strong></a>
+<ul>
+<li><a href="#parâmetros-da-turma" id="toc-parâmetros-da-turma"><strong>2.1. Parâmetros da
+Turma</strong></a></li>
+</ul></li>
+<li><a href="#fluxos-de-matrícula-e-travas-de-controle" id="toc-fluxos-de-matrícula-e-travas-de-controle"><strong>3. Fluxos de
+Matrícula e Travas de Controle</strong></a>
+<ul>
+<li><a href="#calouros-e-carga-inicial-obrigatória" id="toc-calouros-e-carga-inicial-obrigatória"><strong>3.1. Calouros e
+Carga Inicial Obrigatória</strong></a></li>
+<li><a href="#matrícula-de-acompanhamento-pesquisa" id="toc-matrícula-de-acompanhamento-pesquisa"><strong>3.2. Matrícula de
+Acompanhamento (Pesquisa)</strong></a></li>
+<li><a href="#cancelamento-sem-prejuízo-artigo-41º-do-mptrcs-e-anuência-tácita" id="toc-cancelamento-sem-prejuízo-artigo-41º-do-mptrcs-e-anuência-tácita"><strong>3.3.
+Cancelamento sem Prejuízo (Artigo 41º do MPTRCS e Anuência
+Tácita)</strong></a></li>
+</ul></li>
+<li><a href="#o-livro-razão-acadêmico-op.student.credit.ledger" id="toc-o-livro-razão-acadêmico-op.student.credit.ledger"><strong>4. O
+Livro-Razão Acadêmico (op.student.credit.ledger)</strong></a>
+<ul>
+<li><a href="#arquitetura-append-only" id="toc-arquitetura-append-only"><strong>4.1. Arquitetura
+<em>Append-Only</em></strong></a></li>
+</ul></li>
+<li><a href="#fluxos-de-exceção-ajustes-retroativos-auditados" id="toc-fluxos-de-exceção-ajustes-retroativos-auditados"><strong>5.
+Fluxos de Exceção: Ajustes Retroativos Auditados</strong></a></li>
+<li><a href="#resumo-para-stakeholders-mptrcs" id="toc-resumo-para-stakeholders-mptrcs"><strong>6. Resumo para
+Stakeholders (MPTRCS)</strong></a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="validação-técnica-mp3---vida-estudantil-e-matrículas"><strong>Validação
+Técnica MP3 - Vida Estudantil e Matrículas</strong></h1>
+<h2 id="introdução"><strong>1. Introdução</strong></h2>
+<p>Este documento detalha o <strong>Macroprocesso 3: Vida Estudantil e
+Matrículas</strong> do ecossistema l10n_br_openeducat_capes. O objetivo
+desta especificação é fornecer aos <em>stakeholders</em> do MPTRCS uma
+visão clara, didática e auditável de como o ERP OpenEduCat gerencia o
+ciclo letivo, garantindo conformidade com as exigências da CAPES e a
+imutabilidade dos registros acadêmicos.</p>
+<p>Este processo é a espinha dorsal da “Fonte Prata” de dados
+acadêmicos, onde a vida cotidiana do estudante é transposta para
+registros digitais que alimentam a governança do programa.</p>
+<h2 id="estrutura-de-oferta-e-turmas-op.batch-e-op.session"><strong>2.
+Estrutura de Oferta e Turmas (op.batch e op.session)</strong></h2>
+<p>O sistema abandona a oferta manual e adota uma estrutura
+parametrizável que garante a consistência das turmas.</p>
+<h3 id="parâmetros-da-turma"><strong>2.1. Parâmetros da
+Turma</strong></h3>
+<p>Para cada disciplina, a secretaria configura uma instância de
+op.batch (Turma). Os parâmetros chave incluem:</p>
+<ul>
+<li><strong>Capacidade Mínima (Quórum):</strong> O sistema impede a
+consolidação de turmas que não atingem o número mínimo de inscritos,
+evitando o desperdício de recursos e a abertura de turmas
+“fantasmas”.<br />
+</li>
+<li><strong>Composição Docente:</strong> A turma pode vincular até 4
+docentes (1 Coordenador e até 3 auxiliares), todos portadores de título
+de Doutor, garantindo a conformidade com as diretrizes do Comitê
+Medicina II/Ensino.<br />
+</li>
+<li><strong>Indicador de PHEA:</strong> Parametrização específica para o
+uso de metodologias híbridas (PHEA), atendendo às novas regulamentações
+de ensino na pós-graduação.</li>
+</ul>
+<h2 id="fluxos-de-matrícula-e-travas-de-controle"><strong>3. Fluxos de
+Matrícula e Travas de Controle</strong></h2>
+<p>A matrícula não é um processo apenas administrativo, mas um gatilho
+de auditoria.</p>
+<h3 id="calouros-e-carga-inicial-obrigatória"><strong>3.1. Calouros e
+Carga Inicial Obrigatória</strong></h3>
+<p>O sistema aplica uma <strong>Trava de Carga Inicial</strong>. O
+algoritmo verifica automaticamente se a seleção de disciplinas do
+ingressante respeita o parâmetro min_first_semester_credits definido no
+currículo (ex: 24 créditos). Caso o aluno selecione menos que o mínimo
+regimental, o sistema bloqueia a finalização da matrícula, forçando o
+ajuste imediato.</p>
+<h3 id="matrícula-de-acompanhamento-pesquisa"><strong>3.2. Matrícula de
+Acompanhamento (Pesquisa)</strong></h3>
+<p>Para evitar a “inatividade fictícia” (um dos maiores pontos de
+atenção da CAPES), o sistema institui a <strong>Matrícula de
+Acompanhamento</strong>. Após o cumprimento dos créditos teóricos, o
+aluno deve se matricular obrigatoriamente na atividade de “Elaboração de
+Dissertação/Tese”. Isso mantém o aluno com status “Ativo” no banco de
+dados, crucial para a coleta passiva da Fonte Prata.</p>
+<h3 id="cancelamento-sem-prejuízo-artigo-41º-do-mptrcs-e-anuência-tácita"><strong>3.3.
+Cancelamento sem Prejuízo (Artigo 41º do MPTRCS e Anuência
+Tácita)</strong></h3>
+<p>O processo de desistência de disciplinas segue o Artigo 41º do
+regulamento, com salvaguardas tecnológicas:</p>
+<ol type="1">
+<li><strong>Solicitação:</strong> O aluno solicita o cancelamento via
+portal dentro do prazo do calendário acadêmico.<br />
+</li>
+<li><strong>Anuência do Orientador:</strong> O sistema roteia o pedido
+automaticamente para o orientador.<br />
+</li>
+<li><strong>SLA e Anuência Tácita:</strong> O orientador possui um prazo
+(SLA de 5 dias úteis) para aprovar ou indeferir.
+<ul>
+<li><strong>Default Sistêmico:</strong> Se o prazo expirar sem
+manifestação do orientador, o sistema aplica a <strong>Anuência Tácita =
+True</strong>, processando o cancelamento automaticamente para proteger
+o aluno de impedimentos burocráticos.<br />
+</li>
+</ul></li>
+<li><strong>Efeitos:</strong> O registro é removido das pautas sem
+atribuir conceito reprovativo “R”. O cancelamento <strong>não altera a
+contagem dos prazos regimentais</strong> (não tem efeito
+suspensivo).</li>
+</ol>
+<h2 id="o-livro-razão-acadêmico-op.student.credit.ledger"><strong>4. O
+Livro-Razão Acadêmico (op.student.credit.ledger)</strong></h2>
+<p>Este é o componente mais crítico para a segurança jurídica e
+acadêmica do programa.</p>
+<h3 id="arquitetura-append-only"><strong>4.1. Arquitetura
+<em>Append-Only</em></strong></h3>
+<p>Ao final do semestre, após o lançamento de notas e frequências
+(mínimo de 75%), a secretaria consolida a turma. Neste instante, o
+sistema realiza a <strong>Injeção de Créditos</strong>. Estes dados
+entram na tabela op.student.credit.ledger, que é
+<strong>imutável</strong>.</p>
+<ul>
+<li><strong>Por que é imutável?</strong> Para impedir que cálculos
+retroativos ou alterações indevidas de notas corrompam o histórico do
+aluno.<br />
+</li>
+<li><strong>O que é registrado?</strong> Tipo de crédito (disciplina,
+APO, milestone de qualificação), carga horária e conceito.</li>
+</ul>
+<h2 id="fluxos-de-exceção-ajustes-retroativos-auditados"><strong>5.
+Fluxos de Exceção: Ajustes Retroativos Auditados</strong></h2>
+<p>Para situações como demandas judiciais ou retificações da CPG,
+criamos o fluxo de <strong>Ajuste Manual Retroativo
+(op.academic.request.grade_adjustment)</strong>:</p>
+<ol type="1">
+<li><strong>Abertura:</strong> Docente ou secretaria abre chamado
+justificando (com upload de prova documental).<br />
+</li>
+<li><strong>Aprovação:</strong> O requerimento é roteado para a
+Coordenação do Programa.<br />
+</li>
+<li><strong>Auditoria:</strong> Após o clique do Coordenador, a
+secretaria executa a retificação. O sistema <strong>não apenas altera o
+dado</strong>, mas gera um selo de auditoria indelével no histórico, que
+registra quem alterou, quando e por qual motivo. Isso blinda o programa
+contra auditorias da CAPES.</li>
+</ol>
+<h2 id="resumo-para-stakeholders-mptrcs"><strong>6. Resumo para
+Stakeholders (MPTRCS)</strong></h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Funcionalidade</th>
+<th style="text-align: left;">Benefício para o Programa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Travas Automáticas</strong></td>
+<td style="text-align: left;">Elimina erros humanos na carga horária
+inicial (calouros).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Matrícula de
+Acompanhamento</strong></td>
+<td style="text-align: left;">Mantém a produtividade ativa perante a
+CAPES durante a pesquisa.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Anuência Tácita (Art.
+41º)</strong></td>
+<td style="text-align: left;">Agiliza o cancelamento, protegendo o aluno
+de omissões do orientador.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Livro-Razão Imutável</strong></td>
+<td style="text-align: left;">Garante a integridade absoluta do
+histórico escolar contra fraudes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Auditoria de Ajustes</strong></td>
+<td style="text-align: left;">Protege a coordenação em casos de
+retificações solicitadas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Integração GoPG</strong></td>
+<td style="text-align: left;">Dados prontos para o robô da CAPES (sem
+redigitação).</td>
+</tr>
+</tbody>
+</table>
+<p>Este detalhamento assegura que todos os subprocessos da Vida
+Estudantil sejam executados com rigor técnico, eliminando a dependência
+de métodos manuais arcaicos e posicionando o MPTRCS na vanguarda da
+governança de dados acadêmicos.</p>
+</body>
+</html>

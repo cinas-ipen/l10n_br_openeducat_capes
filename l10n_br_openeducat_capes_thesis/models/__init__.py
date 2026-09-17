@@ -20,3 +20,5 @@
 
 from . import thesis
 from . import thesis_committee
+from . import op_student_thesis
+from . import op_faculty_thesis

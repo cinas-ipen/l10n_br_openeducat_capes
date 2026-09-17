@@ -104,6 +104,11 @@ class CapesResearchProject(models.Model):
         required=True,
         tracking=True
     )
+    research_line_id = fields.Many2one(
+        'op.program.research.line',
+        string='Linha de Pesquisa',
+        help='Linha de pesquisa oficial do PPG à qual o projeto se vincula'
+    )
     coordinator_id = fields.Many2one(
         'op.faculty',
         string='Coordenador do Projeto',

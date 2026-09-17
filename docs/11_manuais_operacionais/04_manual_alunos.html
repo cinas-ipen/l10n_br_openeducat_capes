@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Manual Operacional do Usuário: Discentes de Pós-Graduação</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Manual Operacional do Usuário: Discentes de
+Pós-Graduação</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#manual-operacional-do-usuário-discentes-de-pós-graduação" id="toc-manual-operacional-do-usuário-discentes-de-pós-graduação">Manual
+Operacional do Usuário: Discentes de Pós-Graduação</a>
+<ul>
+<li><a href="#ecossistema-l10n_br_openeducat_capes-odoo-19.0" id="toc-ecossistema-l10n_br_openeducat_capes-odoo-19.0">Ecossistema
+l10n_br_openeducat_capes (Odoo 19.0)</a></li>
+<li><a href="#primeiro-acesso-e-cadastro-de-identificadores-pids" id="toc-primeiro-acesso-e-cadastro-de-identificadores-pids">1. Primeiro
+Acesso e Cadastro de Identificadores (PIDs)</a></li>
+<li><a href="#matrícula-semestral-e-trânsito-acadêmico" id="toc-matrícula-semestral-e-trânsito-acadêmico">2. Matrícula Semestral
+e Trânsito Acadêmico</a>
+<ul>
+<li><a href="#matrícula-semestral-em-disciplinas" id="toc-matrícula-semestral-em-disciplinas">2.1. Matrícula Semestral em
+Disciplinas</a></li>
+<li><a href="#inscrição-em-disciplinas-de-outros-programas-trânsito-intra-ies" id="toc-inscrição-em-disciplinas-de-outros-programas-trânsito-intra-ies">2.2.
+Inscrição em Disciplinas de Outros Programas (Trânsito
+Intra-IES)</a></li>
+</ul></li>
+<li><a href="#requerimentos-self-service" id="toc-requerimentos-self-service">3. Requerimentos Self-Service</a>
+<ul>
+<li><a href="#aproveitamento-de-disciplinas-cursadas-como-aluno-especial" id="toc-aproveitamento-de-disciplinas-cursadas-como-aluno-especial">3.1.
+Aproveitamento de Disciplinas Cursadas como Aluno Especial</a></li>
+<li><a href="#submissão-do-plano-de-trabalho-discente" id="toc-submissão-do-plano-de-trabalho-discente">3.2. Submissão do Plano
+de Trabalho Discente</a></li>
+</ul></li>
+<li><a href="#ritos-de-qualificação-defesa-e-depósito-da-versão-final" id="toc-ritos-de-qualificação-defesa-e-depósito-da-versão-final">4.
+Ritos de Qualificação, Defesa e Depósito da Versão Final</a>
+<ul>
+<li><a href="#solicitação-de-exame-de-qualificação-e-defesa" id="toc-solicitação-de-exame-de-qualificação-e-defesa">4.1. Solicitação
+de Exame de Qualificação e Defesa</a></li>
+<li><a href="#depósito-da-versão-final-pós-defesa-titulação-e-dspace" id="toc-depósito-da-versão-final-pós-defesa-titulação-e-dspace">4.2.
+Depósito da Versão Final Pós-Defesa (Titulação e DSpace)</a></li>
+</ul></li>
+<li><a href="#consulta-e-emissão-de-histórico-escolar" id="toc-consulta-e-emissão-de-histórico-escolar">5. Consulta e Emissão
+de Histórico Escolar</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="manual-operacional-do-usuário-discentes-de-pós-graduação">Manual
+Operacional do Usuário: Discentes de Pós-Graduação</h1>
+<h2 id="ecossistema-l10n_br_openeducat_capes-odoo-19.0">Ecossistema
+l10n_br_openeducat_capes (Odoo 19.0)</h2>
+<p>Este manual é dedicado aos alunos regulares e especiais dos Programas
+de Pós-Graduação, detalhando o uso do Portal Acadêmico Self-Service para
+cumprimento de suas obrigações regimentais.</p>
+<hr />
+<h2 id="primeiro-acesso-e-cadastro-de-identificadores-pids">1. Primeiro
+Acesso e Cadastro de Identificadores (PIDs)</h2>
+<ol type="1">
+<li>Acesse o portal: <code>https://posgraduacao.instituicao.br/my</code>
+com seu login e senha fornecidos no ato da matrícula.</li>
+<li>Acesse <strong>Meu Perfil</strong>:
+<ul>
+<li><strong>Identidade Perene:</strong> Verifique seu Registro Acadêmico
+(RA). Esse número é vitalício na instituição e acompanhará toda a sua
+trajetória acadêmica.</li>
+<li><strong>PIDs Biográficos Obrigatórios:</strong> Preencha seu
+<strong>ORCiD ID</strong> (formato <code>0000-0000-0000-0000</code>) e o
+link do seu <strong>Currículo Lattes</strong>. O preenchimento é
+obrigatório para emissão de históricos oficiais e diploma.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="matrícula-semestral-e-trânsito-acadêmico">2. Matrícula Semestral
+e Trânsito Acadêmico</h2>
+<h3 id="matrícula-semestral-em-disciplinas">2.1. Matrícula Semestral em
+Disciplinas</h3>
+<ol type="1">
+<li>Nos períodos de matrícula divulgados no calendário acadêmico, acesse
+<strong>Portal do Aluno <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Matrícula Online</strong>.</li>
+<li>Selecione as disciplinas obrigatórias e eletivas que deseja cursar
+no semestre.</li>
+<li>Se você já completou todos os créditos em disciplinas e está em fase
+exclusiva de elaboração da dissertação/tese, selecione a disciplina
+<strong>Acompanhamento de Dissertação/Tese</strong> para manter seu
+vínculo ativo.</li>
+<li>Clique em <strong>Confirmar e Submeter Matrícula</strong>.</li>
+</ol>
+<h3 id="inscrição-em-disciplinas-de-outros-programas-trânsito-intra-ies">2.2.
+Inscrição em Disciplinas de Outros Programas (Trânsito Intra-IES)</h3>
+<ol type="1">
+<li>Se o seu programa permitir trânsito intra-IES e você desejar cursar
+disciplina oferecida por outro PPG da mesma instituição:
+<ul>
+<li>Acesse a aba <strong>Disciplinas Intra-IES</strong>.</li>
+<li>Localize a disciplina no catálogo geral da instituição.</li>
+<li>Solicite a matrícula. O sistema solicitará a anuência eletrônica do
+docente ministrante e do seu orientador.</li>
+<li>Os créditos aprovados serão incorporados a <strong>100% de seu valor
+nominal</strong> no seu histórico escolar.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="requerimentos-self-service">3. Requerimentos Self-Service</h2>
+<h3 id="aproveitamento-de-disciplinas-cursadas-como-aluno-especial">3.1.
+Aproveitamento de Disciplinas Cursadas como Aluno Especial</h3>
+<p>Se você cursou disciplinas como Aluno Especial antes de ingressar no
+curso regular: 1. Acesse <strong>Requerimentos <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Solicitar Incorporação de Créditos Especiais</strong>. 2. O sistema
+listará as disciplinas que você concluiu no regime especial e que estão
+registradas em <strong>quarentena</strong>. 3. <strong>Regra Importante
+de Prazos:</strong> Apenas disciplinas cursadas há <strong>menos de 36
+meses (3 anos)</strong> podem ser aproveitadas. Se o prazo for superior,
+a disciplina estará legalmente prescrita. 4. Selecione as disciplinas
+desejadas e anexe uma justificativa demonstrando a relevância para o seu
+projeto de pesquisa. 5. Clique em <strong>Enviar Requerimento</strong>.
+O pedido seguirá para parecer do seu orientador e homologação final pela
+CPG.</p>
+<h3 id="submissão-do-plano-de-trabalho-discente">3.2. Submissão do Plano
+de Trabalho Discente</h3>
+<ol type="1">
+<li>Acesse <strong>Minha Vida Acadêmica <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Plano de Trabalho</strong>.</li>
+<li>Preencha o formulário indicando: Tema, Objetivos, Metodologia, Linha
+de Pesquisa e Cronograma Semestral de Atividades.</li>
+<li>Informe se sua pesquisa envolve seres humanos (sujeito à aprovação
+do Comitê de Ética em Pesquisa - CEP) ou animais (CEUA).</li>
+<li>Submeta para aprovação do orientador e homologação da
+Secretaria.</li>
+</ol>
+<hr />
+<h2 id="ritos-de-qualificação-defesa-e-depósito-da-versão-final">4.
+Ritos de Qualificação, Defesa e Depósito da Versão Final</h2>
+<h3 id="solicitação-de-exame-de-qualificação-e-defesa">4.1. Solicitação
+de Exame de Qualificação e Defesa</h3>
+<ol type="1">
+<li>Ao cumprir os requisitos regimentais (créditos em disciplinas,
+proficiência em idioma estrangeiro e seminários):
+<ul>
+<li>Acesse <strong>Trabalho Final &amp; Bancas <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Solicitar Agendamento</strong>.</li>
+<li>Insira o título provisório ou definitivo da dissertação/tese, resumo
+em português e inglês e palavras-chave.</li>
+<li>Anexe o PDF do trabalho para avaliação da comissão examinadora.</li>
+<li>Indique a data e horário acordados com seu orientador.</li>
+</ul></li>
+</ol>
+<h3 id="depósito-da-versão-final-pós-defesa-titulação-e-dspace">4.2.
+Depósito da Versão Final Pós-Defesa (Titulação e DSpace)</h3>
+<ol type="1">
+<li>Após a aprovação na defesa pública, você terá um prazo regimental
+(ex: 30 a 60 dias) para aplicar as correções sugeridas pela banca
+examinadora.</li>
+<li>Gere a Ficha Catalográfica junto à Biblioteca e insira no arquivo
+PDF após a folha de rosto.</li>
+<li>Acesse <strong>Trabalho Final <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Depósito da Versão Final Corrigida</strong>:
+<ul>
+<li>Anexe o arquivo PDF definitivo.</li>
+<li>Clique em <strong>Efetuar Depósito Definitivo</strong>.</li>
+</ul></li>
+<li>A Secretaria Acadêmica conferirá o documento e efetuará a
+homologação da sua titulação.</li>
+<li>O PDF e o manifesto de metadados serão encaminhados para a
+Biblioteca Central para disponibilização no repositório institucional
+DSpace, gerando o seu Handle permanente (URI).</li>
+</ol>
+<hr />
+<h2 id="consulta-e-emissão-de-histórico-escolar">5. Consulta e Emissão
+de Histórico Escolar</h2>
+<ol type="1">
+<li>Acesse <strong>Minha Vida Acadêmica <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+Histórico Escolar</strong>.</li>
+<li>O sistema disponibiliza para download o Histórico Escolar Oficial
+com selo de autenticidade eletrônica e QR Code de verificação
+pública.</li>
+<li><em>Nota:</em> Disciplinas cursadas no regime especial que não
+tenham sido formalmente incorporadas via CPG não constarão no histórico
+escolar de conclusão regular, em conformidade com a política regimental
+de proteção do histórico.</li>
+</ol>
+</body>
+</html>

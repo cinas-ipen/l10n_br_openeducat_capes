@@ -34,6 +34,8 @@
         'security/ir.model.access.csv',
         'views/thesis_views.xml',
         'views/thesis_committee_views.xml',
+        'views/op_student_thesis_views.xml',
+        'views/op_faculty_thesis_views.xml',
     ],
     'installable': True,
     'application': False,

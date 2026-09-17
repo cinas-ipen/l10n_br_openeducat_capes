@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>**Documento de Validação Técnica e Funcional: Macroprocesso 02 (MP2)**</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">**Documento de Validação Técnica e Funcional:
+Macroprocesso 02 (MP2)**</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-de-validação-técnica-e-funcional-macroprocesso-02-mp2" id="toc-documento-de-validação-técnica-e-funcional-macroprocesso-02-mp2"><strong>Documento
+de Validação Técnica e Funcional: Macroprocesso 02 (MP2)</strong></a>
+<ul>
+<li><a href="#admissão-seleção-proficiência-matrícula-e-plano-de-trabalho-discente" id="toc-admissão-seleção-proficiência-matrícula-e-plano-de-trabalho-discente"><strong>Admissão,
+Seleção, Proficiência, Matrícula e Plano de Trabalho
+Discente</strong></a>
+<ul>
+<li><a href="#finalidade-do-macroprocesso-02-mp2" id="toc-finalidade-do-macroprocesso-02-mp2"><strong>1. Finalidade do
+Macroprocesso 02 (MP2)</strong></a></li>
+<li><a href="#a-arquitetura-de-admissão-e-o-fluxo-do-plano-de-trabalho" id="toc-a-arquitetura-de-admissão-e-o-fluxo-do-plano-de-trabalho"><strong>2.
+A Arquitetura de Admissão e o Fluxo do Plano de
+Trabalho</strong></a></li>
+<li><a href="#detalhamento-dos-7-subprocessos-do-macroprocesso-02" id="toc-detalhamento-dos-7-subprocessos-do-macroprocesso-02"><strong>3.
+Detalhamento dos 7 Subprocessos do Macroprocesso 02</strong></a></li>
+<li><a href="#tabela-de-parametrização-para-validação-com-stakeholders-mptrcs" id="toc-tabela-de-parametrização-para-validação-com-stakeholders-mptrcs"><strong>4.
+Tabela de Parametrização para Validação com Stakeholders
+(MPTRCS)</strong></a></li>
+<li><a href="#roteiro-prático-para-a-reunião-de-validação-checklist-cpg-mp" id="toc-roteiro-prático-para-a-reunião-de-validação-checklist-cpg-mp"><strong>5.
+Roteiro Prático para a Reunião de Validação (Checklist
+CPG-MP)</strong></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-de-validação-técnica-e-funcional-macroprocesso-02-mp2"><strong>Documento
+de Validação Técnica e Funcional: Macroprocesso 02 (MP2)</strong></h1>
+<h2 id="admissão-seleção-proficiência-matrícula-e-plano-de-trabalho-discente"><strong>Admissão,
+Seleção, Proficiência, Matrícula e Plano de Trabalho
+Discente</strong></h2>
+<h3 id="finalidade-do-macroprocesso-02-mp2"><strong>1. Finalidade do
+Macroprocesso 02 (MP2)</strong></h3>
+<p>O Macroprocesso 02 (MP2) rege a porta de entrada e a consolidação do
+vínculo discente no ecossistema OpenEduCat CAPES BR
+(l10n_br_openeducat_capes_admission).</p>
+<p>Ao contrário de sistemas educacionais comerciais privados (que adotam
+inscrição direta e <em>rolling admission</em>), a pós-graduação
+<em>Stricto Sensu</em> pública e comunitária no Brasil exige estrito
+cumprimento aos princípios da <strong>impessoalidade, isonomia,
+publicidade e transparência</strong>, materializados na figura jurídica
+do <strong>Edital de Seleção Pública</strong>.</p>
+<p>Sua finalidade principal abrange:</p>
+<ul>
+<li><strong>Governança do Certame Público:</strong> Garantir a
+rastreabilidade total das inscrições, notas por fase, aplicação de ações
+afirmativas (cotas) e homologação do resultado final.</li>
+<li><strong>Auditabilidade e Segurança do Ingresso:</strong> Assegurar
+que nenhum candidato seja convertido em aluno regular sem o cumprimento
+dos requisitos de entrada (diploma de graduação, PIDs universais e
+proficiência linguística, quando exigida no ingresso).</li>
+<li><strong>Desbloqueio Estruturado da Carreira Acadêmica:</strong>
+Conectar a conversão da matrícula à formalização da orientação e à
+aprovação do <strong>Plano de Trabalho Discente</strong>, estabelecendo
+a linha de base científica da pesquisa e as travas éticas de Comitê de
+Ética em Pesquisa (CEP/CEUA).</li>
+</ul>
+<h3 id="a-arquitetura-de-admissão-e-o-fluxo-do-plano-de-trabalho"><strong>2.
+A Arquitetura de Admissão e o Fluxo do Plano de Trabalho</strong></h3>
+<p>A inteligência de seleção e ingresso é articulada por duas entidades
+transacionais centrais: o <strong>Edital de Seleção
+(op.admission.edital)</strong> e o <strong>Plano de Trabalho Discente
+(op.student.work_plan)</strong>.</p>
+<pre class="text"><code>+-------------------------------------------------------------------------+
+|                         EDITAL DE SELEÇÃO                               |
+|                       op.admission.edital                               |
+|  - Período e Taxas                 - Vagas Globais / p/ Linha/Orientador|
+|  - Versão Curricular Vinculada     - Percentual de Ações Afirmativas    |
++-------------------------------------------------------------------------+
+                                 │ 1
+                                 │ N (One2many)
+                                 ▼
++-------------------------------------------------------------------------+
+|                        FASES DE SELEÇÃO DINÂMICAS                       |
+|                          op.edital.phase                                |
+|  - Fase 1: Análise Documental      - Fase 3: Entrevista e Rubrica CPG   |
+|  - Fase 2: Provas / Lattes         - Botão de Soberania (is_override)   |
++-------------------------------------------------------------------------+
+                                 │
+                                 │ (Aprovação e Conversão)
+                                 ▼
++-------------------------------------------------------------------------+
+|                         PERFIL DO DISCENTE                              |
+|                             op.student                                  |
+|  - Data de Início do Relógio       - Status de Proficiência Linguística |
+|  - Vínculo com Turma (Cohort)      - Orientador e Coorientador          |
++-------------------------------------------------------------------------+
+                                 │ 1
+                                 │ 1 (One2one)
+                                 ▼
++-------------------------------------------------------------------------+
+|                      PLANO DE TRABALHO DISCENTE                         |
+|                        op.student.work_plan                             |
+|  - Título, Resumo e Linha          - OK Eletrônico do Orientador        |
+|  - Previsão de Tipologia PTT       - Parecerista CPG + Trava CEP/CEUA   |
++-------------------------------------------------------------------------+</code></pre>
+<h3 id="detalhamento-dos-7-subprocessos-do-macroprocesso-02"><strong>3.
+Detalhamento dos 7 Subprocessos do Macroprocesso 02</strong></h3>
+<p>Abaixo, cada um dos 7 subprocessos do MP2 é detalhado considerando a
+<strong>Lógica de Workflow</strong>, a <strong>Configuração para o
+MPTRCS/IPEN (Stakeholders Principais)</strong> e a <strong>Matriz de
+Parametrização para Outras IES/PPGs</strong>.</p>
+<h4 id="subprocesso-2.1-parametrização-do-certame-vagas-e-gestão-de-turmas-cohorts"><strong>Subprocesso
+2.1: Parametrização do Certame, Vagas e Gestão de Turmas
+(Cohorts)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> A Secretaria Acadêmica
+cadastra o edital no ERP (op.admission.edital), estabelece o cronograma
+de inscrições, publica os critérios e associa obrigatoriamente o certame
+à versão vigente do regimento (curriculum_version_id). O edital cria a
+entidade de agrupamento “Turma” (<em>Cohort</em>), que atua como âncora
+cronológica para todos os ingressantes daquele ciclo.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong>
+<ul>
+<li><em>Nome do Edital:</em> “Edital de Seleção MPTRCS 2026/1”.</li>
+<li><em>Vinculação Regimental:</em> “Regulamento MPTRCS 2020 (Revisado
+CTA)”.</li>
+<li><em>Ações Afirmativas:</em> Reserva obrigatória de <strong>20% das
+vagas</strong> para candidatos autodeclarados pretos, pardos, indígenas
+ou pessoas com deficiência (PcD).</li>
+<li><em>Distribuição de Vagas:</em> Oferta em caráter <strong>global
+para o programa</strong>, sem alocação/fracionamento prévio de cotas de
+vagas por orientador no momento da publicação do certame.</li>
+<li><em>Edital de Vagas Remanescentes:</em> Suporta duplicação das
+regras caso haja ociosidade. Os aprovados no certame remanescente são
+vinculados à mesma “Turma” original, equalizando os prazos de
+titulação.</li>
+</ul></li>
+<li><strong>Matriz de Parametrização no ERP:</strong> Permite
+parametrização livre de cotas (ex: 0% a 50%), editais por fluxo contínuo
+ou por oferta semestral/anual fechada, e controle de vagas
+<strong>globais do programa (modelo MPTRCS)</strong> ou
+<strong>fracionadas por Linha de Pesquisa / Orientador</strong>
+(op.faculty), caso outro PPG prefira.</li>
+</ul>
+<h4 id="subprocesso-2.2-captação-e-triagem-documental-portal-do-candidato"><strong>Subprocesso
+2.2: Captação e Triagem Documental (Portal do Candidato)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> O candidato realiza o
+auto-cadastro no Portal de Admissão, preenche a ficha biográfica e faz
+upload dos documentos probatórios em PDF.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong>
+<ul>
+<li><em>Exigência de PIDs:</em> Preenchimento obrigatório da URL do
+Currículo Lattes e do número do ORCID (com validação de formato).</li>
+<li><em>Documentação Probatória:</em> Upload do Diploma de Graduação (ou
+Atestado de Conclusão), Histórico Escolar da Graduação, Documentos Civis
+e Foto 3x4.</li>
+<li><em>Documentação Técnica:</em> Submissão da Proposta de Pré-Projeto
+de Pesquisa (indicando Área de Concentração, Linha de Pesquisa
+pretendida e sugestão de Orientador), juntamente com o Termo de
+Compromisso assinado atestando disponibilidade de carga horária
+presencial.</li>
+<li><em>Proficiência:</em> Upload do Certificado de Proficiência em
+Língua Inglesa (e Português para candidatos estrangeiros).</li>
+</ul></li>
+<li><strong>Matriz de Parametrização no ERP:</strong> Permite configurar
+a lista de documentos obrigatórios e facultativos por edital, incluindo
+checklists específicos para estrangeiros ou optantes de cotas.</li>
+</ul>
+<h4 id="subprocesso-2.3-workflow-de-avaliação-seletiva-rubricas-e-botão-de-override"><strong>Subprocesso
+2.3: Workflow de Avaliação Seletiva, Rubricas e Botão de
+Override</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> O certame executa as fases
+de seleção configuradas na tabela op.edital.phase. As notas são lançadas
+no sistema e consolidam uma pontuação ponderada final para ranqueamento
+classificatório e eliminatório.<br />
+</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong>
+<ul>
+<li><em>Fase 1 - Homologação Documental:</em> Verificação e deferimento
+dos anexos e da proficiência pela Secretaria Acadêmica.</li>
+<li><em>Fase 2 - Análise de Currículo Lattes e Prova:</em> Computação
+objetiva da planilha de pontuação do Lattes e lançamento de nota da
+prova escrita de conhecimentos.</li>
+<li><em>Fase 3 - Entrevista Qualitativa com a CPG:</em> Painel no ERP
+(Rubrica de Avaliação) no qual os examinadores atribuem nota de 1 a 5 em
+três dimensões:
+<ol type="1">
+<li><em>Maturidade Profissional.</em></li>
+<li><em>Alinhamento com o Setor Produtivo e Linha de Pesquisa.</em></li>
+<li><em>Potencial de Geração do Produto Técnico-Tecnológico
+(PTT).</em></li>
+</ol></li>
+<li><em>Gatilho de Soberania do Coordenador (is_override):</em> Em
+situações excepcionais de relevante interesse tecnológico/acadêmico, o
+Coordenador do Programa possui a prerrogativa de acionar o botão
+“Aprovação em Caráter Excepcional (Override)”. O ERP altera a flag
+is_override = True, exige o preenchimento da justificativa técnica em
+campo de texto livre e grava o selo de auditoria com ID do usuário,
+timestamp e IP.</li>
+</ul></li>
+<li><strong>Matriz de Parametrização no ERP:</strong> Quantidade de
+fases totalmente configurável (1 a N fases), com pesos percentuais
+customizáveis, notas de corte por fase e fórmulas de médias
+ponderadas.</li>
+</ul>
+<h4 id="subprocesso-2.4-conversão-em-aluno-regular-trava-de-proficiência-e-evasão-precoce"><strong>Subprocesso
+2.4: Conversão em Aluno Regular, Trava de Proficiência e Evasão
+Precoce</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Com a publicação da lista
+final de aprovados, a Secretaria aciona o comando de conversão de
+candidato em aluno regular (op.student). O Odoo valida os pré-requisitos
+de entrada, gera o registro cadastral, atribui o número de matrícula e
+inicia o relógio cronológico oficial.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong>
+<ul>
+<li><em>Trava Dura de Proficiência na Matrícula (proficiency_stage =
+‘admission’):</em> Por se tratar da regra IPEN, o Odoo bloqueia a
+geração da matrícula caso o comprovante de proficiência em Inglês (e
+Português para estrangeiros) não esteja deferido no dossiê.</li>
+<li><em>Início do Relógio:</em> A efetivação da matrícula marca o dia 0
+e inicia a contagem improrrogável dos <strong>24 meses</strong> de prazo
+máximo de titulação.</li>
+<li><em>Gatilho de Evasão Precoce:</em> O ERP monitora a assiduidade nas
+<strong>3 primeiras semanas letivas</strong>. Ingressantes sem registro
+de presença ou sem justificativa formal homologada no portal têm a
+matrícula cancelada automaticamente como “Desistente”, notificando a
+Secretaria para convocação imediata do próximo candidato da lista de
+espera.<br />
+</li>
+</ul></li>
+<li><strong>Matriz de Parametrização no ERP:</strong>
+<ul>
+<li><em>Gatilho de Proficiência:</em> ‘admission’ (IPEN),
+‘qualification’ (Mackenzie) ou ‘defense’.</li>
+<li><em>Janela de Evasão Precoce:</em> Ajustável (ex: 1 a 4 semanas) ou
+desativável.</li>
+</ul></li>
+</ul>
+<h4 id="subprocesso-2.5-formalização-eletrônica-do-vínculo-de-orientação"><strong>Subprocesso
+2.5: Formalização Eletrônica do Vínculo de Orientação</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Formaliza a associação
+acadêmica entre o discente e seu orientador (e coorientador, quando
+houver), garantindo que a responsabilidade pela condução da pesquisa
+esteja atribuída perante os órgãos de ensino e a CAPES.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong>
+<ul>
+<li><em>Prazo Limite de Formalização:</em> Até o <strong>3º mês
+letivo</strong> de ingresso.</li>
+<li><em>Workflow no Portal:</em>
+<ol type="1">
+<li>O estudante acessa o Portal do Aluno e solicita o vínculo
+selecionando o docente credenciado.</li>
+<li>O Orientador recebe a notificação no painel do ERP e emite o aceite
+eletrônico (“Aceitar Orientação”).</li>
+<li>A Secretaria Acadêmica efetua a triagem final, auditando se o
+docente respeita o teto de orientação do programa (<strong>máximo de 8
+orientandos ativos no IPEN</strong>, conforme diretrizes do Comitê
+Medicinas II da CAPES), e homologa o vínculo.</li>
+</ol></li>
+</ul></li>
+<li><strong>Matriz de Parametrização no ERP:</strong> Teto de
+orientandos por docente ajustável por regimento (ex: 6, 8 ou 10 alunos),
+com suporte a coorientação nacional ou internacional (cotutela).</li>
+</ul>
+<h4 id="subprocesso-2.6-submissão-workflow-de-avaliação-e-cep-do-plano-de-trabalho-op.student.work_plan"><strong>Subprocesso
+2.6: Submissão, Workflow de Avaliação e CEP do Plano de Trabalho
+(op.student.work_plan)</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Estabelece a proposta formal
+do projeto de pesquisa, o cronograma de execução e a previsão da
+tipologia do Produto Técnico-Tecnológico (PTT). A evolução acadêmica do
+aluno e a liberação de bancas intermediárias ficam estritamente
+condicionadas à homologação deste plano.</li>
+<li><strong>Workflow Operacional Passo a Passo:</strong></li>
+</ul>
+<pre class="text"><code>[Discente: Preenche Metadados + Anexa PDF no Portal]
+                           │
+                           ▼ 
+[Orientador Principal: Revisão e OK Eletrônico] ──(Inadequado)──► [Devolvido ao Aluno]
+                           │
+                           ▼
+[Secretaria Acadêmica: Triagem (ready_for_agenda)]
+                           │
+                           ▼ 
+[Pauta da Reunião CPG: Designação do Parecerista / Avaliador]
+                           |
+                           ▼
+[Avaliador: Emite Parecer Eletrônico no ERP]
+                           │
+            ┌──────────────┼───────────────┐
+            │              │               │
+            ▼              ▼               ▼ 
+   [a) Aprovado]     [b) Aprovado c/]   [c) Pendência] ──► [Upload Parecer CEP]
+         │             [Revisões]         [  CEP/CEUA ]              │
+         │                 │                 │                       │
+         │           [Ajustes + OK]          └─────────┬─────────────┘
+         │           [ Orientador ]                    │
+         │                 │                           │
+         └─────────────────┴──────────┬────────────────┘
+                                      │ 
+                                      ▼ 
+                         [d) Reprovado s/ Direito] ──► [Desligamento / Novo Plano]
+                                      │
+                                      ▼
+                      [Homologação Final em Ata CPG]
+                                      │ 
+                                      ▼
+                    [Chave de Desbloqueio da Carreira]</code></pre>
+<ul>
+<li><strong>As 4 Categorias de Parecer do Avaliador:</strong>
+<ol type="1">
+<li><strong>a) Aprovado:</strong> Plano satisfatório, liberado
+diretamente para homologação da CPG.</li>
+<li><strong>b) Aprovado com Revisões:</strong> Exige ajustes no texto ou
+cronograma. O aluno realiza as correções, o orientador emite novo OK e o
+avaliador faz a checagem final.</li>
+<li><strong>c) Aprovado com Pendência de CEP:</strong> O plano técnico é
+correto, mas envolve seres humanos, animais ou
+biossegurança/radioproteção. O Odoo atribui o status <strong>“Aprovado
+Condicional”</strong> e <strong>bloqueia o agendamento de bancas de
+qualificação/seminários</strong> até que o discente anexe o Parecer
+Consubstanciado do CEP/CEUA aprovado.</li>
+<li><strong>d) Reprovado sem Direito a Revisão:</strong> Inviabilidade
+técnica ou falta de aderência grave. Encaminhado à CPG para deliberação
+sobre concessão de prazo extraordinário para novo tema ou
+desligamento.</li>
+</ol></li>
+<li><strong>Homologação:</strong> O plano atinge o estado homologated
+após a chancela formal na Ata de Reunião da CPG (op.cpg.meeting),
+atuando como chave de desbloqueio para a carreira acadêmica.</li>
+</ul>
+<h4 id="subprocesso-2.7-admissão-de-alunos-especiais-disciplinas-isoladas-e-aproveitamento"><strong>Subprocesso
+2.7: Admissão de Alunos Especiais (Disciplinas Isoladas) e
+Aproveitamento</strong></h4>
+<ul>
+<li><strong>Descrição Operacional:</strong> Gerencia o fluxo de admissão
+para candidatos interessados em cursar disciplinas avulsas sem vínculo
+regular de pós-graduação, bem como a conservação do Registro Acadêmico
+(RA) perene e o eventual aproveitamento futuro de estudos.</li>
+<li><strong>Configuração Específica MPTRCS/IPEN:</strong>
+<ul>
+<li><em>Permissão de Alunos Especiais no MPTRCS
+(<code>allow_special_students</code>):</em> <strong><code>False</code>
+(Desabilitado por Padrão)</strong>. O MPTRCS não disponibiliza vagas
+para alunos especiais em suas disciplinas regulares exclusivas.</li>
+<li><em>Manutenção do RA Perene:</em> Se um candidato cursou disciplinas
+isoladas em outro programa e posteriormente for aprovado no processo
+seletivo regular do MPTRCS, o Odoo preserva o seu RA original da IES
+(<code>op.student</code>), associando-o ao novo vínculo regular
+(<code>op.student.course</code>).</li>
+<li><em>Aproveitamento de Estudos de Disciplinas Anteriores:</em> O
+aluno regular pode submeter requerimento de aproveitamento
+(<code>op.special.credit.incorporation.request</code>) no portal
+discente, desde que as disciplinas tenham sido cursadas em até
+<strong>36 meses (3 anos)</strong> da data de ingresso regular. O pleito
+é submetido ao parecer do orientador e homologação formal da CPG.</li>
+<li><em>Política de Reprovações:</em> Em consonância com a regra
+regimental
+(<code>special_transcript_fail_policy = &#39;omit_on_regular&#39;</code>),
+eventuais reprovações obtidas no regime especial anterior não figuram no
+Histórico Escolar Oficial de titulação do MPTRCS.</li>
+<li><em>Disciplinas do Programa de Tecnologia Nuclear (USP):</em> Como o
+programa de Tecnologia Nuclear é academicamente vinculado à USP (outra
+IES), suas disciplinas são enquadradas formalmente como
+<strong>extra-IES</strong>, exigindo deliberação da CPG para
+convalidação e submetendo-se ao teto de créditos externos
+(<code>max_external_credits_percent</code>).</li>
+</ul></li>
+<li><strong>Matriz de Parametrização no ERP:</strong> Parâmetros livres
+por regimento para admissão de especiais
+(<code>allow_special_students</code>), teto de disciplinas
+(<code>max_special_subjects_limit</code>), validade temporal
+(<code>special_credit_validity_months</code>, default 36 meses),
+aprovação de CPG e política de exibição no histórico.</li>
+</ul>
+<h3 id="tabela-de-parametrização-para-validação-com-stakeholders-mptrcs"><strong>4.
+Tabela de Parametrização para Validação com Stakeholders
+(MPTRCS)</strong></h3>
+<p>A tabela abaixo deve ser revisada e formalmente chancelada durante a
+reunião de trabalho do MP2 com a Coordenação, Comissão de Pós-Graduação
+(CPG) e Secretaria do MPTRCS/IPEN:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Item de Admissão / Parâmetro</th>
+<th style="text-align: left;">Campo Técnico no Odoo</th>
+<th style="text-align: left;">Configuração Padrão MPTRCS (IPEN)</th>
+<th style="text-align: left;">Outras Opções Suportadas pelo ERP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Distribuição de
+Vagas</strong></td>
+<td style="text-align: left;"><code>edital_quota_mode</code></td>
+<td style="text-align: left;"><strong>Vagas Globais do
+Programa</strong></td>
+<td style="text-align: left;">Fracionadas por Linha ou por Docente</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gatilho de
+Proficiência</strong></td>
+<td style="text-align: left;"><code>proficiency_stage</code></td>
+<td style="text-align: left;">‘admission’ (Exigido na Entrada)</td>
+<td style="text-align: left;">‘qualification’ ou ‘defense’</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Reserva de Ações
+Afirmativas</strong></td>
+<td style="text-align: left;"><code>affirmative_action_percent</code></td>
+<td style="text-align: left;"><strong>20% das vagas</strong> (Cotista /
+PcD)</td>
+<td style="text-align: left;">Parametrizável (0% a 50%)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Mínimo de Créditos no 1º
+Semestre</strong></td>
+<td style="text-align: left;"><code>min_first_semester_credits</code></td>
+<td style="text-align: left;"><strong>24 Créditos</strong> (Calouros
+MPTRCS)</td>
+<td style="text-align: left;">Parametrizável conforme a carga do
+PPG</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Aprovação Excepcional
+(Override)</strong></td>
+<td style="text-align: left;"><code>is_override</code> /
+<code>override_justif</code></td>
+<td style="text-align: left;"><strong>Habilitado</strong> (Atuação do
+Coordenador)</td>
+<td style="text-align: left;">Ativado / Desativado por perfil de
+acesso</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Janela de Evasão
+Precoce</strong></td>
+<td style="text-align: left;"><code>early_dropout_weeks</code></td>
+<td style="text-align: left;"><strong>3 Semanas</strong> (Assiduidade
+Inicial)</td>
+<td style="text-align: left;">Parametrizável (ex: 1 a 4 semanas)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Prazo Limite de
+Orientação</strong></td>
+<td style="text-align: left;"><code>max_months_advisor_link</code></td>
+<td style="text-align: left;"><strong>3º Mês Letivo</strong></td>
+<td style="text-align: left;">Configurável (ex: 1º ao 6º mês)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Teto de Orientandos por
+Docente</strong></td>
+<td style="text-align: left;"><code>max_active_advisees</code></td>
+<td style="text-align: left;"><strong>8 Alunos Ativos</strong> (Medicina
+II)</td>
+<td style="text-align: left;">Configurable por área de avaliação
+CAPES</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Trava Ética no Plano de
+Trabalho</strong></td>
+<td style="text-align: left;"><code>cep_required_gate</code></td>
+<td style="text-align: left;"><strong>Habilitado</strong> (Bloqueia
+Bancas s/ CEP)</td>
+<td style="text-align: left;">Ativado / Desativado</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Permissão Aluno Especial no
+PPG</strong></td>
+<td style="text-align: left;"><code>allow_special_students</code></td>
+<td style="text-align: left;"><strong><code>False</code>
+(Desabilitado)</strong></td>
+<td style="text-align: left;"><code>True</code> (Habilitado com
+cotas)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Teto de Disciplinas
+Especiais</strong></td>
+<td style="text-align: left;"><code>max_special_subjects_limit</code></td>
+<td style="text-align: left;"><strong>2 Disciplinas (8
+Créditos)</strong></td>
+<td style="text-align: left;">Parametrizável por regimento</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Validade de Créditos
+Especiais</strong></td>
+<td style="text-align: left;"><code>special_credit_validity_months</code></td>
+<td style="text-align: left;"><strong>36 Meses (3 Anos)</strong></td>
+<td style="text-align: left;">Parametrizável (ex: 12, 24, 36, 48
+meses)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Política de Reprovações
+Especial</strong></td>
+<td style="text-align: left;"><code>special_transcript_fail_policy</code></td>
+<td style="text-align: left;"><strong><code>omit_on_regular</code>
+(Omite no Histórico)</strong></td>
+<td style="text-align: left;"><code>display_all</code> (Exibe todas as
+ocorrências)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Aproveitamento
+Intra-IES</strong></td>
+<td style="text-align: left;"><code>allow_intra_ies_credits</code></td>
+<td style="text-align: left;"><strong>Habilitado (100%
+Equivalência)</strong></td>
+<td style="text-align: left;">Ativado / Desativado</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Disciplinas Tecnologia Nuclear
+(USP)</strong></td>
+<td style="text-align: left;"><code>credit_type</code> /
+equivalência</td>
+<td style="text-align: left;"><strong>Tratada como Extra-IES (Aprovação
+CPG)</strong></td>
+<td style="text-align: left;">Regulada por teto externo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Declaração de Perfil
+(Baseline)</strong></td>
+<td style="text-align: left;"><code>capes.student.professional.profile</code></td>
+<td style="text-align: left;"><strong>Obrigatório no Ingresso</strong>
+(Monitoramento CAPES)</td>
+<td style="text-align: left;">Ativado por padrão para Programas
+Profissionais</td>
+</tr>
+</tbody>
+</table>
+<h3 id="roteiro-prático-para-a-reunião-de-validação-checklist-cpg-mp"><strong>5.
+Roteiro Prático para a Reunião de Validação (Checklist
+CPG-MP)</strong></h3>
+<p>Para conduzir a pauta de homologação do Macroprocesso 02 com a CPG e
+a Secretaria do MPTRCS, recomenda-se deliberar sobre os seguintes quatro
+pontos de confirmação:</p>
+<ol type="1">
+<li><strong>Confirmar Oferta de Vagas Globais e Trava de Proficiência na
+Entrada:</strong>
+<ul>
+<li>Ratificar a oferta de vagas globais sem reserva por orientador e a
+manutenção do parâmetro proficiency_stage = ‘admission’.</li>
+</ul></li>
+<li><strong>Aprovação das Fases de Seleção e Rubrica de
+Entrevista:</strong>
+<ul>
+<li>Validar as 3 fases do certame (Documental, Prova/Lattes, e
+Entrevista com notas de 1 a 5 para Maturidade, Alinhamento e Potencial
+de PTT) e o mecanismo de auditabilidade do botão de Override da
+Coordenação.</li>
+</ul></li>
+<li><strong>Chancela da Regra de Evasão Precoce e Vínculo de
+Orientação:</strong>
+<ul>
+<li>Confirmar o cancelamento automático da matrícula por ausência
+injustificada nas 3 primeiras semanas e o limite até o 3º mês para
+formalização eletrônica da orientação no portal.</li>
+</ul></li>
+<li><strong>Homologação do Workflow do Plano de Trabalho
+Discente:</strong>
+<ul>
+<li>Validar o fluxo de tramitação do Plano de Trabalho (Discente → OK
+Orientador → Triagem Secretaria → Parecerista CPG → Homologação em Ata),
+incluindo as 4 categorias de parecer e a trava de bloqueio de bancas
+para projetos com pendência no CEP/CEUA.</li>
+</ul></li>
+</ol>
+</body>
+</html>

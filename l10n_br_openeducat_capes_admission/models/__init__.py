@@ -21,3 +21,4 @@
 from . import admission_edital
 from . import student_work_plan
 from . import student_professional_profile
+from . import op_student_admission

@@ -34,6 +34,8 @@
         'security/ir.model.access.csv',
         'data/ptt_taxonomy_data.xml',
         'views/ptt_views.xml',
+        'views/op_student_ptt_views.xml',
+        'views/op_faculty_ptt_views.xml',
     ],
     'installable': True,
     'application': False,

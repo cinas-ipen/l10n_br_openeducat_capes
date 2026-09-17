@@ -20,3 +20,4 @@
 
 from . import research_project
 from . import project_member
+from . import op_faculty_research

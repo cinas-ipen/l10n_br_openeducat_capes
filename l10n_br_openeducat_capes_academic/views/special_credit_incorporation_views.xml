@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_op_special_credit_incorporation_request_tree" model="ir.ui.view">
+        <field name="name">op.special.credit.incorporation.request.tree</field>
+        <field name="model">op.special.credit.incorporation.request</field>
+        <field name="arch" type="xml">
+            <list string="Requerimentos de Aproveitamento de Aluno Especial">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="target_program_id"/>
+                <field name="target_curriculum_version_id"/>
+                <field name="admission_date"/>
+                <field name="total_requested_subjects"/>
+                <field name="total_requested_credits"/>
+                <field name="cpg_resolution_number"/>
+                <field name="cpg_resolution_date"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state in ('submitted', 'advisor_approved')" decoration-success="state == 'cpg_approved'" decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_op_special_credit_incorporation_request_form" model="ir.ui.view">
+        <field name="name">op.special.credit.incorporation.request.form</field>
+        <field name="model">op.special.credit.incorporation.request</field>
+        <field name="arch" type="xml">
+            <form string="Requerimento de Aproveitamento de Aluno Especial">
+                <header>
+                    <button name="action_submit" string="Submeter Requerimento" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_advisor_approve" string="Aprovar Parecer Orientador" type="object" class="btn-primary" invisible="state != 'submitted'"/>
+                    <button name="action_cpg_approve" string="Homologar Deferimento CPG" type="object" class="btn-success" invisible="state != 'advisor_approved'"/>
+                    <button name="action_reject" string="Indeferir Requerimento" type="object" class="btn-danger" invisible="state in ('cpg_approved', 'rejected')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,advisor_approved,cpg_approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Número do Requerimento"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Discente e Programa de Destino">
+                            <field name="student_id" readonly="state != 'draft'"/>
+                            <field name="target_program_id" readonly="state != 'draft'"/>
+                            <field name="target_curriculum_version_id" readonly="state != 'draft'"/>
+                            <field name="admission_date"/>
+                        </group>
+                        <group string="Totais Requeridos">
+                            <field name="total_requested_subjects"/>
+                            <field name="total_requested_credits"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Disciplinas Cursadas como Especial (Quarentena)">
+                            <field name="quarantine_ledger_ids" widget="many2many" readonly="state != 'draft'">
+                                <list>
+                                    <field name="date_earned"/>
+                                    <field name="course_name"/>
+                                    <field name="credits"/>
+                                    <field name="grade_concept"/>
+                                    <field name="origin_ref"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Parecer do Orientador e Homologação CPG">
+                            <group>
+                                <field name="advisor_opinion" placeholder="Parecer circunstanciado acerca do alinhamento destas disciplinas com o plano de pesquisa do discente..."/>
+                            </group>
+                            <group string="Deliberação Colegiada CPG">
+                                <field name="cpg_resolution_number" placeholder="Ex: Resolução CPG-MPTRCS nº 012/2026"/>
+                                <field name="cpg_resolution_date"/>
+                                <field name="cpg_notes" placeholder="Despacho da ata da reunião da CPG..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_op_special_credit_incorporation_request" model="ir.actions.act_window">
+        <field name="name">Aproveitamento de Aluno Especial</field>
+        <field name="res_model">op.special.credit.incorporation.request</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menuitem -->
+    <menuitem id="menu_op_special_credit_incorporation_request"
+              name="Aproveitamento Aluno Especial"
+              parent="l10n_br_openeducat_capes_core.menu_op_program_capes_root"
+              action="action_op_special_credit_incorporation_request"
+              sequence="35"/>
+</odoo>

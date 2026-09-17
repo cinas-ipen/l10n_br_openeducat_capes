@@ -41,6 +41,10 @@ class OpProgramCapes(models.Model):
         required=True,
         help='Nome oficial do PPG cadastrado na CAPES'
     )
+    short_name = fields.Char(
+        string='Sigla do Programa',
+        help='Sigla usual do PPG (ex: MPTRCS, PPGCC)'
+    )
     lang = fields.Selection([
         ('pt', 'Português'),
         ('en', 'Inglês'),

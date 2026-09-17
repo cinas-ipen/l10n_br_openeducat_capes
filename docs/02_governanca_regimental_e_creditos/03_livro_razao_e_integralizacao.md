@@ -14,22 +14,38 @@ Através de campos calculados via framework Odoo (decorador Python `@api.depends
 * **Metas de Integralização Distintas:** O motor afere automaticamente se o aluno atingiu a meta de integralização baseada no seu vínculo: 100 unidades de crédito exigidas no IPEN, 50 unidades no Mackenzie, e variações de 24 (Mestrado) ou 47 (Doutorado) créditos no CDTN.
 
 ## 3. Classificação e Aproveitamento de Atividades
-O livro-razão no `l10n_br_openeducat_capes` extrapola a medição de disciplinas convencionais em sala de aula. A entidade categoriza e injeta os lançamentos obedecendo às tipologias regulamentares:
+O livro-razão no `l10n_br_openeducat_capes` extrapola a medição de disciplinas convencionais em sala de aula. A entidade categoriza e injeta os lançamentos obedecendo às tipologias regulamentares refinadas para o ambiente multi-programas e multi-vínculos:
 
 ```python
-# Exemplo conceitual da classificação no Ledger
+# Exemplo da classificação no Ledger
 class OpStudentCreditLedger(models.Model):
     _name = 'op.student.credit.ledger'
     
     credit_type = fields.Selection([
-        ('subject', 'Disciplinas Regulares'),
+        ('subject_internal', 'Disciplinas do Próprio Programa'),
+        ('subject_intra_ies', 'Disciplinas de outros PPGs da mesma IES (100% Equivalência)'),
+        ('subject_special_quarantine', 'Créditos em Quarentena (Aluno Especial)'),
+        ('subject_special_incorporated', 'Créditos de Aluno Especial Incorporados (Homologados CPG)'),
+        ('subject_extra_ies', 'Disciplinas Externas de Outras IES (Com Equivalência)'),
         ('apo', 'Atividades Programadas Obrigatórias (APO) / Produção Técnica'),
-        ('milestone', 'Créditos por Qualificação e Defesa'),
-        ('external', 'Aproveitamento de Créditos Externos')
+        ('milestone', 'Créditos por Qualificação e Defesa')
     ], string="Natureza do Crédito", required=True)
 ```
 
+* **Disciplinas Intra-IES:** Cursadas pelo aluno regular em outros programas da mesma instituição (`res.company`). Integram-se com 100% do valor nominal de carga horária e créditos, respeitando o limite parametrizado em `max_intra_ies_credits_percent`.
+* **Disciplinas Extra-IES (Casos Externos e USP/IPEN):** Disciplinas cursadas fora da instituição mantenedora. No caso do MPTRCS (IPEN), disciplinas cursadas no programa de Tecnologia Nuclear (titulado pela USP) são tratadas formalmente como `subject_extra_ies`, exigindo parecer e aprovação da CPG e respeitando a trava de teto `max_external_credits_percent` (ex: máx. 50% de `min_subject_credits`, limitando a 20.0 créditos no IPEN).
 * **Atividades Programadas (APO):** Suporta a modelagem de atividades extraclasse exigidas em programas profissionais, convertendo publicações de artigos, depósitos de patentes ou desenvolvimento de software em unidades de crédito essenciais.
-* **Injeção Automática de Ritos:** Ao aprovar transições de estado nas máquinas de workflow de qualificação e defesa (módulo `capes.thesis`), o sistema injeta automaticamente os créditos bonificados previstos nos regimentos do Mackenzie e IPEN diretamente no livro-razão.
-* **Limites de Aproveitamento Externo:** Durante o requerimento de aproveitamento de créditos obtidos em outras instituições, as rotinas de validação em Python verificam a propriedade `max_external_credits_percent` configurada no currículo do aluno. O sistema barrará submissões que excedam tetos regulamentares (ex: bloqueando aprovações acima de 50% de `min_subject_credits`, limitando a 20.0 créditos externos no IPEN).
+* **Injeção Automática de Ritos:** Ao aprovar transições de estado nas máquinas de workflow de qualificação e defesa (módulo `capes.thesis`), o sistema injeta automaticamente os créditos bonificados previstos nos regimentos diretamente no livro-razão.
 * **Validação por Categoria para Titulação (Artigos 31º e 39º do Regulamento MP-TRCS):** Para o agendamento da Defesa Final, a engine valida no livro-razão se o discente cumpriu separadamente os `min_subject_credits` (40 créditos em disciplinas) e os `other_mandatory_credits` (8 créditos do Seminário Geral de Área), além da meta total de `min_credits` (100 créditos).
+
+## 4. O Ciclo de Quarentena e Incorporação de Créditos de Aluno Especial
+
+Para estudantes admitidos inicialmente como Alunos Especiais (disciplinas isoladas):
+
+1. **Lançamento Primitivo em Quarentena:** As disciplinas concluídas com aprovação recebem o tipo `subject_special_quarantine`. Esses créditos não são somados ao total de integralização de nenhum curso regular e servem exclusivamente para a emissão de Certidão de Estudos Isolados.
+2. **Requerimento de Incorporação (`op.special.credit.incorporation.request`):** Quando o aluno ingressa regularmente em um PPG (ex: MPTRCS), o aproveitamento não é automático. O discente submete um requerimento formal indicando quais disciplinas deseja integralizar.
+3. **Travas Sistêmicas de Admissibilidade:**
+   * *Verificação Decadencial:* O sistema calcula o intervalo entre a data de conclusão da disciplina e a data de ingresso regular. Caso supere o limite regimental (`special_credit_validity_months`, padrão de **36 meses / 3 anos**), o sistema rejeita a linha como "Crédito Prescrito".
+   * *Verificação de Teto:* O sistema bloqueia requisições que excedam o limite máximo de disciplinas isoladas permitido pelo regimento (`max_special_subjects_limit`).
+4. **Deliberação Colegiada:** O pedido tramita com parecer do orientador e julgamento pela CPG, registrando o número da resolução e a data da reunião.
+5. **Efeito Append-Only no Livro-Razão:** Ao deferir o pedido, o sistema gera lançamentos adicionais no livro-razão com tipologia `subject_special_incorporated`, vinculados ao `curriculum_version_id` ativo do aluno e com apontador para o requerimento deferido, mantendo a linha original de quarentena intacta para fins de auditoria.

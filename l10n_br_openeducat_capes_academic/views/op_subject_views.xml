@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_subject_form_capes" model="ir.ui.view">
+        <field name="name">op.subject.form.capes</field>
+        <field name="model">op.subject</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_subject_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="after">
+                <group string="Programa Ofertante e Alunos Especiais">
+                    <group>
+                        <field name="program_id"/>
+                        <field name="teaching_language"/>
+                        <field name="phea_indicator"/>
+                    </group>
+                    <group>
+                        <field name="allow_special_students"/>
+                        <field name="special_student_instructor_consent_required" invisible="not allow_special_students"/>
+                        <field name="special_seats_quota" invisible="not allow_special_students"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Ementa e Bibliografia">
+                        <group>
+                            <field name="syllabus"/>
+                            <field name="basic_bibliography"/>
+                            <field name="complementary_bibliography"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

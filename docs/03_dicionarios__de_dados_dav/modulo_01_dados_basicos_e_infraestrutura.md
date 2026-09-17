@@ -50,6 +50,7 @@
 | `capes_id` | Identificador do Programa | `Integer` | Numérico. |
 | `snpg_code` | Código do PPG no SNPG | `Char` | Numérico (8+5 dígitos). Obrigatório. |
 | `name` | Nome do Programa | `Char` | Tabela Sucupira. |
+| `short_name` | Sigla do Programa | `Char` | Ex: PPGCC, MPTRCS. |
 | `lang` | Idioma do Nome do PPG | `Selection` | Tabela ISO 639. |
 | `phone` | Telefone do Programa | `Char` | Numérico. |
 | `website` | Site do Programa | `Char` | Texto livre (URL). |
@@ -78,6 +79,30 @@
 | `capes_grade` | Nota do curso | `Selection` | 1, 2, 3, 4, 5, 6, 7, A. |
 | `grade_year` | Ano base atribuição da nota | `Integer` | AAAA. |
 
+### 3.2. Áreas de Concentração do Programa (`op.program.concentration.area`)
+
+*Entidade canônica que define os eixos de concentração do Programa de Pós-Graduação.*
+
+| Campo Odoo | Descrição / Regra de Negócio | Tipo de Dado Odoo | Domínio / Validação |
+| --- | --- | --- | --- |
+| `name` | Nome da Área de Concentração | `Char` | Obrigatório. Ex: "Tecnologia das Radiações em Medicina". |
+| `code` | Código da Área de Concentração | `Char` | Alfanumérico. Ex: "TRMED". |
+| `program_id` | Programa de Pós-Graduação | `Many2one` | FK para `op.program.capes`. Obrigatório. |
+| `description` | Descrição e Ementa Temática | `Text` | Escopo científico da área de concentração. |
+| `is_active` | Área Ativa | `Boolean` | Padrão `True`. |
+
+### 3.3. Linhas de Pesquisa do Programa (`op.program.research.line`)
+
+*Linhas de investigação científica e desenvolvimento tecnológico associadas ao PPG e à área de concentração.*
+
+| Campo Odoo | Descrição / Regra de Negócio | Tipo de Dado Odoo | Domínio / Validação |
+| --- | --- | --- | --- |
+| `name` | Nome da Linha de Pesquisa | `Char` | Obrigatório. Ex: "Dosimetria e Física Médica Aplicada". |
+| `code` | Código da Linha de Pesquisa | `Char` | Alfanumérico. Ex: "LP-DOSIM". |
+| `program_id` | Programa de Pós-Graduação | `Many2one` | FK para `op.program.capes`. Obrigatório. |
+| `area_id` | Área de Concentração Vinculada | `Many2one` | FK para `op.program.concentration.area`. |
+| `description` | Objetivos e Escopo de Investigação | `Text` | Detalhamento temático da linha. |
+| `is_active` | Linha de Pesquisa Ativa | `Boolean` | Padrão `True`. |
 
 ## 4. O Versionamento Curricular (`op.curriculum.version`)
 
@@ -94,7 +119,20 @@
 | `max_extension_days` | Teto Máximo Prorrogação (dias) | `Integer` | Ex: 90 (IPEN), 180 (CDTN/Mackenzie). |
 | `max_days_post_defense_deposit` | Prazo Depósito Final Pós-Defesa (dias) | `Integer` | Ex: 30 dias (IPEN/Mackenzie) vs. 90 dias (CDTN Art. 50). |
 | `min_credits` | Créditos Totais Exigidos | `Integer` | Ex: 100 (IPEN), 50/60 (Mackenzie), 24/47 (CDTN). |
+| `min_subject_credits` | Créditos Mínimos em Disciplinas do Programa | `Integer` | Ex: 40 (IPEN Art. 31º). |
+| `thesis_credits` | Créditos da Dissertação / Tese | `Integer` | Ex: 52 (IPEN Art. 31º). |
+| `other_mandatory_credits` | Créditos em Outras Atividades Obrigatórias | `Integer` | Ex: 8 (Seminários Gerais IPEN Art. 31º/38º). |
 | `credit_hour_ratio` | Horas por Unidade de Crédito | `Integer` | Ex: 15 (IPEN/CDTN), 12 (Mackenzie Computação), 10 (Mackenzie ADN). |
+| `max_external_credits_percent` | Teto de Aproveitamento Externo (%) | `Integer` | Ex: 50% (IPEN Art. 31º §1º). |
+| `max_external_subject_credits` | Teto Efetivo Disciplinas Externas (Créditos) | `Float` | Computado: `(min_subject_credits * max_external_credits_percent) / 100.0`. |
+| `allow_special_students` | Permite Alunos Especiais no Programa | `Boolean` | Padrão False no MPTRCS. |
+| `max_special_subjects_limit` | Limite Máximo de Disciplinas Isoladas | `Integer` | Padrão 2 (ou 0 se vedado). |
+| `special_credit_validity_months` | Validade Decadencial Créditos Especiais (meses) | `Integer` | Padrão 36 meses (3 anos). |
+| `special_incorporation_workflow` | Workflow de Incorporação Especial | `Selection` | `cpg_approval` (Deliberação CPG) ou `direct_request`. |
+| `special_transcript_fail_policy` | Omissão de Reprovações no Histórico Regular | `Selection` | `omit_on_regular` (Padrão MPTRCS) ou `display_all`. |
+| `allow_intra_ies_credits` | Permite Disciplinas em outros PPGs da mesma IES | `Boolean` | Padrão True (créditos a 100% do valor nominal). |
+| `max_intra_ies_credits_percent` | Teto de Disciplinas Intra-IES (%) | `Float` | Teto percentual opcional (0.0 = sem teto). |
+| `intra_ies_advisor_approval_required` | Exige Anuência do Orientador para Intra-IES | `Boolean` | Padrão True. |
 | `grading_scale_type` | Escala de Conceitos e Corte | `Selection` | `scale_abc_r` (A,B,C Aprovados; R Reprovado), `scale_abcd_rf` (A,B,C,D Aprovados - CDTN Art. 38/42). |
 | `teaching_internship_mode` | Regra de Estágio de Docência (Portaria 221/2025) | `Selection` | `not_applicable` (Cursos Profissionais/Isentos), `scholarship_only` (Apenas Bolsistas), `mandatory_all` (Todos), `flexible_equivalence` (Permite Estágio Supervisionado / Equivalentes). |
 | `ptt_validation_mode` | Modo de Validação do PTT | `Selection` | `cpg_checklist` (Checklist + Anuência Orientadores + CPG), `qualis_prior` (Avaliação Qualis Prévia), `none` (Sem PTT). |
@@ -113,7 +151,7 @@
 | `curriculum_version_id` | Versão do Currículo | `Many2one` | FK para `op.curriculum.version`. Mandatory. |
 | `subject_id` | Disciplina | `Many2one` | FK para `op.subject`. Mandatory. |
 | `scope` | Escopo da Obrigatoriedade | `Selection` | `program` (Geral do Programa), `area` (Específica da Área de Concentração). |
-| `area_id` | Área de Concentração | `Many2one` | FK para `capes.area.concentracao`. Exigido se `scope = 'area'`. |
+| `area_id` | Área de Concentração | `Many2one` | FK para `op.program.concentration.area`. Exigido se `scope = 'area'`. |
 
 ### 4.2. Regras de Composição de Comissões Julgadoras (`op.curriculum.committee.rule`)
 
@@ -129,3 +167,36 @@
 | `external_rule` | Exigência de Membros Externos | `Selection` | `min_one_external` (Mínimo 1 externo ao PPG/IES), `min_two_external` (Mínimo 2 externos - CDTN Doutorado), `majority_external` (Maioria externa ao PPG). |
 | `allow_non_phd_member` | Permite Especialista sem Doutorado | `Boolean` | Em Mestrados Profissionais, aceita notória especialização de mercado. |
 | `non_phd_approval_level` | Alçada de Aprovação de Não-Doutor | `Selection` | `cpg_simple` (CPG simples), `cpg_qualified` (2/3 da CPG - IPEN Art. 46 §3º), `superior_council` (CPG + Conselho Superior). |
+
+## 5. Modelos Nativos de Configuração do OpenEduCat (`openeducat_core`)
+
+*Entidades estruturais do OpenEduCat sincronizadas com a localização brasileira para garantir a operação plena dos menus administrativos e de secretaria.*
+
+### 5.1. Ano Acadêmico (`op.academic.year`)
+* **Campos Principais:** `name` (Ex: "2024", "2025"), `code` (Ex: "AY-2024"), `start_date` (Data início), `end_date` (Data término).
+* **Finalidade:** Delimita os períodos orçamentários, letivos e de coleta do Censo e da Plataforma Sucupira.
+
+### 5.2. Termo Acadêmico / Semestre (`op.academic.term`)
+* **Campos Principais:** `name` (Ex: "1º Semestre 2024"), `term_type` (`1`, `2`, etc.), `academic_year_id` (FK `op.academic.year`), `start_date`, `end_date`.
+* **Finalidade:** Janelas semestrais de oferta de disciplinas, matrículas e consolidação de conceitos.
+
+### 5.3. Departamento da IES (`op.department`)
+* **Campos Principais:** `name` (Ex: "Centro de Radiologia e Dosimetria"), `code` (Ex: "CRD").
+* **Finalidade:** Agrupamento acadêmico e administrativo das disciplinas e docentes no organograma da IES.
+
+### 5.4. Nível e Programa Educacional (`op.program.level` e `op.program`)
+* **Campos Principais (`op.program.level`):** `name` (Ex: "Pós-Graduação Stricto Sensu", "Mestrado Profissional"), `code`.
+* **Campos Principais (`op.program`):** `name` (Ex: "Mestrado Profissional em Tecnologia das Radiações"), `code`, `department_id`, `program_level_id`.
+* **Finalidade:** Representação institucional do curso no ecossistema OpenEduCat nativo.
+
+### 5.5. Curso (`op.course`)
+* **Campos Principais:** `name` (Ex: "Mestrado Profissional - MPTRCS"), `code` (Ex: "CRS-MPTRCS"), `department_id`, `program_id`.
+* **Finalidade:** Estrutura de percurso curricular à qual os discentes vinculam seus registros acadêmicos (`op.student.course`).
+
+### 5.6. Turmas e Lotes Discentes (`op.batch`)
+* **Campos Principais:** `name` (Ex: "Turma MPTRCS 2024-1"), `code`, `course_id` (FK `op.course`), `start_date`, `end_date`.
+* **Finalidade:** Coorte discente de ingresso, permitindo geração de relatórios de retenção, evasão e titulação por turma no Censo da Pós-Graduação. O vínculo `op.student.course.batch_id` associa o aluno à sua turma oficial.
+
+### 5.7. Categorias Discentes e Bolsas (`op.category`)
+* **Campos Principais:** `name` (Ex: "Regular", "Bolsista CAPES", "Bolsista CNPq", "Financiamento Próprio").
+* **Finalidade:** Segmentação de alunos para relatórios estatísticos e acompanhamento de benefícios socioacadêmicos.

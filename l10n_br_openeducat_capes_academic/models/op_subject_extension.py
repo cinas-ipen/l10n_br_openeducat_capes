@@ -24,6 +24,13 @@ from odoo import models, fields
 class OpSubjectExtension(models.Model):
     _inherit = 'op.subject'
 
+    credits = fields.Float(
+        string='Créditos',
+        related='grade_weightage',
+        readonly=False,
+        store=True,
+        help='Número de créditos da disciplina (espelha grade_weightage do OpenEduCat)'
+    )
     syllabus = fields.Text(
         string='Ementa da Disciplina',
         help='Apresentação concisa do conteúdo programático da disciplina'
@@ -47,3 +54,25 @@ class OpSubjectExtension(models.Model):
         ('es', 'Espanhol'),
         ('other', 'Outro')
     ], string='Idioma de Oferta', default='pt')
+
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa Ofertante',
+        help='Programa de Pós-Graduação responsável pela oferta desta disciplina'
+    )
+    allow_special_students = fields.Boolean(
+        string='Admite Alunos Especiais',
+        default=True,
+        help='Indica se a disciplina aceita matrícula de alunos especiais (disciplinas isoladas)'
+    )
+    special_student_instructor_consent_required = fields.Boolean(
+        string='Exige Anuência do Docente para Aluno Especial',
+        default=True,
+        help='Exige parecer/aceite eletrônico do professor responsável para efetivação da matrícula especial'
+    )
+    special_seats_quota = fields.Integer(
+        string='Cota Máxima de Alunos Especiais',
+        default=0,
+        help='Número máximo de vagas reservadas para alunos especiais nesta disciplina (0 para sem limite específico)'
+    )
+

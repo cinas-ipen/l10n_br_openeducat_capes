@@ -20,3 +20,4 @@
 
 from . import digital_diploma
 from . import diploma_signature_log
+from . import op_student_diploma

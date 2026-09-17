@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Dicionário de Dados DAV: Módulo 05 - Projetos de Pesquisa</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Dicionário de Dados DAV: Módulo 05 - Projetos de
+Pesquisa</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#dicionário-de-dados-dav-módulo-05---projetos-de-pesquisa" id="toc-dicionário-de-dados-dav-módulo-05---projetos-de-pesquisa">Dicionário
+de Dados DAV: Módulo 05 - Projetos de Pesquisa</a>
+<ul>
+<li><a href="#projeto-de-pesquisa-capes.research.project" id="toc-projeto-de-pesquisa-capes.research.project">1. Projeto de
+Pesquisa (<code>capes.research.project</code>)</a></li>
+<li><a href="#vínculos-e-membros" id="toc-vínculos-e-membros">2.
+Vínculos e Membros</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="dicionário-de-dados-dav-módulo-05---projetos-de-pesquisa">Dicionário
+de Dados DAV: Módulo 05 - Projetos de Pesquisa</h1>
+<p><strong>Objetivo:</strong> Estruturar o módulo de projetos,
+consolidando a ligação entre linhas, membros e cooperação baseada no
+JSON.</p>
+<h2 id="projeto-de-pesquisa-capes.research.project">1. Projeto de
+Pesquisa (<code>capes.research.project</code>)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado JSON DAV</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>capes_id</code></td>
+<td style="text-align: left;">Identificador do projeto</td>
+<td style="text-align: left;"><code>Integer</code></td>
+<td style="text-align: left;">Numérico.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">Nome do projeto de pesquisa</td>
+<td style="text-align: left;"><code>Char</code></td>
+<td style="text-align: left;">Texto livre.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;">Descrição do projeto</td>
+<td style="text-align: left;"><code>Text</code></td>
+<td style="text-align: left;">Texto explicativo.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>project_type</code></td>
+<td style="text-align: left;">Tipo de projeto de pesquisa</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Científica, Extensão, Inovação,
+Ensino.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>research_nature</code></td>
+<td style="text-align: left;">Natureza da pesquisa</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Aplicada, Básica.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>is_cooperation</code></td>
+<td style="text-align: left;">Projeto em cooperação</td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Sim; Não.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>foreign_ies</code></td>
+<td style="text-align: left;">Nome da IES Estrangeira</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">Cadastro IES Estrangeira.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;">Situação do projeto</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Em andamento, Concluido.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>status_date</code></td>
+<td style="text-align: left;">Data da situação</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>start_date</code></td>
+<td style="text-align: left;">Data de início</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>end_date</code></td>
+<td style="text-align: left;">Data de encerramento</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">AAAA-MM-DD.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vínculos-e-membros">2. Vínculos e Membros</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Campo Odoo</th>
+<th style="text-align: left;">Metadado JSON DAV</th>
+<th style="text-align: left;">Tipo de Dado Odoo</th>
+<th style="text-align: left;">Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>coord_id</code></td>
+<td style="text-align: left;">Nome do coordenador</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para Docente.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>member_id</code></td>
+<td style="text-align: left;">Nome do membro</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para Pessoa.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>contrib_type</code></td>
+<td style="text-align: left;">Tipo de contribuição</td>
+<td style="text-align: left;"><code>Selection</code></td>
+<td style="text-align: left;">Taxonomia CRediT (Conceitualização,
+Metodologia, Validação, Escrita…).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>link_start</code></td>
+<td style="text-align: left;">Início do vínculo do membro</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>link_end</code></td>
+<td style="text-align: left;">Encerramento do vínculo</td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>area_id</code></td>
+<td style="text-align: left;">Vínculo c/ Área Concentração</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para Área.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>line_id</code></td>
+<td style="text-align: left;">Vínculo c/ Linha de Pesquisa</td>
+<td style="text-align: left;"><code>Many2one</code></td>
+<td style="text-align: left;">FK para Linha.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

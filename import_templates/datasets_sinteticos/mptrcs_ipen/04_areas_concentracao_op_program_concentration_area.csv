@@ -1,0 +1,3 @@
+id,name,code,program_id/id,description
+area_rad_dos,Radioterapia e Dosimetria das Radiações,RAD-DOS,prog_mptrcs,"Física médica, dosimetria e controle de qualidade em radioterapia"
+area_rad_nuc,Medicina Nuclear e Radiofarmácia,RAD-NUC,prog_mptrcs,"Radiofármacos inovadores, imunologia molecular e dosimetria interna"

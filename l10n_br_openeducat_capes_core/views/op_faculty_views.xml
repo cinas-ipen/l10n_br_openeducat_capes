@@ -5,6 +5,20 @@
         <field name="model">op.faculty</field>
         <field name="inherit_id" ref="openeducat_core.view_op_faculty_form"/>
         <field name="arch" type="xml">
+            <!-- Smart Buttons no Topo da Ficha do Docente -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_active_advisees" type="object" class="oe_stat_button" icon="fa-user-graduate">
+                    <field name="active_advisees_count" widget="statinfo" string="Orientandos"/>
+                </button>
+                <button name="action_view_alumni_advisees" type="object" class="oe_stat_button" icon="fa-graduation-cap">
+                    <field name="alumni_advisees_count" widget="statinfo" string="Egressos"/>
+                </button>
+                <button name="action_view_subjects" type="object" class="oe_stat_button" icon="fa-book">
+                    <field name="subject_count" widget="statinfo" string="Disciplinas"/>
+                </button>
+            </xpath>
+
+            <!-- Páginas Temáticas 360° no Notebook -->
             <xpath expr="//notebook" position="inside">
                 <page string="Parâmetros GoPG / CAPES" name="capes_faculty_info">
                     <group>
@@ -18,6 +32,86 @@
                             <field name="degree_level"/>
                             <field name="degree_area"/>
                             <field name="degree_ies"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Áreas e Linhas de Pesquisa PPG" name="capes_areas_lines">
+                    <group>
+                        <group string="Áreas de Concentração Vinculadas">
+                            <field name="concentration_area_ids" widget="many2many_tags" placeholder="Selecione as áreas de concentração..."/>
+                        </group>
+                        <group string="Linhas de Pesquisa Atuantes">
+                            <field name="research_line_ids" widget="many2many_tags" placeholder="Selecione as linhas de pesquisa..."/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Orientandos no Programa" name="capes_advisees">
+                    <group string="Orientandos Principais">
+                        <field name="advisee_ids" nolabel="1">
+                            <list>
+                                <field name="ra_number"/>
+                                <field name="name"/>
+                                <field name="capes_status"/>
+                                <field name="student_category"/>
+                                <field name="admission_date"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group string="Coorientandos" invisible="not coadvisee_ids">
+                        <field name="coadvisee_ids" nolabel="1">
+                            <list>
+                                <field name="ra_number"/>
+                                <field name="name"/>
+                                <field name="capes_status"/>
+                                <field name="student_category"/>
+                                <field name="admission_date"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+
+                <page string="Dados Censitários CAPES / DAV" name="capes_census_info">
+                    <group>
+                        <group string="Identificação e Censo Demográfico">
+                            <field name="cpf"/>
+                            <field name="mother_name"/>
+                            <field name="race_color"/>
+                            <field name="has_disability"/>
+                            <field name="gender"/>
+                            <field name="birth_date"/>
+                            <field name="nationality"/>
+                        </group>
+                        <group string="Naturalidade e Origem">
+                            <field name="birth_city_name"/>
+                            <field name="birth_state"/>
+                            <field name="birth_country_id"/>
+                        </group>
+                    </group>
+                    <group string="Identificadores Digitais Persistentes (PIDs)">
+                        <group>
+                            <field name="orcid" widget="url" placeholder="0000-0000-0000-0000"/>
+                        </group>
+                        <group>
+                            <field name="lattes_url" widget="url" placeholder="http://lattes.cnpq.br/..."/>
+                        </group>
+                    </group>
+                    <group string="Endereço Residencial e Contato Oficial">
+                        <group>
+                            <label for="street" string="Logradouro / Número"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Rua, Av., Número..." class="o_address_street"/>
+                                <field name="street2" placeholder="Complemento, Apto, Bloco..." class="o_address_street"/>
+                                <field name="city" placeholder="Cidade" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="Estado" options="{'no_open': True}"/>
+                                <field name="zip" placeholder="CEP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="País" class="o_address_country" options="{'no_open': True}"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="email" widget="email"/>
+                            <field name="phone" widget="phone"/>
                         </group>
                     </group>
                 </page>

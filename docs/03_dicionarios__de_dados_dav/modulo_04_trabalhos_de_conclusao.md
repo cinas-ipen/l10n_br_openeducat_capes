@@ -85,6 +85,9 @@
 | `title` | Título Final Aprovado em Ata | `Char` | Texto exato no idioma principal. Mandatory.
 
  |
+| `name` | Identificador / Título do Trabalho | `Char` | Campo armazenado relacionado a `title`.
+
+ |
 | `title_alt` | Título Traduzido (Inglês) | `Char` | Texto exato no idioma estrangeiro.
 
  |

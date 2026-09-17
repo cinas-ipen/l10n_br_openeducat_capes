@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_faculty_form_research_360" model="ir.ui.view">
+        <field name="name">op.faculty.form.research.360</field>
+        <field name="model">op.faculty</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_faculty_form"/>
+        <field name="arch" type="xml">
+            <!-- Smart Button de Projetos de Pesquisa -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_projects" type="object" class="oe_stat_button" icon="fa-flask">
+                    <field name="project_count" widget="statinfo" string="Projetos"/>
+                </button>
+            </xpath>
+
+            <!-- Aba de Projetos de Pesquisa Coordenados -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Projetos de Pesquisa" name="faculty_research_projects_page">
+                    <field name="project_ids" nolabel="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="research_nature"/>
+                            <field name="funding_agency"/>
+                            <field name="status"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

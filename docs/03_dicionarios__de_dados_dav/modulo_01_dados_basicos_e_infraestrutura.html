@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Dicionário de Dados DAV: Módulo 01 - Dados Básicos e Infraestrutura</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Dicionário de Dados DAV: Módulo 01 - Dados Básicos e
+Infraestrutura</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#dicionário-de-dados-dav-módulo-01---dados-básicos-e-infraestrutura" id="toc-dicionário-de-dados-dav-módulo-01---dados-básicos-e-infraestrutura">Dicionário
+de Dados DAV: Módulo 01 - Dados Básicos e Infraestrutura</a>
+<ul>
+<li><a href="#instituição-de-ensino-superior-ies-e-campus-res.company-res.partner" id="toc-instituição-de-ensino-superior-ies-e-campus-res.company-res.partner">1.
+Instituição de Ensino Superior (IES) e Campus (<code>res.company</code>
+/ <code>res.partner</code>)</a></li>
+<li><a href="#georreferenciamento-e-endereço-institucional" id="toc-georreferenciamento-e-endereço-institucional">2.
+Georreferenciamento e Endereço Institucional</a></li>
+<li><a href="#programa-de-pós-graduação-ppg-op.program.capes" id="toc-programa-de-pós-graduação-ppg-op.program.capes">3. Programa de
+Pós-Graduação (PPG) (<code>op.program.capes</code>)</a>
+<ul>
+<li><a href="#áreas-de-avaliação-e-classificação-capes" id="toc-áreas-de-avaliação-e-classificação-capes">3.1. Áreas de
+Avaliação e Classificação CAPES</a></li>
+<li><a href="#áreas-de-concentração-do-programa-op.program.concentration.area" id="toc-áreas-de-concentração-do-programa-op.program.concentration.area">3.2.
+Áreas de Concentração do Programa
+(<code>op.program.concentration.area</code>)</a></li>
+<li><a href="#linhas-de-pesquisa-do-programa-op.program.research.line" id="toc-linhas-de-pesquisa-do-programa-op.program.research.line">3.3.
+Linhas de Pesquisa do Programa
+(<code>op.program.research.line</code>)</a></li>
+</ul></li>
+<li><a href="#o-versionamento-curricular-op.curriculum.version" id="toc-o-versionamento-curricular-op.curriculum.version">4. O
+Versionamento Curricular (<code>op.curriculum.version</code>)</a>
+<ul>
+<li><a href="#regras-de-disciplinas-obrigatórias-por-currículo-op.curriculum.subject.rule" id="toc-regras-de-disciplinas-obrigatórias-por-currículo-op.curriculum.subject.rule">4.1.
+Regras de Disciplinas Obrigatórias por Currículo
+(<code>op.curriculum.subject.rule</code>)</a></li>
+<li><a href="#regras-de-composição-de-comissões-julgadoras-op.curriculum.committee.rule" id="toc-regras-de-composição-de-comissões-julgadoras-op.curriculum.committee.rule">4.2.
+Regras de Composição de Comissões Julgadoras
+(<code>op.curriculum.committee.rule</code>)</a></li>
+</ul></li>
+<li><a href="#modelos-nativos-de-configuração-do-openeducat-openeducat_core" id="toc-modelos-nativos-de-configuração-do-openeducat-openeducat_core">5.
+Modelos Nativos de Configuração do OpenEduCat
+(<code>openeducat_core</code>)</a>
+<ul>
+<li><a href="#ano-acadêmico-op.academic.year" id="toc-ano-acadêmico-op.academic.year">5.1. Ano Acadêmico
+(<code>op.academic.year</code>)</a></li>
+<li><a href="#termo-acadêmico-semestre-op.academic.term" id="toc-termo-acadêmico-semestre-op.academic.term">5.2. Termo Acadêmico
+/ Semestre (<code>op.academic.term</code>)</a></li>
+<li><a href="#departamento-da-ies-op.department" id="toc-departamento-da-ies-op.department">5.3. Departamento da IES
+(<code>op.department</code>)</a></li>
+<li><a href="#nível-e-programa-educacional-op.program.level-e-op.program" id="toc-nível-e-programa-educacional-op.program.level-e-op.program">5.4.
+Nível e Programa Educacional (<code>op.program.level</code> e
+<code>op.program</code>)</a></li>
+<li><a href="#curso-op.course" id="toc-curso-op.course">5.5. Curso
+(<code>op.course</code>)</a></li>
+<li><a href="#turmas-e-lotes-discentes-op.batch" id="toc-turmas-e-lotes-discentes-op.batch">5.6. Turmas e Lotes Discentes
+(<code>op.batch</code>)</a></li>
+<li><a href="#categorias-discentes-e-bolsas-op.category" id="toc-categorias-discentes-e-bolsas-op.category">5.7. Categorias
+Discentes e Bolsas (<code>op.category</code>)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="dicionário-de-dados-dav-módulo-01---dados-básicos-e-infraestrutura">Dicionário
+de Dados DAV: Módulo 01 - Dados Básicos e Infraestrutura</h1>
+<p><strong>Objetivo:</strong> Mapear a ontologia primária (IES,
+Endereços, Programas, Versionamento Curricular, Regras de Disciplinas,
+Áreas e Linhas) baseada na extração JSON da CAPES para o esquema
+relacional do Odoo.</p>
+<h2 id="instituição-de-ensino-superior-ies-e-campus-res.company-res.partner">1.
+Instituição de Ensino Superior (IES) e Campus (<code>res.company</code>
+/ <code>res.partner</code>)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Nome da IES / Campus</td>
+<td><code>Char</code></td>
+<td>Obrigatório. Texto livre.</td>
+</tr>
+<tr>
+<td><code>name_en</code></td>
+<td>Nome da IES em inglês</td>
+<td><code>Char</code></td>
+<td>Texto livre.</td>
+</tr>
+<tr>
+<td><code>isni_code</code></td>
+<td>ISNI</td>
+<td><code>Char</code></td>
+<td>Validação: <a href="https://isni.org/">https://isni.org/</a></td>
+</tr>
+<tr>
+<td><code>ror_id</code></td>
+<td>Registro de Org. de Pesquisa (ROR)</td>
+<td><code>Char</code></td>
+<td>Validação: <a href="https://ror.org/">https://ror.org/</a></td>
+</tr>
+<tr>
+<td><code>cnpj</code></td>
+<td>CNPJ da IES / Campus</td>
+<td><code>Char</code></td>
+<td>Numérico. Módulo 11.</td>
+</tr>
+<tr>
+<td><code>capes_code</code></td>
+<td>Código da IES na Capes</td>
+<td><code>Char</code></td>
+<td>Numérico. Fonte Ouro: Cadastro de IES.</td>
+</tr>
+<tr>
+<td><code>emec_code</code></td>
+<td>Código e-MEC da IES</td>
+<td><code>Char</code></td>
+<td>Alfanumérico. Fonte Ouro: E-MEC.</td>
+</tr>
+<tr>
+<td><code>acronym</code></td>
+<td>Sigla da IES</td>
+<td><code>Char</code></td>
+<td>Redução do nome completo.</td>
+</tr>
+<tr>
+<td><code>admin_category</code></td>
+<td>Categoria administrativa</td>
+<td><code>Selection</code></td>
+<td>Pública (Municipal, Estadual, Federal), Privada (com/sem fins
+lucrativos), Especial.</td>
+</tr>
+<tr>
+<td><code>sub_category</code></td>
+<td>Sub-categoria (Privadas)</td>
+<td><code>Selection</code></td>
+<td>Comunitárias, Confessionais, Filantrópicas.</td>
+</tr>
+<tr>
+<td><code>academic_org</code></td>
+<td>Organização Acadêmica</td>
+<td><code>Selection</code></td>
+<td>Faculdades, Centros Univ., Universidades, IFs, Escola de
+governo.</td>
+</tr>
+<tr>
+<td><code>pro_rector_name</code></td>
+<td>Nome do Pró-Reitor de Pós</td>
+<td><code>Char</code></td>
+<td>Texto livre.</td>
+</tr>
+<tr>
+<td><code>pro_rector_start</code></td>
+<td>Início atuação do Pró-Reitor</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>pro_rector_end</code></td>
+<td>Fim atuação do Pró-Reitor</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="georreferenciamento-e-endereço-institucional">2.
+Georreferenciamento e Endereço Institucional</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>street</code></td>
+<td>Logradouro do endereço</td>
+<td><code>Char</code></td>
+<td>Texto livre.</td>
+</tr>
+<tr>
+<td><code>street_number</code></td>
+<td>Número do logradouro</td>
+<td><code>Char</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>street2</code></td>
+<td>Complemento do endereço</td>
+<td><code>Char</code></td>
+<td>Texto livre.</td>
+</tr>
+<tr>
+<td><code>district</code></td>
+<td>Bairro do endereço</td>
+<td><code>Char</code></td>
+<td>Texto livre.</td>
+</tr>
+<tr>
+<td><code>zip</code></td>
+<td>CEP do endereço</td>
+<td><code>Char</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>city_id</code></td>
+<td>Município do endereço</td>
+<td><code>Many2one</code></td>
+<td>Tabela Municípios IBGE.</td>
+</tr>
+<tr>
+<td><code>state_id</code></td>
+<td>Unidade Federativa do endereço</td>
+<td><code>Many2one</code></td>
+<td>Tabela UFs Brasil.</td>
+</tr>
+<tr>
+<td><code>country_id</code></td>
+<td>País do endereço</td>
+<td><code>Many2one</code></td>
+<td>Tabela Países IBGE.</td>
+</tr>
+<tr>
+<td><code>po_box</code></td>
+<td>Caixa postal do endereço</td>
+<td><code>Char</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>ibge_code</code></td>
+<td>Código do município no IBGE</td>
+<td><code>Char</code></td>
+<td>7 dígitos numéricos.</td>
+</tr>
+<tr>
+<td><code>siafi_code</code></td>
+<td>Código do município no SIAFI</td>
+<td><code>Char</code></td>
+<td>Tabela SIAFI.</td>
+</tr>
+<tr>
+<td><code>mesoregion_id</code></td>
+<td>Identificador da mesorregião</td>
+<td><code>Char</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>microregion_id</code></td>
+<td>Identificador da microrregião</td>
+<td><code>Char</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>latitude</code></td>
+<td>Latitude do endereço</td>
+<td><code>Float</code></td>
+<td>Graus decimais.</td>
+</tr>
+<tr>
+<td><code>longitude</code></td>
+<td>Longitude do endereço</td>
+<td><code>Float</code></td>
+<td>Graus decimais.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="programa-de-pós-graduação-ppg-op.program.capes">3. Programa de
+Pós-Graduação (PPG) (<code>op.program.capes</code>)</h2>
+<p><em>Nota de Arquitetura:</em> O modelo <code>op.program.capes</code>
+mantém a identidade cadastral e regulatória fixa do programa perante o
+SNPG e MEC. As regras dinâmicas e mutáveis de integralização de créditos
+e prazos são delegadas para a entidade
+<code>op.curriculum.version</code>.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>capes_id</code></td>
+<td>Identificador do Programa</td>
+<td><code>Integer</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>snpg_code</code></td>
+<td>Código do PPG no SNPG</td>
+<td><code>Char</code></td>
+<td>Numérico (8+5 dígitos). Obrigatório.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>Nome do Programa</td>
+<td><code>Char</code></td>
+<td>Tabela Sucupira.</td>
+</tr>
+<tr>
+<td><code>short_name</code></td>
+<td>Sigla do Programa</td>
+<td><code>Char</code></td>
+<td>Ex: PPGCC, MPTRCS.</td>
+</tr>
+<tr>
+<td><code>lang</code></td>
+<td>Idioma do Nome do PPG</td>
+<td><code>Selection</code></td>
+<td>Tabela ISO 639.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>Telefone do Programa</td>
+<td><code>Char</code></td>
+<td>Numérico.</td>
+</tr>
+<tr>
+<td><code>website</code></td>
+<td>Site do Programa</td>
+<td><code>Char</code></td>
+<td>Texto livre (URL).</td>
+</tr>
+<tr>
+<td><code>modality</code></td>
+<td>Modalidade do Programa</td>
+<td><code>Selection</code></td>
+<td>Acadêmica, Profissional.</td>
+</tr>
+<tr>
+<td><code>teaching_modal</code></td>
+<td>Modalidade de ensino</td>
+<td><code>Selection</code></td>
+<td>Ensino presencial, Ensino a distância.</td>
+</tr>
+<tr>
+<td><code>operation_form</code></td>
+<td>Forma de atuação</td>
+<td><code>Selection</code></td>
+<td>Singular, Assoc. Interinstitucional, Assoc. Intrainstitucional.</td>
+</tr>
+<tr>
+<td><code>ies_role</code></td>
+<td>Atuação da IES/Campus</td>
+<td><code>Selection</code></td>
+<td>Coordenadora, Associada, Nucleadora, Colaboradora.</td>
+</tr>
+<tr>
+<td><code>school_term</code></td>
+<td>Regime Letivo do Programa</td>
+<td><code>Selection</code></td>
+<td>Bimestral, Trimestral, Quadrimestral, Semestral, Anual.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>Situação do Programa</td>
+<td><code>Selection</code></td>
+<td>Em projeto, Em funcionamento, Em desativação, Desativado, Perda de
+eficácia, Suspensão.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>Data de Início do Programa</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>Data de Encerramento</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>recommend_date</code></td>
+<td>Data de recomendação</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>recognize_date</code></td>
+<td>Data de reconhecimento</td>
+<td><code>Date</code></td>
+<td>AAAA-MM-DD.</td>
+</tr>
+<tr>
+<td><code>general_coord</code></td>
+<td>Coordenador do Programa</td>
+<td><code>Many2one</code></td>
+<td>FK para Docente (<code>op.faculty</code>).</td>
+</tr>
+<tr>
+<td><code>local_coord</code></td>
+<td>Coordenador Local do PPG</td>
+<td><code>Many2one</code></td>
+<td>FK para Docente (<code>op.faculty</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="áreas-de-avaliação-e-classificação-capes">3.1. Áreas de
+Avaliação e Classificação CAPES</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Metadado JSON DAV</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>evaluation_area</code></td>
+<td>Código da área de avaliação</td>
+<td><code>Char</code></td>
+<td>Tabela de Áreas Capes (Ex: Medicina II).</td>
+</tr>
+<tr>
+<td><code>broad_area</code></td>
+<td>Cód. grande área (Nível 1)</td>
+<td><code>Char</code></td>
+<td>Tabela Capes.</td>
+</tr>
+<tr>
+<td><code>basic_area</code></td>
+<td>Cód. área básica (Nível 2)</td>
+<td><code>Char</code></td>
+<td>Tabela Capes.</td>
+</tr>
+<tr>
+<td><code>subarea</code></td>
+<td>Cód. subárea (Nível 3)</td>
+<td><code>Char</code></td>
+<td>Tabela Capes.</td>
+</tr>
+<tr>
+<td><code>specialty</code></td>
+<td>Cód. especialidade (Nível 4)</td>
+<td><code>Char</code></td>
+<td>Tabela Capes.</td>
+</tr>
+<tr>
+<td><code>capes_grade</code></td>
+<td>Nota do curso</td>
+<td><code>Selection</code></td>
+<td>1, 2, 3, 4, 5, 6, 7, A.</td>
+</tr>
+<tr>
+<td><code>grade_year</code></td>
+<td>Ano base atribuição da nota</td>
+<td><code>Integer</code></td>
+<td>AAAA.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="áreas-de-concentração-do-programa-op.program.concentration.area">3.2.
+Áreas de Concentração do Programa
+(<code>op.program.concentration.area</code>)</h3>
+<p><em>Entidade canônica que define os eixos de concentração do Programa
+de Pós-Graduação.</em></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição / Regra de Negócio</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Nome da Área de Concentração</td>
+<td><code>Char</code></td>
+<td>Obrigatório. Ex: “Tecnologia das Radiações em Medicina”.</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>Código da Área de Concentração</td>
+<td><code>Char</code></td>
+<td>Alfanumérico. Ex: “TRMED”.</td>
+</tr>
+<tr>
+<td><code>program_id</code></td>
+<td>Programa de Pós-Graduação</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.program.capes</code>. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Descrição e Ementa Temática</td>
+<td><code>Text</code></td>
+<td>Escopo científico da área de concentração.</td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td>Área Ativa</td>
+<td><code>Boolean</code></td>
+<td>Padrão <code>True</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="linhas-de-pesquisa-do-programa-op.program.research.line">3.3.
+Linhas de Pesquisa do Programa
+(<code>op.program.research.line</code>)</h3>
+<p><em>Linhas de investigação científica e desenvolvimento tecnológico
+associadas ao PPG e à área de concentração.</em></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição / Regra de Negócio</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Nome da Linha de Pesquisa</td>
+<td><code>Char</code></td>
+<td>Obrigatório. Ex: “Dosimetria e Física Médica Aplicada”.</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>Código da Linha de Pesquisa</td>
+<td><code>Char</code></td>
+<td>Alfanumérico. Ex: “LP-DOSIM”.</td>
+</tr>
+<tr>
+<td><code>program_id</code></td>
+<td>Programa de Pós-Graduação</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.program.capes</code>. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>area_id</code></td>
+<td>Área de Concentração Vinculada</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.program.concentration.area</code>.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Objetivos e Escopo de Investigação</td>
+<td><code>Text</code></td>
+<td>Detalhamento temático da linha.</td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td>Linha de Pesquisa Ativa</td>
+<td><code>Boolean</code></td>
+<td>Padrão <code>True</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="o-versionamento-curricular-op.curriculum.version">4. O
+Versionamento Curricular (<code>op.curriculum.version</code>)</h2>
+<p><em>Entidade Centralizadora das Regras Dinâmicas do Curso (Ato
+Jurídico Perfeito).</em></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição / Regra de Negócio</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Nome da Versão Regimental</td>
+<td><code>Char</code></td>
+<td>Ex: “Regimento IPEN 2024”, “Regimento CDTN 2026”, “Regimento UPM
+2024”.</td>
+</tr>
+<tr>
+<td><code>program_id</code></td>
+<td>Programa de Pós-Graduação</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.program.capes</code>. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>max_months_defense</code></td>
+<td>Prazo Máximo Titulação (meses)</td>
+<td><code>Integer</code></td>
+<td>Ex: 24 (Mestrado), 48 (Doutorado).</td>
+</tr>
+<tr>
+<td><code>max_trancamento_days</code></td>
+<td>Prazo Máximo de Trancamento Contínuo (dias)</td>
+<td><code>Integer</code></td>
+<td>Ex: 365 (MPTRCS Art. 22º, §3º).</td>
+</tr>
+<tr>
+<td><code>block_first_semester_trancamento</code></td>
+<td>Trava Bloqueio Trancamento 1º Semestre</td>
+<td><code>Boolean</code></td>
+<td>True ou False (False no MPTRCS, Art. 22º §1º).</td>
+</tr>
+<tr>
+<td><code>retorno_rule</code></td>
+<td>Regra de Retorno e Estrutura Curricular</td>
+<td><code>Selection</code></td>
+<td>current_matrix (Vinculação à matriz vigente no retorno, preservando
+o Ato Jurídico Perfeito no Ledger).</td>
+</tr>
+<tr>
+<td><code>max_extension_days</code></td>
+<td>Teto Máximo Prorrogação (dias)</td>
+<td><code>Integer</code></td>
+<td>Ex: 90 (IPEN), 180 (CDTN/Mackenzie).</td>
+</tr>
+<tr>
+<td><code>max_days_post_defense_deposit</code></td>
+<td>Prazo Depósito Final Pós-Defesa (dias)</td>
+<td><code>Integer</code></td>
+<td>Ex: 30 dias (IPEN/Mackenzie) vs. 90 dias (CDTN Art. 50).</td>
+</tr>
+<tr>
+<td><code>min_credits</code></td>
+<td>Créditos Totais Exigidos</td>
+<td><code>Integer</code></td>
+<td>Ex: 100 (IPEN), 50/60 (Mackenzie), 24/47 (CDTN).</td>
+</tr>
+<tr>
+<td><code>min_subject_credits</code></td>
+<td>Créditos Mínimos em Disciplinas do Programa</td>
+<td><code>Integer</code></td>
+<td>Ex: 40 (IPEN Art. 31º).</td>
+</tr>
+<tr>
+<td><code>thesis_credits</code></td>
+<td>Créditos da Dissertação / Tese</td>
+<td><code>Integer</code></td>
+<td>Ex: 52 (IPEN Art. 31º).</td>
+</tr>
+<tr>
+<td><code>other_mandatory_credits</code></td>
+<td>Créditos em Outras Atividades Obrigatórias</td>
+<td><code>Integer</code></td>
+<td>Ex: 8 (Seminários Gerais IPEN Art. 31º/38º).</td>
+</tr>
+<tr>
+<td><code>credit_hour_ratio</code></td>
+<td>Horas por Unidade de Crédito</td>
+<td><code>Integer</code></td>
+<td>Ex: 15 (IPEN/CDTN), 12 (Mackenzie Computação), 10 (Mackenzie
+ADN).</td>
+</tr>
+<tr>
+<td><code>max_external_credits_percent</code></td>
+<td>Teto de Aproveitamento Externo (%)</td>
+<td><code>Integer</code></td>
+<td>Ex: 50% (IPEN Art. 31º §1º).</td>
+</tr>
+<tr>
+<td><code>max_external_subject_credits</code></td>
+<td>Teto Efetivo Disciplinas Externas (Créditos)</td>
+<td><code>Float</code></td>
+<td>Computado:
+<code>(min_subject_credits * max_external_credits_percent) / 100.0</code>.</td>
+</tr>
+<tr>
+<td><code>allow_special_students</code></td>
+<td>Permite Alunos Especiais no Programa</td>
+<td><code>Boolean</code></td>
+<td>Padrão False no MPTRCS.</td>
+</tr>
+<tr>
+<td><code>max_special_subjects_limit</code></td>
+<td>Limite Máximo de Disciplinas Isoladas</td>
+<td><code>Integer</code></td>
+<td>Padrão 2 (ou 0 se vedado).</td>
+</tr>
+<tr>
+<td><code>special_credit_validity_months</code></td>
+<td>Validade Decadencial Créditos Especiais (meses)</td>
+<td><code>Integer</code></td>
+<td>Padrão 36 meses (3 anos).</td>
+</tr>
+<tr>
+<td><code>special_incorporation_workflow</code></td>
+<td>Workflow de Incorporação Especial</td>
+<td><code>Selection</code></td>
+<td><code>cpg_approval</code> (Deliberação CPG) ou
+<code>direct_request</code>.</td>
+</tr>
+<tr>
+<td><code>special_transcript_fail_policy</code></td>
+<td>Omissão de Reprovações no Histórico Regular</td>
+<td><code>Selection</code></td>
+<td><code>omit_on_regular</code> (Padrão MPTRCS) ou
+<code>display_all</code>.</td>
+</tr>
+<tr>
+<td><code>allow_intra_ies_credits</code></td>
+<td>Permite Disciplinas em outros PPGs da mesma IES</td>
+<td><code>Boolean</code></td>
+<td>Padrão True (créditos a 100% do valor nominal).</td>
+</tr>
+<tr>
+<td><code>max_intra_ies_credits_percent</code></td>
+<td>Teto de Disciplinas Intra-IES (%)</td>
+<td><code>Float</code></td>
+<td>Teto percentual opcional (0.0 = sem teto).</td>
+</tr>
+<tr>
+<td><code>intra_ies_advisor_approval_required</code></td>
+<td>Exige Anuência do Orientador para Intra-IES</td>
+<td><code>Boolean</code></td>
+<td>Padrão True.</td>
+</tr>
+<tr>
+<td><code>grading_scale_type</code></td>
+<td>Escala de Conceitos e Corte</td>
+<td><code>Selection</code></td>
+<td><code>scale_abc_r</code> (A,B,C Aprovados; R Reprovado),
+<code>scale_abcd_rf</code> (A,B,C,D Aprovados - CDTN Art. 38/42).</td>
+</tr>
+<tr>
+<td><code>teaching_internship_mode</code></td>
+<td>Regra de Estágio de Docência (Portaria 221/2025)</td>
+<td><code>Selection</code></td>
+<td><code>not_applicable</code> (Cursos Profissionais/Isentos),
+<code>scholarship_only</code> (Apenas Bolsistas),
+<code>mandatory_all</code> (Todos), <code>flexible_equivalence</code>
+(Permite Estágio Supervisionado / Equivalentes).</td>
+</tr>
+<tr>
+<td><code>ptt_validation_mode</code></td>
+<td>Modo de Validação do PTT</td>
+<td><code>Selection</code></td>
+<td><code>cpg_checklist</code> (Checklist + Anuência Orientadores +
+CPG), <code>qualis_prior</code> (Avaliação Qualis Prévia),
+<code>none</code> (Sem PTT).</td>
+</tr>
+<tr>
+<td><code>proficiency_stage</code></td>
+<td>Momento Exigência Proficiência</td>
+<td><code>Selection</code></td>
+<td><code>admission</code> (Na Admissão - IPEN),
+<code>qualification</code> (Na Qualificação), <code>defense</code> (Na
+Defesa).</td>
+</tr>
+<tr>
+<td><code>defense_location_policy</code></td>
+<td>Política de Presença da Defesa</td>
+<td><code>Selection</code></td>
+<td><code>onsite_mandatory</code> (Presencial),
+<code>hybrid_allowed</code> (Presença física aluno/presidente),
+<code>fully_remote_allowed</code> (100% remota autorizada - CDTN Art.
+49).</td>
+</tr>
+<tr>
+<td><code>presentation_max_minutes</code></td>
+<td>Tempo Máximo Exposição (min)</td>
+<td><code>Integer</code></td>
+<td>Ex: 50 min (IPEN), 45 min (CDTN Art. 48 §2º).</td>
+</tr>
+<tr>
+<td><code>arguing_max_minutes_per_member</code></td>
+<td>Tempo Máximo Arguição p/ Membro</td>
+<td><code>Integer</code></td>
+<td>Ex: 40 min por examinador.</td>
+</tr>
+<tr>
+<td><code>subject_rule_ids</code></td>
+<td>Regras de Disciplinas Obrigatórias</td>
+<td><code>One2many</code></td>
+<td>Relação com <code>op.curriculum.subject.rule</code>.</td>
+</tr>
+<tr>
+<td><code>committee_rule_ids</code></td>
+<td>Regras de Composição de Bancas</td>
+<td><code>One2many</code></td>
+<td>Relação com <code>op.curriculum.committee.rule</code>.</td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td>Versão Vigente para Novas Matrículas</td>
+<td><code>Boolean</code></td>
+<td>Utilizada pelos novos Editais de Seleção.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="regras-de-disciplinas-obrigatórias-por-currículo-op.curriculum.subject.rule">4.1.
+Regras de Disciplinas Obrigatórias por Currículo
+(<code>op.curriculum.subject.rule</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição / Regra de Negócio</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>curriculum_version_id</code></td>
+<td>Versão do Currículo</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.curriculum.version</code>. Mandatory.</td>
+</tr>
+<tr>
+<td><code>subject_id</code></td>
+<td>Disciplina</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.subject</code>. Mandatory.</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>Escopo da Obrigatoriedade</td>
+<td><code>Selection</code></td>
+<td><code>program</code> (Geral do Programa), <code>area</code>
+(Específica da Área de Concentração).</td>
+</tr>
+<tr>
+<td><code>area_id</code></td>
+<td>Área de Concentração</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.program.concentration.area</code>. Exigido se
+<code>scope = &#39;area&#39;</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="regras-de-composição-de-comissões-julgadoras-op.curriculum.committee.rule">4.2.
+Regras de Composição de Comissões Julgadoras
+(<code>op.curriculum.committee.rule</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Campo Odoo</th>
+<th>Descrição / Regra de Negócio</th>
+<th>Tipo de Dado Odoo</th>
+<th>Domínio / Validação JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>curriculum_version_id</code></td>
+<td>Versão do Currículo</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.curriculum.version</code>. Mandatory.</td>
+</tr>
+<tr>
+<td><code>academic_level</code></td>
+<td>Nível de Formação</td>
+<td><code>Selection</code></td>
+<td><code>master</code> (Mestrado), <code>phd</code> (Doutorado).</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td>Rito Acadêmico</td>
+<td><code>Selection</code></td>
+<td><code>qualification</code> (Qualificação), <code>seminar</code>
+(Seminário de Área), <code>defense</code> (Defesa Final).</td>
+</tr>
+<tr>
+<td><code>min_titular_count</code></td>
+<td>Mínimo de Examinadores Titulares</td>
+<td><code>Integer</code></td>
+<td>Ex: 3 (Mestrado geral), 5 (Doutorado CDTN).</td>
+</tr>
+<tr>
+<td><code>suplente_mode</code></td>
+<td>Regra de Suplentes</td>
+<td><code>Selection</code></td>
+<td><code>fixed_pair</code> (Mínimo 2: 1 int / 1 ext - Mackenzie),
+<code>one_per_titular</code> (1 por titular), <code>custom</code>
+(Quantidade fixa).</td>
+</tr>
+<tr>
+<td><code>advisor_vote_role</code></td>
+<td>Papel e Voto do Orientador</td>
+<td><code>Selection</code></td>
+<td><code>voting_president</code> (Preside e Vota - IPEN/Mackenzie),
+<code>non_voting_president</code> (Preside sem voto - CDTN Art. 44 §4º),
+<code>examiner_only</code> (Membro votante sem presidência).</td>
+</tr>
+<tr>
+<td><code>coadvisor_participation</code></td>
+<td>Participação do Coorientador</td>
+<td><code>Selection</code></td>
+<td><code>non_voting_additional</code> (Membro adicional sem voto),
+<code>forbidden_with_advisor</code> (Proibido se Orientador presente -
+IPEN Art. 10 §3º), <code>full_voting_member</code> (Membro
+Votante).</td>
+</tr>
+<tr>
+<td><code>external_rule</code></td>
+<td>Exigência de Membros Externos</td>
+<td><code>Selection</code></td>
+<td><code>min_one_external</code> (Mínimo 1 externo ao PPG/IES),
+<code>min_two_external</code> (Mínimo 2 externos - CDTN Doutorado),
+<code>majority_external</code> (Maioria externa ao PPG).</td>
+</tr>
+<tr>
+<td><code>allow_non_phd_member</code></td>
+<td>Permite Especialista sem Doutorado</td>
+<td><code>Boolean</code></td>
+<td>Em Mestrados Profissionais, aceita notória especialização de
+mercado.</td>
+</tr>
+<tr>
+<td><code>non_phd_approval_level</code></td>
+<td>Alçada de Aprovação de Não-Doutor</td>
+<td><code>Selection</code></td>
+<td><code>cpg_simple</code> (CPG simples), <code>cpg_qualified</code>
+(2/3 da CPG - IPEN Art. 46 §3º), <code>superior_council</code> (CPG +
+Conselho Superior).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="modelos-nativos-de-configuração-do-openeducat-openeducat_core">5.
+Modelos Nativos de Configuração do OpenEduCat
+(<code>openeducat_core</code>)</h2>
+<p><em>Entidades estruturais do OpenEduCat sincronizadas com a
+localização brasileira para garantir a operação plena dos menus
+administrativos e de secretaria.</em></p>
+<h3 id="ano-acadêmico-op.academic.year">5.1. Ano Acadêmico
+(<code>op.academic.year</code>)</h3>
+<ul>
+<li><strong>Campos Principais:</strong> <code>name</code> (Ex: “2024”,
+“2025”), <code>code</code> (Ex: “AY-2024”), <code>start_date</code>
+(Data início), <code>end_date</code> (Data término).</li>
+<li><strong>Finalidade:</strong> Delimita os períodos orçamentários,
+letivos e de coleta do Censo e da Plataforma Sucupira.</li>
+</ul>
+<h3 id="termo-acadêmico-semestre-op.academic.term">5.2. Termo Acadêmico
+/ Semestre (<code>op.academic.term</code>)</h3>
+<ul>
+<li><strong>Campos Principais:</strong> <code>name</code> (Ex: “1º
+Semestre 2024”), <code>term_type</code> (<code>1</code>, <code>2</code>,
+etc.), <code>academic_year_id</code> (FK <code>op.academic.year</code>),
+<code>start_date</code>, <code>end_date</code>.</li>
+<li><strong>Finalidade:</strong> Janelas semestrais de oferta de
+disciplinas, matrículas e consolidação de conceitos.</li>
+</ul>
+<h3 id="departamento-da-ies-op.department">5.3. Departamento da IES
+(<code>op.department</code>)</h3>
+<ul>
+<li><strong>Campos Principais:</strong> <code>name</code> (Ex: “Centro
+de Radiologia e Dosimetria”), <code>code</code> (Ex: “CRD”).</li>
+<li><strong>Finalidade:</strong> Agrupamento acadêmico e administrativo
+das disciplinas e docentes no organograma da IES.</li>
+</ul>
+<h3 id="nível-e-programa-educacional-op.program.level-e-op.program">5.4.
+Nível e Programa Educacional (<code>op.program.level</code> e
+<code>op.program</code>)</h3>
+<ul>
+<li><strong>Campos Principais (<code>op.program.level</code>):</strong>
+<code>name</code> (Ex: “Pós-Graduação Stricto Sensu”, “Mestrado
+Profissional”), <code>code</code>.</li>
+<li><strong>Campos Principais (<code>op.program</code>):</strong>
+<code>name</code> (Ex: “Mestrado Profissional em Tecnologia das
+Radiações”), <code>code</code>, <code>department_id</code>,
+<code>program_level_id</code>.</li>
+<li><strong>Finalidade:</strong> Representação institucional do curso no
+ecossistema OpenEduCat nativo.</li>
+</ul>
+<h3 id="curso-op.course">5.5. Curso (<code>op.course</code>)</h3>
+<ul>
+<li><strong>Campos Principais:</strong> <code>name</code> (Ex: “Mestrado
+Profissional - MPTRCS”), <code>code</code> (Ex: “CRS-MPTRCS”),
+<code>department_id</code>, <code>program_id</code>.</li>
+<li><strong>Finalidade:</strong> Estrutura de percurso curricular à qual
+os discentes vinculam seus registros acadêmicos
+(<code>op.student.course</code>).</li>
+</ul>
+<h3 id="turmas-e-lotes-discentes-op.batch">5.6. Turmas e Lotes Discentes
+(<code>op.batch</code>)</h3>
+<ul>
+<li><strong>Campos Principais:</strong> <code>name</code> (Ex: “Turma
+MPTRCS 2024-1”), <code>code</code>, <code>course_id</code> (FK
+<code>op.course</code>), <code>start_date</code>,
+<code>end_date</code>.</li>
+<li><strong>Finalidade:</strong> Coorte discente de ingresso, permitindo
+geração de relatórios de retenção, evasão e titulação por turma no Censo
+da Pós-Graduação. O vínculo <code>op.student.course.batch_id</code>
+associa o aluno à sua turma oficial.</li>
+</ul>
+<h3 id="categorias-discentes-e-bolsas-op.category">5.7. Categorias
+Discentes e Bolsas (<code>op.category</code>)</h3>
+<ul>
+<li><strong>Campos Principais:</strong> <code>name</code> (Ex:
+“Regular”, “Bolsista CAPES”, “Bolsista CNPq”, “Financiamento
+Próprio”).</li>
+<li><strong>Finalidade:</strong> Segmentação de alunos para relatórios
+estatísticos e acompanhamento de benefícios socioacadêmicos.</li>
+</ul>
+</body>
+</html>

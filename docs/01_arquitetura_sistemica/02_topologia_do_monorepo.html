@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 02: Topologia do Monorepo e Engenharia de Módulos</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 02: Topologia do Monorepo e Engenharia de
+Módulos</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-02-topologia-do-monorepo-e-engenharia-de-módulos" id="toc-documento-02-topologia-do-monorepo-e-engenharia-de-módulos">Documento
+02: Topologia do Monorepo e Engenharia de Módulos</a>
+<ul>
+<li><a href="#princípios-de-design-modular-e-domain-driven-design-ddd-no-odoo" id="toc-princípios-de-design-modular-e-domain-driven-design-ddd-no-odoo">1.
+Princípios de Design Modular e Domain-Driven Design (DDD) no
+Odoo</a></li>
+<li><a href="#arquitetura-detalhada-do-monorepo-l10n_br_openeducat_capes" id="toc-arquitetura-detalhada-do-monorepo-l10n_br_openeducat_capes">2.
+Arquitetura Detalhada do Monorepo
+(<code>l10n_br_openeducat_capes</code>)</a>
+<ul>
+<li><a href="#l10n_br_openeducat_capes_core" id="toc-l10n_br_openeducat_capes_core">2.1.
+<code>l10n_br_openeducat_capes_core</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_admission" id="toc-l10n_br_openeducat_capes_admission">2.2.
+<code>l10n_br_openeducat_capes_admission</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_academic" id="toc-l10n_br_openeducat_capes_academic">2.3.
+<code>l10n_br_openeducat_capes_academic</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_research" id="toc-l10n_br_openeducat_capes_research">2.4.
+<code>l10n_br_openeducat_capes_research</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_thesis" id="toc-l10n_br_openeducat_capes_thesis">2.5.
+<code>l10n_br_openeducat_capes_thesis</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_ptt" id="toc-l10n_br_openeducat_capes_ptt">2.6.
+<code>l10n_br_openeducat_capes_ptt</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_integration" id="toc-l10n_br_openeducat_capes_integration">2.7.
+<code>l10n_br_openeducat_capes_integration</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_diploma" id="toc-l10n_br_openeducat_capes_diploma">2.8.
+<code>l10n_br_openeducat_capes_diploma</code></a></li>
+</ul></li>
+<li><a href="#matriz-de-dependências-e-manifestos-do-odoo-__manifest__.py" id="toc-matriz-de-dependências-e-manifestos-do-odoo-__manifest__.py">3.
+Matriz de Dependências e Manifestos do Odoo
+(<code>__manifest__.py</code>)</a></li>
+<li><a href="#modelo-de-extensibilidade-e-herança-estrita-_inherit" id="toc-modelo-de-extensibilidade-e-herança-estrita-_inherit">4. Modelo
+de Extensibilidade e Herança Estrita (<code>_inherit</code>)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-02-topologia-do-monorepo-e-engenharia-de-módulos">Documento
+02: Topologia do Monorepo e Engenharia de Módulos</h1>
+<h2 id="princípios-de-design-modular-e-domain-driven-design-ddd-no-odoo">1.
+Princípios de Design Modular e Domain-Driven Design (DDD) no Odoo</h2>
+<p>O desenvolvimento da localização brasileira para a pós-graduação
+<em>Stricto Sensu</em> impõe o uso de padrões avançados de arquitetura
+de software para mitigar acoplamentos destrutivos. O monorepo
+<code>l10n_br_openeducat_capes</code> adota os princípios do
+Domain-Driven Design (DDD), dividindo as complexidades de negócio em
+submódulos independentes e isolados no ecossistema Odoo.</p>
+<p>Essa separação cirúrgica de responsabilidades garante que falhas
+pontuais em integrações de APIs externas ou atualizações de layouts
+documentais de diplomas não gerem impactos ou indisponibilidades no
+motor acadêmico central e no livro-razão de créditos. A extensibilidade
+do framework Odoo é explorada através do mecanismo de herança estrita,
+permitindo que cada submódulo injete campos, visualizações e lógicas
+específicas apenas em suas respectivas camadas de domínio.</p>
+<h2 id="arquitetura-detalhada-do-monorepo-l10n_br_openeducat_capes">2.
+Arquitetura Detalhada do Monorepo
+(<code>l10n_br_openeducat_capes</code>)</h2>
+<p>A árvore de diretórios do ecossistema e o escopo funcional e técnico
+de cada componente estrutural do monorepo estão descritos a seguir:</p>
+<pre class="text"><code>l10n_br_openeducat_capes/
+├── docs/
+│   ├── 01_arquitetura_sistemica/
+│   ├── 02_governanca_regimental_e_creditos/
+│   ├── 03_dicionarios_de_dados_dav/
+│   ├── 04_processos_da_vida_academica/
+│   ├── 05_produtos_tecnico_tecnologicos_ptt/
+│   ├── 06_titulacao_e_conformidade_documental/
+│   └── 07_padroes_de_interoperabilidade_externa/
+├── l10n_br_openeducat_capes_core/
+├── l10n_br_openeducat_capes_admission/
+├── l10n_br_openeducat_capes_academic/
+├── l10n_br_openeducat_capes_research/
+├── l10n_br_openeducat_capes_thesis/
+├── l10n_br_openeducat_capes_ptt/
+├── l10n_br_openeducat_capes_integration/
+└── l10n_br_openeducat_capes_diploma/
+</code></pre>
+<h3 id="l10n_br_openeducat_capes_core">2.1.
+<code>l10n_br_openeducat_capes_core</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Mapeia a ontologia primária e as entidades
+estáticas fundamentais do Módulo 01 e Módulo 02 do dicionário de dados
+da DAV, além da integração com entidades curriculares de base do
+OpenEduCat (<code>op.academic.year</code>,
+<code>op.academic.term</code>, <code>op.department</code>,
+<code>op.program</code>, <code>op.course</code>, <code>op.batch</code>,
+<code>op.category</code>).</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>res.company</code>, <code>res.partner</code>,
+<code>op.program.capes</code>,
+<code>op.program.concentration.area</code>,
+<code>op.program.research.line</code>, <code>op.faculty</code>,
+<code>op.student</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Armazenar os códigos SNPG
+e e-MEC, estruturar os georreferenciamentos de campi, gerenciar áreas de
+concentração e linhas de pesquisa canônicas, e gerenciar a injeção
+rígida dos Identificadores Persistentes (PIDs) acadêmicos universais
+(ORCiD, Lattes, ROR e ISNI). Assegura a unicidade do Registro Acadêmico
+(RA) perene e inviolável por CPF no âmbito de cada IES
+(<code>res.company</code>), servindo de esteio para a arquitetura
+multi-vínculo de discentes (Opção B), parsing robusto de
+prenomes/sobrenomes segundo a onomástica brasileira
+(<code>_parse_brazilian_name</code>) e coleta censitária demográfica
+completa (filiação, raça/cor, PCD, naturalidade e níveis
+acadêmicos).</li>
+</ul>
+<h3 id="l10n_br_openeducat_capes_admission">2.2.
+<code>l10n_br_openeducat_capes_admission</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Substitui o fluxo linear de inscrição de
+alunos nativo do OpenEduCat por uma estrutura de concorrência pública
+baseada em normas brasileiras.</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>op.admission.register</code>, <code>op.admission.edital</code>,
+<code>op.edital.phase</code>, <code>op.student.work_plan</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Gerenciar editais
+parametrizáveis com tabelas One2many para fases de seleção com
+pontuações ponderadas, controle de ações afirmativas (cotas de 20%),
+ranqueamento eliminatório/classificatório, mecanismo de Aprovação por
+Soberania do Coordenador (<code>is_override</code>), gatilho de evasão
+precoce (3 semanas de ausência) e submissão/avaliação do Plano de
+Trabalho Discente com trava ética do CEP. Reconhece discentes
+previamente cadastrados na IES (ex: ex-alunos especiais), reaproveitando
+a chave perene de <code>op.student</code> e criando novos vínculos
+regulares sem duplicação de identidade.</li>
+</ul>
+<h3 id="l10n_br_openeducat_capes_academic">2.3.
+<code>l10n_br_openeducat_capes_academic</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Rege a vida estudantil corrente, orquestra
+a governança colegiada (CPG), implementa a visão 360° integrada de
+discentes e docentes, e implementa a inteligência de regras curriculares
+do Módulo 03 da DAV.</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>op.subject</code>, <code>op.batch</code>, <code>op.session</code>,
+<code>op.curriculum.version</code>,
+<code>op.student.credit.ledger</code>, <code>op.academic.request</code>,
+<code>op.special.credit.incorporation.request</code>,
+<code>op.faculty.program.link</code>,
+<code>op.faculty.category.ledger</code>, <code>op.cpg.committee</code>,
+<code>op.cpg.member</code>, <code>op.cpg.meeting</code>,
+<code>op.cpg.approval.log</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Versionamento dinâmico de
+regulamentos, operação do livro-razão imutável de integralização de
+créditos (diferenciando disciplinas internas, intra-IES, quarentena de
+aluno especial, especiais incorporadas e extra-IES), automação de
+matrículas compulsórias de acompanhamento de pesquisa, trava de carga
+inicial de calouros (mínimo 24 créditos), fluxo de aproveitamento e
+incorporação formal de créditos cursados como especial via CPG com
+controle decadencial de 36 meses, fluxo de ajuste manual retroativo com
+selo de auditoria, e gestão de pautas/atas QWeb da CPG (colegiado com 6
+membros titulares e 4 suplentes, reuniões mensais com pautas abertas,
+deliberação de requerimentos discentes e aprovação auditável com
+registro de User ID, Timestamp e IP via
+<code>op.cpg.approval.log</code>). Oferece visão 360° em discentes
+(smart buttons para vínculos, créditos, trabalhos finais, PTTs,
+requerimentos, diplomas, tabela de créditos embutida e emissão direta do
+Histórico Escolar no cabeçalho) e docentes (orientandos ativos e
+egressos, disciplinas lecionadas, linhas de pesquisa e bancas).</li>
+</ul>
+<h3 id="l10n_br_openeducat_capes_research">2.4.
+<code>l10n_br_openeducat_capes_research</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Mapeia a estrutura de fomento e atividade
+de investigação descrita no Módulo 05 da DAV.</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>capes.research.project</code>,
+<code>capes.project.member</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Estender as capacidades
+de gerenciamento de projetos nativas do Odoo para capturar a natureza
+científica da pesquisa, classificar parcerias interinstitucionais e
+vincular pesquisadores às entregas operando sob a Taxonomia CRediT.</li>
+</ul>
+<h3 id="l10n_br_openeducat_capes_thesis">2.5.
+<code>l10n_br_openeducat_capes_thesis</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Governa as regras acadêmicas de ritos de
+passagem intermediários e finais do Módulo 04 da DAV.</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>capes.thesis</code>, <code>capes.thesis.committee</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Orquestrar o fluxo
+bipartido (Seminário Geral de Área/Qualificação e Defesa com quórum e
+composição de PhDs parametrizáveis por regimento via
+<code>op.curriculum.committee.rule</code>), auditar pré-requisitos do
+Plano de Trabalho homologado, gerenciar o processamento de impedimentos
+éticos e endogenia em comissões julgadoras, registrar cronometria de
+exposição/arguição (50 min / 40 min) e controlar o prazo limite de 30
+dias para depósito da versão eletrônica no DSpace.</li>
+</ul>
+<h3 id="l10n_br_openeducat_capes_ptt">2.6.
+<code>l10n_br_openeducat_capes_ptt</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Internaliza a taxonomia e a engenharia de
+avaliação qualitativa do Grupo de Trabalho de Produção Técnica (GTPT) e
+Comitê Medicina II da CAPES para programas profissionais.</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>capes.ptt.axis</code>, <code>capes.ptt.type</code>,
+<code>capes.ptt.product</code>, <code>capes.ptt.evaluation</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Processar o motor de
+regras do Qualis Tecnológico, validar de forma eliminatória a aderência
+institucional de produções intelectuais, mapear níveis de Maturidade
+Tecnológica (TRL 1-9) e computar a média de notas para estratificação em
+tempo real (T1 a T5 ou TNC) servindo como pré-requisito de defesa e
+gerador de créditos APO.</li>
+</ul>
+<h3 id="l10n_br_openeducat_capes_integration">2.7.
+<code>l10n_br_openeducat_capes_integration</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Concentra a inteligência de conectividade e
+o mapeamento semântico de comunicação externa da DAV Módulo 06.</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>capes.intellectual.production</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Expor controladores
+RESTful (rotas HTTP <code>/api/capes/v1/</code>) para transmissão de
+payloads JSON criptografados para a rede RICA|PG, gerenciar as
+autorizações OAuth 2.0 e atuar como barramento unificado de cruzamento
+semântico com os esquemas de conversão XSLT do DSpace
+(<code>oai_capes</code>).</li>
+</ul>
+<h3 id="l10n_br_openeducat_capes_diploma">2.8.
+<code>l10n_br_openeducat_capes_diploma</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Garante a conformidade jurídica de
+encerramento de percurso e expedição documental de graus acadêmicos em
+conformidade com o MEC (Portaria nº 70/2025).</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>op.student.transcript.br</code>.</li>
+<li><strong>Responsabilidade Técnica:</strong> Renderizar relatórios
+QWeb consolidados de históricos parciais/finais auto-autenticados com
+Hash SHA-256 e QR Code, gerar arquivos XML estruturados de diplomas de
+pós-graduação e documentação acadêmica digital, e orquestrar rotinas
+criptográficas Python para aplicação de assinaturas avançadas XAdES
+ICP-Brasil (Certificado A3/HSM) com Carimbos de Tempo.</li>
+</ul>
+<h2 id="matriz-de-dependências-e-manifestos-do-odoo-__manifest__.py">3.
+Matriz de Dependências e Manifestos do Odoo
+(<code>__manifest__.py</code>)</h2>
+<p>Para assegurar a integridade do monorepo e a correta carga de dados
+no banco relacional PostgreSQL, a árvore de dependências do Odoo é
+rigorosamente respeitada. Cada submódulo possui um arquivo descriptor
+<code>__manifest__.py</code> indicando suas dependências obrigatórias de
+inicialização:</p>
+<pre class="text"><code>[openeducat_core]
+^
+|
+[l10n_br_openeducat_capes_core] &lt;---------------------------------------+
+^                     ^                                          |
+|                     |                                          |
+[l10n_br_openeducat_capes_admission] &lt;───┐                         |
+^                                │                         |
+|                                │                         |
+[l10n_br_openeducat_capes_academic] &lt;---+│                         |
+^                                |│                        |
+|                                ||                        |
+[l10n_br_openeducat_capes_research]     ||                        |
+^                                |│                        |
+|                                ||                        |
+[l10n_br_openeducat_capes_thesis] ------+┘                        |
+^                                ^                         |
+|                                |                         |
+[l10n_br_openeducat_capes_ptt] ---------+                         |
+^                                                          |
+|                                                          |
+[l10n_br_openeducat_capes_integration]                            |
+^                                                          |
+|                                                          |
+[l10n_br_openeducat_capes_diploma] -------------------------------+
+</code></pre>
+<p>Abaixo está a especificação exata das chaves <code>depends</code>
+presentes em cada manifesto de domínio:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Submódulo Odoo</th>
+<th>Módulos Obrigatórios em <code>depends</code></th>
+<th>Tipo de Dependência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>l10n_br_openeducat_capes_core</code></td>
+<td><code>[&#39;openeducat_core&#39;]</code></td>
+<td>Extensão Base de Infraestrutura</td>
+</tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_admission</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_core&#39;]</code></td>
+<td>Extensão do Fluxo de Admissão e Plano de Trabalho</td>
+</tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_academic</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_core&#39;]</code></td>
+<td>Motor Curricular, Regimentos e CPG</td>
+</tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_research</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_academic&#39;, &#39;project&#39;]</code></td>
+<td>Integração Odoo Projects e Fomento</td>
+</tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_thesis</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_academic&#39;, &#39;l10n_br_openeducat_capes_admission&#39;, &#39;l10n_br_openeducat_capes_research&#39;]</code></td>
+<td>Ritos Bipartidos, Plano de Trabalho e Qualificação</td>
+</tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_ptt</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_core&#39;, &#39;l10n_br_openeducat_capes_academic&#39;, &#39;l10n_br_openeducat_capes_thesis&#39;]</code></td>
+<td>Qualis, Eixos GTPT e Trava PTT</td>
+</tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_integration</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_core&#39;, &#39;l10n_br_openeducat_capes_ptt&#39;]</code></td>
+<td>Barramento RESTful e OAI-PMH</td>
+</tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_diploma</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_core&#39;, &#39;l10n_br_openeducat_capes_academic&#39;, &#39;l10n_br_openeducat_capes_thesis&#39;]</code></td>
+<td>Conformidade MEC, Teses e Criptografia</td>
+</tr>
+</tbody>
+</table>
+<h2 id="modelo-de-extensibilidade-e-herança-estrita-_inherit">4. Modelo
+de Extensibilidade e Herança Estrita (<code>_inherit</code>)</h2>
+<p>A arquitetura baseia-se prioritariamente no mecanismo de herança de
+tabelas e objetos (<code>_inherit</code>) nativo do ORM do Odoo,
+preservando o núcleo original e injetando modificações nas tabelas
+relacionais do PostgreSQL sem corromper a integridade dos dados
+originais.</p>
+<ul>
+<li><strong>Herança Clássica
+(<code>_inherit = &#39;res.partner&#39;</code>):</strong> Adotada para embutir
+de maneira transparente as extensões de PIDs biográficos e civis sem
+alterar as capacidades originais de faturamento, CRM ou contabilidade
+associadas à classe de contatos nativa do Odoo.</li>
+<li><strong>Onomástica Brasileira e Higienização de Nomes
+(<code>_parse_brazilian_name</code>):</strong> Algoritmo inteligente que
+particiona nomes completos garantindo a presença do
+<code>first_name</code>, <code>middle_name</code> e
+<code>last_name</code> sem deixar campos nulos na presença de sobrenomes
+compostos, e garantindo a unicidade nominal de 100% dos discentes e
+docentes em nível de coorte/turma.</li>
+<li><strong>Alinhamento com a Configuração Nativa OpenEduCat:</strong>
+Total compatibilidade e preenchimento dos menus do módulo base
+(<code>op.academic.year</code>, <code>op.academic.term</code>,
+<code>op.department</code>, <code>op.program.level</code>,
+<code>op.program</code>, <code>op.course</code>, <code>op.batch</code>,
+<code>op.category</code>), permitindo que a secretaria e a coordenação
+operem a suíte acadêmica em harmonia com as extensões da CAPES.</li>
+<li><strong>Herança Funcional de Workflow:</strong> Submódulos avançados
+estendem as máquinas de estado originais reescrevendo métodos Python em
+instâncias como <code>op.admission.register</code>, injetando
+decoradores <code>@api.constrains</code> para bloquear transições de
+estado lineares caso inconsistências com regulamentos ou ausência de
+validação de proficiências sejam detectadas no banco de dados.</li>
+</ul>
+</body>
+</html>
