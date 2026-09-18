@@ -61,14 +61,27 @@ A ficha do docente centraliza todas as interações e indicadores acadêmicos po
 | `research_lines_count` *(Smart Button)*| Linhas de Pesquisa Ativas | `Integer` | Computado de `research_line_ids`. |
 | `theses_committee_count` *(Smart Button)*| Bancas Examinadoras | `Integer` | Computado de comissões julgadoras em `capes.thesis`. |
 | `research_line_ids` | Linhas de Pesquisa Vinculadas | `Many2many` | Relação com `op.program.research.line`. |
+| `program_ids` | Programas PPG Locais | `Many2many` | Programas locais da IES aos quais o docente está credenciado. |
+| `programs_summary` | Programas PPG (Filiações) | `Char` | Resumo de todas as filiações locais e externas com categoria. |
+| `permanent_programs_count` | Vínculos Permanentes (Teto CAPES: 3) | `Integer` | Total de vínculos como Docente Permanente (Portaria CAPES 81/2016). |
+| `capes_program_compliance` | Conformidade Portaria CAPES 81/2016 | `Selection` | Regular (≤ 3), Teto Atingido (3), Irregular (> 3). |
 
-### 2.2. Vínculo com Programa (`op.faculty.program.link`)
+### 2.2. Vínculo e Filiação a Programas PPG (`op.faculty.program.link`)
+
+Mapeia a filiação a programas de pós-graduação stricto sensu, tanto **locais** (mesma instituição) quanto **externos** (outras IES), atendendo ao Censo da Pós-Graduação (Coleta CAPES / Sucupira) e fiscalizando o teto da **Portaria CAPES nº 81, de 03/06/2016 (Art. 4º, § 2º)**: *"Um docente poderá ser cadastrado como permanente em, no máximo, 3 (três) programas de pós-graduação."*
 
 | Campo Odoo | Descrição / Regra GoPG | Tipo de Dado Odoo | Domínio / Validação JSON |
 | --- | --- | --- | --- |
-| `faculty_id` | Docente | `Many2one` | FK para `op.faculty`. |
-| `program_id` | Programa de Pós-Graduação | `Many2one` | FK para `op.program.capes`. |
+| `faculty_id` | Docente | `Many2one` | FK para `op.faculty`. Obrigatório. |
+| `link_type` | Tipo de Vínculo | `Selection` | `internal` (Programa Local - Mesma IES) ou `external` (Programa Externo - Outra IES). |
+| `program_id` | Programa de Pós-Graduação Local | `Many2one` | FK para `op.program.capes`. Obrigatório se `link_type == 'internal'`. |
+| `external_ies_name` | IES do Programa Externo | `Char` | Instituição externa de ensino superior (ex: USP, UNICAMP). |
+| `external_program_name` | Nome do Programa Externo | `Char` | Programa de pós-graduação na IES externa. |
+| `external_snpg_code` | Código SNPG / CAPES Externo | `Char` | Código no Sistema Nacional de Pós-Graduação. |
+| `faculty_category` | Categoria de Atuação | `Selection` | Permanente (DP), Colaborador (DC), Visitante (DV), Assistente. |
+| `weekly_hours` | Carga Horária Semanal (h) | `Integer` | Carga horária semanal dedicada a este programa. |
 | `active_advisees_count` | Número Orientandos Ativos | `Integer` | Computado. Trava teto (ex: máx 8 no IPEN). |
+
 
 ### 2.3. Livro-Razão de Categorias Docentes (`op.faculty.category.ledger`)
 
@@ -101,6 +114,8 @@ A partir do formulário do discente, a secretaria e a coordenação possuem vis�
 | Campo Odoo | Metadado JSON DAV | Tipo de Dado Odoo | Domínio / Validação JSON |
 | --- | --- | --- | --- |
 | `student_id` | Registro Acadêmico (RA) | `Char` | Alfanumérico. **Imutável e Único por CPF e IES (`res.company`)**. |
+| `ra_number` | Número do RA (Oficial BR) | `Char` | Relacionado a `gr_no`, visível no formulário e no Histórico Oficial. |
+| `program_id` | Programa de Pós-Graduação (PPG) | `Many2one` | FK para `op.program.capes`. Filiação formal ao programa do curso. |
 | `partner_id` | Vínculo com Pessoa Física | `Many2one` | FK para `res.partner` (âncora soberana por CPF). Obrigatório. |
 | `company_id` | Instituição de Ensino (IES) | `Many2one` | FK para `res.company`. Escopo de governança institucional. |
 | `student_category` | Categoria Discente Atual | `Selection` | `regular` (Regular), `special` (Especial / Não-Vinculado), `alumni` (Egresso/Titulado). |
@@ -188,11 +203,18 @@ O sistema gerencia o calendário mensal de reuniões ordinárias da CPG, control
 
 Para operação do sistema em ambientes de produção e homologação, os seguintes perfis e privilégios são configurados:
 
-| Login | Papel Institucional | Grupo de Segurança Odoo 19 | Vínculo de Domínio | Atribuições Principais |
+| Login | Papel Institucional | Grupo de Segurança Odoo 19 | Escopo de Programas | Atribuições Principais |
 | --- | --- | --- | --- | --- |
-| `admin` | Administrador de TI / Sistema | `base.group_system`, `group_op_back_office_admin` | - | Configuração de módulos, parametrizações globais e auditoria do stack. |
-| `secretaria` | Secretaria de Pós-Graduação | `openeducat_core.group_op_back_office_admin` | Secretaria do PPG | Cadastros discentes, matrículas, lançamentos de créditos, emissão de históricos e diplomas. |
-| `coordenador` | Coordenador do PPG | `openeducat_core.group_op_back_office_admin` | FK Docente Coordenador + CPG | Presidência da CPG, homologação de bancas, acompanhamento de prazos e deliberações. |
-| `vicecoordenador` | Vice-Coordenador do PPG | `openeducat_core.group_op_back_office_admin` | FK Docente Vice-Coord. + CPG | Substituição da coordenação e deliberações na CPG. |
-| `professor` | Docente e Orientador | `openeducat_core.group_op_faculty` | FK `op.faculty` | Diário de classe, notas, pareceres sobre planos de trabalho e requerimentos de orientandos. |
+| `admin` | Administrador de TI / Sistema | `base.group_system`, `group_op_back_office_admin` | Global (`is_central_admin=True`) | Configuração de módulos, parametrizações globais e auditoria do stack. |
+| `prpg_admin` | Pró-Reitoria de Pós-Graduação | `group_capes_central_admin`, `group_op_back_office_admin` | Global (`is_central_admin=True`) | Supervisão multicampi, relatórios consolidados e parametrização geral. |
+| `secretaria` | Secretaria Setorial Monoprograma | `group_capes_program_secretary`, `group_op_back_office_admin` | 1 Programa (`allowed_program_ids`) | Gestão de turmas, matrículas, lançamentos de créditos e emissão de históricos. |
+| `secretaria_multi`| Secretaria Compartilhada Multiprograma | `group_capes_program_secretary`, `group_op_back_office_admin` | N Programas (`allowed_program_ids`) | Atendimento a múltiplos PPGs com alternância dinâmica via Systray e menu. |
+| `coordenador` | Coordenador de Programa | `group_capes_program_coordinator`, `group_op_back_office_admin` | 1 ou + Programas (`allowed_program_ids`) | Presidência da CPG, homologação de bancas, acompanhamento de prazos e bolsas. |
+| `professor` | Docente e Orientador | `openeducat_core.group_op_faculty` | Orientandos e Disciplinas | Diário de classe, notas, pareceres sobre planos de trabalho e bancas. |
+| `aluno` | Discente de Pós-Graduação | `base.group_portal` | Estrito ao próprio ID (`user_id`) | Matrícula online, requerimentos, histórico com QR Code e editais de bolsas. |
+
+### 7.1. Campos de Governança Multiprograma em `res.users`
+* `allowed_program_ids` (`Many2many` com `op.program.capes`): define a lista de programas acessíveis pelo usuário.
+* `current_program_id` (`Many2one` com `op.program.capes`): programa ativo na sessão corrente.
+* `is_central_admin` (`Boolean`): indica usuário com permissão de visualização e edição irrestrita de todos os programas.
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_capes_scholarship_sponsor_list" model="ir.ui.view">
+        <field name="name">capes.scholarship.sponsor.list</field>
+        <field name="model">capes.scholarship.sponsor</field>
+        <field name="arch" type="xml">
+            <list string="Agências de Fomento">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="sponsor_type"/>
+                <field name="total_active_quotas"/>
+                <field name="website" widget="url"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_capes_scholarship_sponsor_form" model="ir.ui.view">
+        <field name="name">capes.scholarship.sponsor.form</field>
+        <field name="model">capes.scholarship.sponsor</field>
+        <field name="arch" type="xml">
+            <form string="Agência Mantenedora">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nome da Agência"/>
+                        <h1><field name="name" placeholder="Ex: Coordenação de Aperfeiçoamento de Pessoal de Nível Superior"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação">
+                            <field name="code"/>
+                            <field name="sponsor_type"/>
+                            <field name="website" widget="url"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Resumo de Cotas">
+                            <field name="total_active_quotas"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Cotas Institucionais Cadastradas">
+                            <field name="quota_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="course_id"/>
+                                    <field name="level"/>
+                                    <field name="total_slots"/>
+                                    <field name="used_slots"/>
+                                    <field name="available_slots"/>
+                                    <field name="validity_end"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Normas e Diretrizes">
+                            <field name="notes" placeholder="Regulamentos de acúmulo, valores de referência e diretrizes gerais..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

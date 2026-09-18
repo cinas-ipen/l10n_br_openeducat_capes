@@ -262,8 +262,9 @@ Parametrização de Parâmetros de Sistema
 (<code>ir.config_parameter</code>)</a></li>
 <li><a href="#configurações-estruturais-do-openeducat" id="toc-configurações-estruturais-do-openeducat">4.3. Configurações
 Estruturais do OpenEduCat</a></li>
-<li><a href="#usuários-operacionais-e-perfis-de-acesso" id="toc-usuários-operacionais-e-perfis-de-acesso">4.4. Usuários
-Operacionais e Perfis de Acesso</a></li>
+<li><a href="#usuários-operacionais-perfis-de-acesso-e-governança-multiprograma" id="toc-usuários-operacionais-perfis-de-acesso-e-governança-multiprograma">4.4.
+Usuários Operacionais, Perfis de Acesso e Governança
+Multiprograma</a></li>
 </ul></li>
 <li><a href="#sequência-rígida-de-carga-de-dados-resolução-de-chaves-estrangeiras" id="toc-sequência-rígida-de-carga-de-dados-resolução-de-chaves-estrangeiras">5.
 Sequência Rígida de Carga de Dados (Resolução de Chaves
@@ -387,20 +388,20 @@ e role até o rodapé para ativar o <strong>Modo Desenvolvedor</strong>
 <li>Na barra de pesquisa, remova o filtro padrão
 <code>Aplicativos</code> (<code>Apps</code>) para exibir todos os
 módulos técnicos.</li>
-<li>Localize e instale o submódulo final da cadeia de dependências:
+<li>Localize e instale os submódulos de topo da cadeia de dependências:
 <ul>
 <li><strong><code>l10n_br_openeducat_capes_diploma</code></strong></li>
-<li><em>Nota Arquitetural:</em> Por conta da árvore de dependências do
-Odoo 19, instalar o módulo de diploma instala automaticamente em
-cascata: <code>openeducat_core</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_core</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_admission</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_academic</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_research</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_thesis</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_ptt</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_integration</code> <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-<code>l10n_br_openeducat_capes_diploma</code>.</li>
+<li><strong><code>l10n_br_openeducat_capes_scholarship</code></strong></li>
+<li><em>Nota Arquitetural:</em> A instalação destes dois módulos
+provisiona automaticamente toda a árvore de 9 submódulos do monorepo:
+<code>openeducat_core</code> <span class="math inline">→</span>
+<code>core</code> <span class="math inline">→</span>
+<code>admission</code> <span class="math inline">→</span>
+<code>academic</code> <span class="math inline">→</span>
+<code>research</code> <span class="math inline">→</span>
+<code>thesis</code> <span class="math inline">→</span> <code>ptt</code>
+<span class="math inline">→</span> <code>integration</code> <span class="math inline">→</span> <code>diploma</code> &amp;
+<code>scholarship</code>.</li>
 </ul></li>
 </ol>
 <hr />
@@ -410,8 +411,8 @@ do Sistema</h2>
 configurações institucionais na interface:</p>
 <h3 id="dados-da-empresa-mantenedora-ies-res.company">4.1. Dados da
 Empresa Mantenedora / IES (<code>res.company</code>)</h3>
-<p>Acesse <strong>Configurações <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-Usuários &amp; Empresas <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<p>Acesse <strong>Configurações <span class="math inline">→</span>
+Usuários &amp; Empresas <span class="math inline">→</span>
 Empresas</strong>: * <strong>Nome:</strong> Nome oficial por extenso da
 IES (ex: <code>Universidade XYZQ</code> ou
 <code>Instituto de Pesquisas Energéticas e Nucleares - IPEN-CNEN/SP</code>).
@@ -422,40 +423,37 @@ CEP e Código IBGE do município.</p>
 <h3 id="parametrização-de-parâmetros-de-sistema-ir.config_parameter">4.2.
 Parametrização de Parâmetros de Sistema
 (<code>ir.config_parameter</code>)</h3>
-<p>Em <strong>Configurações <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-Técnico <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-Parâmetros do Sistema</strong>: * <code>web.base.url</code>: URL
-canônica acessível pelos usuários (ex:
+<p>Em <strong>Configurações <span class="math inline">→</span> Técnico
+<span class="math inline">→</span> Parâmetros do Sistema</strong>: *
+<code>web.base.url</code>: URL canônica acessível pelos usuários (ex:
 <code>https://posgraduacao.instituicao.br</code>). *
 <code>web.base.url.freeze</code>: Valor booleano <code>True</code> para
 evitar que o Odoo altere a URL base dinamicamente.</p>
 <h3 id="configurações-estruturais-do-openeducat">4.3. Configurações
 Estruturais do OpenEduCat</h3>
-<p>Acesse o menu <strong>OpenEduCat <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
+<p>Acesse o menu <strong>OpenEduCat <span class="math inline">→</span>
 Configuração</strong> para validar ou cadastrar as entidades estruturais
 do calendário e organograma acadêmico: * <strong>Anos Acadêmicos
-(<code>op.academic.year</code>):</strong> Ex: “2022”, “2023”, “2024”,
-“2025”, “2026” com datas de início e término. * <strong>Períodos /
-Termos Acadêmicos (<code>op.academic.term</code>):</strong> Semestres
-letivos (ex: “1º Semestre 2024”, “2º Semestre 2024”). *
-<strong>Departamentos (<code>op.department</code>):</strong> Unidades
-acadêmicas da IES (ex: “Centro de Radiologia e Dosimetria”). *
+(<code>op.academic.year</code>):</strong> Ex: “2024”, “2025”, “2026” com
+datas de início e término. * <strong>Períodos / Termos Acadêmicos
+(<code>op.academic.term</code>):</strong> Semestres letivos (ex: “1º
+Semestre 2024”, “2º Semestre 2024”). * <strong>Departamentos
+(<code>op.department</code>):</strong> Unidades acadêmicas da IES (ex:
+“Departamento de Ciência da Computação”, “Centro de Radiologia”). *
 <strong>Nível e Programa Educacional (<code>op.program.level</code> e
-<code>op.program</code>):</strong> Definição de “Mestrado Profissional”
-e “Mestrado Profissional em Tecnologia das Radiações em Saúde”. *
-<strong>Cursos (<code>op.course</code>):</strong> Vinculados ao programa
-e departamento. * <strong>Turmas / Lotes Discentes
-(<code>op.batch</code>):</strong> Coortes anuais/semestrais (ex: “Turma
-MPTRCS 2024-1”) que amarram os discentes via
-<code>op.student.course.batch_id</code>. * <strong>Categorias Discentes
-(<code>op.category</code>):</strong> Segmentações de financiamento e
-bolsas (ex: “Regular”, “Bolsista CAPES”, “Bolsista CNPq”).</p>
-<h3 id="usuários-operacionais-e-perfis-de-acesso">4.4. Usuários
-Operacionais e Perfis de Acesso</h3>
-<p>Acesse <strong>Configurações <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-Usuários &amp; Empresas <span class="math inline"><em>i</em><em>g</em><em>h</em><em>t</em><em>a</em><em>r</em><em>r</em><em>o</em><em>w</em></span>
-Usuários</strong> para cadastrar ou validar os operadores do
-sistema:</p>
+<code>op.program</code>):</strong> Definição de níveis Stricto Sensu e
+programas gerais. * <strong>Cursos (<code>op.course</code>):</strong>
+Vinculados ao programa e departamento. * <strong>Turmas / Lotes
+Discentes (<code>op.batch</code>):</strong> Coortes com vinculação
+direta ao programa (<code>program_id</code>). * <strong>Categorias
+Discentes (<code>op.category</code>):</strong> Segmentações de
+financiamento (ex: “Regular”, “Bolsista CAPES”, “Bolsista CNPq”).</p>
+<h3 id="usuários-operacionais-perfis-de-acesso-e-governança-multiprograma">4.4.
+Usuários Operacionais, Perfis de Acesso e Governança Multiprograma</h3>
+<p>Acesse <strong>Configurações <span class="math inline">→</span>
+Usuários &amp; Empresas <span class="math inline">→</span>
+Usuários</strong> para cadastrar os operadores com seus devidos grupos e
+programas autorizados:</p>
 <table>
 <colgroup>
 <col style="width: 25%" />
@@ -467,47 +465,65 @@ sistema:</p>
 <tr>
 <th>Login</th>
 <th>Perfil / Função</th>
-<th>Senha Padrão (Ambiente de Testes)</th>
 <th>Grupo Odoo 19</th>
+<th>Escopo de Programas (<code>res.users</code>)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>admin</code></td>
 <td>Administrador Geral de TI</td>
-<td><code>admin</code></td>
 <td><code>base.group_system</code>,
 <code>group_op_back_office_admin</code></td>
+<td>Global (<code>is_central_admin = True</code>)</td>
+</tr>
+<tr>
+<td><code>prpg_admin</code></td>
+<td>Pró-Reitoria de Pós-Graduação</td>
+<td><code>group_capes_central_admin</code>,
+<code>group_op_back_office_admin</code></td>
+<td>Global (<code>is_central_admin = True</code>)</td>
 </tr>
 <tr>
 <td><code>secretaria</code></td>
-<td>Secretaria de Pós-Graduação</td>
-<td><code>secretaria123</code></td>
-<td><code>openeducat_core.group_op_back_office_admin</code></td>
+<td>Secretaria Setorial Monoprograma</td>
+<td><code>group_capes_program_secretary</code>,
+<code>group_op_back_office_admin</code></td>
+<td>1 Programa (<code>allowed_program_ids</code>)</td>
+</tr>
+<tr>
+<td><code>secretaria_multi</code></td>
+<td>Secretaria Compartilhada Multiprograma</td>
+<td><code>group_capes_program_secretary</code>,
+<code>group_op_back_office_admin</code></td>
+<td>N Programas (<code>allowed_program_ids</code>)</td>
 </tr>
 <tr>
 <td><code>coordenador</code></td>
-<td>Coordenador do Programa (Docente)</td>
-<td><code>coordenador123</code></td>
-<td><code>group_op_back_office_admin</code> + Titular CPG</td>
-</tr>
-<tr>
-<td><code>vicecoordenador</code></td>
-<td>Vice-Coordenador do Programa</td>
-<td><code>vicecoordenador123</code></td>
-<td><code>group_op_back_office_admin</code> + Titular CPG</td>
+<td>Coordenador do Programa</td>
+<td><code>group_capes_program_coordinator</code>,
+<code>group_op_back_office_admin</code></td>
+<td>1 ou + Programas (<code>allowed_program_ids</code>)</td>
 </tr>
 <tr>
 <td><code>professor</code></td>
 <td>Docente e Orientador</td>
-<td><code>professor123</code></td>
 <td><code>openeducat_core.group_op_faculty</code></td>
+<td>Orientandos e Disciplinas</td>
+</tr>
+<tr>
+<td><code>aluno</code></td>
+<td>Discente de Pós-Graduação</td>
+<td><code>base.group_portal</code></td>
+<td>Estrito ao próprio ID Discente</td>
 </tr>
 </tbody>
 </table>
-<p><em>Aviso de Segurança:</em> Em ambientes de produção pública,
-substitua imediatamente as senhas padrão por senhas fortes com entropia
-mínima de 14 caracteres.</p>
+<p><em>Aba Governança Pós-Graduação CAPES:</em> No formulário de cada
+usuário técnico, configure os campos <code>allowed_program_ids</code>
+(programas permitidos), <code>current_program_id</code> (programa
+inicial padrão) e marque <code>is_central_admin</code> para a equipe da
+Pró-Reitoria.</p>
 <hr />
 <h2 id="sequência-rígida-de-carga-de-dados-resolução-de-chaves-estrangeiras">5.
 Sequência Rígida de Carga de Dados (Resolução de Chaves

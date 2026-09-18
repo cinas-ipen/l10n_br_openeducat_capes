@@ -194,15 +194,31 @@ Arquitetura de Fontes de Dados (Ouro, Prata e Bronze)</a>
 <li><a href="#fonte-bronze-inserção-manual-residual" id="toc-fonte-bronze-inserção-manual-residual">3.3. Fonte Bronze
 (Inserção Manual Residual)</a></li>
 </ul></li>
-<li><a href="#macrodinâmica-da-rede-ricapg-e-fluxos-de-coleta" id="toc-macrodinâmica-da-rede-ricapg-e-fluxos-de-coleta">4.
+<li><a href="#governança-multiprograma-isolamento-de-dados-e-usabilidade-contextual-opção-b" id="toc-governança-multiprograma-isolamento-de-dados-e-usabilidade-contextual-opção-b">4.
+Governança Multiprograma, Isolamento de Dados e Usabilidade Contextual
+(Opção B)</a>
+<ul>
+<li><a href="#soberania-institucional-unificada-vs.-segregação-de-domínio" id="toc-soberania-institucional-unificada-vs.-segregação-de-domínio">4.1.
+Soberania Institucional Unificada vs. Segregação de Domínio</a></li>
+<li><a href="#matriz-de-perfis-e-isolamento-de-privacidade-row-level-security" id="toc-matriz-de-perfis-e-isolamento-de-privacidade-row-level-security">4.2.
+Matriz de Perfis e Isolamento de Privacidade (Row-Level
+Security)</a></li>
+<li><a href="#usabilidade-ergonômica-os-mecanismos-de-alternância-de-programa" id="toc-usabilidade-ergonômica-os-mecanismos-de-alternância-de-programa">4.3.
+Usabilidade Ergonômica: Os Mecanismos de Alternância de
+Programa</a></li>
+</ul></li>
+<li><a href="#macrodinâmica-da-rede-ricapg-e-fluxos-de-coleta" id="toc-macrodinâmica-da-rede-ricapg-e-fluxos-de-coleta">5.
 Macrodinâmica da Rede RICA|PG e Fluxos de Coleta</a></li>
-<li><a href="#fases-de-implementação-e-homologação-técnica-t1-a-t5" id="toc-fases-de-implementação-e-homologação-técnica-t1-a-t5">5. Fases
+<li><a href="#fases-de-implementação-e-homologação-técnica-t1-a-t5" id="toc-fases-de-implementação-e-homologação-técnica-t1-a-t5">6. Fases
 de Implementação e Homologação Técnica (T1 a T5)</a></li>
 </ul></li>
 </ul>
 </nav>
 <h1 id="documento-01-visão-geral-sistêmica-e-paradigma-gopg">Documento
 01: Visão Geral Sistêmica e Paradigma GoPG</h1>
+<p><em>Iniciativa de Pesquisa e Desenvolvimento: CINAS — Grupo de
+Pesquisa em Computação e Inteligência Artificial em Nuclear e Saúde
+(IPEN-CNEN/SP)</em></p>
 <h2 id="contexto-regulatório-do-stricto-sensu-nacional">1. Contexto
 Regulatório do Stricto Sensu Nacional</h2>
 <p>A administração acadêmica da pós-graduação <em>Stricto Sensu</em> no
@@ -311,7 +327,118 @@ erros ou incompletudes que forcem o uso da Fonte Bronze gera retrabalho
 burocrático e eleva o risco de não conformidade nos fechamentos
 estatísticos.</li>
 </ul>
-<h2 id="macrodinâmica-da-rede-ricapg-e-fluxos-de-coleta">4.
+<h2 id="governança-multiprograma-isolamento-de-dados-e-usabilidade-contextual-opção-b">4.
+Governança Multiprograma, Isolamento de Dados e Usabilidade Contextual
+(Opção B)</h2>
+<p>Nas universidades públicas e confessionais brasileiras (federais,
+estaduais e comunitárias), é a regra institucional que os diferentes
+Programas de Pós-Graduação pertençam a Unidades Universitárias distintas
+(ex: Instituto de Computação, Instituto de Física, Faculdade de
+Medicina, Escola de Engenharia).</p>
+<p>Para responder a este desafio regulatório e operacional, o
+ecossistema <code>l10n_br_openeducat_capes</code> adota a arquitetura
+<strong>Multi-Program Contextual Soberano (Opção B)</strong>:</p>
+<h3 id="soberania-institucional-unificada-vs.-segregação-de-domínio">4.1.
+Soberania Institucional Unificada vs. Segregação de Domínio</h3>
+<ul>
+<li><strong>A IES como Empresa Única
+(<code>res.company</code>):</strong> Perante o MEC, a CAPES e os
+validadores do Diploma Digital XML (Portaria MEC nº 70/2025), a
+instituição é una. A IES detém o código e-MEC único, o CNPJ
+institucional da mantenedora e a competência de emissão e registro de
+graus acadêmicos.</li>
+<li><strong>Segregação Canônica por Programa
+(<code>op.program.capes</code>):</strong> Todas as entidades vivas da
+pós-graduação — cursos, versões curriculares, turmas, discentes,
+livros-razão de créditos, bancas de tese, produtos PTT, editais de
+seleção e reuniões de CPG — orbitam sob a chave estrangeira obrigatória
+do Programa CAPES correspondente.</li>
+</ul>
+<h3 id="matriz-de-perfis-e-isolamento-de-privacidade-row-level-security">4.2.
+Matriz de Perfis e Isolamento de Privacidade (Row-Level Security)</h3>
+<p>O controle de acesso é executado no nível mais profundo do ORM do
+Odoo, através de regras de registro (<code>ir.rule</code> no
+PostgreSQL), garantindo isolamento estrito: 1. <strong>Alunos (Portal do
+Discente):</strong> Enxergam unicamente seus próprios dados pessoais,
+matrículas, histórico de créditos no livro-razão, plano de trabalho,
+ritos de banca e candidaturas a bolsas de estudo. O acesso a dados de
+outros discentes é matematicamente impossível via ORM. 2.
+<strong>Docentes e Orientadores:</strong> Acesso restrito aos discentes
+sob sua orientação ou coorientação direta, bancas examinadoras das quais
+é membro nomeado e projetos de pesquisa que coordena ou integra. 3.
+<strong>Coordenação de PPG:</strong> Acesso total aos dados acadêmicos,
+bancas, editais e deliberações da CPG restrito estritamente ao seu
+programa de pós-graduação (<code>program_id</code>). 4.
+<strong>Secretaria de Unidade (Mono ou Multi-Programa):</strong> *
+<em>Mono-programa:</em> A secretaria que atende a uma unidade isolada
+visualiza apenas os discentes e turmas do respectivo programa. *
+<em>Multi-programa:</em> Secretarias compartilhadas (ex: secretaria de
+Ciências Exatas atendendo PPGCC e MPESI) possuem acesso aos programas
+autorizados (<code>allowed_program_ids</code>), comutando entre eles de
+forma limpa. 5. <strong>Administração Central (Pró-Reitoria de
+Pós-Graduação / PRPG):</strong> Acesso de governança unificada
+(<code>is_central_admin</code>), possibilitando auditoria multicampi
+global e consolidação para o Censo da Educação Superior e Coleta
+CAPES.</p>
+<h3 id="usabilidade-ergonômica-os-mecanismos-de-alternância-de-programa">4.3.
+Usabilidade Ergonômica: Os Mecanismos de Alternância de Programa</h3>
+<p>Para evitar que secretarias e coordenadores se percam em filtros
+manuais ou contaminem cadastros cruzados, o sistema oferece dois pontos
+canônicos de alternância de contexto:</p>
+<ol type="1">
+<li><strong>Seletor Superior Reativo em JavaScript OWL
+(<code>ProgramMenu</code> / Systray):</strong>
+<ul>
+<li>Fica permanentemente alojado na barra superior do Odoo, ao lado do
+perfil do usuário.</li>
+<li><strong>Instituições Multiprograma:</strong> Exibe o badge do
+programa ativo com indicador de menu dropdown (<code>▼</code>). Clicar
+no seletor lista instantaneamente todos os programas autorizados
+(<code>allowed_program_ids</code>). A seleção de um novo programa invoca
+o método RPC <code>action_switch_program</code>, atualizando a sessão e
+recarregando os registros em tela de forma imediata, sem necessidade de
+logout.</li>
+<li><strong>Instituições Monoprograma (ex: MPTRCS / IPEN):</strong> O
+seletor detecta a existência de programa único e comporta-se de forma
+estática e discreta, auto-atribuindo o programa ativo a todos os
+usuários e exigindo <strong>zero cliques adicionais</strong>, sem
+poluição visual ou alteração na rotina operacional.</li>
+<li><strong>Administradores Centrais (PRPG):</strong> O seletor
+disponibiliza a visualização consolidada global (“Todos os
+Programas”).</li>
+</ul></li>
+<li><strong>Alternância pelo Menu Canônico
+<code>CAPES/PPG -&gt; Programas (SNPG)</code>:</strong>
+<ul>
+<li><strong>Visualização em Lista (<code>tree view</code>):</strong>
+Coluna dedicada com selo (<em>badge</em>) visual indicando o
+<code>Programa Ativo</code> (destaque verde) ou <code>Disponível</code>
+(cinza). Cada linha possui um botão de clique direto <strong>“Alternar
+para este Programa”</strong> (ícone <code>fa-exchange</code>). Além
+disso, ao selecionar uma ou mais caixas de seleção, o menu <strong>Ações
+(Actions)</strong> oferece a opção em lote <em>“Alternar para esse
+Programa”</em>.</li>
+<li><strong>Visualização em Formulário
+(<code>form view</code>):</strong> Ao abrir os detalhes de um programa
+permitido que não esteja ativo na sessão corrente, o cabeçalho
+(<code>&lt;header&gt;</code>) disponibiliza o botão de ação primário
+<strong>“Alternar para este Programa”</strong>. Quando o formulário
+aberto corresponde ao programa ativo, o sistema exibe no canto superior
+direito uma fita gráfica (<code>web_ribbon</code>) com o título
+<strong>“Programa Ativo”</strong>.</li>
+</ul></li>
+<li><strong>Propagação Automática do Contexto Ativo:</strong>
+<ul>
+<li>Qualquer novo registro criado (como discente
+<code>op.student</code>, turma <code>op.batch</code>, disciplina
+<code>op.subject</code>, ata de CPG <code>op.cpg.meeting</code> ou
+edital de bolsa) herda de forma automática o
+<code>current_program_id</code> da sessão ativa, garantindo integridade
+e conformidade regulatória sem intervenção manual.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="macrodinâmica-da-rede-ricapg-e-fluxos-de-coleta">5.
 Macrodinâmica da Rede RICA|PG e Fluxos de Coleta</h2>
 <p>A coordenação das conexões em rede e o reuso de dados ocorrem através
 da Rede de Integração da Comunidade Acadêmica da Pós-Graduação
@@ -337,7 +464,8 @@ de informações sem intervenção humana.</p>
 |  OpenEduCat ERP Odoo  |======================&gt;|     DSpace Server     |
 |   (Dados Acadêmicos)  |    e Injeção de PIDs  | (Teses, Dissert. PTT) |
 +-----------------------+                       +-----------------------+</code></pre>
-<h2 id="fases-de-implementação-e-homologação-técnica-t1-a-t5">5. Fases
+<hr />
+<h2 id="fases-de-implementação-e-homologação-técnica-t1-a-t5">6. Fases
 de Implementação e Homologação Técnica (T1 a T5)</h2>
 <p>A adequação institucional do ecossistema segue rigorosamente as cinco
 etapas procedimentais e progressivas estipuladas pelo Guia Orientador

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_capes_scholarship_edital_list" model="ir.ui.view">
+        <field name="name">capes.scholarship.edital.list</field>
+        <field name="model">capes.scholarship.edital</field>
+        <field name="arch" type="xml">
+            <list string="Editais de Concessão de Bolsas">
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="academic_year_id"/>
+                <field name="level"/>
+                <field name="slots_total"/>
+                <field name="slots_open_competition"/>
+                <field name="slots_affirmative_action"/>
+                <field name="total_applications"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="state" widget="badge"
+                       decoration-info="state in ('open', 'under_review')"
+                       decoration-warning="state in ('preliminary', 'appeals')"
+                       decoration-success="state == 'homologated'"
+                       decoration-muted="state in ('draft', 'closed')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_capes_scholarship_edital_form" model="ir.ui.view">
+        <field name="name">capes.scholarship.edital.form</field>
+        <field name="model">capes.scholarship.edital</field>
+        <field name="arch" type="xml">
+            <form string="Edital de Bolsas de Estudo">
+                <header>
+                    <button name="action_open_edital" string="Abrir Inscrições" type="object"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_start_evaluation" string="Distribuir a Revisores" type="object"
+                            class="oe_highlight" invisible="state != 'open'"/>
+                    <button name="action_publish_preliminary" string="Publicar Resultado Preliminar" type="object"
+                            class="oe_highlight" invisible="state != 'under_review'"/>
+                    <button name="action_open_appeals" string="Abrir Prazo Recursal" type="object"
+                            invisible="state != 'preliminary'"/>
+                    <button name="action_homologate_results" string="Homologar Resultado (CPG)" type="object"
+                            class="oe_highlight" invisible="state not in ('preliminary', 'appeals')"/>
+                    <button name="action_close_edital" string="Encerrar Edital" type="object"
+                            invisible="state != 'homologated'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,open,under_review,preliminary,appeals,homologated,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Número / Identificação do Edital"/>
+                        <h1><field name="name" placeholder="Ex: Edital nº 06/2026 - Bolsas CAPES/IPEN"/></h1>
+                    </div>
+                    <group>
+                        <group string="Dados do Programa e Cota">
+                            <field name="course_id" readonly="state != 'draft'"/>
+                            <field name="academic_year_id" readonly="state != 'draft'"/>
+                            <field name="quota_id" domain="[('course_id', '=', course_id), ('available_slots', '>', 0)]"
+                                   readonly="state != 'draft'"/>
+                            <field name="rubric_id" readonly="state != 'draft'"/>
+                            <field name="level"/>
+                        </group>
+                        <group string="Quadro de Bolsas e Ações Afirmativas">
+                            <field name="slots_total" readonly="state != 'draft'"/>
+                            <field name="slots_open_competition" readonly="state != 'draft'"/>
+                            <field name="slots_affirmative_action" readonly="state != 'draft'"/>
+                            <field name="revert_unused_affirmative_slots" readonly="state != 'draft'"/>
+                            <field name="total_applications"/>
+                        </group>
+                        <group string="Cronograma Oficial">
+                            <field name="date_start" readonly="state != 'draft'"/>
+                            <field name="date_end" readonly="state != 'draft'"/>
+                            <field name="date_preliminary_result"/>
+                            <field name="date_appeals_end"/>
+                            <field name="date_final_result"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Candidaturas Recebidas">
+                            <field name="application_ids" readonly="state in ('draft', 'closed')">
+                                <list decoration-success="state == 'awarded'" decoration-danger="state == 'rejected'">
+                                    <field name="ranking_position"/>
+                                    <field name="name"/>
+                                    <field name="student_id"/>
+                                    <field name="faculty_id"/>
+                                    <field name="quota_type"/>
+                                    <field name="dedication_mode"/>
+                                    <field name="reviewer1_id"/>
+                                    <field name="reviewer2_id"/>
+                                    <field name="self_score"/>
+                                    <field name="reviewer1_score"/>
+                                    <field name="reviewer2_score"/>
+                                    <field name="final_score"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Disposições Gerais">
+                            <field name="notes" placeholder="Regulamentos do edital, critérios de desempate, etc..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

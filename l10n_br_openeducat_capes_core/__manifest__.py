@@ -29,7 +29,9 @@
         'openeducat_core',
     ],
     'data': [
+        'security/capes_security.xml',
         'security/ir.model.access.csv',
+        'security/capes_rules.xml',
         'data/ir_sequence_data.xml',
         'views/res_company_views.xml',
         'views/res_partner_views.xml',
@@ -37,7 +39,14 @@
         'views/op_program_concentration_views.xml',
         'views/op_faculty_views.xml',
         'views/op_student_views.xml',
+        'views/res_users_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'l10n_br_openeducat_capes_core/static/src/systray/program_menu.xml',
+            'l10n_br_openeducat_capes_core/static/src/systray/program_menu.js',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,

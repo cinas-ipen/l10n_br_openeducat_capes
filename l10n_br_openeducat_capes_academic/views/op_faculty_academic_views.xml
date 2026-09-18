@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Extensão da Tree/List View de Professores para Exibir Programas PPG -->
+    <record id="view_op_faculty_tree_capes_programs" model="ir.ui.view">
+        <field name="name">op.faculty.list.capes.programs</field>
+        <field name="model">op.faculty</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_faculty_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="programs_summary" string="Programas PPG (Filiações)" optional="show"/>
+                <field name="permanent_programs_count" string="Vínc. Permanentes" optional="hide"/>
+                <field name="capes_program_compliance" string="Conformidade CAPES 81/16" optional="hide"
+                       decoration-success="capes_program_compliance == 'compliant'"
+                       decoration-warning="capes_program_compliance == 'warning'"
+                       decoration-danger="capes_program_compliance == 'exceeded'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extensão da Form View de Professores (OpenEduCat Core + CAPES) -->
     <record id="view_op_faculty_form_academic_360" model="ir.ui.view">
         <field name="name">op.faculty.form.academic.360</field>
         <field name="model">op.faculty</field>
@@ -12,17 +30,109 @@
                 </button>
             </xpath>
 
-            <!-- Aba de Credenciamento CPG -->
+            <!-- Aba de Credenciamento e Filiação a PPGs (CAPES) -->
             <xpath expr="//notebook" position="inside">
-                <page string="Credenciamento CPG" name="faculty_accreditations_page">
+                <page string="Credenciamento e Filiação a PPGs (CAPES)" name="faculty_accreditations_page">
+                    <group string="Conformidade Regulatória (Portaria CAPES nº 81/2016)">
+                        <group>
+                            <field name="programs_summary" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="permanent_programs_count" readonly="1"/>
+                            <field name="capes_program_compliance" readonly="1"
+                                   decoration-success="capes_program_compliance == 'compliant'"
+                                   decoration-warning="capes_program_compliance == 'warning'"
+                                   decoration-danger="capes_program_compliance == 'exceeded'"/>
+                        </group>
+                    </group>
                     <field name="program_link_ids" nolabel="1">
-                        <list>
-                            <field name="program_id"/>
-                            <field name="active_advisees_count"/>
+                        <list editable="bottom">
+                            <field name="link_type"/>
+                            <field name="program_id" invisible="link_type != 'internal'" required="link_type == 'internal'"/>
+                            <field name="external_ies_name" invisible="link_type != 'external'" required="link_type == 'external'" placeholder="Ex: USP, UNICAMP"/>
+                            <field name="external_program_name" invisible="link_type != 'external'" required="link_type == 'external'" placeholder="Ex: Ciência da Computação"/>
+                            <field name="external_snpg_code" invisible="link_type != 'external'" placeholder="Ex: 33002010001P0"/>
+                            <field name="faculty_category"/>
+                            <field name="weekly_hours"/>
+                            <field name="active_advisees_count" readonly="1" invisible="link_type != 'internal'"/>
                         </list>
                     </field>
                 </page>
             </xpath>
+
+            <!-- Exibir resumo de filiação também na aba Parâmetros GoPG / CAPES -->
+            <xpath expr="//page[@name='capes_faculty_info']" position="inside">
+                <group string="Filiação a Programas de Pós-Graduação (CAPES)">
+                    <group>
+                        <field name="programs_summary" readonly="1"/>
+                        <field name="program_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="permanent_programs_count" readonly="1"/>
+                        <field name="capes_program_compliance" readonly="1"
+                               decoration-success="capes_program_compliance == 'compliant'"
+                               decoration-warning="capes_program_compliance == 'warning'"
+                               decoration-danger="capes_program_compliance == 'exceeded'"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Views específicas para op.faculty.program.link -->
+    <record id="view_op_faculty_program_link_tree" model="ir.ui.view">
+        <field name="name">op.faculty.program.link.list</field>
+        <field name="model">op.faculty.program.link</field>
+        <field name="arch" type="xml">
+            <list string="Vínculos com Programas de Pós-Graduação">
+                <field name="faculty_id"/>
+                <field name="link_type"/>
+                <field name="program_id"/>
+                <field name="external_ies_name"/>
+                <field name="external_program_name"/>
+                <field name="faculty_category"/>
+                <field name="weekly_hours"/>
+                <field name="active_advisees_count"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_faculty_program_link_form" model="ir.ui.view">
+        <field name="name">op.faculty.program.link.form</field>
+        <field name="model">op.faculty.program.link</field>
+        <field name="arch" type="xml">
+            <form string="Vínculo com Programa de Pós-Graduação">
+                <sheet>
+                    <group>
+                        <group string="Docente e Natureza do Vínculo">
+                            <field name="faculty_id"/>
+                            <field name="link_type"/>
+                            <field name="faculty_category"/>
+                            <field name="weekly_hours"/>
+                        </group>
+                        <group string="Programa de Pós-Graduação">
+                            <field name="program_id" invisible="link_type != 'internal'" required="link_type == 'internal'"/>
+                            <field name="external_ies_name" invisible="link_type != 'external'" required="link_type == 'external'"/>
+                            <field name="external_program_name" invisible="link_type != 'external'" required="link_type == 'external'"/>
+                            <field name="external_snpg_code" invisible="link_type != 'external'"/>
+                            <field name="active_advisees_count" invisible="link_type != 'internal'"/>
+                        </group>
+                    </group>
+                    <notebook invisible="link_type != 'internal'">
+                        <page string="Histórico de Credenciamento CPG (Livro-Razão)" name="ledger_page">
+                            <field name="category_ledger_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="category"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="document_ref"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
         </field>
     </record>
 </odoo>

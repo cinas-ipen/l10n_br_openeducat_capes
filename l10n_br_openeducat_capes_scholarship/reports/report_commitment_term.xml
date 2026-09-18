@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_scholarship_commitment_term" model="ir.actions.report">
+        <field name="name">Termo de Compromisso de Bolsa</field>
+        <field name="model">capes.scholarship.assignment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_br_openeducat_capes_scholarship.report_commitment_term_document</field>
+        <field name="report_file">l10n_br_openeducat_capes_scholarship.report_commitment_term_document</field>
+        <field name="binding_model_id" ref="model_capes_scholarship_assignment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_commitment_term_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page" style="font-family: Arial, sans-serif; padding: 30px; font-size: 11pt; line-height: 1.6;">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <h3 style="margin: 0; text-transform: uppercase;">Instituto de Pesquisas Energéticas e Nucleares - IPEN/CNEN</h3>
+                        <h4 style="margin: 5px 0;">Comissão de Pós-Graduação - Secretaria do Programa</h4>
+                        <h2 style="margin-top: 15px; border-bottom: 2px solid #000; padding-bottom: 5px;">TERMO DE COMPROMISSO DE BOLSISTA</h2>
+                    </div>
+
+                    <p>
+                        Pelo presente instrumento, eu, <strong><span t-field="doc.student_id.name"/></strong>, 
+                        inscrito(a) no CPF nº <strong><span t-field="doc.student_id.partner_id.vat"/></strong>, 
+                        regularmente matriculado(a) no Programa de Pós-Graduação <strong><span t-field="doc.course_id.name"/></strong>, 
+                        nível <strong><span t-field="doc.quota_id.level"/></strong>, sob a orientação do(a) Prof.(a) 
+                        <strong><span t-field="doc.application_id.faculty_id.name"/></strong>, 
+                        declaro aceitar a concessão da bolsa de estudos da cota 
+                        <strong><span t-field="doc.sponsor_id.name"/></strong> (<span t-field="doc.sponsor_id.code"/>), 
+                        comprometendo-me a observar as normas regimentais da IES e da Agência de Fomento, em especial:
+                    </p>
+
+                    <ol style="margin-top: 15px; margin-bottom: 15px;">
+                        <li>Dedicar-se com exclusividade ou nos termos autorizados pela Deliberação CPG de <span t-field="doc.application_id.cpg_approval_date"/> às atividades acadêmicas do curso;</li>
+                        <li>Manter frequência igual ou superior a 80% (oitenta por cento) nas atividades e disciplinas, com ateste semestral do Orientador;</li>
+                        <li>Apresentar relatórios anuais de atividades e prestar contas do plano de trabalho de pesquisa;</li>
+                        <li>Cumprir com o estágio de docência obrigatório para bolsistas, nos termos da Portaria CAPES nº 221/2025;</li>
+                        <li>Não acumular a presente bolsa com outra remuneração não autorizada expressamente pela Portaria CAPES nº 133/2023 e instruções correlatas;</li>
+                        <li>Ressarcir os valores despendidos caso haja desistência ou abandono injustificado do curso.</li>
+                    </ol>
+
+                    <div style="margin-top: 30px;">
+                        <p><strong>Início da Vigência:</strong> <span t-field="doc.date_start"/></p>
+                        <p><strong>Previsão de Conclusão da Bolsa:</strong> <span t-field="doc.date_end_expected"/></p>
+                        <p><strong>Limite Regulamentar:</strong> <span t-field="doc.max_allowed_months"/> meses</p>
+                    </div>
+
+                    <div style="margin-top: 60px; display: flex; justify-content: space-between;">
+                        <div style="width: 45%; text-align: center; border-top: 1px solid #000; padding-top: 5px;">
+                            <span t-field="doc.student_id.name"/><br/>
+                            Discente Bolsista
+                        </div>
+                        <div style="width: 45%; text-align: center; border-top: 1px solid #000; padding-top: 5px;">
+                            Coordenação do Programa / CPG<br/>
+                            Visto da Secretaria
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

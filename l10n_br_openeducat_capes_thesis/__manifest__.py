@@ -32,6 +32,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/thesis_rules.xml',
         'views/thesis_views.xml',
         'views/thesis_committee_views.xml',
         'views/op_student_thesis_views.xml',

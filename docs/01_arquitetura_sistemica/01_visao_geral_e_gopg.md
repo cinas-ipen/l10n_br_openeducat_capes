@@ -1,5 +1,7 @@
 # Documento 01: Visão Geral Sistêmica e Paradigma GoPG
 
+*Iniciativa de Pesquisa e Desenvolvimento: CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclear e Saúde (IPEN-CNEN/SP)*
+
 ## 1. Contexto Regulatório do Stricto Sensu Nacional
 A administração acadêmica da pós-graduação *Stricto Sensu* no Brasil diferencia-se substancialmente dos modelos lineares norte-americanos e europeus, nos quais os sistemas de Enterprise Resource Planning (ERP) educacionais tradicionais são baseados. O ecossistema brasileiro exige o cumprimento de uma teia altamente complexa de resoluções internas combinadas a diretrizes rígidas das agências federais de fomento e regulação. 
 
@@ -32,7 +34,46 @@ O GoPG classifica a infraestrutura analítica e tecnológica das instituições 
 * **Definição e Escopo:** Consiste no preenchimento manual de formulários diretamente na interface Web da Plataforma Sucupira.
 * **Diretriz de Descontinuidade:** O GoPG visa erradicar progressivamente a dependência deste método arcaico. A persistência de erros ou incompletudes que forcem o uso da Fonte Bronze gera retrabalho burocrático e eleva o risco de não conformidade nos fechamentos estatísticos.
 
-## 4. Macrodinâmica da Rede RICA|PG e Fluxos de Coleta
+## 4. Governança Multiprograma, Isolamento de Dados e Usabilidade Contextual (Opção B)
+
+Nas universidades públicas e confessionais brasileiras (federais, estaduais e comunitárias), é a regra institucional que os diferentes Programas de Pós-Graduação pertençam a Unidades Universitárias distintas (ex: Instituto de Computação, Instituto de Física, Faculdade de Medicina, Escola de Engenharia). 
+
+Para responder a este desafio regulatório e operacional, o ecossistema `l10n_br_openeducat_capes` adota a arquitetura **Multi-Program Contextual Soberano (Opção B)**:
+
+### 4.1. Soberania Institucional Unificada vs. Segregação de Domínio
+* **A IES como Empresa Única (`res.company`):** Perante o MEC, a CAPES e os validadores do Diploma Digital XML (Portaria MEC nº 70/2025), a instituição é una. A IES detém o código e-MEC único, o CNPJ institucional da mantenedora e a competência de emissão e registro de graus acadêmicos.
+* **Segregação Canônica por Programa (`op.program.capes`):** Todas as entidades vivas da pós-graduação — cursos, versões curriculares, turmas, discentes, livros-razão de créditos, bancas de tese, produtos PTT, editais de seleção e reuniões de CPG — orbitam sob a chave estrangeira obrigatória do Programa CAPES correspondente.
+
+### 4.2. Matriz de Perfis e Isolamento de Privacidade (Row-Level Security)
+O controle de acesso é executado no nível mais profundo do ORM do Odoo, através de regras de registro (`ir.rule` no PostgreSQL), garantindo isolamento estrito:
+1. **Alunos (Portal do Discente):** Enxergam unicamente seus próprios dados pessoais, matrículas, histórico de créditos no livro-razão, plano de trabalho, ritos de banca e candidaturas a bolsas de estudo. O acesso a dados de outros discentes é matematicamente impossível via ORM.
+2. **Docentes e Orientadores:** Acesso restrito aos discentes sob sua orientação ou coorientação direta, bancas examinadoras das quais é membro nomeado e projetos de pesquisa que coordena ou integra.
+3. **Coordenação de PPG:** Acesso total aos dados acadêmicos, bancas, editais e deliberações da CPG restrito estritamente ao seu programa de pós-graduação (`program_id`).
+4. **Secretaria de Unidade (Mono ou Multi-Programa):**
+   * *Mono-programa:* A secretaria que atende a uma unidade isolada visualiza apenas os discentes e turmas do respectivo programa.
+   * *Multi-programa:* Secretarias compartilhadas (ex: secretaria de Ciências Exatas atendendo PPGCC e MPESI) possuem acesso aos programas autorizados (`allowed_program_ids`), comutando entre eles de forma limpa.
+5. **Administração Central (Pró-Reitoria de Pós-Graduação / PRPG):** Acesso de governança unificada (`is_central_admin`), possibilitando auditoria multicampi global e consolidação para o Censo da Educação Superior e Coleta CAPES.
+
+### 4.3. Usabilidade Ergonômica: Os Mecanismos de Alternância de Programa
+
+Para evitar que secretarias e coordenadores se percam em filtros manuais ou contaminem cadastros cruzados, o sistema oferece dois pontos canônicos de alternância de contexto:
+
+1. **Seletor Superior Reativo em JavaScript OWL (`ProgramMenu` / Systray):**
+   * Fica permanentemente alojado na barra superior do Odoo, ao lado do perfil do usuário.
+   * **Instituições Multiprograma:** Exibe o badge do programa ativo com indicador de menu dropdown (`▼`). Clicar no seletor lista instantaneamente todos os programas autorizados (`allowed_program_ids`). A seleção de um novo programa invoca o método RPC `action_switch_program`, atualizando a sessão e recarregando os registros em tela de forma imediata, sem necessidade de logout.
+   * **Instituições Monoprograma (ex: MPTRCS / IPEN):** O seletor detecta a existência de programa único e comporta-se de forma estática e discreta, auto-atribuindo o programa ativo a todos os usuários e exigindo **zero cliques adicionais**, sem poluição visual ou alteração na rotina operacional.
+   * **Administradores Centrais (PRPG):** O seletor disponibiliza a visualização consolidada global ("Todos os Programas").
+
+2. **Alternância pelo Menu Canônico `CAPES/PPG -> Programas (SNPG)`:**
+   * **Visualização em Lista (`tree view`):** Coluna dedicada com selo (*badge*) visual indicando o `Programa Ativo` (destaque verde) ou `Disponível` (cinza). Cada linha possui um botão de clique direto **"Alternar para este Programa"** (ícone `fa-exchange`). Além disso, ao selecionar uma ou mais caixas de seleção, o menu **Ações (Actions)** oferece a opção em lote *"Alternar para esse Programa"*.
+   * **Visualização em Formulário (`form view`):** Ao abrir os detalhes de um programa permitido que não esteja ativo na sessão corrente, o cabeçalho (`<header>`) disponibiliza o botão de ação primário **"Alternar para este Programa"**. Quando o formulário aberto corresponde ao programa ativo, o sistema exibe no canto superior direito uma fita gráfica (`web_ribbon`) com o título **"Programa Ativo"**.
+
+3. **Propagação Automática do Contexto Ativo:**
+   * Qualquer novo registro criado (como discente `op.student`, turma `op.batch`, disciplina `op.subject`, ata de CPG `op.cpg.meeting` ou edital de bolsa) herda de forma automática o `current_program_id` da sessão ativa, garantindo integridade e conformidade regulatória sem intervenção manual.
+
+---
+
+## 5. Macrodinâmica da Rede RICA|PG e Fluxos de Coleta
 A coordenação das conexões em rede e o reuso de dados ocorrem através da Rede de Integração da Comunidade Acadêmica da Pós-Graduação (RICA|PG). A arquitetura estabelece que os dados devem nascer unicamente na sua fonte originária mais confiável. 
 
 O OpenEduCat atua como a espinha dorsal de validação semântica: ele unifica as regras acadêmicas e os Identificadores Persistentes (PIDs), garantindo que no momento do depósito legal no DSpace, o discente insira informações pré-auditadas pelo ERP acadêmico. O robô coletor governamental aciona os endpoints da Fonte Prata para cruzar os dados de matrícula com o endpoint OAI-PMH (sob o prefixo customizado `oai_capes`) exposto pela Fonte Ouro, consolidando o pacote de informações sem intervenção humana.
@@ -52,7 +93,9 @@ O OpenEduCat atua como a espinha dorsal de validação semântica: ele unifica a
 +-----------------------+                       +-----------------------+
 ```
 
-## 5. Fases de Implementação e Homologação Técnica (T1 a T5)
+---
+
+## 6. Fases de Implementação e Homologação Técnica (T1 a T5)
 A adequação institucional do ecossistema segue rigorosamente as cinco etapas procedimentais e progressivas estipuladas pelo Guia Orientador oficial da CAPES, condicionando o avanço à aprovação de validadores governamentais:
 
 * **T1: Treinamento e Usabilidade:** Capacitação intensiva das equipes multidisciplinares corporativas (Tecnologia da Informação, bibliotecários curadores e coordenações de PPGs) acerca dos dicionários de metadados, ontologias da DAV e ferramentas de monitoramento de integridade.
@@ -60,3 +103,4 @@ A adequação institucional do ecossistema segue rigorosamente as cinco etapas p
 * **T3: Configuração de Dados:** Mapeamento semântico exaustivo dos campos locais. Desenvolvimento de planilhas matriciais "de / para" e codificação de crosswalks baseados em transformações XSLT no DSpace, em paralelo à estruturação de views SQL e payloads JSON no barramento de integração do OpenEduCat.
 * **T4: Homologação e Testes:** Solicitação de credenciais de escopo temporário junto à agência de fomento. Envio controlado de lotes de dados reais em ambiente de *sandbox* da CAPES para validação de integridade relacional, correção iterativa de falhas de serialização e tratamento de rejeições apontadas pelos validadores automáticos.
 * **T5: Ambiente de Produção:** Ativação definitiva de chaves e Bearer Tokens de produção. Abertura segura e ininterrupta das rotas de API para varredura passiva agendada pela ferramenta federal de extração de dados acadêmicos, operando sob o cumprimento estrito das diretrizes de segurança digital da LGPD.
+

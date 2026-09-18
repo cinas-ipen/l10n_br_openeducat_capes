@@ -1,5 +1,7 @@
 # Documento 02: Topologia do Monorepo e Engenharia de Módulos
 
+*Iniciativa de Pesquisa e Desenvolvimento: CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclear e Saúde (IPEN-CNEN/SP)*
+
 ## 1. Princípios de Design Modular e Domain-Driven Design (DDD) no Odoo
 
 O desenvolvimento da localização brasileira para a pós-graduação *Stricto Sensu* impõe o uso de padrões avançados de arquitetura de software para mitigar acoplamentos destrutivos. O monorepo `l10n_br_openeducat_capes` adota os princípios do Domain-Driven Design (DDD), dividindo as complexidades de negócio em submódulos independentes e isolados no ecossistema Odoo.
@@ -27,15 +29,15 @@ l10n_br_openeducat_capes/
 ├── l10n_br_openeducat_capes_thesis/
 ├── l10n_br_openeducat_capes_ptt/
 ├── l10n_br_openeducat_capes_integration/
-└── l10n_br_openeducat_capes_diploma/
-
+├── l10n_br_openeducat_capes_diploma/
+└── l10n_br_openeducat_capes_scholarship/
 ```
 
 ### 2.1. `l10n_br_openeducat_capes_core`
 
 * **Escopo:** Mapeia a ontologia primária e as entidades estáticas fundamentais do Módulo 01 e Módulo 02 do dicionário de dados da DAV, além da integração com entidades curriculares de base do OpenEduCat (`op.academic.year`, `op.academic.term`, `op.department`, `op.program`, `op.course`, `op.batch`, `op.category`).
 * **Modelos Estendidos/Criados:** `res.company`, `res.partner`, `op.program.capes`, `op.program.concentration.area`, `op.program.research.line`, `op.faculty`, `op.student`.
-* **Responsabilidade Técnica:** Armazenar os códigos SNPG e e-MEC, estruturar os georreferenciamentos de campi, gerenciar áreas de concentração e linhas de pesquisa canônicas, e gerenciar a injeção rígida dos Identificadores Persistentes (PIDs) acadêmicos universais (ORCiD, Lattes, ROR e ISNI). Assegura a unicidade do Registro Acadêmico (RA) perene e inviolável por CPF no âmbito de cada IES (`res.company`), servindo de esteio para a arquitetura multi-vínculo de discentes (Opção B), parsing robusto de prenomes/sobrenomes segundo a onomástica brasileira (`_parse_brazilian_name`) e coleta censitária demográfica completa (filiação, raça/cor, PCD, naturalidade e níveis acadêmicos).
+* **Responsabilidade Técnica:** Armazenar os códigos SNPG e e-MEC, estruturar os georreferenciamentos de campi, gerenciar áreas de concentração e linhas de pesquisa canônicas, e gerenciar a injeção rígida dos Identificadores Persistentes (PIDs) acadêmicos universais (ORCiD, Lattes, ROR e ISNI). Assegura a unicidade do Registro Acadêmico (RA) perene e inviolável por CPF no âmbito de cada IES (`res.company`), servindo de esteio para a arquitetura multi-vínculo de discentes (Opção B), parsing robusto de prenomes/sobrenomes segundo a onomástica brasileira (`_parse_brazilian_name`) e coleta censitária demográfica completa (filiação, raça/cor, PCD, naturalidade e níveis acadêmicos). Registra a filiação do discente ao programa acadêmico através do campo relacional `program_id` (`Many2one` para `op.program.capes`, indexado), exibido no formulário discente na aba "Vínculo Regimental e Proficiências" (logo abaixo do RA) e sincronizado de forma automática com a Versão Regimental (`curriculum_version_id.program_id`).
 
 ### 2.2. `l10n_br_openeducat_capes_admission`
 
@@ -79,6 +81,12 @@ l10n_br_openeducat_capes/
 * **Modelos Estendidos/Criados:** `op.student.transcript.br`.
 * **Responsabilidade Técnica:** Renderizar relatórios QWeb consolidados de históricos parciais/finais auto-autenticados com Hash SHA-256 e QR Code, gerar arquivos XML estruturados de diplomas de pós-graduação e documentação acadêmica digital, e orquestrar rotinas criptográficas Python para aplicação de assinaturas avançadas XAdES ICP-Brasil (Certificado A3/HSM) com Carimbos de Tempo.
 
+### 2.9. `l10n_br_openeducat_capes_scholarship`
+
+* **Escopo:** Governa o livro de cotas institucionais de bolsas (CAPES, CNPq, CNEN, FAPs), editais de distribuição de bolsas, processos avaliativos com múltiplos revisores docentes em paralelo e ciclo de vida de concessão sem gestão financeira direta (Portaria CAPES nº 133/2023 e IN CNEN nº 07/2024).
+* **Modelos Estendidos/Criados:** `capes.scholarship.sponsor`, `capes.scholarship.quota`, `capes.scholarship.rubric`, `capes.scholarship.rubric.item`, `capes.scholarship.edital`, `capes.scholarship.application`, `capes.scholarship.evaluation`, `capes.scholarship.evaluation.line`, `capes.scholarship.assignment`, `op.student` (extensão), `op.faculty` (extensão).
+* **Responsabilidade Técnica:** Operar o saldo de cotas de bolsas sem pagamento financeiro direto pela IES; gerenciar editais parametrizados com reserva de cotas (PPI e Ampla Concorrência) e regras de reversão; viabilizar matriz avaliativa em 4 colunas (Autoavaliação, Revisor 1, Revisor 2 e Consolidação pela CPG) com revisores operando em paralelo; aplicar fórmulas lineares e tetos dinâmicos sem hardcode regimental; verificar limites regulamentares de acúmulo temporal (24m ME / 48m DO) e regras de vínculo empregatício sob deliberação da CPG; gerar termos de compromisso digital e auditar frequências e relatórios anuais.
+
 ## 3. Matriz de Dependências e Manifestos do Odoo (`__manifest__.py`)
 
 Para assegurar a integridade do monorepo e a correta carga de dados no banco relacional PostgreSQL, a árvore de dependências do Odoo é rigorosamente respeitada. Cada submódulo possui um arquivo descriptor `__manifest__.py` indicando suas dependências obrigatórias de inicialização:
@@ -94,7 +102,9 @@ Para assegurar a integridade do monorepo e a correta carga de dados no banco rel
 ^                                │                         |
 |                                │                         |
 [l10n_br_openeducat_capes_academic] <---+│                         |
-^                                |│                        |
+^          ^                     |│                        |
+|          |                     ||                        |
+|          +---------------------+│                        |
 |                                ||                        |
 [l10n_br_openeducat_capes_research]     ||                        |
 ^                                |│                        |
@@ -109,6 +119,9 @@ Para assegurar a integridade do monorepo e a correta carga de dados no banco rel
 ^                                                          |
 |                                                          |
 [l10n_br_openeducat_capes_diploma] -------------------------------+
+^
+|
+[l10n_br_openeducat_capes_scholarship] (core + academic + admission)
 
 ```
 
@@ -124,6 +137,7 @@ Abaixo está a especificação exata das chaves `depends` presentes em cada mani
 | `l10n_br_openeducat_capes_ptt` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_thesis']` | Qualis, Eixos GTPT e Trava PTT |
 | `l10n_br_openeducat_capes_integration` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_ptt']` | Barramento RESTful e OAI-PMH |
 | `l10n_br_openeducat_capes_diploma` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_thesis']` | Conformidade MEC, Teses e Criptografia |
+| `l10n_br_openeducat_capes_scholarship` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_admission']` | Gestão de Cotas, Editais de Bolsa e Pareceres |
 
 ## 4. Modelo de Extensibilidade e Herança Estrita (`_inherit`)
 
@@ -133,3 +147,38 @@ A arquitetura baseia-se prioritariamente no mecanismo de herança de tabelas e o
 * **Onomástica Brasileira e Higienização de Nomes (`_parse_brazilian_name`):** Algoritmo inteligente que particiona nomes completos garantindo a presença do `first_name`, `middle_name` e `last_name` sem deixar campos nulos na presença de sobrenomes compostos, e garantindo a unicidade nominal de 100% dos discentes e docentes em nível de coorte/turma.
 * **Alinhamento com a Configuração Nativa OpenEduCat:** Total compatibilidade e preenchimento dos menus do módulo base (`op.academic.year`, `op.academic.term`, `op.department`, `op.program.level`, `op.program`, `op.course`, `op.batch`, `op.category`), permitindo que a secretaria e a coordenação operem a suíte acadêmica em harmonia com as extensões da CAPES.
 * **Herança Funcional de Workflow:** Submódulos avançados estendem as máquinas de estado originais reescrevendo métodos Python em instâncias como `op.admission.register`, injetando decoradores `@api.constrains` para bloquear transições de estado lineares caso inconsistências com regulamentos ou ausência de validação de proficiências sejam detectadas no banco de dados.
+
+## 5. Arquitetura Técnica de Isolamento Multiprograma e Contexto Ativo (Opção B)
+
+Para atender a universidades descentralizadas mantendo uma única pessoa jurídica soberana (`res.company`), o monorepo adota o isolamento multiprograma na camada de segurança e contexto da aplicação.
+
+### 5.1. Extensão de Usuários e Sessão (`res.users`)
+* `allowed_program_ids` (Many2many com `op.program.capes`): define o conjunto de programas de pós-graduação sobre os quais o usuário tem credenciais de acesso autorizadas.
+* `current_program_id` (Many2one com `op.program.capes`): programa ativo na sessão corrente do usuário.
+* `is_central_admin` (Boolean): indica perfil de Pró-Reitoria / TI Central, com visão consolidada e sem restrição de filtros.
+* `action_switch_program(program_id)`: método RPC que valida permissões, atualiza `current_program_id` e recarrega o contexto da interface web sem logout.
+* `_get_session_info()`: estendido para injetar `current_program_id`, `allowed_program_ids` e `is_central_admin` no payload inicial da sessão web do Odoo.
+
+### 5.2. Grupos de Segurança Hierárquicos
+* **Administrador Central de Pós-Graduação (`group_capes_central_admin`):** Pertence à Pró-Reitoria de Pós-Graduação ou administração central da IES. Visualiza e administra todos os programas, unidades e relatórios integrados.
+* **Coordenador de Programa de Pós-Graduação (`group_capes_program_coordinator`):** Gestão acadêmica e colegiada estrita ao seu programa (ou programas permitidos).
+* **Secretaria de Programa de Pós-Graduação (`group_capes_program_secretary`):** Operação cotidiana de matrículas, turmas, requerimentos e cadastros. Pode ter permissão para um ou mais programas, alternando entre eles pelo seletor de contexto.
+* **Corpo Docente (`openeducat_core.group_op_faculty`):** Visualiza discentes sob sua orientação, disciplinas atribuídas e bancas examinadoras.
+* **Corpo Discente (`base.group_portal`):** Isolamento absoluto estrito à sua própria identidade e histórico via chave de discente (`user.id == student_id.user_id`).
+
+### 5.3. Camada de Frontend OWL e Interfaces de Alternância de Programa
+* **Componente `ProgramMenu` (Systray):** Widget JavaScript OWL registrado na barra superior do Odoo (`web.systray`).
+  * Para usuários multiprograma: exibe o badge do programa ativo e menu dropdown com a lista de programas autorizados. A seleção invoca `action_switch_program` e recarrega a visualização ativa.
+  * Para instituições de programa único (ex: MPTRCS / IPEN): exibe o badge estático com o nome do programa, sem abrir dropdown e sem exigir cliques adicionais, garantindo 100% de transparência operacional.
+  * Para administradores centrais: inclui a opção "Todos os Programas (Consolidado)".
+* **Alternância Integrada em `op.program.capes` (Views XML):**
+  * **Visualização em Lista (`tree view`):** Coluna com status badge (`Programa Ativo` / `Disponível`), botão inline direto de alternância (`fa-exchange`) e ação coletiva *"Alternar para esse Programa"* no menu **Ações (Actions)**.
+  * **Visualização em Formulário (`form view`):** Botão primário no cabeçalho `<header>` *"Alternar para este Programa"* para programas não ativos e selo gráfico em fita `web_ribbon` (**"Programa Ativo"**) quando o programa em exibição coincide com a sessão de trabalho.
+
+### 5.4. Regras de Registro (`ir.rule`) e Indexação Relacional
+* Todo modelo de dados operacional possui chave relacional para `program_id` (direta ou computada e armazenada com `index=True`):
+  * `op.batch`, `op.course`, `op.curriculum.version`, `op.student.credit.ledger`, `op.academic.request`, `op.cpg.meeting`, `op.admission.register`, `op.admission.edital`, `capes.thesis`, `capes.ptt.product`, `capes.scholarship.edital`, `capes.scholarship.quota`, etc.
+* As regras de registro aplicam filtros restritivos:
+  * Administrador Central: `[(1, '=', 1)]` (irrestrito).
+  * Coordenação e Secretaria: `['|', ('program_id', '=', False), ('program_id', 'in', user.allowed_program_ids.ids)]` com filtro contextual prioritário em `user.current_program_id.id`.
+  * Discente: `[('student_id.user_id', '=', user.id)]` ou `[('user_id', '=', user.id)]`.

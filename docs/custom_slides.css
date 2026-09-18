@@ -1,0 +1,239 @@
+/* Executive Light Theme for CINAS OpenEduCat CAPES GoPG Presentation */
+
+:root {
+  --primary-navy: #0f2744;
+  --primary-blue: #0284c7;
+  --secondary-blue: #0369a1;
+  --accent-gold: #d97706;
+  --accent-emerald: #059669;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+}
+
+.reveal {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-main);
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  color: var(--primary-navy);
+  letter-spacing: -0.02em;
+}
+
+.reveal h1 {
+  font-size: 1.9em;
+  line-height: 1.2;
+  color: #0c4a6e;
+}
+
+.reveal h2 {
+  font-size: 1.35em;
+  color: #0369a1;
+  border-bottom: 2px solid #bae6fd;
+  padding-bottom: 0.25em;
+  margin-top: 0.1em;
+  margin-bottom: 0.45em;
+}
+
+.reveal h3 {
+  font-size: 1.0em;
+  color: #475569;
+  margin-top: 0;
+  margin-bottom: 0.6em;
+  font-weight: 600;
+}
+
+.reveal p, .reveal li {
+  font-size: 0.76em;
+  line-height: 1.45;
+  color: #334155;
+}
+
+/* Executive Cards */
+.card {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 0.7em 0.9em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  margin-bottom: 0.6em;
+}
+
+.card h4 {
+  font-size: 0.9em;
+  margin: 0 0 0.3em 0;
+  color: var(--primary-navy);
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+.card-highlight {
+  background: #f0f9ff;
+  border-color: #7dd3fc;
+}
+
+.card-warning {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.card-success {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.55em;
+  font-size: 0.62em;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3em;
+}
+
+.badge-blue {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.badge-gold {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.badge-emerald {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+/* Metrics & Stats */
+.metric-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 0.8em 0 1.1em 0;
+}
+
+.metric-box {
+  text-align: center;
+  padding: 0.6em 1em;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  flex: 1;
+  margin: 0 0.5em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+
+.metric-num {
+  font-size: 1.9em;
+  font-weight: 800;
+  line-height: 1;
+  color: #0284c7;
+  margin-bottom: 0.2em;
+}
+
+.metric-num-gold {
+  color: #d97706;
+}
+
+.metric-num-green {
+  color: #059669;
+}
+
+.metric-label {
+  font-size: 0.68em;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Layout Grids */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8em;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.7em;
+}
+
+/* Lists */
+.reveal ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+}
+
+.reveal ul li {
+  position: relative;
+  padding-left: 1.2em;
+  margin-bottom: 0.35em;
+}
+
+.reveal ul li::before {
+  content: "■";
+  position: absolute;
+  left: 0;
+  color: var(--primary-blue);
+  font-size: 0.7em;
+  top: 0.15em;
+}
+
+/* Tables */
+.reveal table {
+  width: 100%;
+  font-size: 0.65em;
+  border-collapse: collapse;
+  margin-top: 0.5em;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.reveal table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 0.5em 0.7em;
+  border: 1px solid #cbd5e1;
+  font-weight: 700;
+}
+
+.reveal table td {
+  padding: 0.45em 0.7em;
+  border: 1px solid #e2e8f0;
+}
+
+/* Logo placement */
+.reveal .slide-logo {
+  max-height: 48px !important;
+  top: 15px !important;
+  right: 25px !important;
+}
+
+/* Call to action */
+.cta-box {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: 10px;
+  padding: 1.1em 1.4em;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}

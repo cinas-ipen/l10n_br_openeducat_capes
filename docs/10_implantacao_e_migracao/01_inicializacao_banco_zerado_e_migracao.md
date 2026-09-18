@@ -51,10 +51,11 @@ Ao acessar o sistema pela primeira vez com o usuário administrador:
 2. Acesse o menu **Aplicativos** (`Apps`).
 3. Clique em **Atualizar Lista de Aplicativos** (`Update Apps List`).
 4. Na barra de pesquisa, remova o filtro padrão `Aplicativos` (`Apps`) para exibir todos os módulos técnicos.
-5. Localize e instale o submódulo final da cadeia de dependências:
+5. Localize e instale os submódulos de topo da cadeia de dependências:
    * **`l10n_br_openeducat_capes_diploma`**
-   * *Nota Arquitetural:* Por conta da árvore de dependências do Odoo 19, instalar o módulo de diploma instala automaticamente em cascata:
-     `openeducat_core` $ightarrow$ `l10n_br_openeducat_capes_core` $ightarrow$ `l10n_br_openeducat_capes_admission` $ightarrow$ `l10n_br_openeducat_capes_academic` $ightarrow$ `l10n_br_openeducat_capes_research` $ightarrow$ `l10n_br_openeducat_capes_thesis` $ightarrow$ `l10n_br_openeducat_capes_ptt` $ightarrow$ `l10n_br_openeducat_capes_integration` $ightarrow$ `l10n_br_openeducat_capes_diploma`.
+   * **`l10n_br_openeducat_capes_scholarship`**
+   * *Nota Arquitetural:* A instalação destes dois módulos provisiona automaticamente toda a árvore de 9 submódulos do monorepo:
+     `openeducat_core` $\rightarrow$ `core` $\rightarrow$ `admission` $\rightarrow$ `academic` $\rightarrow$ `research` $\rightarrow$ `thesis` $\rightarrow$ `ptt` $\rightarrow$ `integration` $\rightarrow$ `diploma` & `scholarship`.
 
 ---
 
@@ -63,39 +64,41 @@ Ao acessar o sistema pela primeira vez com o usuário administrador:
 Antes de iniciar qualquer importação de dados, realize as seguintes configurações institucionais na interface:
 
 ### 4.1. Dados da Empresa Mantenedora / IES (`res.company`)
-Acesse **Configurações $ightarrow$ Usuários & Empresas $ightarrow$ Empresas**:
+Acesse **Configurações $\rightarrow$ Usuários & Empresas $\rightarrow$ Empresas**:
 * **Nome:** Nome oficial por extenso da IES (ex: `Universidade XYZQ` ou `Instituto de Pesquisas Energéticas e Nucleares - IPEN-CNEN/SP`).
 * **CNPJ:** CNPJ oficial formatado.
 * **Código e-MEC:** Código institucional no Ministério da Educação.
 * **Endereço Completo:** Logradouro, Bairro, Município, UF, CEP e Código IBGE do município.
 
 ### 4.2. Parametrização de Parâmetros de Sistema (`ir.config_parameter`)
-Em **Configurações $ightarrow$ Técnico $ightarrow$ Parâmetros do Sistema**:
+Em **Configurações $\rightarrow$ Técnico $\rightarrow$ Parâmetros do Sistema**:
 * `web.base.url`: URL canônica acessível pelos usuários (ex: `https://posgraduacao.instituicao.br`).
 * `web.base.url.freeze`: Valor booleano `True` para evitar que o Odoo altere a URL base dinamicamente.
 
 ### 4.3. Configurações Estruturais do OpenEduCat
-Acesse o menu **OpenEduCat $ightarrow$ Configuração** para validar ou cadastrar as entidades estruturais do calendário e organograma acadêmico:
-* **Anos Acadêmicos (`op.academic.year`):** Ex: "2022", "2023", "2024", "2025", "2026" com datas de início e término.
+Acesse o menu **OpenEduCat $\rightarrow$ Configuração** para validar ou cadastrar as entidades estruturais do calendário e organograma acadêmico:
+* **Anos Acadêmicos (`op.academic.year`):** Ex: "2024", "2025", "2026" com datas de início e término.
 * **Períodos / Termos Acadêmicos (`op.academic.term`):** Semestres letivos (ex: "1º Semestre 2024", "2º Semestre 2024").
-* **Departamentos (`op.department`):** Unidades acadêmicas da IES (ex: "Centro de Radiologia e Dosimetria").
-* **Nível e Programa Educacional (`op.program.level` e `op.program`):** Definição de "Mestrado Profissional" e "Mestrado Profissional em Tecnologia das Radiações em Saúde".
+* **Departamentos (`op.department`):** Unidades acadêmicas da IES (ex: "Departamento de Ciência da Computação", "Centro de Radiologia").
+* **Nível e Programa Educacional (`op.program.level` e `op.program`):** Definição de níveis Stricto Sensu e programas gerais.
 * **Cursos (`op.course`):** Vinculados ao programa e departamento.
-* **Turmas / Lotes Discentes (`op.batch`):** Coortes anuais/semestrais (ex: "Turma MPTRCS 2024-1") que amarram os discentes via `op.student.course.batch_id`.
-* **Categorias Discentes (`op.category`):** Segmentações de financiamento e bolsas (ex: "Regular", "Bolsista CAPES", "Bolsista CNPq").
+* **Turmas / Lotes Discentes (`op.batch`):** Coortes com vinculação direta ao programa (`program_id`).
+* **Categorias Discentes (`op.category`):** Segmentações de financiamento (ex: "Regular", "Bolsista CAPES", "Bolsista CNPq").
 
-### 4.4. Usuários Operacionais e Perfis de Acesso
-Acesse **Configurações $ightarrow$ Usuários & Empresas $ightarrow$ Usuários** para cadastrar ou validar os operadores do sistema:
+### 4.4. Usuários Operacionais, Perfis de Acesso e Governança Multiprograma
+Acesse **Configurações $\rightarrow$ Usuários & Empresas $\rightarrow$ Usuários** para cadastrar os operadores com seus devidos grupos e programas autorizados:
 
-| Login | Perfil / Função | Senha Padrão (Ambiente de Testes) | Grupo Odoo 19 |
+| Login | Perfil / Função | Grupo Odoo 19 | Escopo de Programas (`res.users`) |
 | --- | --- | --- | --- |
-| `admin` | Administrador Geral de TI | `admin` | `base.group_system`, `group_op_back_office_admin` |
-| `secretaria` | Secretaria de Pós-Graduação | `secretaria123` | `openeducat_core.group_op_back_office_admin` |
-| `coordenador` | Coordenador do Programa (Docente) | `coordenador123` | `group_op_back_office_admin` + Titular CPG |
-| `vicecoordenador` | Vice-Coordenador do Programa | `vicecoordenador123` | `group_op_back_office_admin` + Titular CPG |
-| `professor` | Docente e Orientador | `professor123` | `openeducat_core.group_op_faculty` |
+| `admin` | Administrador Geral de TI | `base.group_system`, `group_op_back_office_admin` | Global (`is_central_admin = True`) |
+| `prpg_admin` | Pró-Reitoria de Pós-Graduação | `group_capes_central_admin`, `group_op_back_office_admin` | Global (`is_central_admin = True`) |
+| `secretaria` | Secretaria Setorial Monoprograma | `group_capes_program_secretary`, `group_op_back_office_admin` | 1 Programa (`allowed_program_ids`) |
+| `secretaria_multi`| Secretaria Compartilhada Multiprograma | `group_capes_program_secretary`, `group_op_back_office_admin` | N Programas (`allowed_program_ids`) |
+| `coordenador` | Coordenador do Programa | `group_capes_program_coordinator`, `group_op_back_office_admin` | 1 ou + Programas (`allowed_program_ids`) |
+| `professor` | Docente e Orientador | `openeducat_core.group_op_faculty` | Orientandos e Disciplinas |
+| `aluno` | Discente de Pós-Graduação | `base.group_portal` | Estrito ao próprio ID Discente |
 
-*Aviso de Segurança:* Em ambientes de produção pública, substitua imediatamente as senhas padrão por senhas fortes com entropia mínima de 14 caracteres.
+*Aba Governança Pós-Graduação CAPES:* No formulário de cada usuário técnico, configure os campos `allowed_program_ids` (programas permitidos), `current_program_id` (programa inicial padrão) e marque `is_central_admin` para a equipe da Pró-Reitoria.
 
 ---
 

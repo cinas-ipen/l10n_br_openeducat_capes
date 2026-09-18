@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.curriculum.version                        -->
+        <!-- =============================================================== -->
+        <record id="rule_op_curriculum_version_admin" model="ir.rule">
+            <field name="name">Versões Curriculares: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_curriculum_version"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_curriculum_version_coord_sec" model="ir.rule">
+            <field name="name">Versões Curriculares: Coordenação e Secretaria</field>
+            <field name="model_id" ref="model_op_curriculum_version"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.student.credit.ledger                     -->
+        <!-- =============================================================== -->
+        <record id="rule_op_student_credit_ledger_portal" model="ir.rule">
+            <field name="name">Livro-Razão: Discente Acesso Exclusivo (Portal)</field>
+            <field name="model_id" ref="model_op_student_credit_ledger"/>
+            <field name="domain_force">['|', ('student_id.partner_id', '=', user.partner_id.id), ('student_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_op_student_credit_ledger_admin" model="ir.rule">
+            <field name="name">Livro-Razão: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_student_credit_ledger"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_student_credit_ledger_coord_sec" model="ir.rule">
+            <field name="name">Livro-Razão: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="model_op_student_credit_ledger"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.academic.request                          -->
+        <!-- =============================================================== -->
+        <record id="rule_op_academic_request_portal" model="ir.rule">
+            <field name="name">Requerimentos: Discente Solicitante (Portal)</field>
+            <field name="model_id" ref="model_op_academic_request"/>
+            <field name="domain_force">['|', ('student_id.partner_id', '=', user.partner_id.id), ('student_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_op_academic_request_admin" model="ir.rule">
+            <field name="name">Requerimentos: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_academic_request"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_academic_request_coord_sec" model="ir.rule">
+            <field name="name">Requerimentos: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="model_op_academic_request"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.special.credit.incorporation.request      -->
+        <!-- =============================================================== -->
+        <record id="rule_op_special_incorporation_portal" model="ir.rule">
+            <field name="name">Aproveitamento Especial: Discente Solicitante (Portal)</field>
+            <field name="model_id" ref="model_op_special_credit_incorporation_request"/>
+            <field name="domain_force">['|', ('student_id.partner_id', '=', user.partner_id.id), ('student_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_op_special_incorporation_admin" model="ir.rule">
+            <field name="name">Aproveitamento Especial: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_special_credit_incorporation_request"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_special_incorporation_coord_sec" model="ir.rule">
+            <field name="name">Aproveitamento Especial: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="model_op_special_credit_incorporation_request"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.cpg.committee                             -->
+        <!-- =============================================================== -->
+        <record id="rule_op_cpg_committee_admin" model="ir.rule">
+            <field name="name">Comissões CPG: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_cpg_committee"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_cpg_committee_coord_sec" model="ir.rule">
+            <field name="name">Comissões CPG: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="model_op_cpg_committee"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.cpg.meeting                               -->
+        <!-- =============================================================== -->
+        <record id="rule_op_cpg_meeting_admin" model="ir.rule">
+            <field name="name">Reuniões CPG: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_cpg_meeting"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_cpg_meeting_coord_sec" model="ir.rule">
+            <field name="name">Reuniões CPG: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="model_op_cpg_meeting"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.batch                                     -->
+        <!-- =============================================================== -->
+        <record id="rule_op_batch_admin" model="ir.rule">
+            <field name="name">Turmas/Lotes: Administrador Central (Global)</field>
+            <field name="model_id" ref="openeducat_core.model_op_batch"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_batch_coord_sec" model="ir.rule">
+            <field name="name">Turmas/Lotes: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="openeducat_core.model_op_batch"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.student (Coordenação, Secretaria, Docente)-->
+        <!-- =============================================================== -->
+        <record id="rule_op_student_coordinator_secretary" model="ir.rule">
+            <field name="name">Discentes: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="openeducat_core.model_op_student"/>
+            <field name="domain_force">['|', ('course_detail_ids.program_id', '=', user.current_program_id.id), ('course_detail_ids', '=', False)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <record id="rule_op_student_faculty" model="ir.rule">
+            <field name="name">Discentes: Orientadores e Coorientadores</field>
+            <field name="model_id" ref="openeducat_core.model_op_student"/>
+            <field name="domain_force">['|', ('advisor_id.partner_id', '=', user.partner_id.id), ('coadvisor_id.partner_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.course (Cursos)                           -->
+        <!-- =============================================================== -->
+        <record id="rule_op_course_admin" model="ir.rule">
+            <field name="name">Cursos: Administrador Central (Global)</field>
+            <field name="model_id" ref="openeducat_core.model_op_course"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_course_coord_sec" model="ir.rule">
+            <field name="name">Cursos: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="openeducat_core.model_op_course"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.subject (Disciplinas)                     -->
+        <!-- =============================================================== -->
+        <record id="rule_op_subject_admin" model="ir.rule">
+            <field name="name">Disciplinas: Administrador Central (Global)</field>
+            <field name="model_id" ref="openeducat_core.model_op_subject"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_subject_coord_sec" model="ir.rule">
+            <field name="name">Disciplinas: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="openeducat_core.model_op_subject"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.faculty.program.link                      -->
+        <!-- =============================================================== -->
+        <record id="rule_op_faculty_program_link_admin" model="ir.rule">
+            <field name="name">Vínculos Docentes: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_faculty_program_link"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_faculty_program_link_coord_sec_read" model="ir.rule">
+            <field name="name">Vínculos Docentes: Leitura Global para Coordenação e Secretaria</field>
+            <field name="model_id" ref="model_op_faculty_program_link"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <record id="rule_op_faculty_program_link_coord_sec_write" model="ir.rule">
+            <field name="name">Vínculos Docentes: Edição Restrita por Programa (Coordenação e Secretaria)</field>
+            <field name="model_id" ref="model_op_faculty_program_link"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: op.faculty.category.ledger                  -->
+        <!-- =============================================================== -->
+        <record id="rule_op_faculty_category_ledger_admin" model="ir.rule">
+            <field name="name">Livro-Razão Docente: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_op_faculty_category_ledger"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_op_faculty_category_ledger_coord_sec_read" model="ir.rule">
+            <field name="name">Livro-Razão Docente: Leitura Global para Coordenação e Secretaria</field>
+            <field name="model_id" ref="model_op_faculty_category_ledger"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <record id="rule_op_faculty_category_ledger_coord_sec_write" model="ir.rule">
+            <field name="name">Livro-Razão Docente: Edição Restrita por Programa (Coordenação e Secretaria)</field>
+            <field name="model_id" ref="model_op_faculty_category_ledger"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <!-- Desativa a regra genérica permissiva (1=1) do OpenEduCat base -->
+        <record id="openeducat_core.view_students_rule" model="ir.rule">
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>
+
+

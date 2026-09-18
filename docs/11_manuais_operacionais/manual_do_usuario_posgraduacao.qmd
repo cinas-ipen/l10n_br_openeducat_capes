@@ -1,0 +1,561 @@
+---
+title: "Manual Unificado do Usuário da Pós-Graduação Stricto Sensu"
+subtitle: "Guia Operacional Completo por Perfis de Acesso e Protocolo de Implantação em Base Zerada"
+author: "CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclear e Saúde (IPEN-CNEN/SP)"
+date: "2026-09-18"
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: custom_manual.css
+    toc: true
+    toc-depth: 3
+    toc-title: "Sumário do Manual"
+    number-sections: true
+    smooth-scroll: true
+    embed-resources: true
+    code-fold: true
+    code-tools: false
+lang: pt-BR
+---
+
+# Apresentação e Visão Geral do Ecossistema
+
+O presente **Manual Unificado do Usuário** consolida de forma exaustiva todas as diretrizes operacionais, fluxos administrativos, regras de negócio e procedimentos técnicos da plataforma `l10n_br_openeducat_capes`, construída sobre o framework corporativo **Odoo 19.0** e o núcleo acadêmico **OpenEduCat 19.0**.
+
+Projetado especificamente para atender à realidade regulatória e documental da pós-graduação *Stricto Sensu* brasileira (Mestrados Acadêmicos, Mestrados Profissionais, Doutorados Acadêmicos e Doutorados Profissionais), o sistema integra em uma arquitetura única os preceitos do **Programa GoPG da CAPES (Portaria nº 158/2023)**, as diretrizes de avaliação da **Diretoria de Avaliação (DAV)**, as normas de **Diplomas Nato-Digitais (Portaria MEC nº 70/2025)**, as regras de **Acúmulo de Bolsas com Atividade Remunerada (Portaria CAPES nº 133/2023)**, o teto de filiação docente da **Portaria CAPES nº 81/2016** e a preservação irrevogável do **Ato Jurídico Perfeito**.
+
+O manual está estruturado em **Cinco Partes**, organizadas segundo os papéis institucionais dos usuários:
+
+- **Parte I: Administração do Sistema e Implantação em Base Zerada** (TI e Administradores Centrais)
+- **Parte II: Secretaria Acadêmica de Pós-Graduação** (Equipe Técnica e Operacional de Atendimento)
+- **Parte III: Coordenação do Programa e Governança CPG** (Coordenadores, Vice-Coordenadores e Membros do Colegiado)
+- **Parte IV: Corpo Docente e Orientadores** (Professores e Pesquisadores Credenciados)
+- **Parte V: Discentes de Pós-Graduação** (Alunos Regulares, Bolsistas e Especiais)
+
+---
+
+# Parte I: Administração do Sistema e Implantação em Base Zerada
+
+Esta parte destina-se aos Administradores Gerais do Sistema, Analistas de TI e Engenheiros de Implantação responsáveis pela governança de infraestrutura, segurança, criação das entidades estruturais a partir de um banco zerado e migração de dados históricos legados.
+
+## Perfil e Responsabilidades do Administrador
+
+### Grupos de Segurança Odoo
+
+- `base.group_system`: Administração Geral de Configurações do Odoo.
+- `openeducat_core.group_op_back_office_admin`: Gestão Geral do Back-Office OpenEduCat.
+- `l10n_br_openeducat_capes_core.group_capes_central_admin`: Administrador Central da Pró-Reitoria de Pós-Graduação, com visão irrestrita de todos os programas.
+- `l10n_br_openeducat_capes_core.group_capes_program_coordinator`: Perfil de Coordenação de Programa.
+- `l10n_br_openeducat_capes_core.group_capes_program_secretary`: Perfil de Secretaria de Programa.
+
+### Campos de Controle em Usuários (`res.users`)
+
+- `allowed_program_ids`: Relação Many2many de Programas CAPES autorizados para o usuário.
+- `current_program_id`: Programa CAPES ativo na sessão corrente de trabalho.
+- `is_central_admin`: Indicador booleano que concede visão global consolidada de todos os programas da instituição (Pró-Reitoria / TI).
+
+### Usuário Padrão de Bootstrap
+
+- **Login:** `admin`
+
+### Painel de Controle de Acesso
+
+- Menus **Configurações** (`Settings`), **OpenEduCat → Configuração**, **Gestão de Bolsas → Configurações de Bolsas** e **Ensino CAPES**.
+
+:::{.callout-important}
+### Regras Fundamentais de Arquitetura e Domínio
+
+1. **Consulta Documental Obrigatória:** Antes de configurar qualquer curso, consulte a documentação oficial da instituição e as portarias da CAPES e do MEC.
+2. **Proibição Absoluta de Hardcode Regimental:** Nenhuma regra de prazo, quórum de banca, fator de crédito ou exigência de proficiência pode ser fixa em código. Todas as validações consultam dinamicamente a versão curricular (`op.curriculum.version`) associada ao discente.
+3. **Imutabilidade (Append-Only):** As tabelas de Livro-Razão (`op.student.credit.ledger` e `op.faculty.category.ledger`) operam estritamente em modo *append-only*. Exclusões (`unlink`) e recálculos destrutivos são permanentemente bloqueados.
+4. **Isolamento Multiprograma:** Todos os registros de secretaria e coordenação pertencem a um programa (`program_id`). Usuários só acessam dados dos programas autorizados em `allowed_program_ids`.
+:::
+
+---
+
+## Sequência Rígida de Criação de Entidades em Base Zerada
+
+Ao inicializar uma implantação em produção com banco de dados recém-criado, a criação das entidades **deve obedecer rigorosamente à hierarquia de dependências relacionais**. A sequência compreende **12 Etapas Sequenciais**:
+
+### Etapa 01: Empresa Mantenedora / IES (`res.company`)
+
+A instituição proprietária do banco atua como a âncora soberana para emissão de Registros Acadêmicos (RAs) e conformidade institucional.
+
+- **Caminho:** `Configurações -> Usuários & Empresas -> Empresas`
+- **Campos Obrigatórios:** Nome Oficial da IES, CNPJ (validação Módulo 11), Código e-MEC institucional, Logradouro, Município, UF, CEP e Código IBGE.
+
+### Etapa 02: Estrutura Base OpenEduCat (Calendário e Organograma)
+
+Define os períodos letivos e a hierarquia institucional de ensino.
+
+- **Caminho:** `OpenEduCat -> Configuração`
+- **Entidades e Ordem de Cadastro:**
+  - **Anos Acadêmicos (`op.academic.year`):** Cadastre os anos de vigência (ex.: 2024, 2025, 2026) com datas formais de início e término.
+  - **Períodos/Termos Acadêmicos (`op.academic.term`):** Semestres vinculados a cada ano (ex.: 2026/1, 2026/2).
+  - **Departamentos (`op.department`):** Centros, faculdades ou departamentos acadêmicos responsáveis pelas disciplinas.
+  - **Nível de Programa (`op.program.level`):** Pós-Graduação Stricto Sensu (Mestrado / Doutorado).
+  - **Programas OpenEduCat (`op.program`):** Mapeamento do programa macro.
+  - **Cursos OpenEduCat (`op.course`):** Cursos vinculados ao departamento e nível.
+  - **Categorias Discentes (`op.category`):** Bolsista CAPES, Bolsista CNEN, Bolsista CNPq, Bolsista FAPESP, Regular sem Bolsa.
+
+### Etapa 03: Programas CAPES / SNPG (`op.program.capes`)
+
+Conecta o curso ao Sistema Nacional de Pós-Graduação da CAPES.
+
+- **Caminho:** `Ensino CAPES -> Programas CAPES`
+- **Campos Críticos:** Código SNPG oficial de 12 dígitos, Nome por extenso, Sigla (`short_name`), Modalidade (`academic` ou `professional`), Nota CAPES do programa (3 a 7) e IES mantenedora.
+
+### Etapa 04: Motor Curricular e Regimento (`op.curriculum.version`)
+
+Entidade central que blinda o Ato Jurídico Perfeito e parametriza todas as regras regimentais do curso.
+
+- **Caminho:** `Ensino CAPES -> Versões Curriculares`
+- **Campos Críticos:** Nome da Versão (ex.: Regulamento 2024 v2), Curso associado, Mínimo de Créditos em Disciplinas, Créditos da Dissertação/Tese, Fator de Conversão Horas/Crédito (ex.: 15h = 1 crédito), Prazo Máximo para Defesa (meses), Trava de Aluno Especial (`allow_special_students`), Prazo Decadencial de Disciplinas Especiais (36 meses), Regras de Trânsito Intra-IES e Modalidade do Estágio de Docência.
+
+### Etapa 05: Áreas de Concentração e Linhas de Pesquisa
+
+Mapeamento da taxonomia científica e tecnológica do programa.
+
+- **Caminho:** `Ensino CAPES -> Áreas de Concentração` e `Ensino CAPES -> Linhas de Pesquisa`
+- **Entidades:** `op.program.concentration.area` (código, denominação e programa) e `op.program.research.line` (código, denominação, área de concentração vinculada e ementa).
+
+### Etapa 06: Disciplinas do Catálogo e Matriz Curricular
+
+Estruturação das disciplinas ofertadas e sua classificação na versão curricular.
+
+- **Caminho:** `OpenEduCat -> Disciplinas` e `Ensino CAPES -> Regras de Disciplinas`
+- **Entidades:** `op.subject` (código, nome, créditos, carga horária e departamento) e `op.curriculum.subject.rule` (classificação da disciplina como Obrigatória Geral, Eletiva da Área ou Optativa Livre).
+
+### Etapa 07: Cadastro Docente, Filiações a Programas PPG e Credenciamento CPG
+
+Registra os professores e orientadores, garantindo unicidade nominal e conformidade regulatória.
+
+- **Caminho:** `OpenEduCat -> Professores`
+- **Entidades e Campos:**
+  - `op.faculty` / `res.partner`: Nome completo higienizado (`first_name`, `middle_name`, `last_name`), CPF (Módulo 11), E-mail, ORCiD (formato `0000-0000-0000-0000`), URL canônica do Currículo Lattes e regime de dedicação.
+  - **Filiações a Programas PPG (`op.faculty.program.link`):** Mapeamento de todos os vínculos do docente, tanto **locais** (mesma IES) quanto **externos** (outras IES). O sistema monitora em tempo real o teto da **Portaria CAPES nº 81/2016 (Art. 4º, § 2º)**, permitindo no máximo 3 (três) cadastros como Docente Permanente (DP) em âmbito nacional, bloqueando tentativas de extrapolação.
+  - **Livro-Razão de Credenciamento (`op.faculty.category.ledger`):** Registro histórico imutável (*append-only*) dos atos administrativos da CPG (portaria de designação, categoria e período de vigência).
+
+### Etapa 08: Governança Colegiada da CPG
+
+Composição oficial da Comissão de Pós-Graduação.
+
+- **Caminho:** `Governança CPG -> Comissões CPG`
+- **Entidades:** `op.cpg.committee` e `op.cpg.member` (mandatos dos membros titulares e suplentes, incluindo Coordenador e Vice-Coordenador).
+
+### Etapa 09: Livro de Cotas e Agências de Bolsas
+
+Estruturação da gestão de bolsas de estudo institucionais.
+
+- **Caminho:** `Gestão de Bolsas -> Configurações de Bolsas`
+- **Entidades:**
+  - Agências Mantenedoras (`capes.scholarship.sponsor`): CAPES, CNPq, CNEN/IPEN, FAPESP.
+  - Livro de Cotas (`capes.scholarship.quota`): Saldo de vagas concedidas ao curso, vigências e valor referencial da bolsa.
+  - Baremas Parametrizados (`capes.scholarship.rubric` e `capes.scholarship.rubric.item`): Rubricas analíticas por pontos e tetos ou escalas de 1 a 5.
+
+### Etapa 10: Editais de Admissão e Bolsas
+
+Abertura oficial dos processos seletivos públicos.
+
+- **Caminho:** `Ensino CAPES -> Editais de Admissão` e `Gestão de Bolsas -> Editais de Bolsas`
+- **Entidades:** `op.admission.edital` e `capes.scholarship.edital` (cronograma, vagas de ampla concorrência, cotas afirmativas PPI e comissão julgadora).
+
+### Etapa 11: Discentes, Registro Acadêmico (RA) Perene e Turmas
+
+Cadastramento dos estudantes com blindagem biográfica.
+
+- **Caminho:** `OpenEduCat -> Alunos`
+- **Entidades:** `op.student` (Registro Acadêmico soberano, CPF, nome completo, cotas PPI, contatos, dados censitários DAV) e `op.student.course` (vínculo com o curso, turma `op.batch`, orientador `advisor_id` e versão regimental `curriculum_version_id`).
+
+### Etapa 12: Matrículas e Livro-Razão Acadêmico
+
+Inscrição semestral em turmas e integralização de créditos.
+
+- **Caminho:** `Ensino CAPES -> Livro-Razão Acadêmico`
+- **Entidades:** Lançamentos imutáveis (*append-only*) em `op.student.credit.ledger` (disciplinas concluídas, créditos conferidos e conceitos homologados).
+
+---
+
+## Protocolo de Carga de Dados em Lote via Planilhas CSV
+
+Para migração de dados legados ou importação em massa, o sistema disponibiliza uma suíte de planilhas padronizadas em `import_templates/datasets_sinteticos/`.
+
+### Sequência Exata de Importação dos Arquivos CSV
+
+A importação deve ocorrer estritamente na ordem numérica dos arquivos:
+
+| Passo | Arquivo CSV | Modelo Odoo Alvo | Finalidade |
+| :---: | :--- | :--- | :--- |
+| **01a** | `01a_ies_instituicao_res_company.csv` | `res.company` | Cadastro da Mantenedora / IES |
+| **01b** | `01b_departamentos_op_department.csv` | `op.department` | Departamentos Acadêmicos |
+| **01c** | `01c_categorias_op_category.csv` | `op.category` | Categorias de Financiamento |
+| **01d** | `01d_anos_academicos_op_academic_year.csv` | `op.academic.year` | Anos Letivos |
+| **01e** | `01e_termos_academicos_op_academic_term.csv` | `op.academic.term` | Semestres Letivos |
+| **01f** | `01f_niveis_programa_op_program_level.csv` | `op.program.level` | Níveis de Ensino |
+| **01g** | `01g_programas_openeducat_op_program.csv` | `op.program` | Programas Macro |
+| **01h** | `01h_cursos_openeducat_op_course.csv` | `op.course` | Cursos do Programa |
+| **01i** | `01i_lotes_turmas_op_batch.csv` | `op.batch` | Turmas / Coortes Discentes |
+| **02** | `02_programas_capes_op_program.csv` | `op.program.capes` | Parâmetros e Código SNPG |
+| **03** | `03_versao_curricular_op_curriculum_version.csv` | `op.curriculum.version` | Regimento e Matriz de Créditos |
+| **04a** | `04a_areas_concentracao_op_program_concentration_area.csv` | `op.program.concentration.area` | Áreas de Concentração |
+| **04b** | `04b_linhas_pesquisa_op_program_research_line.csv` | `op.program.research.line` | Linhas de Pesquisa |
+| **05** | `05_docentes_orientadores_op_faculty.csv` | `op.faculty` | Corpo Docente e PIDs |
+| **06a** | `06a_vinculos_docente_programa_op_faculty_program_link.csv` | `op.faculty.program.link` | Vínculos Locais e Externos |
+| **06b** | `06b_credenciamento_docente_ledger_op_faculty_category_ledger.csv` | `op.faculty.category.ledger` | Livro-Razão de Credenciamento |
+| **07a** | `07a_disciplinas_catalogo_op_subject.csv` | `op.subject` | Disciplinas Ofertadas |
+| **07b** | `07b_regras_curriculares_op_curriculum_subject_rule.csv` | `op.curriculum.subject.rule` | Matriz Curricular |
+| **07c** | `07c_projetos_pesquisa_capes_research_project.csv` | `capes.research.project` | Projetos de Pesquisa |
+| **08** | `08_editais_selecao_op_admission_edital.csv` | `op.admission.edital` | Editais de Seleção |
+| **09** | `09_discentes_identidade_op_student.csv` | `op.student` | Identidade Discente e RA |
+| **10a** | `10a_vinculos_curso_op_student_course.csv` | `op.student.course` | Vínculos Discentes Ativos |
+| **10b** | `10b_planos_trabalho_op_student_work_plan.csv` | `op.student.work_plan` | Planos de Trabalho |
+| **11** | `11_livro_razao_historico_op_student_credit_ledger.csv` | `op.student.credit.ledger` | Integralização de Créditos |
+| **12a** | `12a_bancas_defesas_capes_thesis.csv` | `capes.thesis` | Defesas e Bancas |
+| **12b** | `12b_comissoes_examinadoras_capes_thesis_committee.csv` | `capes.thesis.committee` | Membros Examinadores |
+| **13a** | `13a_produtos_ptt_capes_ptt_product.csv` | `capes.ptt.product` | Produtos Tecnológicos PTT |
+| **13b** | `13b_autores_ptt_capes_ptt_author.csv` | `capes.ptt.author` | Coautores de PTT |
+| **14** | `14_diplomas_digitais_capes_digital_diploma.csv` | `capes.digital.diploma` | Registro de Diplomas |
+| **15a** | `15a_governanca_cpg_comissoes_op_cpg_committee.csv` | `op.cpg.committee` | Comissões CPG |
+| **15b** | `15b_membros_cpg_op_cpg_member.csv` | `op.cpg.member` | Membros Titulares/Suplentes |
+| **15c** | `15c_reunioes_atas_cpg_op_cpg_meeting.csv` | `op.cpg.meeting` | Reuniões e Atas CPG |
+| **16** | `16_usuarios_perfis_res_users.csv` | `res.users` | Credenciais e Logins |
+
+### Regras de Ouro na Importação CSV
+
+1. **Uso de IDs Externos (`id`):** Todas as linhas devem possuir um identificador XML ID único (ex.: `mptrcs.docente_01`, `mptrcs.student_001`). Isso permite amarrações relacionais precisas no formato `campo_id/id`.
+2. **Campos Numéricos e Decimais:** Notas e créditos devem utilizar ponto (`.`) como separador decimal (ex.: `8.5`, `10.0`).
+3. **Formatação de Datas:** O padrão aceito pelo Odoo 19 é rigorosamente `AAAA-MM-DD` (ex.: `2026-03-01`).
+4. **Validação de CPF:** CPFs devem conter 11 dígitos estritamente numéricos válidos perante o algoritmo oficial Módulo 11 da Receita Federal.
+
+---
+
+# Parte II: Secretaria Acadêmica de Pós-Graduação
+
+Esta parte destina-se aos servidores técnicos, analistas acadêmicos e secretários que operam os processos da vida estudantil, registros de matrículas, gestão de editais, emissão documental e acompanhamento de rotina.
+
+## Navegação Contextual e Alternância entre Programas (Multiprograma)
+
+Em instituições de ensino superior descentralizadas (como Universidades com múltiplos centros e institutos), onde uma mesma secretaria acadêmica pode atender a dois ou mais Programas de Pós-Graduação (ex.: Secretaria de Ciências Exatas atendendo Ciência da Computação e Física Aplicada), o sistema oferece **duas modalidades ergonômicas de alternância de contexto ativo**:
+
+### Modalidade 1: Alternância pelo Seletor Superior (Systray OWL)
+
+- **Localização:** No canto superior direito da barra de navegação do Odoo, ao lado do nome do usuário logado, é exibido o **Badge do Programa Ativo** (ex.: `[ PPG Ciência da Computação ▼ ]`).
+- **Operação Multiprograma:** Ao clicar sobre o badge, o componente OWL abre imediatamente um menu suspenso (*dropdown*) listando todos os programas aos quais o usuário possui permissão de acesso (`allowed_program_ids`). Ao selecionar outro programa, o método RPC `action_switch_program` é disparado, persistindo a escolha no banco de dados e recarregando o contexto da tela instantaneamente, sem necessidade de efetuar logout.
+- **Operação Monoprograma (ou IES com Programa Único, ex: MPTRCS):** Para secretarias de programa isolado ou em instituições com apenas um PPG ativo, o badge exibe o nome do programa de forma estática e informativa, **sem dropdown e sem exigir cliques adicionais**, assegurando que a rotina de trabalho diária seja 100% ágil e transparente.
+- **Supervisão Central (Pró-Reitoria):** Usuários administradores centrais possuem a opção consolidada "Todos os Programas".
+
+### Modalidade 2: Alternância pelo Menu `CAPES/PPG -> Programas (SNPG)`
+
+A secretaria e a coordenação também podem comutar o programa diretamente pelo módulo acadêmico:
+
+- **Na Visualização em Lista (`tree view`):**
+  - A coluna **Status** exibe um selo visual verde com o texto **"Programa Ativo"** na linha correspondente ao programa em foco na sessão, e selo cinza **"Disponível"** para os demais programas autorizados.
+  - Na coluna de ações diretas, cada linha possui o botão **"Alternar para este Programa"** (com ícone de setas `fa-exchange`). Um único clique comuta o programa ativo da sessão.
+  - Alternativamente, marcando a caixa de seleção de um programa na lista, o usuário pode acionar a opção **"Alternar para esse Programa"** dentro do menu suspenso **Ações (Actions)** no topo da tabela.
+- **Na Visualização em Formulário (`form view`):**
+  - Ao abrir os detalhes de um programa permitido que não seja o ativo, o cabeçalho (`<header>`) disponibiliza o botão primário de destaque **"Alternar para este Programa"**.
+  - Caso o formulário aberto corresponda exatamente ao programa ativo da sessão, o Odoo estampa no canto superior direito do formulário a fita gráfica verde `web_ribbon` com a inscrição **"Programa Ativo"**.
+
+### Propagação Automática do Contexto e Blindagem de Dados
+
+- **Filtragem de Tela:** Todas as telas de Turmas (`op.batch`), Cursos (`op.course`), Matrículas, Alunos (`op.student`), Requerimentos, Bancas de Tese e Editais de Bolsas filtram e exibem rigorosamente os dados pertencentes ao programa em foco. A secretaria do PPGCC nunca visualizará alunos ou processos sigilosos do PPGFA ou MPESI.
+- **Herança Automática:** Novos registros criados pela secretaria herdam automaticamente o `program_id` ativo da sessão, eliminando erros de seleção manual.
+- **Filiação Formal Discente:** Na ficha do aluno (`op.student`), na aba **"Vínculo Regimental e Proficiências"** e grupo **"Vínculo Acadêmico e Regimento (Ato Perfeito)"**, o campo **Programa de Pós-Graduação (PPG)** indica com clareza o programa ao qual o aluno está filiado perante a CAPES, sincronizado de forma automática com a Versão Regimental (`curriculum_version_id`).
+
+---
+
+## Gestão do Ciclo de Vida do Discente (Passo a Passo)
+
+### 1. Processamento de Editais e Conversão de Candidatos Aprovados
+
+1. Acesse **Ensino CAPES → Editais de Admissão** (`op.admission.edital`).
+2. Abra o edital com status `in_selection` ou `homologated`.
+3. Na aba **Candidatos Aprovados**, localize o candidato selecionado e acione o botão **Converter em Aluno**:
+   - **Busca por CPF na IES:** O sistema consulta a base da instituição (`res.company`).
+   - **Reuso de RA Vitalício:** Caso o candidato já tenha cursado disciplinas como Aluno Especial ou realizado outro mestrado na IES, o sistema preserva o Registro Acadêmico perene original, criando apenas o novo vínculo regular (`op.student.course`).
+   - **Criação de Aluno Inédito:** Se for a primeira matrícula do cidadão na instituição, o sistema emite um novo RA sequencial vitalício.
+   - **Preenchimento Censitário:** Preencha os dados demográficos exigidos pelo Censo da DAV (cor/raça, nacionalidade, município de nascimento, nome da mãe e identificador de deficiência).
+
+### 2. Matrículas Semestrais e Trânsito Acadêmico
+
+- **Matrícula Regimental Ordinária:** No início de cada período letivo, acesse **Ensino CAPES → Matrículas Semestrais** e inscreva o discente nas turmas ofertadas da sua coorte (`op.batch`).
+- **Matrícula Cruzada Intra-IES:** Quando o discente solicita inscrição em disciplina de outro programa da mesma IES:
+  - Acesse a aba **Disciplinas Intra-IES**.
+  - O sistema verifica a existência de vagas e envia uma solicitação de anuência eletrônica ao docente ministrante.
+  - Somente após o clique de consentimento do professor a matrícula é confirmada.
+- **Matrícula de Acompanhamento de Tese/Dissertação:** Obrigatória para discentes que completaram os créditos em disciplinas de sala de aula e encontram-se em fase exclusiva de pesquisa e redação do trabalho final. Garante o vínculo formal ativo perante o Censo da CAPES.
+- **Trancamento de Matrícula:** Concedido exclusivamente após parecer da CPG, suspendendo a contagem do prazo de jubilamento durante os meses autorizados regimentalmente.
+
+### 3. Gestão de Alunos Especiais e Quarentena de Créditos
+
+- Candidatos admitidos para cursar disciplinas isoladas são cadastrados com a categoria `student_category = 'special'`.
+- As disciplinas cursadas por alunos especiais têm seus lançamentos gravados no Livro-Razão Acadêmico sob o tipo especial **`subject_special_quarantine`**.
+- **Omissão Automática no Histórico Regular:** Pela diretriz regulatória `omit_on_regular`, essas disciplinas não aparecem no Histórico Escolar regular até que haja incorporação formal.
+- **Tramitação de Incorporação de Créditos:** Quando o aluno especial ingressa posteriormente como aluno regular via processo seletivo:
+  - Acesse **Requerimentos → Incorporação de Créditos Especiais**.
+  - Selecione o aluno e as disciplinas a incorporar.
+  - **Verificação de Decadência (36 meses):** Disciplinas cursadas há mais de 3 anos são automaticamente bloqueadas pelo sistema.
+  - **Verificação de Teto Regimental:** O sistema impede ultrapassar o limite máximo de créditos especiais definido na versão curricular (ex.: até 2 disciplinas ou 8 créditos).
+  - Encaminhe para parecer do orientador e homologação em ata da CPG.
+
+---
+
+## Gestão Operacional de Bolsas de Estudo para a Secretaria
+
+O submódulo `l10n_br_openeducat_capes_scholarship` disponibiliza ferramentas completas no menu **Gestão de Bolsas**:
+
+### 1. Livro de Cotas Institucionais
+
+- Cadastre e monitore o saldo de bolsas concedidas pelas agências (CAPES-DS, CAPES-PROEX, CNEN/IPEN, CNPq, FAPESP) em **Gestão de Bolsas → Configurações de Bolsas → Cotas**.
+- Registre o início e término da vigência da cota e a quantidade total de mensalidades disponibilizadas.
+
+### 2. Abertura e Publicação de Editais de Bolsas
+
+- Acesse **Gestão de Bolsas → Editais de Bolsas**.
+- Vincule a cota correspondente, defina o cronograma de inscrições e recursos, especifique as vagas de **Ampla Concorrência** e as cotas afirmativas **PPI** (Pretos, Pardos e Indígenas).
+- Selecione o barema dinâmico homologado pela CPG (`capes.scholarship.rubric`).
+
+### 3. Triagem das Inscrições
+
+- Ao encerrar o prazo de inscrições, confira a documentação anexada:
+  - Autoavaliação do candidato (Coluna 1 do barema).
+  - Link atualizado do Currículo Lattes.
+  - Plano de Trabalho Preliminar.
+  - Declaração de Dedicação e Atividade Remunerada (Portaria CAPES nº 133/2023).
+  - Autodeclaração étnico-racial assinada (para cotistas PPI).
+
+### 4. Distribuição às Cegas para Avaliação Paralela
+
+- Na ficha do edital, designe o `Revisor 01` e o `Revisor 02` para cada candidatura.
+- Clique no botão **Distribuir a Revisores**: o sistema gera duas fichas de avaliação independentes e sigilosas (`capes.scholarship.evaluation`), notificando os docentes designados.
+
+### 5. Concessão da Bolsa e Termo de Compromisso
+
+- Após a homologação do resultado final pela CPG:
+  - Acesse **Gestão de Bolsas → Atribuições de Bolsas**.
+  - Gere a concessão (`capes.scholarship.assignment`) vinculando o bolsista à cota ativa.
+  - Clique em **Imprimir Termo de Compromisso**: o sistema emite o documento oficial em QWeb PDF contendo as obrigações da Portaria CAPES nº 133/2023.
+  - Colha a assinatura digital do aluno via GOV.BR e faça o upload do PDF assinado no sistema.
+
+### 6. Monitoramento Contínuo de Bolsistas
+
+- **Frequência Semestral:** Registre a comprovação de assiduidade mínima de 80% nas atividades acadêmicas.
+- **Relatório Anual:** Acompanhe a entrega do relatório de pesquisa com o parecer favorável do orientador, condição indispensável para a manutenção do benefício.
+
+---
+
+## Ritos de Titulação, Repositório DSpace e Emissão Documental
+
+### 1. Agendamento de Qualificação e Defesa
+
+- Acesse **Ensino CAPES → Defesas e Trabalhos Finais** (`capes.thesis`).
+- Verifique se o discente integralizou os créditos mínimos exigidos na versão regimental.
+- Cadastre os membros da comissão examinadora (`capes.thesis.committee`):
+  - O sistema audita em tempo real a exigência de titulação de Doutor de todos os membros.
+  - O sistema executa a **auditoria de impedimento cível**, bloqueando cônjuges e parentes até o 4º grau do discente ou do orientador.
+  - O sistema verifica a proporção de membros externos ao programa e à instituição.
+
+### 2. Homologação da Ata e Depósito no DSpace
+
+- Concluída a sessão pública de defesa, registre o resultado homologado pela banca (Aprovado / Reprovado / Aprovado com Reformulações).
+- Após a entrega da versão definitiva corrigida com ficha catalográfica elaborada pela Biblioteca:
+  - Submeta o manifesto de metadados ao repositório institucional DSpace.
+  - Registre o Handle permanente oficial gerado (`repository_url`) na ficha da defesa.
+
+### 3. Emissão do Histórico Escolar Oficial com QR Code (QWeb PDF)
+
+- Pode ser emitido diretamente pelo botão primário **"Imprimir Histórico Escolar"** no cabeçalho do aluno (`op.student`) ou via menu de titulação.
+- **Cabeçalho Oficial:** Nome do discente, CPF, Registro Acadêmico (`ra_number`), nome e código SNPG de 12 dígitos do Programa de Pós-Graduação, Data de Admissão, Versão Regimental Ativa (Ato Jurídico Perfeito) e Situação Cadastral.
+- **Livro-Razão de Créditos:** Lista cronológica de todas as disciplinas cursadas, créditos conferidos, carga horária, conceitos obtidos e resultado final. Disciplinas avulsas de aluno especial em quarentena permanecem omitidas do histórico oficial regular.
+- **Registro da Defesa:** Título definitivo da dissertação/tese, data de aprovação, membros da banca e link permanente do repositório DSpace.
+- **Autenticação Nato-Digital (Portaria MEC nº 70/2025):** Quadro de segurança no rodapé com código QR dinâmico e hash criptográfico SHA-256 para validação pública no endpoint `/valida-documento`.
+
+### 4. Registro e Emissão do Diploma Digital
+
+- Acesse **Ensino CAPES → Diplomas Digitais** (`capes.digital.diploma`).
+- O sistema gera os pacotes XML de documentação acadêmica e registro de diploma conforme o padrão nacional do MEC, assinando digitalmente os arquivos e registrando o livro e folha de registro.
+
+---
+
+# Parte III: Coordenação do Programa e Governança CPG
+
+Esta parte destina-se aos Coordenadores, Vice-Coordenadores e membros docentes e discentes da Comissão de Pós-Graduação (CPG), abordando decisões estratégicas, homologações colegiadas, fiscalização regulatória e conformidade GoPG.
+
+## Escopo de Acesso e Isolamento por Programa
+
+O Coordenador de Programa (`group_capes_program_coordinator`) possui visão e autoridade rigorosamente delimitadas ao seu respectivo programa (`current_program_id`). Caso um docente participe da coordenação ou gestão de dois programas distintos (ex.: coordena o PPGCC e atua no colegiado do MPESI):
+
+- Utiliza o **Seletor Superior de Programas** no topo da tela para comutar instantaneamente entre os programas autorizados.
+- Todas as visões de turmas, alunos, requerimentos, pautas colegiadas e editais de bolsas são estritamente filtradas para o programa ativo.
+
+---
+
+## Monitoramento de Prazos e Prevenção de Jubilamento
+
+O sistema opera um relógio acadêmico permanente para cada discente matriculado, parametrizado conforme a versão regimental do curso:
+
+- 🟢 **Prazo Regular (Verde):** Tempo de curso decorrido inferior a 75% do teto regimental.
+- 🟡 **Alerta de Conclusão (Amarelo):** Entre 75% e 90% do prazo transcorrido. A coordenação deve alertar o orientador sobre o agendamento da qualificação ou defesa.
+- 🔴 **Risco Crítico de Jubilamento (Vermelho):** Mais de 90% do prazo máximo atingido sem requerimento formal de defesa protocolado.
+- **Prorrogações Regimentais de Prazo:** A CPG pode deliberar prorrogações excepcionais em ata, respeitando o limite máximo fixado na versão curricular (ex.: até 90 dias no MPTRCS).
+- **Robô Noturno de Suspensão de Jubilamento:** Discentes que ultrapassarem os prazos regimentais ou forem reprovados duas vezes são marcados com status `pending_dismissal`, suspendendo a exportação automática para a CAPES até que a CPG tome a decisão final, blindando os indicadores da avaliação quadrienal.
+
+---
+
+## Governança da CPG e Assinatura Eletrônica Auditável
+
+1. Acesse **Governança CPG → Reuniões da CPG** (`op.cpg.meeting`).
+2. Convoque os membros titulares e suplentes para a sessão ordinária ou extraordinária.
+3. Monte a pauta incluindo requerimentos de aproveitamento de créditos, pedidos de prorrogação, credenciamentos docentes e bancas examinadoras.
+4. **Deliberação e Clique Auditável (`op.cpg.approval.log`):**
+   - Cada membro colegiado registra seu voto ou aprovação eletrônica.
+   - O Odoo grava de forma inviolável o login autenticado do membro, o carimbo de tempo UTC e o endereço IP da estação de trabalho.
+5. **Geração da Ata Oficial em PDF:** O sistema gera o relatório QWeb da Ata de Reunião com todas as deliberações e o quadro comprobatório de assinaturas eletrônicas.
+
+---
+
+## Corpo Docente e Conformidade com a Portaria CAPES nº 81/2016
+
+A coordenação deve gerenciar o corpo docente assegurando a composição do núcleo estável de professores permanentes:
+
+### 1. Categorias de Credenciamento
+
+- **Docente Permanente (DP):** Atua com regularidade no programa, ministra aulas, orienta alunos de mestrado/doutorado e vincula sua produção bibliográfica e tecnológica prioritariamente ao PPG.
+- **Docente Colaborador (DC):** Atua de forma pontual em coorientações, projetos específicos ou disciplinas optativas.
+- **Docente Visitante (DV):** Pesquisador ou professor sênior externo convidado por período determinado.
+
+### 2. Teto Federal de 3 Vínculos como Permanente (Art. 4º, § 2º)
+
+:::{.callout-important}
+### Limite Legal Mandatório da Portaria CAPES nº 81/2016
+*"Um docente poderá ser cadastrado como permanente em, no máximo, 3 (três) programas de pós-graduação em âmbito nacional."*
+:::
+
+- **Monitoramento em Tempo Real:** Na ficha do docente (`op.faculty`), na aba **"Credenciamento e Filiação a PPGs (CAPES)"**, o sistema totaliza os vínculos permanentes locais e externos:
+  - **Regular ($\le$ 2 vínculos permanentes):** Em conformidade plena (`compliant`).
+  - **Teto Atingido (3 vínculos permanentes):** Alerta amarelo (`warning`) indicando esgotamento da cota legal.
+  - **Bloqueio de Extrapolação (> 3 vínculos permanentes):** O sistema impede salvar um 4º vínculo permanente, emitindo `ValidationError` com a fundamentação jurídica da CAPES.
+- **Filiações Externas:** A coordenação pode registrar as afiliações do professor em outras IES parceiras (informando IES externa, nome do PPG e código SNPG/CAPES).
+- **Livro-Razão Imutável (`op.faculty.category.ledger`):** O histórico de credenciamentos é *append-only*, preservando todas as portarias anteriores para fins de auditoria no Coleta CAPES / Sucupira.
+
+---
+
+## Governança de Editais de Bolsas e Regras de Acúmulo
+
+1. **Homologação do Barema:** Homologue os critérios de pontuação (analítico por pontos e tetos para mestrados/doutorados acadêmicos ou quali-quanti em 5 dimensões para cursos profissionais).
+2. **Distribuição e Julgamento às Cegas:** Garanta a isenção na avaliação atribuindo as fichas a revisores docentes sem conflito de interesse.
+3. **Reversão Automática de Cotas PPI:** O sistema garante a aplicação da política afirmativa, revertendo automaticamente vagas de cotas ociosas para ampla concorrência caso não haja inscritos habilitados.
+4. **Autorização de Acúmulo de Bolsa com Atividade Remunerada (Portaria CAPES nº 133/2023):**
+   - A CPG analisa formalmente a compatibilidade de horário e dedicação entre o plano de trabalho da bolsa e o vínculo empregatício do bolsista.
+   - A deliberação favorável da CPG é registrada em ata e arquivada no prontuário do aluno, respaldando a instituição perante eventuais auditorias de órgãos de controle federal (CGU/TCU).
+
+---
+
+## Homologação de Bancas e Auditoria de Produtos PTT
+
+- **Bancas Examinadoras:** Valide o quórum de doutores, a presença de examinadores externos ao programa e certifique-se de que não haja alertas de impedimento cível (`civil_relationship_flag`).
+- **Produtos Técnico-Tecnológicos (PTTs):** No menu **Produção Intelectual → PTTs**, avalie o enquadramento nos 4 Eixos da CAPES (Demanda, Inovação, Aplicabilidade e Complexidade), confira a tipologia selecionada entre as 21 oficiais e analise a maturidade tecnológica (**TRL 1 a 9**). O motor de cálculo simula o estrato Qualis Tecnológico (`T1` a `T5`) para validação prévia.
+- **Relatório Sucupira / DAV:** Extraia anualmente os dados censitários consolidados (Módulos 01 a 07) para transmissão ao Coleta CAPES.
+
+---
+
+# Parte IV: Corpo Docente e Orientadores
+
+Esta parte destina-se aos professores, pesquisadores e orientadores credenciados perante os programas de pós-graduação.
+
+## Identificadores Biográficos Obrigatórios (PIDs)
+
+No primeiro acesso ao sistema ou Portal do Docente (`/my`), certifique-se de que sua ficha cadastral contenha:
+
+- **CPF:** 11 dígitos com validação matemática Módulo 11.
+- **ORCiD ID:** No padrão internacional `0000-0000-0000-0000`.
+- **Currículo Lattes:** URL canônica atualizada na Plataforma Lattes / CNPq.
+
+## Gestão Didática das Disciplinas
+
+- **Plano de Ensino:** Cadastre a ementa, objetivos, metodologia, bibliografia básica/complementar e cronograma de aulas.
+- **Diário de Classe e Frequência:** Registre os lançamentos de presença encontro por encontro.
+- **Consolidação de Notas e Conceitos:** Lance os conceitos regimentais (`A`, `B`, `C` - Aprovado; `R` - Reprovado). Ao clicar em **Consolidar e Enviar para a Secretaria**, os lançamentos são gravados de forma definitiva e imutável no Livro-Razão Acadêmico dos discentes.
+- **Anuência para Alunos Especiais e Vagas Intra-IES:** Acesse **Minhas Disciplinas → Solicitações de Inscrição** para deferir ou indeferir pedidos de vaga formulados por discentes de outros programas da instituição.
+
+## Gestão da Orientação Científica
+
+- **Plano de Trabalho Discente:** Analise e aprove no primeiro semestre o cronograma de pesquisa, orçamento e aderência à linha de pesquisa do programa. Declare expressamente a necessidade de submissão ao Comitê de Ética em Pesquisa (CEP/Plataforma Brasil) ou CEUA caso envolva seres humanos ou animais.
+- **Parecer em Aproveitamento de Créditos:** Emita parecer fundamentado nos pedidos de incorporação de disciplinas de ex-alunos especiais, verificando a aderência ao projeto de dissertação/tese.
+- **Prorrogações de Prazo:** Submeta solicitações justificadas de prorrogação respeitando os limites regimentais do curso.
+
+## Atuação como Revisor em Editais de Bolsas
+
+- **Avaliação Paralela e Independente:** Ao ser designado como parecerista, acesse o dossiê comprobatório do candidato, o link do Lattes e o plano de trabalho através do smart button **"Avaliações Bolsas"**.
+- Lance as pontuações e notas nas linhas do barema. O sistema aplica fórmulas e tetos parciais de forma automática.
+- Registre o parecer técnico fundamentado e finalize a avaliação. Sua nota é estritamente sigilosa em relação ao outro revisor.
+- **Ateste Semestral de Bolsistas:** Atestar semestralmente a frequência mínima de 80% e emitir parecer sobre o relatório anual de atividades de pesquisa dos seus orientandos bolsistas.
+
+## Projetos de Pesquisa e Taxonomia CRediT
+
+- Vincule seus orientandos aos projetos de pesquisa coordenados por você (`capes.research.project`).
+- Atribua a contribuição individual de cada membro da equipe científica segundo os 14 papéis da taxonomia internacional **CRediT** (Conceitualização, Metodologia, Software, Investigação, Redação original, etc.), metadado coletado diretamente pela CAPES.
+
+## Cadastramento de Produtos Técnico-Tecnológicos (PTTs)
+
+- Acesse **Produção Intelectual → Cadastrar PTT** (`capes.ptt.product`).
+- Vincule a dissertação/tese e o discente coautor do produto tecnológico.
+- Classifique nos 4 Eixos da CAPES, selecione uma das 21 Tipologias oficiais e informe a escala de maturidade (**TRL 1 a 9**).
+
+---
+
+# Parte V: Discentes de Pós-Graduação
+
+Esta parte destina-se aos discentes regulares, bolsistas e alunos especiais para navegação no Portal do Aluno (`/my`).
+
+## Primeiro Acesso e Identidade Acadêmica Soberana
+
+1. Acesse o portal: `https://posgraduacao.instituicao.br/my`.
+2. Em **Meu Perfil**, confira seu **Registro Acadêmico (RA)** vitalício na IES.
+3. Cadastre e valide seu **ORCiD ID** e o link do seu **Currículo Lattes**.
+
+:::{.callout-note}
+### Privacidade e Segurança de Dados (LGPD)
+O discente acessa a plataforma via perfil restrito de portal (`base.group_portal`). Você possui visibilidade exclusiva sobre os seus próprios registros acadêmicos, requerimentos e notas. Dados de outros discentes e avaliações concorrentes em editais de bolsas permanecem totalmente confidenciais.
+:::
+
+:::{.callout-caution}
+### Requisito Imprescindível para Defesa e Diploma Digital
+Sem o ORCiD ID validado e o Currículo Lattes canônico, o sistema bloqueia o agendamento da defesa final e a emissão do diploma digital (Portaria MEC nº 70/2025).
+:::
+
+## Matrícula Semestral Online
+
+- No período de matrícula, acesse **Portal do Aluno → Matrícula Online**.
+- Selecione as disciplinas obrigatórias e optativas ofertadas para o seu curso e área de concentração.
+- Caso já tenha concluído as disciplinas presenciais, inscreva-se na disciplina de **Acompanhamento de Dissertação/Tese** para manter seu vínculo regular perante a CAPES.
+- Se desejar cursar disciplinas em outros programas da IES, solicite via aba **Disciplinas Intra-IES** para coleta da anuência eletrônica do professor.
+
+## Requerimentos Acadêmicos Self-Service
+
+- **Aproveitamento de Disciplinas de Aluno Especial:** Solicite a incorporação de créditos de disciplinas cursadas anteriormente no regime especial. O sistema só aceita disciplinas com menos de 36 meses de conclusão.
+- **Submissão do Plano de Trabalho:** Preencha os objetivos da pesquisa, cronograma e declare pendências éticas (CEP/CEUA) no primeiro semestre de curso.
+
+## Candidatura a Editais de Bolsas de Estudo
+
+1. Acesse **Gestão de Bolsas → Editais de Bolsas**.
+2. Escolha concorrer por **Ampla Concorrência** ou **Cotas Reservadas (PPI)** (anexando a autodeclaração étnico-racial assinada).
+3. Informe o link do Lattes atualizado e anexe o plano de trabalho preliminar e comprovante de residência.
+4. **Declaração de Renda e Atividade Remunerada (Portaria CAPES nº 133/2023):** Declare expressamente se possui dedicação exclusiva, docência autorizada ou atividade remunerada externa, informando a instituição contratante e a carga horária para deliberação da CPG.
+5. **Autoavaliação do Barema:** Preencha a Coluna 1 do barema com as quantidades de produções científicas e estágios, indicando as páginas do dossiê comprobatório em PDF.
+6. Acompanhe a nota preliminar e, se necessário, interponha recurso formal dentro do prazo regimental.
+7. Se contemplado, assine digitalmente o **Termo de Compromisso de Bolsista** via GOV.BR, mantenha frequência mínima de 80% e submeta o relatório anual de pesquisa.
+
+## Ritos de Qualificação e Defesa de Trabalho Final
+
+1. Ao integralizar a carga horária e créditos regimentais, solicite o agendamento da qualificação ou defesa anexando o arquivo preliminar em PDF.
+2. Realizada a defesa pública e aprovado o trabalho, proceda com as correções sugeridas pela banca examinadora.
+3. Obtenha a Ficha Catalográfica oficial na Biblioteca Central da instituição.
+4. Submeta a versão final em PDF no portal em **Depósito da Versão Final**.
+5. Acompanhe a geração do Handle permanente no repositório institucional DSpace e a emissão do Diploma Digital.
+
+## Emissão do Histórico Escolar Oficial
+
+Acesse **Minha Vida Acadêmica → Histórico Escolar** para emitir a qualquer momento o seu Histórico Escolar Oficial em PDF com Hash SHA-256 e QR Code público de autenticação documental (Portaria MEC nº 70/2025).

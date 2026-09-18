@@ -25,7 +25,7 @@ from odoo.exceptions import UserError, ValidationError
 class OpFacultyProgramLink(models.Model):
     _name = 'op.faculty.program.link'
     _description = 'Vínculo e Credenciamento Docente no Programa (PPG)'
-    _order = 'program_id, faculty_id'
+    _order = 'faculty_id, program_id'
 
     faculty_id = fields.Many2one(
         'op.faculty',
@@ -33,12 +33,42 @@ class OpFacultyProgramLink(models.Model):
         required=True,
         ondelete='cascade'
     )
+    link_type = fields.Selection([
+        ('internal', 'Programa Local (Mesma IES)'),
+        ('external', 'Programa Externo (Outra IES)')
+    ], string='Tipo de Vínculo', default='internal', required=True)
+
     program_id = fields.Many2one(
         'op.program.capes',
-        string='Programa de Pós-Graduação',
-        required=True,
+        string='Programa Local (PPG)',
+        required=False,
         ondelete='cascade'
     )
+    external_ies_name = fields.Char(
+        string='IES do Programa Externo',
+        help='Nome da Instituição de Ensino Superior externa (ex: USP, UNICAMP)'
+    )
+    external_program_name = fields.Char(
+        string='Nome do Programa Externo',
+        help='Nome do Programa de Pós-Graduação na IES externa'
+    )
+    external_snpg_code = fields.Char(
+        string='Código SNPG / CAPES',
+        help='Código do programa externo no Sistema Nacional de Pós-Graduação'
+    )
+    faculty_category = fields.Selection([
+        ('permanent', 'Permanente (DP)'),
+        ('collaborator', 'Colaborador (DC)'),
+        ('visiting', 'Visitante (DV)'),
+        ('assistant', 'Assistente')
+    ], string='Categoria de Atuação', default='permanent', required=True)
+
+    weekly_hours = fields.Integer(
+        string='Carga Horária Semanal (h)',
+        default=10,
+        help='Carga horária semanal dedicada a este programa de pós-graduação'
+    )
+
     active_advisees_count = fields.Integer(
         string='Número de Orientandos Ativos',
         compute='_compute_active_advisees_count',
@@ -51,9 +81,43 @@ class OpFacultyProgramLink(models.Model):
         string='Histórico de Categorias de Credenciamento (Ledger)'
     )
 
-    _sql_constraints = [
-        ('faculty_program_unique', 'unique(faculty_id, program_id)', 'O docente já possui vínculo cadastrado com este Programa de Pós-Graduação.')
-    ]
+    @api.depends('link_type', 'program_id', 'external_program_name', 'external_ies_name', 'faculty_category')
+    def _compute_display_name(self):
+        cat_labels = {
+            'permanent': 'Permanente',
+            'collaborator': 'Colaborador',
+            'visiting': 'Visitante',
+            'assistant': 'Assistente',
+        }
+        for record in self:
+            cat = cat_labels.get(record.faculty_category, record.faculty_category or '')
+            if record.link_type == 'internal':
+                p_name = record.program_id.short_name or record.program_id.name or 'Programa Local'
+                record.display_name = f"{p_name} ({cat})"
+            else:
+                p_name = record.external_program_name or 'Programa Externo'
+                ies = f" - {record.external_ies_name}" if record.external_ies_name else ""
+                record.display_name = f"{p_name}{ies} [Externo - {cat}]"
+
+    @api.constrains('faculty_id', 'program_id', 'link_type', 'external_program_name', 'external_ies_name')
+    def _check_link_consistency(self):
+        for record in self:
+            if record.link_type == 'internal':
+                if not record.program_id:
+                    raise ValidationError("Para vínculos locais (mesma IES), selecione obrigatoriamente o Programa de Pós-Graduação (PPG).")
+                duplicates = self.search([
+                    ('id', '!=', record.id),
+                    ('faculty_id', '=', record.faculty_id.id),
+                    ('link_type', '=', 'internal'),
+                    ('program_id', '=', record.program_id.id)
+                ])
+                if duplicates:
+                    raise ValidationError(f"O docente já possui vínculo cadastrado com o programa {record.program_id.name}.")
+            elif record.link_type == 'external':
+                if not record.external_program_name:
+                    raise ValidationError("Para vínculos externos, informe o nome do Programa de Pós-Graduação externo.")
+                if not record.external_ies_name:
+                    raise ValidationError("Para vínculos externos, informe a Instituição de Ensino Superior (IES) externa.")
 
     @api.depends('faculty_id', 'program_id')
     def _compute_active_advisees_count(self):
@@ -81,6 +145,14 @@ class OpFacultyCategoryLedger(models.Model):
         required=True,
         ondelete='restrict'
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa de Pós-Graduação',
+        related='program_link_id.program_id',
+        store=True,
+        readonly=True,
+        index=True
+    )
     category = fields.Selection([
         ('permanent', 'Permanente'),
         ('collaborator', 'Colaborador'),
@@ -104,6 +176,14 @@ class OpFacultyCategoryLedger(models.Model):
     notes = fields.Text(
         string='Observações e Deliberação'
     )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for rec in records:
+            if rec.program_link_id and rec.category:
+                rec.program_link_id.faculty_category = rec.category
+        return records
 
     @api.constrains('start_date', 'end_date')
     def _check_accreditation_dates(self):

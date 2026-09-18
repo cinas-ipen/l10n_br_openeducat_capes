@@ -55,6 +55,14 @@ class OpStudent(models.Model):
         help='IES mantenedora soberana do Registro Acadêmico (RA) do discente'
     )
 
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa de Pós-Graduação (PPG)',
+        index=True,
+        help='Programa de Pós-Graduação (CAPES/SNPG) ao qual o discente está filiado.'
+    )
+
+
     student_category = fields.Selection([
         ('regular', 'Regular'),
         ('special', 'Aluno Especial (Disciplinas Isoladas)'),
@@ -67,6 +75,13 @@ class OpStudent(models.Model):
         store=True,
         readonly=False,
         help='Identificador institucional único e permanente na IES (espelha gr_no)'
+    )
+    code = fields.Char(
+        string='Código / RA',
+        related='ra_number',
+        store=False,
+        readonly=True,
+        help='Identificador institucional de compatibilidade com relatórios e views legadas'
     )
 
     capes_status = fields.Selection([

@@ -14,7 +14,7 @@ Este documento estabelece as regras arquiteturais, padrões de código e conven�
 
 ## 2. Topologia do Monorepo e Dependências
 
-O projeto é dividido em 8 submódulos isolados. Ao criar ou modificar código em um submódulo, **nunca** quebre a árvore de dependências definida nos manifests (`__manifest__.py`):
+O projeto é dividido em 9 submódulos isolados. Ao criar ou modificar código em um submódulo, **nunca** quebre a árvore de dependências definida nos manifests (`__manifest__.py`):
 
 1. `l10n_br_openeducat_capes_core` (Depende de: `openeducat_core`)
 2. `l10n_br_openeducat_capes_admission` (Depende de: `l10n_br_openeducat_capes_core`)
@@ -24,6 +24,7 @@ O projeto é dividido em 8 submódulos isolados. Ao criar ou modificar código e
 6. `l10n_br_openeducat_capes_ptt` (Depende de: `core`, `academic`, `thesis`)
 7. `l10n_br_openeducat_capes_integration` (Depende de: `core`, `ptt`)
 8. `l10n_br_openeducat_capes_diploma` (Depende de: `core`, `academic`, `thesis`)
+9. `l10n_br_openeducat_capes_scholarship` (Depende de: `core`, `academic`, `admission`)
 
 ---
 

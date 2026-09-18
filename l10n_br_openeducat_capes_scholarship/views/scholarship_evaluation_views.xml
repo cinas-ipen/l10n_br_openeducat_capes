@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_capes_scholarship_evaluation_list" model="ir.ui.view">
+        <field name="name">capes.scholarship.evaluation.list</field>
+        <field name="model">capes.scholarship.evaluation</field>
+        <field name="arch" type="xml">
+            <list string="Fichas de Avaliação de Bolsa">
+                <field name="application_id"/>
+                <field name="evaluator_role"/>
+                <field name="evaluator_id"/>
+                <field name="total_score"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-success="state == 'completed'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_capes_scholarship_evaluation_form" model="ir.ui.view">
+        <field name="name">capes.scholarship.evaluation.form</field>
+        <field name="model">capes.scholarship.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="Ficha de Avaliação de Bolsa">
+                <header>
+                    <button name="action_complete" string="Finalizar e Homologar Nota" type="object"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Identificação da Avaliação">
+                            <field name="application_id" readonly="1"/>
+                            <field name="evaluator_role" readonly="1"/>
+                            <field name="evaluator_id"/>
+                        </group>
+                        <group string="Pontuação Apurada">
+                            <field name="total_score" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Itens e Critérios Avaliados">
+                            <field name="line_ids" readonly="state == 'completed'">
+                                <list editable="bottom">
+                                    <field name="rubric_item_id" readonly="1"/>
+                                    <field name="category" readonly="1"/>
+                                    <field name="quantity"/>
+                                    <field name="months"/>
+                                    <field name="num_authors"/>
+                                    <field name="direct_score"/>
+                                    <field name="dossier_page_ref" placeholder="Ex: Pág. 12"/>
+                                    <field name="calculated_score" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Parecer Técnico Fundamentado">
+                            <field name="reviewer_comments" placeholder="Manifestação fundamentada do revisor ou comissão..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

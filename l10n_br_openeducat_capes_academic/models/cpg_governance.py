@@ -116,6 +116,13 @@ class OpCpgMeeting(models.Model):
         required=True,
         tracking=True
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='committee_id.program_id',
+        store=True,
+        index=True
+    )
     meeting_date = fields.Datetime(
         string='Data e Hora da Reunião',
         required=True,

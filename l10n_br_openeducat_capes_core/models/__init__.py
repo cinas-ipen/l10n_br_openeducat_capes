@@ -24,3 +24,5 @@ from . import op_program_capes
 from . import op_program_concentration
 from . import op_faculty
 from . import op_student
+from . import res_users
+from . import ir_http

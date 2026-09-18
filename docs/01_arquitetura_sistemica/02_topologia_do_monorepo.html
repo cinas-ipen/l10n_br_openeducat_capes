@@ -202,17 +202,35 @@ Arquitetura Detalhada do Monorepo
 <code>l10n_br_openeducat_capes_integration</code></a></li>
 <li><a href="#l10n_br_openeducat_capes_diploma" id="toc-l10n_br_openeducat_capes_diploma">2.8.
 <code>l10n_br_openeducat_capes_diploma</code></a></li>
+<li><a href="#l10n_br_openeducat_capes_scholarship" id="toc-l10n_br_openeducat_capes_scholarship">2.9.
+<code>l10n_br_openeducat_capes_scholarship</code></a></li>
 </ul></li>
 <li><a href="#matriz-de-dependências-e-manifestos-do-odoo-__manifest__.py" id="toc-matriz-de-dependências-e-manifestos-do-odoo-__manifest__.py">3.
 Matriz de Dependências e Manifestos do Odoo
 (<code>__manifest__.py</code>)</a></li>
 <li><a href="#modelo-de-extensibilidade-e-herança-estrita-_inherit" id="toc-modelo-de-extensibilidade-e-herança-estrita-_inherit">4. Modelo
 de Extensibilidade e Herança Estrita (<code>_inherit</code>)</a></li>
+<li><a href="#arquitetura-técnica-de-isolamento-multiprograma-e-contexto-ativo-opção-b" id="toc-arquitetura-técnica-de-isolamento-multiprograma-e-contexto-ativo-opção-b">5.
+Arquitetura Técnica de Isolamento Multiprograma e Contexto Ativo (Opção
+B)</a>
+<ul>
+<li><a href="#extensão-de-usuários-e-sessão-res.users" id="toc-extensão-de-usuários-e-sessão-res.users">5.1. Extensão de
+Usuários e Sessão (<code>res.users</code>)</a></li>
+<li><a href="#grupos-de-segurança-hierárquicos" id="toc-grupos-de-segurança-hierárquicos">5.2. Grupos de Segurança
+Hierárquicos</a></li>
+<li><a href="#camada-de-frontend-owl-e-interfaces-de-alternância-de-programa" id="toc-camada-de-frontend-owl-e-interfaces-de-alternância-de-programa">5.3.
+Camada de Frontend OWL e Interfaces de Alternância de Programa</a></li>
+<li><a href="#regras-de-registro-ir.rule-e-indexação-relacional" id="toc-regras-de-registro-ir.rule-e-indexação-relacional">5.4. Regras
+de Registro (<code>ir.rule</code>) e Indexação Relacional</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
 <h1 id="documento-02-topologia-do-monorepo-e-engenharia-de-módulos">Documento
 02: Topologia do Monorepo e Engenharia de Módulos</h1>
+<p><em>Iniciativa de Pesquisa e Desenvolvimento: CINAS — Grupo de
+Pesquisa em Computação e Inteligência Artificial em Nuclear e Saúde
+(IPEN-CNEN/SP)</em></p>
 <h2 id="princípios-de-design-modular-e-domain-driven-design-ddd-no-odoo">1.
 Princípios de Design Modular e Domain-Driven Design (DDD) no Odoo</h2>
 <p>O desenvolvimento da localização brasileira para a pós-graduação
@@ -249,8 +267,8 @@ de cada componente estrutural do monorepo estão descritos a seguir:</p>
 ├── l10n_br_openeducat_capes_thesis/
 ├── l10n_br_openeducat_capes_ptt/
 ├── l10n_br_openeducat_capes_integration/
-└── l10n_br_openeducat_capes_diploma/
-</code></pre>
+├── l10n_br_openeducat_capes_diploma/
+└── l10n_br_openeducat_capes_scholarship/</code></pre>
 <h3 id="l10n_br_openeducat_capes_core">2.1.
 <code>l10n_br_openeducat_capes_core</code></h3>
 <ul>
@@ -277,8 +295,13 @@ rígida dos Identificadores Persistentes (PIDs) acadêmicos universais
 multi-vínculo de discentes (Opção B), parsing robusto de
 prenomes/sobrenomes segundo a onomástica brasileira
 (<code>_parse_brazilian_name</code>) e coleta censitária demográfica
-completa (filiação, raça/cor, PCD, naturalidade e níveis
-acadêmicos).</li>
+completa (filiação, raça/cor, PCD, naturalidade e níveis acadêmicos).
+Registra a filiação do discente ao programa acadêmico através do campo
+relacional <code>program_id</code> (<code>Many2one</code> para
+<code>op.program.capes</code>, indexado), exibido no formulário discente
+na aba “Vínculo Regimental e Proficiências” (logo abaixo do RA) e
+sincronizado de forma automática com a Versão Regimental
+(<code>curriculum_version_id.program_id</code>).</li>
 </ul>
 <h3 id="l10n_br_openeducat_capes_admission">2.2.
 <code>l10n_br_openeducat_capes_admission</code></h3>
@@ -408,6 +431,36 @@ pós-graduação e documentação acadêmica digital, e orquestrar rotinas
 criptográficas Python para aplicação de assinaturas avançadas XAdES
 ICP-Brasil (Certificado A3/HSM) com Carimbos de Tempo.</li>
 </ul>
+<h3 id="l10n_br_openeducat_capes_scholarship">2.9.
+<code>l10n_br_openeducat_capes_scholarship</code></h3>
+<ul>
+<li><strong>Escopo:</strong> Governa o livro de cotas institucionais de
+bolsas (CAPES, CNPq, CNEN, FAPs), editais de distribuição de bolsas,
+processos avaliativos com múltiplos revisores docentes em paralelo e
+ciclo de vida de concessão sem gestão financeira direta (Portaria CAPES
+nº 133/2023 e IN CNEN nº 07/2024).</li>
+<li><strong>Modelos Estendidos/Criados:</strong>
+<code>capes.scholarship.sponsor</code>,
+<code>capes.scholarship.quota</code>,
+<code>capes.scholarship.rubric</code>,
+<code>capes.scholarship.rubric.item</code>,
+<code>capes.scholarship.edital</code>,
+<code>capes.scholarship.application</code>,
+<code>capes.scholarship.evaluation</code>,
+<code>capes.scholarship.evaluation.line</code>,
+<code>capes.scholarship.assignment</code>, <code>op.student</code>
+(extensão), <code>op.faculty</code> (extensão).</li>
+<li><strong>Responsabilidade Técnica:</strong> Operar o saldo de cotas
+de bolsas sem pagamento financeiro direto pela IES; gerenciar editais
+parametrizados com reserva de cotas (PPI e Ampla Concorrência) e regras
+de reversão; viabilizar matriz avaliativa em 4 colunas (Autoavaliação,
+Revisor 1, Revisor 2 e Consolidação pela CPG) com revisores operando em
+paralelo; aplicar fórmulas lineares e tetos dinâmicos sem hardcode
+regimental; verificar limites regulamentares de acúmulo temporal (24m ME
+/ 48m DO) e regras de vínculo empregatício sob deliberação da CPG; gerar
+termos de compromisso digital e auditar frequências e relatórios
+anuais.</li>
+</ul>
 <h2 id="matriz-de-dependências-e-manifestos-do-odoo-__manifest__.py">3.
 Matriz de Dependências e Manifestos do Odoo
 (<code>__manifest__.py</code>)</h2>
@@ -426,7 +479,9 @@ inicialização:</p>
 ^                                │                         |
 |                                │                         |
 [l10n_br_openeducat_capes_academic] &lt;---+│                         |
-^                                |│                        |
+^          ^                     |│                        |
+|          |                     ||                        |
+|          +---------------------+│                        |
 |                                ||                        |
 [l10n_br_openeducat_capes_research]     ||                        |
 ^                                |│                        |
@@ -441,6 +496,9 @@ inicialização:</p>
 ^                                                          |
 |                                                          |
 [l10n_br_openeducat_capes_diploma] -------------------------------+
+^
+|
+[l10n_br_openeducat_capes_scholarship] (core + academic + admission)
 </code></pre>
 <p>Abaixo está a especificação exata das chaves <code>depends</code>
 presentes em cada manifesto de domínio:</p>
@@ -498,6 +556,11 @@ presentes em cada manifesto de domínio:</p>
 <td><code>[&#39;l10n_br_openeducat_capes_core&#39;, &#39;l10n_br_openeducat_capes_academic&#39;, &#39;l10n_br_openeducat_capes_thesis&#39;]</code></td>
 <td>Conformidade MEC, Teses e Criptografia</td>
 </tr>
+<tr>
+<td><code>l10n_br_openeducat_capes_scholarship</code></td>
+<td><code>[&#39;l10n_br_openeducat_capes_core&#39;, &#39;l10n_br_openeducat_capes_academic&#39;, &#39;l10n_br_openeducat_capes_admission&#39;]</code></td>
+<td>Gestão de Cotas, Editais de Bolsa e Pareceres</td>
+</tr>
 </tbody>
 </table>
 <h2 id="modelo-de-extensibilidade-e-herança-estrita-_inherit">4. Modelo
@@ -533,6 +596,117 @@ instâncias como <code>op.admission.register</code>, injetando
 decoradores <code>@api.constrains</code> para bloquear transições de
 estado lineares caso inconsistências com regulamentos ou ausência de
 validação de proficiências sejam detectadas no banco de dados.</li>
+</ul>
+<h2 id="arquitetura-técnica-de-isolamento-multiprograma-e-contexto-ativo-opção-b">5.
+Arquitetura Técnica de Isolamento Multiprograma e Contexto Ativo (Opção
+B)</h2>
+<p>Para atender a universidades descentralizadas mantendo uma única
+pessoa jurídica soberana (<code>res.company</code>), o monorepo adota o
+isolamento multiprograma na camada de segurança e contexto da
+aplicação.</p>
+<h3 id="extensão-de-usuários-e-sessão-res.users">5.1. Extensão de
+Usuários e Sessão (<code>res.users</code>)</h3>
+<ul>
+<li><code>allowed_program_ids</code> (Many2many com
+<code>op.program.capes</code>): define o conjunto de programas de
+pós-graduação sobre os quais o usuário tem credenciais de acesso
+autorizadas.</li>
+<li><code>current_program_id</code> (Many2one com
+<code>op.program.capes</code>): programa ativo na sessão corrente do
+usuário.</li>
+<li><code>is_central_admin</code> (Boolean): indica perfil de
+Pró-Reitoria / TI Central, com visão consolidada e sem restrição de
+filtros.</li>
+<li><code>action_switch_program(program_id)</code>: método RPC que
+valida permissões, atualiza <code>current_program_id</code> e recarrega
+o contexto da interface web sem logout.</li>
+<li><code>_get_session_info()</code>: estendido para injetar
+<code>current_program_id</code>, <code>allowed_program_ids</code> e
+<code>is_central_admin</code> no payload inicial da sessão web do
+Odoo.</li>
+</ul>
+<h3 id="grupos-de-segurança-hierárquicos">5.2. Grupos de Segurança
+Hierárquicos</h3>
+<ul>
+<li><strong>Administrador Central de Pós-Graduação
+(<code>group_capes_central_admin</code>):</strong> Pertence à
+Pró-Reitoria de Pós-Graduação ou administração central da IES. Visualiza
+e administra todos os programas, unidades e relatórios integrados.</li>
+<li><strong>Coordenador de Programa de Pós-Graduação
+(<code>group_capes_program_coordinator</code>):</strong> Gestão
+acadêmica e colegiada estrita ao seu programa (ou programas
+permitidos).</li>
+<li><strong>Secretaria de Programa de Pós-Graduação
+(<code>group_capes_program_secretary</code>):</strong> Operação
+cotidiana de matrículas, turmas, requerimentos e cadastros. Pode ter
+permissão para um ou mais programas, alternando entre eles pelo seletor
+de contexto.</li>
+<li><strong>Corpo Docente
+(<code>openeducat_core.group_op_faculty</code>):</strong> Visualiza
+discentes sob sua orientação, disciplinas atribuídas e bancas
+examinadoras.</li>
+<li><strong>Corpo Discente (<code>base.group_portal</code>):</strong>
+Isolamento absoluto estrito à sua própria identidade e histórico via
+chave de discente (<code>user.id == student_id.user_id</code>).</li>
+</ul>
+<h3 id="camada-de-frontend-owl-e-interfaces-de-alternância-de-programa">5.3.
+Camada de Frontend OWL e Interfaces de Alternância de Programa</h3>
+<ul>
+<li><strong>Componente <code>ProgramMenu</code> (Systray):</strong>
+Widget JavaScript OWL registrado na barra superior do Odoo
+(<code>web.systray</code>).
+<ul>
+<li>Para usuários multiprograma: exibe o badge do programa ativo e menu
+dropdown com a lista de programas autorizados. A seleção invoca
+<code>action_switch_program</code> e recarrega a visualização
+ativa.</li>
+<li>Para instituições de programa único (ex: MPTRCS / IPEN): exibe o
+badge estático com o nome do programa, sem abrir dropdown e sem exigir
+cliques adicionais, garantindo 100% de transparência operacional.</li>
+<li>Para administradores centrais: inclui a opção “Todos os Programas
+(Consolidado)”.</li>
+</ul></li>
+<li><strong>Alternância Integrada em <code>op.program.capes</code>
+(Views XML):</strong>
+<ul>
+<li><strong>Visualização em Lista (<code>tree view</code>):</strong>
+Coluna com status badge (<code>Programa Ativo</code> /
+<code>Disponível</code>), botão inline direto de alternância
+(<code>fa-exchange</code>) e ação coletiva <em>“Alternar para esse
+Programa”</em> no menu <strong>Ações (Actions)</strong>.</li>
+<li><strong>Visualização em Formulário
+(<code>form view</code>):</strong> Botão primário no cabeçalho
+<code>&lt;header&gt;</code> <em>“Alternar para este Programa”</em> para
+programas não ativos e selo gráfico em fita <code>web_ribbon</code>
+(<strong>“Programa Ativo”</strong>) quando o programa em exibição
+coincide com a sessão de trabalho.</li>
+</ul></li>
+</ul>
+<h3 id="regras-de-registro-ir.rule-e-indexação-relacional">5.4. Regras
+de Registro (<code>ir.rule</code>) e Indexação Relacional</h3>
+<ul>
+<li>Todo modelo de dados operacional possui chave relacional para
+<code>program_id</code> (direta ou computada e armazenada com
+<code>index=True</code>):
+<ul>
+<li><code>op.batch</code>, <code>op.course</code>,
+<code>op.curriculum.version</code>,
+<code>op.student.credit.ledger</code>, <code>op.academic.request</code>,
+<code>op.cpg.meeting</code>, <code>op.admission.register</code>,
+<code>op.admission.edital</code>, <code>capes.thesis</code>,
+<code>capes.ptt.product</code>, <code>capes.scholarship.edital</code>,
+<code>capes.scholarship.quota</code>, etc.</li>
+</ul></li>
+<li>As regras de registro aplicam filtros restritivos:
+<ul>
+<li>Administrador Central: <code>[(1, &#39;=&#39;, 1)]</code> (irrestrito).</li>
+<li>Coordenação e Secretaria:
+<code>[&#39;|&#39;, (&#39;program_id&#39;, &#39;=&#39;, False), (&#39;program_id&#39;, &#39;in&#39;, user.allowed_program_ids.ids)]</code>
+com filtro contextual prioritário em
+<code>user.current_program_id.id</code>.</li>
+<li>Discente: <code>[(&#39;student_id.user_id&#39;, &#39;=&#39;, user.id)]</code> ou
+<code>[(&#39;user_id&#39;, &#39;=&#39;, user.id)]</code>.</li>
+</ul></li>
 </ul>
 </body>
 </html>

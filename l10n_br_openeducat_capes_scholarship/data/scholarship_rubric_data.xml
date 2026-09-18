@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ============================================================ -->
+        <!-- BAREMA 1: IPEN ACADÊMICO - MESTRADO (125 PONTOS)             -->
+        <!-- ============================================================ -->
+        <record id="rubric_ipen_master_acad" model="capes.scholarship.rubric">
+            <field name="name">Barema IPEN/USP - Mestrado Acadêmico (Edital 06/2026)</field>
+            <field name="level">master_acad</field>
+            <field name="scoring_model">analytical_points</field>
+            <field name="total_max_points">125.0</field>
+            <field name="description">Barema analítico por pontos com tetos de categoria (Anexo IV do Edital 06/2026).</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_workplan" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">10</field>
+            <field name="name">Plano de Trabalho Aprovado pela CPG</field>
+            <field name="category">work_plan</field>
+            <field name="calculation_formula">fixed</field>
+            <field name="base_points">10.0</field>
+            <field name="category_cap_points">10.0</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_enade" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">20</field>
+            <field name="name">Instituição de Graduação (Avaliação ENADE em vigência normalizada até 20)</field>
+            <field name="category">enade</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">20.0</field>
+            <field name="category_cap_points">20.0</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_grad_time" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">30</field>
+            <field name="name">Tempo de Conclusão da Graduação (15 no prazo; -3 por semestre a mais)</field>
+            <field name="category">graduation_time</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">15.0</field>
+            <field name="category_cap_points">15.0</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_grad_grades" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">40</field>
+            <field name="name">Média Aritmética das Notas/Conceitos da Graduação (A=10, B=8, C=6)</field>
+            <field name="category">graduation_grades</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">10.0</field>
+            <field name="category_cap_points">10.0</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_ic" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">50</field>
+            <field name="name">Iniciação Científica (Fórmula: 0,3 x meses + 2; máx 13 pts)</field>
+            <field name="category">internship_ic</field>
+            <field name="calculation_formula">linear_months</field>
+            <field name="linear_factor">0.3</field>
+            <field name="linear_base">2.0</field>
+            <field name="min_months">6</field>
+            <field name="max_months">35</field>
+            <field name="category_cap_points">15.0</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_prod_q1" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">60</field>
+            <field name="name">Artigo Periódico Scimago/Qualis Q1</field>
+            <field name="category">scientific_production</field>
+            <field name="calculation_formula">fixed</field>
+            <field name="base_points">8.0</field>
+            <field name="category_cap_points">15.0</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_prod_q2" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">70</field>
+            <field name="name">Artigo Periódico Scimago/Qualis Q2</field>
+            <field name="category">scientific_production</field>
+            <field name="calculation_formula">fixed</field>
+            <field name="base_points">6.0</field>
+            <field name="category_cap_points">15.0</field>
+        </record>
+
+        <record id="rubric_item_ipen_me_dedication" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_ipen_master_acad"/>
+            <field name="sequence">80</field>
+            <field name="name">Grau de Dedicação (Exclusiva=10, Docência=5, Outras=0)</field>
+            <field name="category">dedication</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">10.0</field>
+            <field name="category_cap_points">10.0</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- BAREMA 2: MESTRADO PROFISSIONAL MP-TRCS (ESCALA 1 A 5)       -->
+        <!-- ============================================================ -->
+        <record id="rubric_mptrcs_prof" model="capes.scholarship.rubric">
+            <field name="name">Barema MP-TRCS - Mestrado Profissional (Edital 05/2026)</field>
+            <field name="level">master_prof</field>
+            <field name="scoring_model">likert_scale</field>
+            <field name="total_max_points">25.0</field>
+            <field name="description">Avaliação em 5 dimensões quantitativas e qualitativas pontuadas de 1 a 5 (Edital 05/2026 MP-TRCS).</field>
+        </record>
+
+        <record id="rubric_item_mp_dim1" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_mptrcs_prof"/>
+            <field name="sequence">10</field>
+            <field name="name">i) Média aritmética dos conceitos recebidos durante a graduação (Histórico)</field>
+            <field name="category">graduation_grades</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">5.0</field>
+            <field name="category_cap_points">5.0</field>
+        </record>
+
+        <record id="rubric_item_mp_dim2" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_mptrcs_prof"/>
+            <field name="sequence">20</field>
+            <field name="name">ii) Cursos de extensão para formação acadêmica/profissional alinhados às linhas do MP-TRCS</field>
+            <field name="category">professional_experience</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">5.0</field>
+            <field name="category_cap_points">5.0</field>
+        </record>
+
+        <record id="rubric_item_mp_dim3" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_mptrcs_prof"/>
+            <field name="sequence">30</field>
+            <field name="name">iii) Trabalhos técnico-científicos produzidos (congressos, anais, relatórios técnicos, livros)</field>
+            <field name="category">scientific_production</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">5.0</field>
+            <field name="category_cap_points">5.0</field>
+        </record>
+
+        <record id="rubric_item_mp_dim4" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_mptrcs_prof"/>
+            <field name="sequence">40</field>
+            <field name="name">iv) Experiência profissional prática alinhada às linhas de pesquisa do MP-TRCS</field>
+            <field name="category">professional_experience</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">5.0</field>
+            <field name="category_cap_points">5.0</field>
+        </record>
+
+        <record id="rubric_item_mp_dim5" model="capes.scholarship.rubric.item">
+            <field name="rubric_id" ref="rubric_mptrcs_prof"/>
+            <field name="sequence">50</field>
+            <field name="name">v) Avaliação do Plano de Trabalho preliminar e da Carta de Autoapresentação</field>
+            <field name="category">work_plan</field>
+            <field name="calculation_formula">direct_score</field>
+            <field name="base_points">5.0</field>
+            <field name="category_cap_points">5.0</field>
+        </record>
+
+    </data>
+</odoo>

@@ -32,6 +32,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/ptt_rules.xml',
         'data/ptt_taxonomy_data.xml',
         'views/ptt_views.xml',
         'views/op_student_ptt_views.xml',

@@ -192,8 +192,9 @@ Identificadores Persistentes (PIDs) e Formação</a></li>
 <ul>
 <li><a href="#cadastro-e-visão-360-do-docente" id="toc-cadastro-e-visão-360-do-docente">2.1. Cadastro e Visão 360° do
 Docente</a></li>
-<li><a href="#vínculo-com-programa-op.faculty.program.link" id="toc-vínculo-com-programa-op.faculty.program.link">2.2. Vínculo com
-Programa (<code>op.faculty.program.link</code>)</a></li>
+<li><a href="#vínculo-e-filiação-a-programas-ppg-op.faculty.program.link" id="toc-vínculo-e-filiação-a-programas-ppg-op.faculty.program.link">2.2.
+Vínculo e Filiação a Programas PPG
+(<code>op.faculty.program.link</code>)</a></li>
 <li><a href="#livro-razão-de-categorias-docentes-op.faculty.category.ledger" id="toc-livro-razão-de-categorias-docentes-op.faculty.category.ledger">2.3.
 Livro-Razão de Categorias Docentes
 (<code>op.faculty.category.ledger</code>)</a></li>
@@ -225,7 +226,11 @@ Perfil Profissional e Declaração de Impacto (Baseline de Egressos -
 CAPES)</a></li>
 <li><a href="#perfis-de-usuários-e-controle-de-acesso-no-odoo-19-res.users" id="toc-perfis-de-usuários-e-controle-de-acesso-no-odoo-19-res.users">7.
 Perfis de Usuários e Controle de Acesso no Odoo 19
-(<code>res.users</code>)</a></li>
+(<code>res.users</code>)</a>
+<ul>
+<li><a href="#campos-de-governança-multiprograma-em-res.users" id="toc-campos-de-governança-multiprograma-em-res.users">7.1. Campos de
+Governança Multiprograma em <code>res.users</code></a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -559,10 +564,43 @@ docente.</td>
 <td><code>Many2many</code></td>
 <td>Relação com <code>op.program.research.line</code>.</td>
 </tr>
+<tr>
+<td><code>program_ids</code></td>
+<td>Programas PPG Locais</td>
+<td><code>Many2many</code></td>
+<td>Programas locais da IES aos quais o docente está credenciado.</td>
+</tr>
+<tr>
+<td><code>programs_summary</code></td>
+<td>Programas PPG (Filiações)</td>
+<td><code>Char</code></td>
+<td>Resumo de todas as filiações locais e externas com categoria.</td>
+</tr>
+<tr>
+<td><code>permanent_programs_count</code></td>
+<td>Vínculos Permanentes (Teto CAPES: 3)</td>
+<td><code>Integer</code></td>
+<td>Total de vínculos como Docente Permanente (Portaria CAPES
+81/2016).</td>
+</tr>
+<tr>
+<td><code>capes_program_compliance</code></td>
+<td>Conformidade Portaria CAPES 81/2016</td>
+<td><code>Selection</code></td>
+<td>Regular (≤ 3), Teto Atingido (3), Irregular (&gt; 3).</td>
+</tr>
 </tbody>
 </table>
-<h3 id="vínculo-com-programa-op.faculty.program.link">2.2. Vínculo com
-Programa (<code>op.faculty.program.link</code>)</h3>
+<h3 id="vínculo-e-filiação-a-programas-ppg-op.faculty.program.link">2.2.
+Vínculo e Filiação a Programas PPG
+(<code>op.faculty.program.link</code>)</h3>
+<p>Mapeia a filiação a programas de pós-graduação stricto sensu, tanto
+<strong>locais</strong> (mesma instituição) quanto
+<strong>externos</strong> (outras IES), atendendo ao Censo da
+Pós-Graduação (Coleta CAPES / Sucupira) e fiscalizando o teto da
+<strong>Portaria CAPES nº 81, de 03/06/2016 (Art. 4º, § 2º)</strong>:
+<em>“Um docente poderá ser cadastrado como permanente em, no máximo, 3
+(três) programas de pós-graduação.”</em></p>
 <table>
 <colgroup>
 <col style="width: 25%" />
@@ -583,13 +621,51 @@ Programa (<code>op.faculty.program.link</code>)</h3>
 <td><code>faculty_id</code></td>
 <td>Docente</td>
 <td><code>Many2one</code></td>
-<td>FK para <code>op.faculty</code>.</td>
+<td>FK para <code>op.faculty</code>. Obrigatório.</td>
+</tr>
+<tr>
+<td><code>link_type</code></td>
+<td>Tipo de Vínculo</td>
+<td><code>Selection</code></td>
+<td><code>internal</code> (Programa Local - Mesma IES) ou
+<code>external</code> (Programa Externo - Outra IES).</td>
 </tr>
 <tr>
 <td><code>program_id</code></td>
-<td>Programa de Pós-Graduação</td>
+<td>Programa de Pós-Graduação Local</td>
 <td><code>Many2one</code></td>
-<td>FK para <code>op.program.capes</code>.</td>
+<td>FK para <code>op.program.capes</code>. Obrigatório se
+<code>link_type == &#39;internal&#39;</code>.</td>
+</tr>
+<tr>
+<td><code>external_ies_name</code></td>
+<td>IES do Programa Externo</td>
+<td><code>Char</code></td>
+<td>Instituição externa de ensino superior (ex: USP, UNICAMP).</td>
+</tr>
+<tr>
+<td><code>external_program_name</code></td>
+<td>Nome do Programa Externo</td>
+<td><code>Char</code></td>
+<td>Programa de pós-graduação na IES externa.</td>
+</tr>
+<tr>
+<td><code>external_snpg_code</code></td>
+<td>Código SNPG / CAPES Externo</td>
+<td><code>Char</code></td>
+<td>Código no Sistema Nacional de Pós-Graduação.</td>
+</tr>
+<tr>
+<td><code>faculty_category</code></td>
+<td>Categoria de Atuação</td>
+<td><code>Selection</code></td>
+<td>Permanente (DP), Colaborador (DC), Visitante (DV), Assistente.</td>
+</tr>
+<tr>
+<td><code>weekly_hours</code></td>
+<td>Carga Horária Semanal (h)</td>
+<td><code>Integer</code></td>
+<td>Carga horária semanal dedicada a este programa.</td>
 </tr>
 <tr>
 <td><code>active_advisees_count</code></td>
@@ -702,6 +778,20 @@ Horas, Conceito Final, Data e Situação de Aprovação.</p>
 <td><code>Char</code></td>
 <td>Alfanumérico. <strong>Imutável e Único por CPF e IES
 (<code>res.company</code>)</strong>.</td>
+</tr>
+<tr>
+<td><code>ra_number</code></td>
+<td>Número do RA (Oficial BR)</td>
+<td><code>Char</code></td>
+<td>Relacionado a <code>gr_no</code>, visível no formulário e no
+Histórico Oficial.</td>
+</tr>
+<tr>
+<td><code>program_id</code></td>
+<td>Programa de Pós-Graduação (PPG)</td>
+<td><code>Many2one</code></td>
+<td>FK para <code>op.program.capes</code>. Filiação formal ao programa
+do curso.</td>
 </tr>
 <tr>
 <td><code>partner_id</code></td>
@@ -1097,7 +1187,7 @@ seguintes perfis e privilégios são configurados:</p>
 <th>Login</th>
 <th>Papel Institucional</th>
 <th>Grupo de Segurança Odoo 19</th>
-<th>Vínculo de Domínio</th>
+<th>Escopo de Programas</th>
 <th>Atribuições Principais</th>
 </tr>
 </thead>
@@ -1107,42 +1197,75 @@ seguintes perfis e privilégios são configurados:</p>
 <td>Administrador de TI / Sistema</td>
 <td><code>base.group_system</code>,
 <code>group_op_back_office_admin</code></td>
-<td>-</td>
+<td>Global (<code>is_central_admin=True</code>)</td>
 <td>Configuração de módulos, parametrizações globais e auditoria do
 stack.</td>
 </tr>
 <tr>
+<td><code>prpg_admin</code></td>
+<td>Pró-Reitoria de Pós-Graduação</td>
+<td><code>group_capes_central_admin</code>,
+<code>group_op_back_office_admin</code></td>
+<td>Global (<code>is_central_admin=True</code>)</td>
+<td>Supervisão multicampi, relatórios consolidados e parametrização
+geral.</td>
+</tr>
+<tr>
 <td><code>secretaria</code></td>
-<td>Secretaria de Pós-Graduação</td>
-<td><code>openeducat_core.group_op_back_office_admin</code></td>
-<td>Secretaria do PPG</td>
-<td>Cadastros discentes, matrículas, lançamentos de créditos, emissão de
-históricos e diplomas.</td>
+<td>Secretaria Setorial Monoprograma</td>
+<td><code>group_capes_program_secretary</code>,
+<code>group_op_back_office_admin</code></td>
+<td>1 Programa (<code>allowed_program_ids</code>)</td>
+<td>Gestão de turmas, matrículas, lançamentos de créditos e emissão de
+históricos.</td>
+</tr>
+<tr>
+<td><code>secretaria_multi</code></td>
+<td>Secretaria Compartilhada Multiprograma</td>
+<td><code>group_capes_program_secretary</code>,
+<code>group_op_back_office_admin</code></td>
+<td>N Programas (<code>allowed_program_ids</code>)</td>
+<td>Atendimento a múltiplos PPGs com alternância dinâmica via Systray e
+menu.</td>
 </tr>
 <tr>
 <td><code>coordenador</code></td>
-<td>Coordenador do PPG</td>
-<td><code>openeducat_core.group_op_back_office_admin</code></td>
-<td>FK Docente Coordenador + CPG</td>
+<td>Coordenador de Programa</td>
+<td><code>group_capes_program_coordinator</code>,
+<code>group_op_back_office_admin</code></td>
+<td>1 ou + Programas (<code>allowed_program_ids</code>)</td>
 <td>Presidência da CPG, homologação de bancas, acompanhamento de prazos
-e deliberações.</td>
-</tr>
-<tr>
-<td><code>vicecoordenador</code></td>
-<td>Vice-Coordenador do PPG</td>
-<td><code>openeducat_core.group_op_back_office_admin</code></td>
-<td>FK Docente Vice-Coord. + CPG</td>
-<td>Substituição da coordenação e deliberações na CPG.</td>
+e bolsas.</td>
 </tr>
 <tr>
 <td><code>professor</code></td>
 <td>Docente e Orientador</td>
 <td><code>openeducat_core.group_op_faculty</code></td>
-<td>FK <code>op.faculty</code></td>
+<td>Orientandos e Disciplinas</td>
 <td>Diário de classe, notas, pareceres sobre planos de trabalho e
-requerimentos de orientandos.</td>
+bancas.</td>
+</tr>
+<tr>
+<td><code>aluno</code></td>
+<td>Discente de Pós-Graduação</td>
+<td><code>base.group_portal</code></td>
+<td>Estrito ao próprio ID (<code>user_id</code>)</td>
+<td>Matrícula online, requerimentos, histórico com QR Code e editais de
+bolsas.</td>
 </tr>
 </tbody>
 </table>
+<h3 id="campos-de-governança-multiprograma-em-res.users">7.1. Campos de
+Governança Multiprograma em <code>res.users</code></h3>
+<ul>
+<li><code>allowed_program_ids</code> (<code>Many2many</code> com
+<code>op.program.capes</code>): define a lista de programas acessíveis
+pelo usuário.</li>
+<li><code>current_program_id</code> (<code>Many2one</code> com
+<code>op.program.capes</code>): programa ativo na sessão corrente.</li>
+<li><code>is_central_admin</code> (<code>Boolean</code>): indica usuário
+com permissão de visualização e edição irrestrita de todos os
+programas.</li>
+</ul>
 </body>
 </html>

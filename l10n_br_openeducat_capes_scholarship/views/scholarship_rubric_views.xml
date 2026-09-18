@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_capes_scholarship_rubric_list" model="ir.ui.view">
+        <field name="name">capes.scholarship.rubric.list</field>
+        <field name="model">capes.scholarship.rubric</field>
+        <field name="arch" type="xml">
+            <list string="Baremas de Avaliação">
+                <field name="name"/>
+                <field name="level"/>
+                <field name="scoring_model"/>
+                <field name="total_max_points"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_capes_scholarship_rubric_form" model="ir.ui.view">
+        <field name="name">capes.scholarship.rubric.form</field>
+        <field name="model">capes.scholarship.rubric</field>
+        <field name="arch" type="xml">
+            <form string="Barema de Avaliação de Bolsas">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Título do Barema"/>
+                        <h1><field name="name" placeholder="Ex: Barema Analítico IPEN - Mestrado 125 pts"/></h1>
+                    </div>
+                    <group>
+                        <group string="Parametrização do Modelo">
+                            <field name="level"/>
+                            <field name="scoring_model"/>
+                            <field name="total_max_points"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Critérios e Itens do Barema">
+                            <field name="item_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="category"/>
+                                    <field name="calculation_formula"/>
+                                    <field name="base_points"/>
+                                    <field name="category_cap_points"/>
+                                    <field name="linear_factor" invisible="calculation_formula != 'linear_months'"/>
+                                    <field name="linear_base" invisible="calculation_formula != 'linear_months'"/>
+                                    <field name="min_months" invisible="calculation_formula != 'linear_months'"/>
+                                    <field name="max_months" invisible="calculation_formula != 'linear_months'"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Instruções aos Revisores">
+                            <field name="description" placeholder="Orientações detalhadas sobre equivalência de conceitos, prazos e comprovações..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

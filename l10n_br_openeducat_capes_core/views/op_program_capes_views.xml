@@ -5,7 +5,10 @@
         <field name="name">op.program.capes.tree</field>
         <field name="model">op.program.capes</field>
         <field name="arch" type="xml">
-            <list string="Programas de Pós-Graduação (PPG)">
+            <list string="Programas de Pós-Graduação (PPG)" decoration-success="is_current_program">
+                <field name="is_current_program" column_invisible="True"/>
+                <field name="can_switch_to_program" column_invisible="True"/>
+                <field name="session_status" widget="badge" decoration-success="is_current_program" decoration-muted="not is_current_program"/>
                 <field name="snpg_code"/>
                 <field name="name"/>
                 <field name="modality"/>
@@ -13,6 +16,7 @@
                 <field name="capes_grade"/>
                 <field name="status"/>
                 <field name="company_id"/>
+                <button name="action_select_as_current" string="Alternar para este Programa" type="object" icon="fa-exchange" invisible="is_current_program or not can_switch_to_program" class="btn btn-sm btn-outline-primary"/>
             </list>
         </field>
     </record>
@@ -23,7 +27,18 @@
         <field name="model">op.program.capes</field>
         <field name="arch" type="xml">
             <form string="Programa de Pós-Graduação (PPG)">
+                <header>
+                    <button name="action_select_as_current"
+                            string="Alternar para este Programa"
+                            type="object"
+                            class="btn-primary"
+                            icon="fa-exchange"
+                            invisible="is_current_program or not can_switch_to_program"/>
+                    <field name="is_current_program" invisible="1"/>
+                    <field name="can_switch_to_program" invisible="1"/>
+                </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Programa Ativo" bg_color="text-bg-success" invisible="not is_current_program"/>
                     <div class="oe_title">
                         <label for="name" string="Nome do Programa"/>
                         <h1><field name="name" placeholder="Ex: Programa de Pós-Graduação em Tecnologia Nuclear"/></h1>
@@ -89,6 +104,8 @@
                 <field name="name"/>
                 <field name="snpg_code"/>
                 <field name="evaluation_area"/>
+                <filter string="Programa Ativo na Sessão" name="active_session_prog" domain="[('is_current_program', '=', True)]"/>
+                <separator/>
                 <filter string="Em Funcionamento" name="active_status" domain="[('status', '=', 'active')]"/>
                 <filter string="Modalidade Acadêmica" name="acad_modality" domain="[('modality', '=', 'academic')]"/>
                 <filter string="Modalidade Profissional" name="prof_modality" domain="[('modality', '=', 'professional')]"/>
@@ -99,6 +116,20 @@
                     <filter string="Situação" name="group_by_status" context="{'group_by': 'status'}"/>
                 </group>
             </search>
+        </field>
+    </record>
+
+    <!-- Server Action: Alternar para esse Programa (Menu Ações / Cog) -->
+    <record id="action_server_switch_to_program" model="ir.actions.server">
+        <field name="name">Alternar para esse Programa</field>
+        <field name="model_id" ref="model_op_program_capes"/>
+        <field name="binding_model_id" ref="model_op_program_capes"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+if len(records) != 1:
+    raise UserError("Por favor, selecione apenas um programa para ativar na sessão.")
+action = records.action_select_as_current()
         </field>
     </record>
 
@@ -127,3 +158,4 @@
               action="action_op_program_capes"
               sequence="10"/>
 </odoo>
+

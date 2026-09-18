@@ -40,6 +40,13 @@ class OpStudentCreditLedger(models.Model):
         required=True,
         help='Regimento sob o qual o crédito foi efetivamente conquistado'
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='curriculum_version_id.program_id',
+        store=True,
+        index=True
+    )
     credit_type = fields.Selection([
         ('subject', 'Disciplinas Regulares'),
         ('subject_internal', 'Disciplinas do Próprio Programa'),

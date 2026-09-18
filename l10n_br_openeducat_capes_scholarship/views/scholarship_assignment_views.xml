@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_capes_scholarship_assignment_list" model="ir.ui.view">
+        <field name="name">capes.scholarship.assignment.list</field>
+        <field name="model">capes.scholarship.assignment</field>
+        <field name="arch" type="xml">
+            <list string="Concessões de Bolsa">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="course_id"/>
+                <field name="sponsor_id"/>
+                <field name="monthly_reference_amount"/>
+                <field name="date_start"/>
+                <field name="date_end_expected"/>
+                <field name="current_months_active"/>
+                <field name="remaining_months"/>
+                <field name="commitment_term_signed" widget="boolean_toggle"/>
+                <field name="attendance_rate"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'active'"
+                       decoration-warning="state == 'suspended'"
+                       decoration-muted="state == 'completed'"
+                       decoration-danger="state == 'canceled'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_capes_scholarship_assignment_form" model="ir.ui.view">
+        <field name="name">capes.scholarship.assignment.form</field>
+        <field name="model">capes.scholarship.assignment</field>
+        <field name="arch" type="xml">
+            <form string="Concessão de Bolsa de Pós-Graduação">
+                <header>
+                    <button name="action_suspend" string="Suspender (Licença)" type="object"
+                            invisible="state != 'active'"/>
+                    <button name="action_reactivate" string="Reativar Bolsa" type="object"
+                            class="oe_highlight" invisible="state != 'suspended'"/>
+                    <button name="action_complete" string="Concluir Regularmente" type="object"
+                            invisible="state not in ('active', 'suspended')"/>
+                    <button name="action_cancel" string="Cancelar / Encerrar" type="object"
+                            invisible="state not in ('active', 'suspended')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="active,suspended,completed,canceled"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Código da Concessão"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Discente e Cota">
+                            <field name="student_id" readonly="state != 'active'"/>
+                            <field name="course_id" readonly="1"/>
+                            <field name="quota_id" readonly="state != 'active'"/>
+                            <field name="sponsor_id"/>
+                            <field name="monthly_reference_amount"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Prazos Regulamentares e Limites">
+                            <field name="date_start" readonly="state != 'active'"/>
+                            <field name="date_end_expected" readonly="1"/>
+                            <field name="date_termination" readonly="1"/>
+                            <field name="max_allowed_months"/>
+                            <field name="prior_months_used"/>
+                            <field name="current_months_active"/>
+                            <field name="remaining_months"/>
+                        </group>
+                        <group string="Conformidade e Acompanhamento">
+                            <field name="commitment_term_signed"/>
+                            <field name="commitment_term_file" filename="commitment_term_filename"/>
+                            <field name="commitment_term_filename" invisible="1"/>
+                            <field name="attendance_rate"/>
+                            <field name="last_annual_report_date"/>
+                            <field name="cpg_report_approval_ref"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Observações Institucionais">
+                            <field name="notes" placeholder="Registros sobre licenças, acúmulos autorizados pela CPG, relatórios anuais..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -18,6 +18,7 @@
                     <group>
                         <group string="Vínculo Acadêmico e Regimento (Ato Perfeito)">
                             <field name="ra_number" readonly="1"/>
+                            <field name="program_id" options="{'no_create': True}"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                             <field name="student_category"/>
                             <field name="capes_status"/>

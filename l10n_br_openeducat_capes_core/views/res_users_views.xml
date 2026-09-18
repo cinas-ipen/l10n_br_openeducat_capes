@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_capes_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.capes.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Pós-Graduação CAPES" groups="l10n_br_openeducat_capes_core.group_capes_central_admin,base.group_system">
+                    <group string="Governança Multiprograma">
+                        <field name="is_central_admin"/>
+                        <field name="current_program_id" options="{'no_create': True}"/>
+                        <field name="allowed_program_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

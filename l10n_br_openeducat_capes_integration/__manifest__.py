@@ -31,6 +31,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/integration_rules.xml',
         'views/intellectual_production_views.xml',
     ],
     'installable': True,

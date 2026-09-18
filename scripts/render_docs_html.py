@@ -7,6 +7,7 @@ com estilização moderna, tipografia refinada, suporte a tabelas e índice nave
 import os
 import subprocess
 import glob
+import shutil
 from pathlib import Path
 
 CSS_STYLES = """
@@ -213,6 +214,29 @@ def render_markdown(src_path, dest_path, title=None):
     subprocess.run(cmd, check=True)
     print(f"[OK] Gerado: {dest_path}")
 
+def find_quarto_bin():
+    candidates = [
+        "/usr/local/bin/quarto",
+        "/usr/lib/rstudio/resources/app/bin/quarto/bin/quarto",
+        "/usr/share/positron/resources/app/quarto/bin/quarto",
+    ]
+    for c in candidates:
+        if os.path.isfile(c) and os.access(c, os.X_OK):
+            return c
+    which = shutil.which("quarto")
+    if which:
+        return which
+    return None
+
+def render_quarto(src_path):
+    quarto_bin = find_quarto_bin()
+    if not quarto_bin:
+        print(f"[AVISO] Quarto não encontrado para renderizar {src_path}. Ignorando...")
+        return
+    cmd = [quarto_bin, "render", str(src_path)]
+    subprocess.run(cmd, check=True)
+    print(f"[OK Quarto] Renderizado: {src_path}")
+
 def generate_index_html(docs_dir, sections):
     index_path = Path(docs_dir) / "index.html"
     
@@ -278,6 +302,7 @@ def generate_index_html(docs_dir, sections):
     <div class="nav-bar">
         <a href="../README.html">← Voltar ao README Principal</a>
         <a href="documentacao_executiva_capes.html">Documentação Executiva (Quarto)</a>
+        <a href="apresentacao_pitch_gopg_cinas.html" style="background: #0284c7; color: white; padding: 0.25rem 0.65rem; border-radius: 4px; text-decoration: none; font-weight: 600;">📊 Apresentação Executiva (RevealJS)</a>
     </div>
 
     <h1>OpenEduCat CAPES — Portal de Documentação & Manuais</h1>
@@ -315,28 +340,26 @@ def main():
     repo_root = Path(__file__).resolve().parent.parent
     docs_dir = repo_root / "docs"
 
-    # 1. Renderizar README.md
-    readme_md = repo_root / "README.md"
-    readme_html = repo_root / "README.html"
-    render_markdown(readme_md, readme_html, "OpenEduCat CAPES - Especificação Técnica do Sistema")
-
-    # 2. Renderizar todos os .md em docs/
+    # 1. Renderizar todos os .md em docs/
     all_md_files = list(docs_dir.rglob("*.md"))
     for md_file in all_md_files:
         html_file = md_file.with_suffix(".html")
         render_markdown(md_file, html_file)
 
+    # 2. Renderizar todos os .qmd em docs/ usando Quarto
+    all_qmd_files = list(docs_dir.rglob("*.qmd"))
+    for qmd_file in all_qmd_files:
+        render_quarto(qmd_file)
+
     # 3. Categorizar para o index.html
     sections = [
         (
-            "1. Implantação e Manuais Operacionais do Cotidiano",
-            "Operação",
+            "1. Apresentação Executiva, Implantação e Manuais",
+            "Destaque",
             [
+                ("Apresentação Executiva da Plataforma (RevealJS)", "apresentacao_pitch_gopg_cinas.html", "Slides conceituais e arquiteturais de alto nível para demonstração institucional e acadêmica com suporte 100% offline."),
+                ("Manual Unificado do Usuário da Pós-Graduação", "11_manuais_operacionais/manual_do_usuario_posgraduacao.html", "Guia operacional unificado e completo para Secretaria Acadêmica, Coordenação (CPG), Docentes e Discentes."),
                 ("Inicialização de Banco Zerado e Migração", "10_implantacao_e_migracao/01_inicializacao_banco_zerado_e_migracao.html", "Roteiro completo de bootstrap com banco vazio, provisionamento e carga CSV."),
-                ("Manual de Operação: Secretaria Acadêmica", "11_manuais_operacionais/01_manual_secretaria.html", "Matrículas, aproveitamento intra/extra IES, alunos especiais e livro-razão."),
-                ("Manual de Operação: Coordenação de Programa (CPG)", "11_manuais_operacionais/02_manual_coordenacao.html", "Gestão de vagas, relatórios Sucupira, deliberações de CPG e homologação."),
-                ("Manual de Operação: Professores & Orientadores", "11_manuais_operacionais/03_manual_professores.html", "Lançamento de notas, gestão de orientandos, aprovação de PTTs e bancas."),
-                ("Manual de Operação: Alunos & Portal do Discente", "11_manuais_operacionais/04_manual_alunos.html", "Requerimentos online, consulta de integralização de créditos e depósito de dissertação."),
             ]
         ),
         (
@@ -344,7 +367,8 @@ def main():
             "Arquitetura",
             [
                 ("Visão Geral e Governança Regimental (GoPG)", "01_arquitetura_sistemica/01_visao_geral_e_gopg.html", "Princípios de DDD, motor cronológico e governança de programas."),
-                ("Topologia do Monorepo", "01_arquitetura_sistemica/02_topologia_do_monorepo.html", "Estrutura dos 8 submódulos e matriz de dependências."),
+                ("Topologia do Monorepo", "01_arquitetura_sistemica/02_topologia_do_monorepo.html", "Estrutura dos 9 submódulos e matriz de dependências."),
+                ("Gestão de Cotas e Editais de Bolsas", "04_processos_da_vida_academica/05_editais_e_gestao_de_bolsas.html", "Regulamentação, fluxo de cotas, revisores paralelos e Portaria 133/2023."),
                 ("Motor de Versionamento de Regimentos", "02_governanca_regimental_e_creditos/01_motor_de_versionamento.html", "Modelagem dinâmica de regimentos e parametrização."),
                 ("Ato Jurídico Perfeito e Hibridismo", "02_governanca_regimental_e_creditos/02_ato_juridico_perfeito_e_hibridismo.html", "Preservação histórica de créditos e regras de transição."),
                 ("Livro-Razão Acadêmico e Integralização", "02_governanca_regimental_e_creditos/03_livro_razao_e_integralizacao.html", "Tabelas append-only e motor de cálculo de créditos."),

@@ -330,6 +330,10 @@ def run_import():
             })
         log(f"Programa CAPES configurado: ID={program.id} ({program.name})")
 
+        for b in batch_map.values():
+            b.write({'program_id': program.id})
+        log("Lotes/Turmas MPTRCS vinculados ao programa CAPES!")
+
         # 4. Áreas de Concentração e Linhas de Pesquisa (Ontologia GoPG / DAV)
         log("Passo 4: Configurando Áreas de Concentração e Linhas de Pesquisa...")
         # Área 1: Radioterapia e Dosimetria
@@ -493,12 +497,15 @@ def run_import():
                     'research_line_ids': [(6, 0, [l.id for l in doc_lines])],
                 })
             
-            # Credenciamento CPG no programa
-            link = env['op.faculty.program.link'].search([('faculty_id', '=', fac.id), ('program_id', '=', program.id)], limit=1)
+            # Credenciamento CPG no programa local MPTRCS
+            link = env['op.faculty.program.link'].search([('faculty_id', '=', fac.id), ('link_type', '=', 'internal'), ('program_id', '=', program.id)], limit=1)
             if not link:
                 link = env['op.faculty.program.link'].create({
                     'faculty_id': fac.id,
+                    'link_type': 'internal',
                     'program_id': program.id,
+                    'faculty_category': 'permanent',
+                    'weekly_hours': 20,
                 })
                 env['op.faculty.category.ledger'].create({
                     'program_link_id': link.id,
@@ -507,15 +514,70 @@ def run_import():
                     'document_ref': f"Portaria CPG-IPEN {idx:03d}/2021",
                     'notes': f"Credenciamento Permanente - Área {doc_area.name}",
                 })
+
+            # Filiações externas conforme Portaria CAPES 81/2016 (Docentes 1 e 2)
+            if idx == 1:
+                # Docente 1: USP (Permanente) e UNICAMP (Colaborador)
+                ext1 = env['op.faculty.program.link'].search([('faculty_id', '=', fac.id), ('link_type', '=', 'external'), ('external_program_name', '=', 'Programa de Pós-Graduação em Tecnologia Nuclear')], limit=1)
+                if not ext1:
+                    env['op.faculty.program.link'].create({
+                        'faculty_id': fac.id,
+                        'link_type': 'external',
+                        'external_ies_name': 'Universidade de São Paulo - USP',
+                        'external_program_name': 'Programa de Pós-Graduação em Tecnologia Nuclear',
+                        'external_snpg_code': '33002010022P1',
+                        'faculty_category': 'permanent',
+                        'weekly_hours': 10,
+                    })
+                ext2 = env['op.faculty.program.link'].search([('faculty_id', '=', fac.id), ('link_type', '=', 'external'), ('external_program_name', '=', 'Programa de Pós-Graduação em Engenharia Mecânica')], limit=1)
+                if not ext2:
+                    env['op.faculty.program.link'].create({
+                        'faculty_id': fac.id,
+                        'link_type': 'external',
+                        'external_ies_name': 'Universidade Estadual de Campinas - UNICAMP',
+                        'external_program_name': 'Programa de Pós-Graduação em Engenharia Mecânica',
+                        'external_snpg_code': '33003017002P5',
+                        'faculty_category': 'collaborator',
+                        'weekly_hours': 4,
+                    })
+            elif idx == 2:
+                # Docente 2: UNIFESP (Permanente)
+                ext3 = env['op.faculty.program.link'].search([('faculty_id', '=', fac.id), ('link_type', '=', 'external'), ('external_program_name', '=', 'Programa de Pós-Graduação em Medicina Nuclear')], limit=1)
+                if not ext3:
+                    env['op.faculty.program.link'].create({
+                        'faculty_id': fac.id,
+                        'link_type': 'external',
+                        'external_ies_name': 'Universidade Federal de São Paulo - UNIFESP',
+                        'external_program_name': 'Programa de Pós-Graduação em Medicina Nuclear',
+                        'external_snpg_code': '33009015010P2',
+                        'faculty_category': 'permanent',
+                        'weekly_hours': 8,
+                    })
+
             faculty_list.append(fac)
 
-        log(f"12 Docentes cadastrados com identificadores biométricos e censitários completos!")
+        log(f"12 Docentes cadastrados com identificadores biométricos, censitários e filiações PPG completas!")
 
         # 6.1 Perfis de Usuários do Sistema: res.users
         log("Passo 6.1: Configurando Perfis de Usuários do Sistema (res.users)...")
         g_user = env.ref('base.group_user')
         g_admin = env.ref('openeducat_core.group_op_back_office_admin')
         g_fac = env.ref('openeducat_core.group_op_faculty')
+        g_capes_admin = env.ref('l10n_br_openeducat_capes_core.group_capes_central_admin')
+        g_capes_coord = env.ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator')
+        g_capes_sec = env.ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')
+
+        # Atualiza admin principal
+        admin_rec = env['res.users'].search([('login', '=', 'admin')], limit=1)
+        if admin_rec:
+            admin_rec.write({
+                'company_id': company.id,
+                'company_ids': [(6, 0, [company.id])],
+                'is_central_admin': True,
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
+                'group_ids': [(4, g_capes_admin.id)],
+            })
 
         # Usuário Secretaria
         user_sec = env['res.users'].search([('login', '=', 'secretaria')], limit=1)
@@ -525,11 +587,15 @@ def run_import():
                 'login': 'secretaria',
                 'email': 'secretaria.mptrcs@ipen.br',
                 'password': 'secretaria123',
-                'group_ids': [(6, 0, [g_user.id, g_admin.id])],
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
+                'group_ids': [(6, 0, [g_user.id, g_admin.id, g_capes_sec.id])],
             })
         else:
             user_sec.write({
-                'group_ids': [(4, g_admin.id)],
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
+                'group_ids': [(4, g_admin.id), (4, g_capes_sec.id)],
                 'password': 'secretaria123',
             })
 
@@ -542,13 +608,17 @@ def run_import():
                 'email': 'coordenacao.mptrcs@ipen.br',
                 'password': 'coordenador123',
                 'partner_id': faculty_list[0].partner_id.id,
-                'group_ids': [(6, 0, [g_user.id, g_admin.id, g_fac.id])],
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
+                'group_ids': [(6, 0, [g_user.id, g_admin.id, g_fac.id, g_capes_coord.id])],
             })
         else:
             user_coord.write({
                 'partner_id': faculty_list[0].partner_id.id,
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
                 'password': 'coordenador123',
-                'group_ids': [(4, g_admin.id), (4, g_fac.id)],
+                'group_ids': [(4, g_admin.id), (4, g_fac.id), (4, g_capes_coord.id)],
             })
 
         # Usuário Vice-Coordenação (associada à Profa. Ana Cardoso Pontes)
@@ -560,13 +630,17 @@ def run_import():
                 'email': 'vicecoordenacao.mptrcs@ipen.br',
                 'password': 'vicecoordenador123',
                 'partner_id': faculty_list[1].partner_id.id,
-                'group_ids': [(6, 0, [g_user.id, g_admin.id, g_fac.id])],
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
+                'group_ids': [(6, 0, [g_user.id, g_admin.id, g_fac.id, g_capes_coord.id])],
             })
         else:
             user_vice.write({
                 'partner_id': faculty_list[1].partner_id.id,
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
                 'password': 'vicecoordenador123',
-                'group_ids': [(4, g_admin.id), (4, g_fac.id)],
+                'group_ids': [(4, g_admin.id), (4, g_fac.id), (4, g_capes_coord.id)],
             })
 
         # Usuário Professor (associado ao Prof. Bruno Fernandes Sardenberg)
@@ -578,15 +652,20 @@ def run_import():
                 'email': 'bruno.sardenberg@ipen.br',
                 'password': 'professor123',
                 'partner_id': faculty_list[2].partner_id.id,
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
                 'group_ids': [(6, 0, [g_user.id, g_fac.id])],
             })
         else:
             user_prof.write({
                 'partner_id': faculty_list[2].partner_id.id,
+                'allowed_program_ids': [(6, 0, [program.id])],
+                'current_program_id': program.id,
                 'password': 'professor123',
                 'group_ids': [(4, g_fac.id)],
             })
-        log("4 Perfis de Usuários configurados: secretaria, coordenador, vicecoordenador e professor!")
+        log("4 Perfis de Usuários configurados: secretaria, coordenador, vicecoordenador e professor (Vinculados a MPTRCS)!")
+
 
         # 7. Projetos de Pesquisa Institucionais com Fomento: capes.research.project
         log("Passo 7: Configurando Projetos de Pesquisa e Fomento...")
@@ -810,6 +889,11 @@ def run_import():
                     })
                 else:
                     sc.write({'batch_id': batch_map[t_num].id})
+
+                stu.write({
+                    'program_id': program.id,
+                    'curriculum_version_id': reg.id,
+                })
 
                 # Plano de Trabalho: op.student.work_plan
                 wp = env['op.student.work_plan'].search([('student_id', '=', stu.id)], limit=1)

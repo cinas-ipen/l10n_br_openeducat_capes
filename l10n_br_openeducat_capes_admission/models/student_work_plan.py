@@ -52,6 +52,13 @@ class OpStudentWorkPlan(models.Model):
         string='Linha de Pesquisa (Entidade)',
         help='Vínculo formal com a ontologia de Linhas de Pesquisa do PPG'
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='research_line_id.program_id',
+        store=True,
+        index=True
+    )
     research_line = fields.Char(
         string='Linha de Pesquisa',
         required=True,

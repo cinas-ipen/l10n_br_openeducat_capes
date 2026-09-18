@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_capes_scholarship_application_list" model="ir.ui.view">
+        <field name="name">capes.scholarship.application.list</field>
+        <field name="model">capes.scholarship.application</field>
+        <field name="arch" type="xml">
+            <list string="Inscrições em Editais de Bolsa">
+                <field name="ranking_position"/>
+                <field name="name"/>
+                <field name="edital_id"/>
+                <field name="student_id"/>
+                <field name="faculty_id"/>
+                <field name="quota_type"/>
+                <field name="dedication_mode"/>
+                <field name="self_score"/>
+                <field name="final_score"/>
+                <field name="state" widget="badge"
+                       decoration-info="state in ('submitted', 'under_review')"
+                       decoration-success="state == 'awarded'"
+                       decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_capes_scholarship_application_form" model="ir.ui.view">
+        <field name="name">capes.scholarship.application.form</field>
+        <field name="model">capes.scholarship.application</field>
+        <field name="arch" type="xml">
+            <form string="Ficha de Candidatura a Bolsa">
+                <header>
+                    <button name="action_submit" string="Submeter Inscrição" type="object"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_homologate" string="Homologar Inscrição (Secretaria)" type="object"
+                            class="oe_highlight" invisible="state != 'submitted'"/>
+                    <button name="action_create_assignment" string="Implementar Bolsa (Gerar Concessão)" type="object"
+                            class="oe_highlight" invisible="state != 'awarded' or assignment_id != False"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,homologated,under_review,ranked,awarded"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Protocolo de Inscrição"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Identificação do Candidato">
+                            <field name="edital_id" readonly="state != 'draft'"/>
+                            <field name="course_id"/>
+                            <field name="student_id" readonly="state != 'draft'"/>
+                            <field name="faculty_id" readonly="state != 'draft'"/>
+                            <field name="admission_candidate_id" readonly="state != 'draft'"/>
+                        </group>
+                        <group string="Modalidade e Qualificação">
+                            <field name="quota_type" readonly="state != 'draft'"/>
+                            <field name="affirmative_declaration_file" filename="affirmative_declaration_filename"
+                                   invisible="quota_type != 'ppi'"/>
+                            <field name="affirmative_declaration_filename" invisible="1"/>
+                            <field name="lattes_url" widget="url" readonly="state != 'draft'"/>
+                            <field name="work_plan_file" filename="work_plan_filename"/>
+                            <field name="work_plan_filename" invisible="1"/>
+                            <field name="work_plan_approved_cpg"/>
+                            <field name="work_plan_deliberation_ref"/>
+                        </group>
+                        <group string="Regime de Dedicação (Portaria CAPES 133/2023)">
+                            <field name="dedication_mode" readonly="state != 'draft'"/>
+                            <field name="weekly_work_hours" invisible="dedication_mode in ('exclusive', 'retired')"/>
+                            <field name="employer_name" invisible="dedication_mode in ('exclusive', 'retired')"/>
+                            <field name="cpg_approval_date" invisible="dedication_mode in ('exclusive', 'retired')"/>
+                            <field name="cpg_approval_ref" invisible="dedication_mode in ('exclusive', 'retired')"/>
+                        </group>
+                        <group string="Designação de Revisores (Paralelo)">
+                            <field name="reviewer1_id"/>
+                            <field name="reviewer2_id"/>
+                            <field name="assignment_id" readonly="1" invisible="not assignment_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Matriz Avaliativa em 4 Colunas">
+                            <group>
+                                <group string="Pontuações Consolidadas">
+                                    <field name="self_score" readonly="1"/>
+                                    <field name="reviewer1_score" readonly="1"/>
+                                    <field name="reviewer2_score" readonly="1"/>
+                                    <field name="final_score" readonly="1"/>
+                                    <field name="ranking_position" readonly="1"/>
+                                </group>
+                            </group>
+                            <field name="evaluation_ids">
+                                <list>
+                                    <field name="evaluator_role"/>
+                                    <field name="evaluator_id"/>
+                                    <field name="total_score"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Comprovações e Requisitos">
+                            <group>
+                                <field name="english_proficiency_ref"/>
+                                <field name="capacity_exam_ref"/>
+                                <field name="residence_proof_file"/>
+                                <field name="auto_presentation_letter"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

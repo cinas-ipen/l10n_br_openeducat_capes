@@ -45,6 +45,13 @@ class CapesThesis(models.Model):
         store=True,
         readonly=True
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='curriculum_version_id.program_id',
+        store=True,
+        index=True
+    )
     work_plan_id = fields.Many2one(
         'op.student.work_plan',
         string='Plano de Trabalho Homologado',

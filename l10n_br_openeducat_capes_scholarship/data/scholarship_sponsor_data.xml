@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequência de Protocolo de Candidatura -->
+        <record id="seq_scholarship_application" model="ir.sequence">
+            <field name="name">Protocolo de Candidatura a Bolsa</field>
+            <field name="code">capes.scholarship.application</field>
+            <field name="prefix">BOLSA/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequência de Outorga/Concessão -->
+        <record id="seq_scholarship_assignment" model="ir.sequence">
+            <field name="name">Concessão de Bolsa de Pós-Graduação</field>
+            <field name="code">capes.scholarship.assignment</field>
+            <field name="prefix">OUTORGA/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Agências Mantenedoras Padrão -->
+        <record id="sponsor_capes" model="capes.scholarship.sponsor">
+            <field name="name">Coordenação de Aperfeiçoamento de Pessoal de Nível Superior</field>
+            <field name="code">CAPES</field>
+            <field name="sponsor_type">federal</field>
+            <field name="website">https://www.gov.br/capes</field>
+            <field name="notes">Programas PROEX e Demanda Social (DS). Repasse financeiro direto ao bolsista.</field>
+        </record>
+
+        <record id="sponsor_cnpq" model="capes.scholarship.sponsor">
+            <field name="name">Conselho Nacional de Desenvolvimento Científico e Tecnológico</field>
+            <field name="code">CNPq</field>
+            <field name="sponsor_type">federal</field>
+            <field name="website">https://www.gov.br/cnpq</field>
+            <field name="notes">Bolsas de mestrado e doutorado por quotas institucionais.</field>
+        </record>
+
+        <record id="sponsor_cnen" model="capes.scholarship.sponsor">
+            <field name="name">Comissão Nacional de Energia Nuclear / IPEN</field>
+            <field name="code">CNEN/IPEN</field>
+            <field name="sponsor_type">institutional</field>
+            <field name="website">https://www.gov.br/cnen</field>
+            <field name="notes">Instrução Normativa nº 07/2024. Exigência de dedicação semanal de 40 horas e residência próxima.</field>
+        </record>
+
+        <record id="sponsor_fapesp" model="capes.scholarship.sponsor">
+            <field name="name">Fundação de Amparo à Pesquisa do Estado de São Paulo</field>
+            <field name="code">FAPESP</field>
+            <field name="sponsor_type">state</field>
+            <field name="website">https://fapesp.br</field>
+            <field name="notes">Bolsas regulares e vinculadas a projetos temáticos/CEPID.</field>
+        </record>
+
+    </data>
+</odoo>

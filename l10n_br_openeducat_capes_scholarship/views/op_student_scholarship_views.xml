@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_student_form_scholarship_360" model="ir.ui.view">
+        <field name="name">op.student.form.scholarship.360</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+        <field name="arch" type="xml">
+            <!-- Smart Button de Bolsas na Ficha 360 -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_scholarships" type="object" class="oe_stat_button" icon="fa-graduation-cap">
+                    <field name="active_scholarship_count" widget="statinfo" string="Bolsas"/>
+                </button>
+            </xpath>
+
+            <!-- Aba de Bolsas de Estudo no Notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Bolsas de Estudo" name="scholarships_page">
+                    <group string="Situação Institucional de Fomento">
+                        <group>
+                            <field name="scholarship_status_badge" readonly="1"/>
+                            <field name="has_active_scholarship" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Histórico de Concessões de Bolsa">
+                        <field name="scholarship_assignment_ids" nolabel="1" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="sponsor_id"/>
+                                <field name="date_start"/>
+                                <field name="date_end_expected"/>
+                                <field name="current_months_active"/>
+                                <field name="remaining_months"/>
+                                <field name="attendance_rate"/>
+                                <field name="commitment_term_signed"/>
+                                <field name="state" widget="badge"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: capes.research.project                       -->
+        <!-- =============================================================== -->
+        <record id="rule_capes_research_project_admin" model="ir.rule">
+            <field name="name">Projetos de Pesquisa: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_capes_research_project"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_capes_research_project_coord_sec" model="ir.rule">
+            <field name="name">Projetos de Pesquisa: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="model_capes_research_project"/>
+            <field name="domain_force">['|', ('program_id', '=', False), ('program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+
+        <record id="rule_capes_research_project_faculty" model="ir.rule">
+            <field name="name">Projetos de Pesquisa: Coordenador e Docentes</field>
+            <field name="model_id" ref="model_capes_research_project"/>
+            <field name="domain_force">[('coordinator_id.partner_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- =============================================================== -->
+        <!-- REGRAS DE REGISTRO: capes.project.member                         -->
+        <!-- =============================================================== -->
+        <record id="rule_capes_project_member_admin" model="ir.rule">
+            <field name="name">Membros de Projetos: Administrador Central (Global)</field>
+            <field name="model_id" ref="model_capes_project_member"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_central_admin'))]"/>
+        </record>
+
+        <record id="rule_capes_project_member_coord_sec" model="ir.rule">
+            <field name="name">Membros de Projetos: Coordenação e Secretaria por Programa</field>
+            <field name="model_id" ref="model_capes_project_member"/>
+            <field name="domain_force">['|', ('project_id.program_id', '=', False), ('project_id.program_id', '=', user.current_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('l10n_br_openeducat_capes_core.group_capes_program_secretary')), (4, ref('l10n_br_openeducat_capes_core.group_capes_program_coordinator'))]"/>
+        </record>
+    </data>
+</odoo>

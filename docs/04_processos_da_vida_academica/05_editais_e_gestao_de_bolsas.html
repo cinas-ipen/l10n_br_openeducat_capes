@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documento 05: Gestão de Cotas e Editais de Bolsas de Estudo (`l10n_br_openeducat_capes_scholarship`)</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+:root {
+--primary: #1e3a8a;
+--primary-light: #3b82f6;
+--secondary: #0f172a;
+--bg: #ffffff;
+--bg-alt: #f8fafc;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+--code-bg: #f1f5f9;
+--accent-bg: #eff6ff;
+--accent-border: #bfdbfe;
+--success-bg: #ecfdf5;
+--success-border: #a7f3d0;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text);
+background-color: var(--bg);
+line-height: 1.65;
+max-width: 960px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+color: var(--secondary);
+font-weight: 700;
+margin-top: 2rem;
+margin-bottom: 0.75rem;
+line-height: 1.25;
+}
+h1 {
+font-size: 2.1rem;
+padding-bottom: 0.5rem;
+border-bottom: 2px solid var(--border);
+color: var(--primary);
+}
+h2 {
+font-size: 1.5rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--border);
+}
+h3 {
+font-size: 1.25rem;
+}
+p {
+margin-bottom: 1.2rem;
+}
+a {
+color: var(--primary-light);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.5rem 0;
+font-size: 0.92rem;
+background: var(--bg);
+}
+th, td {
+padding: 0.65rem 0.85rem;
+border: 1px solid var(--border);
+text-align: left;
+}
+th {
+background-color: var(--bg-alt);
+font-weight: 600;
+color: var(--secondary);
+}
+tr:nth-child(even) td {
+background-color: #fafbfc;
+}
+code {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+font-size: 0.88em;
+background-color: var(--code-bg);
+padding: 0.15rem 0.35rem;
+border-radius: 4px;
+color: #0f172a;
+}
+pre {
+background-color: #0f172a;
+color: #f8fafc;
+padding: 1rem 1.25rem;
+border-radius: 8px;
+overflow-x: auto;
+font-size: 0.88rem;
+line-height: 1.45;
+}
+pre code {
+background-color: transparent;
+color: inherit;
+padding: 0;
+}
+blockquote {
+margin: 1.5rem 0;
+padding: 0.8rem 1.2rem;
+border-left: 4px solid var(--primary-light);
+background-color: var(--accent-bg);
+color: #1e3a8a;
+border-radius: 0 6px 6px 0;
+}
+blockquote p:last-child {
+margin-bottom: 0;
+}
+ul, ol {
+padding-left: 1.5rem;
+margin-bottom: 1.2rem;
+}
+li {
+margin-bottom: 0.35rem;
+}
+hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2.5rem 0;
+}
+#TOC {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 1.25rem 1.5rem;
+margin-bottom: 2.5rem;
+}
+#TOC ul {
+margin-bottom: 0;
+padding-left: 1.2rem;
+}
+#TOC > ul {
+padding-left: 0;
+list-style: none;
+}
+.nav-bar {
+margin-bottom: 2rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+font-size: 0.9rem;
+}
+.nav-bar a {
+margin-right: 1rem;
+font-weight: 500;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documento 05: Gestão de Cotas e Editais de Bolsas de
+Estudo (`l10n_br_openeducat_capes_scholarship`)</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documento-05-gestão-de-cotas-e-editais-de-bolsas-de-estudo-l10n_br_openeducat_capes_scholarship" id="toc-documento-05-gestão-de-cotas-e-editais-de-bolsas-de-estudo-l10n_br_openeducat_capes_scholarship">Documento
+05: Gestão de Cotas e Editais de Bolsas de Estudo
+(<code>l10n_br_openeducat_capes_scholarship</code>)</a>
+<ul>
+<li><a href="#contexto-regulatório-e-premissa-fundamental-de-domínio" id="toc-contexto-regulatório-e-premissa-fundamental-de-domínio">1.
+Contexto Regulatório e Premissa Fundamental de Domínio</a>
+<ul>
+<li><a href="#delimitação-funcional-controle-acadêmico-de-cotas-vs.-gestão-financeira-direta" id="toc-delimitação-funcional-controle-acadêmico-de-cotas-vs.-gestão-financeira-direta">1.1.
+Delimitação Funcional: Controle Acadêmico de Cotas vs. Gestão Financeira
+Direta</a></li>
+</ul></li>
+<li><a href="#marco-regulatório-aplicável" id="toc-marco-regulatório-aplicável">2. Marco Regulatório
+Aplicável</a></li>
+<li><a href="#arquitetura-de-processos-e-fluxos-de-avaliação" id="toc-arquitetura-de-processos-e-fluxos-de-avaliação">3. Arquitetura
+de Processos e Fluxos de Avaliação</a>
+<ul>
+<li><a href="#macrofluxo-de-seleção-e-julgamento" id="toc-macrofluxo-de-seleção-e-julgamento">3.1. Macrofluxo de Seleção e
+Julgamento</a></li>
+<li><a href="#avaliação-paralela-em-4-colunas-padrão-ipen" id="toc-avaliação-paralela-em-4-colunas-padrão-ipen">3.2. Avaliação
+Paralela em 4 Colunas (Padrão IPEN)</a></li>
+</ul></li>
+<li><a href="#engenharia-de-dados-e-modelagem-de-classes" id="toc-engenharia-de-dados-e-modelagem-de-classes">4. Engenharia de
+Dados e Modelagem de Classes</a>
+<ul>
+<li><a href="#capes.scholarship.sponsor-agências-de-fomento" id="toc-capes.scholarship.sponsor-agências-de-fomento">4.1.
+<code>capes.scholarship.sponsor</code> (Agências de Fomento)</a></li>
+<li><a href="#capes.scholarship.quota-livro-de-cotas-institucionais" id="toc-capes.scholarship.quota-livro-de-cotas-institucionais">4.2.
+<code>capes.scholarship.quota</code> (Livro de Cotas
+Institucionais)</a></li>
+<li><a href="#capes.scholarship.rubric-e-capes.scholarship.rubric.item-baremas-parametrizados" id="toc-capes.scholarship.rubric-e-capes.scholarship.rubric.item-baremas-parametrizados">4.3.
+<code>capes.scholarship.rubric</code> e
+<code>capes.scholarship.rubric.item</code> (Baremas
+Parametrizados)</a></li>
+<li><a href="#capes.scholarship.edital-edital-de-concessão-de-bolsas" id="toc-capes.scholarship.edital-edital-de-concessão-de-bolsas">4.4.
+<code>capes.scholarship.edital</code> (Edital de Concessão de
+Bolsas)</a></li>
+<li><a href="#capes.scholarship.application-ficha-de-inscrição-e-candidatura" id="toc-capes.scholarship.application-ficha-de-inscrição-e-candidatura">4.5.
+<code>capes.scholarship.application</code> (Ficha de Inscrição e
+Candidatura)</a></li>
+<li><a href="#capes.scholarship.evaluation-e-capes.scholarship.evaluation.line-avaliação-paralela" id="toc-capes.scholarship.evaluation-e-capes.scholarship.evaluation.line-avaliação-paralela">4.6.
+<code>capes.scholarship.evaluation</code> e
+<code>capes.scholarship.evaluation.line</code> (Avaliação
+Paralela)</a></li>
+<li><a href="#capes.scholarship.assignment-ciclo-de-vida-e-acompanhamento-da-concessão" id="toc-capes.scholarship.assignment-ciclo-de-vida-e-acompanhamento-da-concessão">4.7.
+<code>capes.scholarship.assignment</code> (Ciclo de Vida e
+Acompanhamento da Concessão)</a></li>
+</ul></li>
+<li><a href="#matriz-de-segurança-e-níveis-de-acesso" id="toc-matriz-de-segurança-e-níveis-de-acesso">5. Matriz de Segurança e
+Níveis de Acesso</a></li>
+<li><a href="#integração-e-relação-com-a-arquitetura-global" id="toc-integração-e-relação-com-a-arquitetura-global">6. Integração e
+Relação com a Arquitetura Global</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documento-05-gestão-de-cotas-e-editais-de-bolsas-de-estudo-l10n_br_openeducat_capes_scholarship">Documento
+05: Gestão de Cotas e Editais de Bolsas de Estudo
+(<code>l10n_br_openeducat_capes_scholarship</code>)</h1>
+<h2 id="contexto-regulatório-e-premissa-fundamental-de-domínio">1.
+Contexto Regulatório e Premissa Fundamental de Domínio</h2>
+<p>A concessão e o acompanhamento de bolsas de estudo na pós-graduação
+<em>Stricto Sensu</em> brasileira são regidos por normativas federais
+(Portarias CAPES e CNPq), regulamentos estaduais de Fundações de Amparo
+à Pesquisa (FAPs) e instruções normativas de institutos de pesquisa
+(ex.: Instrução Normativa CNEN nº 07/2024 e Portaria Interna CPG-IPEN nº
+01/2024).</p>
+<h3 id="delimitação-funcional-controle-acadêmico-de-cotas-vs.-gestão-financeira-direta">1.1.
+Delimitação Funcional: Controle Acadêmico de Cotas vs. Gestão Financeira
+Direta</h3>
+<blockquote>
+<p>[!IMPORTANT] <strong>O Programa de Pós-Graduação (PPG) NÃO realiza a
+liquidação nem o pagamento financeiro das bolsas.</strong> O desembolso
+financeiro das mensalidades (R$ 2.100,00 para Mestrado, R$ 3.100,00 para
+Doutorado, ou valores fixados pelas agências) é executado
+<strong>diretamente entre o órgão de fomento (CAPES, CNPq, CNEN, FAPESP)
+e o discente</strong>, mediante crédito em conta corrente do
+bolsista.</p>
+<p>A responsabilidade da IES e da Coordenação/Secretaria do PPG reside
+no <strong>controle rigoroso do ciclo de vida acadêmico das
+cotas</strong>: 1. Alocação e saldo do Livro de Cotas por agência
+mantenedora; 2. Publicação e julgamento dos Editais de Seleção e
+Distribuição de Bolsas; 3. Avaliação cega e independente por múltiplos
+revisores com baremas dinâmicos; 4. Verificação de elegibilidade,
+dedicação e travas regulamentares de acúmulo com atividade remunerada
+(Portaria CAPES nº 133/2023); 5. Acompanhamento de prazos máximos
+regulamentares (24 meses para Mestrado e 48 meses para Doutorado,
+deduzindo-se meses usufruídos anteriormente); 6. Auditoria de frequência
+semestral (mínimo de 80%) e entrega de relatórios anuais de atividades;
+7. Suspensão formal (licença-maternidade/saúde) e cancelamento
+tempestivo para evitar pagamentos indevidos e obrigação de devolução de
+recursos públicos.</p>
+</blockquote>
+<hr />
+<h2 id="marco-regulatório-aplicável">2. Marco Regulatório Aplicável</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Diploma Legal</th>
+<th style="text-align: left;">Objeto e Impacto no Módulo</th>
+<th style="text-align: left;">Regra Sistêmica Implementada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Portaria CAPES nº
+133/2023</strong></td>
+<td style="text-align: left;">Flexibilização do acúmulo de bolsas de
+pós-graduação com atividade remunerada e outros rendimentos.</td>
+<td style="text-align: left;">Formulário de Declaração de Dedicação e
+Vínculo Empregatício; submissão obrigatória à deliberação da CPG; trava
+para aposentados (0 pontos em editais IPEN).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>IN CNEN nº 07/2024</strong></td>
+<td style="text-align: left;">Normas e diretrizes gerais para bolsas de
+estudo e pesquisa do IPEN/CNEN.</td>
+<td style="text-align: left;">Exigência de dedicação semanal de 40h
+(preferencialmente das 8h às 17h); residência compatível em São Paulo ou
+região metropolitana; termo de compromisso institucional.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Portaria CAPES nº
+221/2025</strong></td>
+<td style="text-align: left;">Regulamentação do Estágio de Docência para
+bolsistas.</td>
+<td style="text-align: left;">Integração com
+<code>op.curriculum.version</code> e o motor de integralização de
+créditos para bolsistas ativos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Normas Gerais
+CAPES/CNPq</strong></td>
+<td style="text-align: left;">Limite temporal improrrogável de
+concessão.</td>
+<td style="text-align: left;">Trava de 24 meses para Mestrado e 48 meses
+para Doutorado (descontando meses anteriores já computados no mesmo
+nível).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ações Afirmativas (MEC/Governo
+Federal)</strong></td>
+<td style="text-align: left;">Reserva de cotas para minorias
+étnico-raciais e PcD em processos seletivos.</td>
+<td style="text-align: left;">Vagas reservadas para Pretos, Pardos e
+Indígenas (PPI), com formulário de autodeclaração voluntária e regra de
+reversão de cotas remanescentes para ampla concorrência.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="arquitetura-de-processos-e-fluxos-de-avaliação">3. Arquitetura
+de Processos e Fluxos de Avaliação</h2>
+<p>O módulo atende de forma unificada tanto ao modelo quantitativo
+analítico com tetos do <strong>IPEN Acadêmico (Editais 06/2026 e
+02/2025)</strong> quanto ao modelo matricial quali-quantitativo do
+<strong>Mestrado Profissional MP-TRCS (Edital 05/2026)</strong>.</p>
+<h3 id="macrofluxo-de-seleção-e-julgamento">3.1. Macrofluxo de Seleção e
+Julgamento</h3>
+<pre class="mermaid"><code>flowchart TD
+    A[&quot;Publicação do Edital de Bolsas&lt;br/&gt;(capes.scholarship.edital)&quot;] --&gt; B[&quot;Inscrições e Dossiê Discente&lt;br/&gt;(capes.scholarship.application)&quot;]
+    B --&gt; C[&quot;Validação Documental &amp; Homologação&lt;br/&gt;(Secretaria do PPG)&quot;]
+    C --&gt; D{&quot;Homologado?&quot;}
+    D -- Não --&gt; E[&quot;Indeferimento da Inscrição&quot;]
+    D -- Sim --&gt; F[&quot;Distribuição de Avaliadores&lt;br/&gt;(Revisor 01 e Revisor 02)&quot;]
+    
+    subgraph Avaliacao_Paralela [&quot;Avaliação Paralela e Independente&quot;]
+        F --&gt; G1[&quot;Avaliação Revisor 01&lt;br/&gt;(Nota e Parecer)&quot;]
+        F --&gt; G2[&quot;Avaliação Revisor 02&lt;br/&gt;(Nota e Parecer)&quot;]
+        B -.-&gt; G0[&quot;Autoavaliação do Candidato&lt;br/&gt;(Preenchimento Prévio)&quot;]
+    end
+    
+    G1 --&gt; H[&quot;Consolidação pela Comissão de Bolsas&lt;br/&gt;(Média Aritmética ou Julgamento de Divergência)&quot;]
+    G2 --&gt; H
+    G0 --&gt; H
+    
+    H --&gt; I[&quot;Publicação do Resultado Preliminar&quot;]
+    I --&gt; J[&quot;Fase Recursal (Interposição e Julgamento CPG)&quot;]
+    J --&gt; K[&quot;Homologação do Resultado Final &amp; Ranqueamento&quot;]
+    K --&gt; L[&quot;Atribuição da Cota / Concessão&lt;br/&gt;(capes.scholarship.assignment)&quot;]
+    L --&gt; M[&quot;Assinatura do Termo de Compromisso&lt;br/&gt;(GOV.BR / Assinatura Digital)&quot;]</code></pre>
+<h3 id="avaliação-paralela-em-4-colunas-padrão-ipen">3.2. Avaliação
+Paralela em 4 Colunas (Padrão IPEN)</h3>
+<p>A avaliação opera com quatro visões independentes consolidadas em
+matriz única: 1. <strong>Coluna 1 — Autoavaliação do Candidato:</strong>
+O aluno pontua previamente cada item do barema e indica a página
+comprobatória no dossiê em PDF. 2. <strong>Coluna 2 — Revisor
+01:</strong> Docente avaliador designado pela CPG analisa as evidências
+e lança notas/glosas de forma cega/independente. 3. <strong>Coluna 3 —
+Revisor 02:</strong> Segundo docente avaliador analisa em paralelo, sem
+visualizar as notas do Revisor 01. 4. <strong>Coluna 4 —
+Consolidação:</strong> A Comissão de Bolsas / CPG confere a nota
+aritmética média dos revisores ou aplica a nota final consolidada com fé
+pública.</p>
+<hr />
+<h2 id="engenharia-de-dados-e-modelagem-de-classes">4. Engenharia de
+Dados e Modelagem de Classes</h2>
+<pre class="mermaid"><code>erDiagram
+    capes_scholarship_sponsor ||--o{ capes_scholarship_quota : &quot;mantem&quot;
+    capes_scholarship_quota ||--o{ capes_scholarship_assignment : &quot;aloca&quot;
+    op_course ||--o{ capes_scholarship_quota : &quot;pertence&quot;
+    op_course ||--o{ capes_scholarship_edital : &quot;promove&quot;
+    capes_scholarship_rubric ||--o{ capes_scholarship_rubric_item : &quot;compoe&quot;
+    capes_scholarship_rubric ||--o{ capes_scholarship_edital : &quot;baliza&quot;
+    capes_scholarship_edital ||--o{ capes_scholarship_application : &quot;recebe&quot;
+    capes_scholarship_application ||--o{ capes_scholarship_evaluation : &quot;julga&quot;
+    capes_scholarship_evaluation ||--o{ capes_scholarship_evaluation_line : &quot;detalha&quot;
+    capes_scholarship_application ||--o| capes_scholarship_assignment : &quot;origina&quot;
+    op_student ||--o{ capes_scholarship_application : &quot;inscreve&quot;
+    op_student ||--o{ capes_scholarship_assignment : &quot;beneficia&quot;
+    op_faculty ||--o{ capes_scholarship_evaluation : &quot;avalia&quot;</code></pre>
+<h3 id="capes.scholarship.sponsor-agências-de-fomento">4.1.
+<code>capes.scholarship.sponsor</code> (Agências de Fomento)</h3>
+<p>Cadastra as fontes pagadoras das bolsas. * <code>name</code> (Char):
+Razão social (ex.: Coordenação de Aperfeiçoamento de Pessoal de Nível
+Superior - CAPES). * <code>code</code> (Char): Código mnemônico
+(<code>CAPES</code>, <code>CNPq</code>, <code>CNEN</code>,
+<code>FAPESP</code>, <code>EMPRESA</code>). * <code>sponsor_type</code>
+(Selection): <code>federal</code>, <code>state</code>,
+<code>institutional</code>, <code>private</code>. * <code>notes</code>
+(Text): Regramentos gerais da mantenedora.</p>
+<h3 id="capes.scholarship.quota-livro-de-cotas-institucionais">4.2.
+<code>capes.scholarship.quota</code> (Livro de Cotas
+Institucionais)</h3>
+<p>Controla o saldo de bolsas disponibilizadas ao programa de
+pós-graduação. * <code>name</code> (Char): Identificador da cota (ex.:
+Cota CAPES-PROEX Mestrado 2026/2027). * <code>sponsor_id</code>
+(Many2one -&gt; <code>capes.scholarship.sponsor</code>): Agência
+mantenedora. * <code>course_id</code> (Many2one -&gt;
+<code>op.course</code>): Programa de Pós-Graduação proprietário da cota.
+* <code>level</code> (Selection): <code>master_acad</code>,
+<code>master_prof</code>, <code>phd</code>, <code>direct_phd</code>. *
+<code>total_slots</code> (Integer): Quantidade total de vagas concedidas
+pela agência. * <code>used_slots</code> (Integer, Computed): Bolsas
+atualmente implementadas e ativas. * <code>available_slots</code>
+(Integer, Computed): Saldo disponível para novos editais
+(<code>total_slots - used_slots</code>). *
+<code>monthly_reference_amount</code> (Monetary): Valor referencial de
+repasse direto pela agência (ex.: R$ 2.100,00 ou R$ 3.100,00). *
+<code>validity_start</code> (Date): Início da vigência da cota no
+programa. * <code>validity_end</code> (Date): Fim da vigência da cota. *
+<code>active</code> (Boolean): Flag de ativação.</p>
+<h3 id="capes.scholarship.rubric-e-capes.scholarship.rubric.item-baremas-parametrizados">4.3.
+<code>capes.scholarship.rubric</code> e
+<code>capes.scholarship.rubric.item</code> (Baremas Parametrizados)</h3>
+<p>Elimina qualquer hardcode regimental, modelando regras de pontuação
+para o Programa Acadêmico e para o Mestrado Profissional. *
+<strong>Modelo <code>capes.scholarship.rubric</code>:</strong> *
+<code>name</code> (Char): Título do Barema (ex.: Barema IPEN Acadêmico -
+Mestrado 125 pts). * <code>level</code> (Selection): Nível de aplicação
+(<code>master_acad</code>, <code>master_prof</code>, <code>phd</code>,
+<code>direct_phd</code>). * <code>scoring_model</code> (Selection): *
+<code>analytical_points</code>: Modelo por pontuação analítica com tetos
+(Padrão IPEN). * <code>likert_scale</code>: Modelo por dimensões
+quali-quanti em escala 1 a 5 (Padrão MP-TRCS). *
+<code>total_max_points</code> (Float): Pontuação máxima global (ex.: 125
+no ME, 190 no DO). * <code>item_ids</code> (One2many -&gt;
+<code>capes.scholarship.rubric.item</code>): Linhas de pontuação.</p>
+<ul>
+<li><strong>Modelo <code>capes.scholarship.rubric.item</code>:</strong>
+<ul>
+<li><code>rubric_id</code> (Many2one -&gt;
+<code>capes.scholarship.rubric</code>).</li>
+<li><code>category</code> (Selection):
+<ul>
+<li><code>work_plan</code>: Plano de trabalho aprovado.</li>
+<li><code>enade</code>: Avaliação ENADE da IES de origem.</li>
+<li><code>graduation_time</code>: Duração do curso de graduação
+(penalidades por prorrogação).</li>
+<li><code>graduation_grades</code>: Média aritmética de conceitos/notas
+da graduação.</li>
+<li><code>postgrad_previous</code>: Mestrado prévio (Conceito CAPES,
+tempo de depósito, notas).</li>
+<li><code>internship_ic</code>: Iniciação Científica e estágios com/sem
+bolsa.</li>
+<li><code>scientific_production</code>: Artigos periódicos
+(Qualis/Scimago Q1-Q4), congressos, livros, patentes.</li>
+<li><code>research_projects</code>: Projetos de pesquisa com
+fomento.</li>
+<li><code>dedication</code>: Grau de dedicação à pós-graduação e acúmulo
+de vínculo.</li>
+<li><code>professional_experience</code>: Experiência profissional no
+setor (para MP).</li>
+</ul></li>
+<li><code>name</code> (Char): Descrição do critério (ex.: “Artigo
+Periódico Qualis Q1”).</li>
+<li><code>base_points</code> (Float): Valor base do item ou peso na
+escala.</li>
+<li><code>category_cap_points</code> (Float): Teto máximo do
+bloco/categoria (ex.: máx. 30 pts em produção científica).</li>
+<li><code>calculation_formula</code> (Selection):
+<ul>
+<li><code>fixed</code>: Valor fixo (ex.: Plano Aprovado = 10 pts).</li>
+<li><code>linear_months</code>: Fórmula linear por meses (ex.: <span class="math inline"><em>y</em> = <em>a</em><em>x</em> + <em>b</em></span>).</li>
+<li><code>authorship_split</code>: Rateio integral até 2 autores;
+divisão pelo total se <span class="math inline"> &gt; 2</span>.</li>
+<li><code>direct_score</code>: Atribuição direta de nota pelo revisor
+(escala 1 a 5).</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="capes.scholarship.edital-edital-de-concessão-de-bolsas">4.4.
+<code>capes.scholarship.edital</code> (Edital de Concessão de
+Bolsas)</h3>
+<ul>
+<li><code>name</code> (Char): Identificador oficial (ex.: Edital de
+Bolsas nº 06/2026).</li>
+<li><code>course_id</code> (Many2one -&gt; <code>op.course</code>): PPG
+responsável.</li>
+<li><code>academic_year_id</code> (Many2one -&gt;
+<code>op.academic.year</code>): Ano de referência.</li>
+<li><code>rubric_id</code> (Many2one -&gt;
+<code>capes.scholarship.rubric</code>): Barema adotado.</li>
+<li><code>quota_id</code> (Many2one -&gt;
+<code>capes.scholarship.quota</code>): Cota institucional
+vinculada.</li>
+<li><code>date_start</code> (Date): Abertura do período de
+inscrições.</li>
+<li><code>date_end</code> (Date): Encerramento de inscrições.</li>
+<li><code>date_preliminary_result</code> (Datetime): Divulgação do
+resultado preliminar.</li>
+<li><code>date_appeals_end</code> (Datetime): Prazo fatal para protocolo
+de recursos.</li>
+<li><code>date_final_result</code> (Datetime): Publicação do resultado
+final homologado.</li>
+<li><strong>Quadro de Vagas:</strong>
+<ul>
+<li><code>slots_open_competition</code> (Integer): Vagas para Ampla
+Concorrência.</li>
+<li><code>slots_affirmative_action</code> (Integer): Vagas reservadas
+para PPI / Ações Afirmativas.</li>
+<li><code>revert_unused_affirmative_slots</code> (Boolean): Reversão
+automática de cotas PPI ociosas para ampla concorrência.</li>
+</ul></li>
+<li><code>state</code> (Selection): <code>draft</code> <span class="math inline">→</span> <code>open</code> <span class="math inline">→</span> <code>evaluation</code> <span class="math inline">→</span> <code>preliminary</code> <span class="math inline">→</span> <code>appeals</code> <span class="math inline">→</span> <code>homologated</code> <span class="math inline">→</span> <code>closed</code>.</li>
+</ul>
+<h3 id="capes.scholarship.application-ficha-de-inscrição-e-candidatura">4.5.
+<code>capes.scholarship.application</code> (Ficha de Inscrição e
+Candidatura)</h3>
+<ul>
+<li><code>edital_id</code> (Many2one -&gt;
+<code>capes.scholarship.edital</code>).</li>
+<li><code>student_id</code> (Many2one -&gt; <code>op.student</code>):
+Discente candidato.</li>
+<li><code>faculty_id</code> (Many2one -&gt; <code>op.faculty</code>):
+Orientador responsável.</li>
+<li><code>quota_type</code> (Selection): <code>ampla</code> (Ampla
+Concorrência) vs. <code>ppi</code> (Ações Afirmativas PPI).</li>
+<li><code>affirmative_declaration_file</code> (Binary): Anexo da
+autodeclaração voluntária assinada.</li>
+<li><code>lattes_url</code> (Char): Link obrigatório do Currículo
+Lattes.</li>
+<li><code>work_plan_file</code> (Binary): Arquivo do plano de trabalho
+de pesquisa.</li>
+<li><code>work_plan_approved_cpg</code> (Boolean): Homologado
+previamente pela CPG.</li>
+<li><strong>Dedicação e Declaração de Acúmulo (Portaria CAPES
+133/2023):</strong>
+<ul>
+<li><code>dedication_mode</code> (Selection):
+<ul>
+<li><code>exclusive</code>: Dedicação exclusiva sem qualquer
+renda/aposentadoria.</li>
+<li><code>partial_teaching</code>: Atividade docente autorizada pela
+CPG.</li>
+<li><code>partial_other</code>: Outra atividade remunerada com vínculo
+externo.</li>
+<li><code>retired</code>: Aposentado.</li>
+</ul></li>
+<li><code>weekly_work_hours</code> (Integer): Carga horária semanal da
+atividade externa.</li>
+<li><code>employer_name</code> (Char): Empregador ou instituição onde
+exerce atividade.</li>
+<li><code>cpg_approval_date</code> (Date): Data da deliberação favorável
+da CPG para o acúmulo.</li>
+</ul></li>
+<li><code>final_score</code> (Float): Nota final consolidada após
+julgamento.</li>
+<li><code>ranking_position</code> (Integer): Posição final na
+classificação do edital.</li>
+<li><code>state</code> (Selection): <code>draft</code> <span class="math inline">→</span> <code>submitted</code> <span class="math inline">→</span> <code>homologated</code> <span class="math inline">→</span> <code>under_review</code> <span class="math inline">→</span> <code>ranked</code> <span class="math inline">→</span> <code>awarded</code> <span class="math inline">→</span> <code>rejected</code>.</li>
+</ul>
+<h3 id="capes.scholarship.evaluation-e-capes.scholarship.evaluation.line-avaliação-paralela">4.6.
+<code>capes.scholarship.evaluation</code> e
+<code>capes.scholarship.evaluation.line</code> (Avaliação Paralela)</h3>
+<ul>
+<li><code>application_id</code> (Many2one -&gt;
+<code>capes.scholarship.application</code>).</li>
+<li><code>evaluator_role</code> (Selection): <code>candidate_self</code>
+(Autoavaliação), <code>reviewer_1</code>, <code>reviewer_2</code>,
+<code>committee</code> (Consolidação da Comissão).</li>
+<li><code>evaluator_id</code> (Many2one -&gt; <code>op.faculty</code> /
+<code>res.users</code>): Docente avaliador responsável.</li>
+<li><code>total_score</code> (Float): Soma apurada das linhas do
+barema.</li>
+<li><code>reviewer_comments</code> (Text): Parecer fundamentado do
+avaliador.</li>
+<li><code>state</code> (Selection): <code>draft</code> <span class="math inline">→</span> <code>completed</code>.</li>
+<li><strong>Linhas de Avaliação
+(<code>capes.scholarship.evaluation.line</code>):</strong>
+<ul>
+<li><code>rubric_item_id</code> (Many2one -&gt;
+<code>capes.scholarship.rubric.item</code>).</li>
+<li><code>quantity_or_units</code> (Float): Quantidade informada (ex.: 3
+artigos Q1, 14 meses de IC).</li>
+<li><code>dossier_page_ref</code> (Char): Folha/Página de comprovação
+indicada no dossiê.</li>
+<li><code>calculated_score</code> (Float): Nota pontuada após aplicação
+de fórmula e teto.</li>
+</ul></li>
+</ul>
+<h3 id="capes.scholarship.assignment-ciclo-de-vida-e-acompanhamento-da-concessão">4.7.
+<code>capes.scholarship.assignment</code> (Ciclo de Vida e
+Acompanhamento da Concessão)</h3>
+<ul>
+<li><code>quota_id</code> (Many2one -&gt;
+<code>capes.scholarship.quota</code>): Cota de origem.</li>
+<li><code>application_id</code> (Many2one -&gt;
+<code>capes.scholarship.application</code>): Candidatura que gerou a
+concessão.</li>
+<li><code>student_id</code> (Many2one -&gt; <code>op.student</code>):
+Aluno bolsista.</li>
+<li><code>course_id</code> (Many2one -&gt; <code>op.course</code>).</li>
+<li><code>date_start</code> (Date): Início da vigência da bolsa para o
+discente.</li>
+<li><code>date_end_expected</code> (Date): Término regulamentar
+previsto.</li>
+<li><code>date_termination</code> (Date): Término real (em caso de
+encerramento antecipado ou titulação).</li>
+<li><strong>Controle de Meses e Travas:</strong>
+<ul>
+<li><code>prior_months_used</code> (Integer): Meses de bolsa usufruídos
+previamente no mesmo nível.</li>
+<li><code>max_allowed_months</code> (Integer): Teto regulamentar (24
+meses Mestrado / 48 meses Doutorado).</li>
+<li><code>current_months_active</code> (Integer, Computed): Meses ativos
+no programa.</li>
+<li><code>remaining_months</code> (Integer, Computed):
+<code>max_allowed_months - (prior_months_used + current_months_active)</code>.</li>
+</ul></li>
+<li><strong>Conformidade Operacional:</strong>
+<ul>
+<li><code>commitment_term_signed</code> (Boolean): Termo de compromisso
+formalmente assinado e arquivado.</li>
+<li><code>commitment_term_attachment</code> (Binary): PDF do termo com
+assinatura digital GOV.BR.</li>
+<li><code>attendance_rate</code> (Float): Percentual de frequência nas
+atividades (mínimo de 80%).</li>
+<li><code>last_annual_report_date</code> (Date): Data da homologação do
+último relatório de atividades.</li>
+</ul></li>
+<li><code>state</code> (Selection): <code>active</code> <span class="math inline">→</span> <code>suspended</code> (licença
+saúde/maternidade) <span class="math inline">→</span>
+<code>completed</code> (titulação) <span class="math inline">→</span>
+<code>canceled</code> (desistência, acúmulo ilícito ou
+desligamento).</li>
+</ul>
+<hr />
+<h2 id="matriz-de-segurança-e-níveis-de-acesso">5. Matriz de Segurança e
+Níveis de Acesso</h2>
+<p>O módulo segue rigorosamente o princípio do menor privilégio e o
+isolamento de dados de candidatos e avaliadores:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Papel / Perfil de Usuário</th>
+<th style="text-align: left;">Modelo / Objeto</th>
+<th style="text-align: left;">Nível de Acesso (CRUD)</th>
+<th style="text-align: left;">Regra de Registro (Record Rule)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Discente (Aluno)</strong></td>
+<td style="text-align: left;"><code>capes.scholarship.application</code></td>
+<td style="text-align: left;">Leitura / Criação / Escrita (apenas em
+<code>draft</code>)</td>
+<td style="text-align: left;">Restrito aos registros onde
+<code>student_id.user_id = user.id</code>. Bloqueio total de
+visibilidade de outros candidatos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Discente (Aluno)</strong></td>
+<td style="text-align: left;"><code>capes.scholarship.evaluation</code></td>
+<td style="text-align: left;">Leitura / Escrita (apenas para
+autoavaliação)</td>
+<td style="text-align: left;">Restrito a
+<code>evaluator_role = &#39;candidate_self&#39;</code> e
+<code>application_id.student_id.user_id = user.id</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Discente (Aluno)</strong></td>
+<td style="text-align: left;"><code>capes.scholarship.assignment</code></td>
+<td style="text-align: left;">Apenas Leitura</td>
+<td style="text-align: left;">Restrito aos seus próprios termos e
+vigências onde <code>student_id.user_id = user.id</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Docente (Avaliador)</strong></td>
+<td style="text-align: left;"><code>capes.scholarship.evaluation</code></td>
+<td style="text-align: left;">Leitura / Escrita</td>
+<td style="text-align: left;">Restrito aos registros onde foi
+explicitamente designado (<code>evaluator_id.user_id = user.id</code>).
+Não pode editar a avaliação do outro revisor.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Docente (Avaliador)</strong></td>
+<td style="text-align: left;"><code>capes.scholarship.application</code></td>
+<td style="text-align: left;">Apenas Leitura</td>
+<td style="text-align: left;">Visualização do dossiê das candidaturas
+designadas para seu julgamento.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Secretaria do PPG</strong></td>
+<td style="text-align: left;">Todos os Modelos</td>
+<td style="text-align: left;">CRUD Completo</td>
+<td style="text-align: left;">Gestão de cotas, conferência de
+inscrições, verificação de frequência e termos de compromisso.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Coordenação / CPG</strong></td>
+<td style="text-align: left;">Todos os Modelos</td>
+<td style="text-align: left;">CRUD Completo + Homologação</td>
+<td style="text-align: left;">Designação de revisores, consolidação de
+notas, deliberação de recursos e autorização de acúmulo de bolsa.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Administrador</strong></td>
+<td style="text-align: left;">Todos os Modelos</td>
+<td style="text-align: left;">Acesso irrestrito</td>
+<td style="text-align: left;">Configuração global de agências, templates
+de baremas e permissões de sistema.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="integração-e-relação-com-a-arquitetura-global">6. Integração e
+Relação com a Arquitetura Global</h2>
+<ol type="1">
+<li><strong>Visão 360° do Discente (<code>op.student</code>):</strong>
+<ul>
+<li>Injeção de smart button <code>Bolsas de Estudo</code> exibindo o
+histórico de cotas, vigências e situação ativa/inativa.</li>
+<li>Exibição de badge visual de status de fomento (ex.: “Bolsista
+CAPES-PROEX Ativo”).</li>
+</ul></li>
+<li><strong>Visão 360° do Docente (<code>op.faculty</code>):</strong>
+<ul>
+<li>Smart button com as avaliações de bolsas pendentes e concluídas como
+Revisor Designado.</li>
+<li>Painel de orientandos bolsistas e cumprimento do estágio de
+docência.</li>
+</ul></li>
+<li><strong>Pauta e Atas da CPG (<code>op.cpg.meeting</code>):</strong>
+<ul>
+<li>Registro automatizado de pauta para homologação de editais de
+bolsas, resultado final da seleção e deliberações de acúmulo remunerado
+sob a Portaria CAPES nº 133/2023.</li>
+</ul></li>
+</ol>
+</body>
+</html>

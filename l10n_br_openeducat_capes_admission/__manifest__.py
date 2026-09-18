@@ -31,6 +31,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/admission_rules.xml',
         'views/admission_edital_views.xml',
         'views/student_work_plan_views.xml',
         'views/student_professional_profile_views.xml',

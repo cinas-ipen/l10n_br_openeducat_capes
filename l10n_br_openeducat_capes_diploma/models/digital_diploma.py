@@ -54,6 +54,13 @@ class CapesDigitalDiploma(models.Model):
         store=True,
         readonly=True
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='curriculum_version_id.program_id',
+        store=True,
+        index=True
+    )
 
     @api.depends('diploma_process_number', 'student_id.name')
     def _compute_name(self):

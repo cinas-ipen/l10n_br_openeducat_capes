@@ -154,7 +154,7 @@ def generate_scenario_xyzq(base_dir):
     # 01a Company
     write_csv(os.path.join(out, "01a_ies_instituicao_res_company.csv"),
               ['id', 'name', 'cnpj', 'emec_code', 'street', 'city', 'zip', 'country_id/code'],
-              [[comp_id, 'Universidade XYZQ', '12.345.678/0001-90', '12345', 'Av. Central Universitária, 1000', 'São Paulo', '01000-000', 'BR']])
+              [[comp_id, 'Universidade XYZQ', '12.345.678/0001-95', '12345', 'Av. Central Universitária, 1000', 'São Paulo', '01000-000', 'BR']])
 
     # 01b Departamentos OpenEduCat (op.department)
     depts = [
@@ -322,18 +322,53 @@ def generate_scenario_xyzq(base_dir):
     link_records = []
     ledger_records = []
     link_idx = 1
+    
+    # Mapeamento de categorias locais secundárias para docentes multi-programa
+    # fac_ids[0] permanente em CC, colaborador em MPE
+    # fac_ids[6] permanente em FIS, colaborador em CC
+    # fac_ids[12] permanente em BIO, colaborador em FIS
+    secondary_cats = {
+        (fac_ids[0], 'prog_xyzq_mpe'): 'collaborator',
+        (fac_ids[6], 'prog_xyzq_cc'): 'collaborator',
+        (fac_ids[12], 'prog_xyzq_fis'): 'collaborator',
+    }
+
     for p_id, f_list in prog_fac_map.items():
         for fid in f_list:
             link_id = f"link_{fid}_{p_id}"
-            link_records.append([link_id, fid, p_id])
+            cat = secondary_cats.get((fid, p_id), 'permanent')
+            hours = 20 if cat == 'permanent' else 8
+            link_records.append([link_id, fid, 'internal', p_id, '', '', '', cat, hours])
             ledger_records.append([
-                f"fac_led_{link_idx:03d}", link_id, 'permanent', '2022-01-01', '',
-                f"Portaria CPG-XYZQ {link_idx:03d}/2022", 'Credenciamento Permanente Docente Homologado'
+                f"fac_led_{link_idx:03d}", link_id, cat, '2022-01-01', '',
+                f"Portaria CPG-XYZQ {link_idx:03d}/2022", f'Credenciamento Docente ({cat.title()}) Homologado CPG'
             ])
             link_idx += 1
 
+    # Adicionar 1 a 2 docentes por programa com filiações externas a outras IES (Art. 4º, § 2º da Portaria CAPES 81/2016)
+    external_links = [
+        # PPGCC
+        (fac_ids[0], 'external', '', 'Universidade de São Paulo - USP', 'Programa de Pós-Graduação em Ciência da Computação', '33002010001P0', 'permanent', 12),
+        (fac_ids[1], 'external', '', 'Universidade Estadual de Campinas - UNICAMP', 'Programa de Pós-Graduação em Engenharia de Computação', '33003017001P9', 'collaborator', 6),
+        # PPGFIS
+        (fac_ids[6], 'external', '', 'Universidade Estadual Paulista - UNESP', 'Programa de Pós-Graduação em Física Teórica e Aplicada', '33004013005P4', 'permanent', 10),
+        (fac_ids[7], 'external', '', 'Universidade de São Paulo - USP', 'Programa de Pós-Graduação em Física (IF-USP)', '33002010015P7', 'collaborator', 8),
+        # PPGBIO
+        (fac_ids[12], 'external', '', 'Universidade de São Paulo - USP', 'Programa de Pós-Graduação em Biofísica Molecular (FMRP-USP)', '33002010040P3', 'permanent', 10),
+        (fac_ids[13], 'external', '', 'Universidade Federal de São Paulo - UNIFESP', 'Programa de Pós-Graduação em Biologia Estrutural e Funcional', '33009015020P8', 'collaborator', 6),
+        # MPESI
+        (fac_ids[19], 'external', '', 'Universidade Federal do ABC - UFABC', 'Programa de Pós-Graduação em Engenharia da Informação', '35041010002P1', 'permanent', 12),
+        (fac_ids[20], 'external', '', 'Instituto de Pesquisas Tecnológicas - IPT', 'Programa de Mestrado Profissional em Processos Industriais', '33010013001P2', 'collaborator', 8),
+    ]
+
+    ext_idx = 1
+    for fid, l_type, p_id, ext_ies, ext_prog, ext_snpg, cat, hours in external_links:
+        link_id = f"link_ext_{fid}_{ext_idx:02d}"
+        link_records.append([link_id, fid, l_type, p_id, ext_ies, ext_prog, ext_snpg, cat, hours])
+        ext_idx += 1
+
     write_csv(os.path.join(out, "06a_vinculos_docente_programa_op_faculty_program_link.csv"),
-              ['id', 'faculty_id/id', 'program_id/id'], link_records)
+              ['id', 'faculty_id/id', 'link_type', 'program_id/id', 'external_ies_name', 'external_program_name', 'external_snpg_code', 'faculty_category', 'weekly_hours'], link_records)
     write_csv(os.path.join(out, "06b_credenciamento_docente_ledger_op_faculty_category_ledger.csv"),
               ['id', 'program_link_id/id', 'category', 'start_date', 'end_date', 'document_ref', 'notes'], ledger_records)
 

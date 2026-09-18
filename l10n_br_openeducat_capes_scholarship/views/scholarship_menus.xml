@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ações de Janela -->
+    <record id="action_capes_scholarship_edital" model="ir.actions.act_window">
+        <field name="name">Editais de Bolsas</field>
+        <field name="res_model">capes.scholarship.edital</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crie um novo edital de concessão de bolsas de estudo para o programa.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_capes_scholarship_application" model="ir.actions.act_window">
+        <field name="name">Candidaturas e Inscrições</field>
+        <field name="res_model">capes.scholarship.application</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_capes_scholarship_evaluation" model="ir.actions.act_window">
+        <field name="name">Fichas de Avaliação (Revisores)</field>
+        <field name="res_model">capes.scholarship.evaluation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_capes_scholarship_assignment" model="ir.actions.act_window">
+        <field name="name">Concessões Vigentes</field>
+        <field name="res_model">capes.scholarship.assignment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_capes_scholarship_quota" model="ir.actions.act_window">
+        <field name="name">Livro de Cotas Institucionais</field>
+        <field name="res_model">capes.scholarship.quota</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_capes_scholarship_rubric" model="ir.actions.act_window">
+        <field name="name">Baremas de Avaliação</field>
+        <field name="res_model">capes.scholarship.rubric</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_capes_scholarship_sponsor" model="ir.actions.act_window">
+        <field name="name">Agências de Fomento</field>
+        <field name="res_model">capes.scholarship.sponsor</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Estrutura de Menus -->
+    <menuitem id="menu_capes_scholarship_root"
+              name="Gestão de Bolsas"
+              parent="openeducat_core.menu_op_school_root"
+              sequence="25"/>
+
+    <menuitem id="menu_capes_scholarship_edital"
+              name="Editais de Bolsas"
+              parent="menu_capes_scholarship_root"
+              action="action_capes_scholarship_edital"
+              sequence="10"/>
+
+    <menuitem id="menu_capes_scholarship_application"
+              name="Inscrições e Candidaturas"
+              parent="menu_capes_scholarship_root"
+              action="action_capes_scholarship_application"
+              sequence="20"/>
+
+    <menuitem id="menu_capes_scholarship_evaluation"
+              name="Avaliação pelos Revisores"
+              parent="menu_capes_scholarship_root"
+              action="action_capes_scholarship_evaluation"
+              sequence="30"/>
+
+    <menuitem id="menu_capes_scholarship_assignment"
+              name="Concessões e Acompanhamento"
+              parent="menu_capes_scholarship_root"
+              action="action_capes_scholarship_assignment"
+              sequence="40"/>
+
+    <menuitem id="menu_capes_scholarship_config"
+              name="Configurações de Bolsas"
+              parent="menu_capes_scholarship_root"
+              sequence="90"/>
+
+    <menuitem id="menu_capes_scholarship_quota"
+              name="Livro de Cotas"
+              parent="menu_capes_scholarship_config"
+              action="action_capes_scholarship_quota"
+              sequence="10"/>
+
+    <menuitem id="menu_capes_scholarship_rubric"
+              name="Baremas Parametrizados"
+              parent="menu_capes_scholarship_config"
+              action="action_capes_scholarship_rubric"
+              sequence="20"/>
+
+    <menuitem id="menu_capes_scholarship_sponsor"
+              name="Agências de Fomento"
+              parent="menu_capes_scholarship_config"
+              action="action_capes_scholarship_sponsor"
+              sequence="30"/>
+</odoo>

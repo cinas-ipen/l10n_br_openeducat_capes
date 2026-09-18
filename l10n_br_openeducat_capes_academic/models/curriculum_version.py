@@ -329,3 +329,25 @@ class OpStudent(models.Model):
         help='Regimento ao qual o estudante foi vinculado no momento do ingresso'
     )
 
+    @api.onchange('curriculum_version_id')
+    def _onchange_curriculum_version_id(self):
+        if self.curriculum_version_id and self.curriculum_version_id.program_id:
+            self.program_id = self.curriculum_version_id.program_id
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('program_id') and vals.get('curriculum_version_id'):
+                cv = self.env['op.curriculum.version'].browse(vals['curriculum_version_id'])
+                if cv and cv.program_id:
+                    vals['program_id'] = cv.program_id.id
+        return super().create(vals_list)
+
+    def write(self, vals):
+        if 'curriculum_version_id' in vals and not vals.get('program_id') and vals['curriculum_version_id']:
+            cv = self.env['op.curriculum.version'].browse(vals['curriculum_version_id'])
+            if cv and cv.program_id:
+                vals['program_id'] = cv.program_id.id
+        return super().write(vals)
+
+

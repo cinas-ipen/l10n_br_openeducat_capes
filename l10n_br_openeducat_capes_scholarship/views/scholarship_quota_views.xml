@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_capes_scholarship_quota_list" model="ir.ui.view">
+        <field name="name">capes.scholarship.quota.list</field>
+        <field name="model">capes.scholarship.quota</field>
+        <field name="arch" type="xml">
+            <list string="Livro de Cotas Institucionais">
+                <field name="name"/>
+                <field name="sponsor_id"/>
+                <field name="course_id"/>
+                <field name="level"/>
+                <field name="total_slots"/>
+                <field name="used_slots"/>
+                <field name="available_slots"/>
+                <field name="monthly_reference_amount"/>
+                <field name="validity_start"/>
+                <field name="validity_end"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_capes_scholarship_quota_form" model="ir.ui.view">
+        <field name="name">capes.scholarship.quota.form</field>
+        <field name="model">capes.scholarship.quota</field>
+        <field name="arch" type="xml">
+            <form string="Cota Institucional de Bolsa">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Identificação da Cota"/>
+                        <h1><field name="name" placeholder="Ex: Cota CAPES-PROEX Mestrado 2026"/></h1>
+                    </div>
+                    <group>
+                        <group string="Origem e Programa">
+                            <field name="sponsor_id"/>
+                            <field name="course_id"/>
+                            <field name="level"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Vagas e Saldo">
+                            <field name="total_slots"/>
+                            <field name="used_slots"/>
+                            <field name="available_slots"/>
+                            <field name="monthly_reference_amount"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Vigência Regulamentar">
+                            <field name="validity_start"/>
+                            <field name="validity_end"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Concessões Vigentes">
+                            <field name="assignment_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="student_id"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end_expected"/>
+                                    <field name="current_months_active"/>
+                                    <field name="remaining_months"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Editais Vinculados">
+                            <field name="edital_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="academic_year_id"/>
+                                    <field name="slots_total"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

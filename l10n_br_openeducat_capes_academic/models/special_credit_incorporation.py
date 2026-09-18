@@ -48,6 +48,13 @@ class OpSpecialCreditIncorporationRequest(models.Model):
         required=True,
         tracking=True
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='target_program_id',
+        store=True,
+        index=True
+    )
     target_curriculum_version_id = fields.Many2one(
         'op.curriculum.version',
         string='Versão Regimental Ativa',

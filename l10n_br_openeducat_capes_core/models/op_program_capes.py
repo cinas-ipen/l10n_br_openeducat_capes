@@ -151,6 +151,52 @@ class OpProgramCapes(models.Model):
         string='Ano Base Atribuição da Nota'
     )
 
+    is_current_program = fields.Boolean(
+        string='Programa Ativo na Sessão',
+        compute='_compute_is_current_program',
+        search='_search_is_current_program'
+    )
+    can_switch_to_program = fields.Boolean(
+        string='Pode Alternar para este Programa',
+        compute='_compute_can_switch_to_program'
+    )
+    session_status = fields.Char(
+        string='Sessão',
+        compute='_compute_is_current_program'
+    )
+
+    def _search_is_current_program(self, operator, value):
+        current_id = self.env.user.current_program_id.id
+        if (operator == '=' and value) or (operator == '!=' and not value):
+            return [('id', '=', current_id)] if current_id else [('id', '=', -1)]
+        return [('id', '!=', current_id)] if current_id else [(1, '=', 1)]
+
+    def _compute_is_current_program(self):
+        current_id = self.env.user.current_program_id.id
+        for record in self:
+            is_cur = (record.id == current_id)
+            record.is_current_program = is_cur
+            record.session_status = 'Programa Ativo' if is_cur else 'Disponível'
+
+    def _compute_can_switch_to_program(self):
+        user = self.env.user
+        is_admin = (
+            user.is_central_admin
+            or user.has_group('l10n_br_openeducat_capes_core.group_capes_central_admin')
+        )
+        allowed_ids = user.allowed_program_ids.ids
+        for record in self:
+            record.can_switch_to_program = is_admin or (record.id in allowed_ids)
+
+    def action_select_as_current(self):
+        """Define este programa como o programa ativo na sessão do usuário."""
+        self.ensure_one()
+        self.env['res.users'].action_switch_program(self.id)
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
     _sql_constraints = [
         ('snpg_code_unique', 'unique(snpg_code)', 'O Código SNPG do Programa de Pós-Graduação deve ser único.')
     ]

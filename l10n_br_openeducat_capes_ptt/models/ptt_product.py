@@ -64,6 +64,13 @@ class CapesPttProduct(models.Model):
         string='Tese / Dissertação Associada',
         help='Trabalho de conclusão do qual este PTT é derivado'
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='thesis_id.program_id',
+        store=True,
+        index=True
+    )
 
     # Maturidade Tecnológica (Escala TRL 1 a 9)
     trl_level = fields.Selection([

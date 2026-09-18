@@ -31,6 +31,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/research_rules.xml',
         'views/research_project_views.xml',
         'views/project_member_views.xml',
         'views/op_faculty_research_views.xml',

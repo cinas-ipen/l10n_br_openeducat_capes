@@ -1,21 +1,33 @@
-### docs/06_titulacao_e_conformidade_documental/02_historico_escolar_consolidado.md
-
-# Documento 02: Histórico Escolar Consolidado (Transcrição)
+# Documento 02: Histórico Escolar Consolidado de Pós-Graduação (Transcrição Oficial)
 
 ## 1. A Complexidade da Transcrição Stricto Sensu
-O histórico escolar de pós-graduação (`op.student.transcript.br`) é um documento autossuficiente e dotado de fé pública, que consolida a jornada inteira do estudante. Ele difere de um boletim comum porque precisa documentar não apenas as notas, mas as regras sob as quais essas notas foram obtidas e o veredito final da pesquisa.
+O histórico escolar de pós-graduação (`report_student_transcript_br_document` em `l10n_br_openeducat_capes_diploma`) é um documento autossuficiente e dotado de fé pública, que consolida a jornada inteira do discente. Ele difere substancialmente de um boletim escolar comum porque documenta não apenas as notas e créditos, mas as regras regimentais sob as quais foram obtidos (Ato Jurídico Perfeito), a filiação ao Programa de Pós-Graduação da CAPES e o rito de defesa pública final com registro no Repositório Institucional.
 
-## 2. Arquitetura de Dados via Odoo QWeb
-A engine de relatórios nativa do Odoo (QWeb) é utilizada para fazer um *JOIN* complexo entre quatro domínios isolados do banco de dados:
+## 2. Arquitetura de Dados via Odoo QWeb (Wkhtmltopdf)
+A engine de relatórios nativa do Odoo (QWeb) consolida dados de múltiplos domínios do banco relacional de forma integrada e performática:
 
-1. **A Base Regimental (`op.curriculum.version`):** O cabeçalho do documento imprime a portaria MEC de reconhecimento do curso e as exigências totais do regimento escolhido pelo aluno (Ato Jurídico Perfeito).
-2. **O Livro-Razão (`op.student.credit.ledger`) e Filtro de Aluno Especial:** O corpo principal itera exclusivamente sobre o livro-razão imutável, consolidando as disciplinas oficiais do percurso regular:
-   * *Disciplinas Computadas:* Inclui disciplinas próprias (`subject_internal`), de outros PPGs da IES (`subject_intra_ies`), disciplinas externas convalidadas (`subject_extra_ies`) e disciplinas de regime especial formalmente deferidas pela CPG (`subject_special_incorporated`).
-   * *Expurgo de Reprovações e Quarentena de Aluno Especial:* Em estrita observância à parametrização regimental (`special_transcript_fail_policy = 'omit_on_regular'`, padrão MPTRCS), o Histórico Oficial de Titulação omite automaticamente quaisquer reprovações ("R" ou "F") ou disciplinas avulsas não aproveitadas obtidas no regime de aluno especial. Essas atividades figuram exclusivamente na *Certidão de Estudos Isolados*, preservando a idoneidade e o foco exclusivo do percurso de titulação regular.
-3. **O Produto Intelectual (`capes.thesis`):** Extração do Título Exato da tese homologada, data da defesa e identificador persistente do Repositório Institucional (URI/Handle).
-4. **O Veredito Final (`capes.thesis.committee`):** Listagem nominal de todos os membros da banca examinadora com as respectivas titulações e IES de origem, corroborando a aprovação pública.
+### 2.1. Cabeçalho e Identificação Acadêmica
+* **Identificação do Discente:** Nome completo (`o.partner_id.name`) e CPF (`o.partner_id.cpf`).
+* **Programa e Código SNPG/CAPES:** Nome oficial do programa (`o.program_id.name`) e código de 12 dígitos no Sistema Nacional de Pós-Graduação (`o.program_id.snpg_code`).
+* **Registro Acadêmico Institucional (RA):** Número perene de matrícula na IES (`o.ra_number`), preservado ao longo de toda a vida acadêmica.
+* **Datas e Versão Regimental:** Data oficial de admissão regular (`o.admission_date`), Versão Regimental ativa sob a égide do Ato Jurídico Perfeito (`o.curriculum_version_id.name`) e Situação Acadêmica discente (`o.capes_status`).
 
-## 3. Segurança e Auto-Autenticação
-Para eliminar fraudes documentais e a necessidade de carimbos físicos, o relatório QWeb gera automaticamente uma chave de hash SHA-256 baseada nos dados do registo. 
+### 2.2. Integralização Curricular via Livro-Razão Acadêmico (`op.student.credit.ledger`)
+O corpo principal itera exclusivamente sobre o livro-razão imutável (*append-only*), ordenado cronologicamente por `date_earned asc, id asc`:
+* **Código e Denominação da Atividade:** Código oficial da disciplina (`ledger.subject_id.code`) e denominação da atividade (`ledger.course_name`).
+* **Carga Horária e Créditos:** Horas computadas com conversão regimental (`ledger.hours`) e créditos concedidos (`ledger.credits`).
+* **Conceito / Nota Obtida:** Conceito regimental oficial (`ledger.grade_concept`, ex: A, B, C, D).
+* **Resultado:** Situação de aprovação (`is_approved`: Aprovado em destaque verde ou Reprovado em destaque vermelho).
+* **Política de Aluno Especial:** Em conformidade com a regra regimental `omit_on_regular`, disciplinas cursadas em regime especial que não foram formalmente incorporadas via CPG permanecem em quarentena e não figuram no histórico oficial de titulação regular, compondo apenas a Certidão de Estudos Isolados.
 
-Esta chave é transformada num QR Code e impressa no rodapé do documento. Qualquer auditor ou empregador pode scannear o código, que o redirecionará para um endpoint público do OpenEduCat (`/valida-documento`), confirmando a autenticidade dos dados ali impressos diretamente da "Fonte Prata".
+### 2.3. Rito Público de Conclusão e Defesa (`capes.thesis`)
+Quando o discente atinge a fase de defesa, o relatório extrai automaticamente os dados da banca homologada:
+* **Título Final Aprovado em Ata:** Redação exata homologada pela comissão examinadora (`defense.title`).
+* **Data da Sessão Pública:** Data e horário da sessão solene de defesa (`defense.defense_date`).
+* **Repositório DSpace (Handle/URI):** Identificador permanente gerado pela biblioteca institucional (`defense.repository_url`), conectando a Fonte Prata à Fonte Ouro.
+* **Situação do Rito:** Status oficial homologado (`defense.status`). Caso o aluno ainda não tenha defendido, o documento estampa: *"Nenhuma defesa final registrada ou homologada até a presente data"*.
+
+## 3. Segurança Criptográfica, QR Code e Conformidade MEC (Portaria nº 70/2025)
+Para assegurar integridade jurídica nato-digital e eliminar a necessidade de carimbos físicos analógicos:
+* O rodapé estampa a chancela formal da **Portaria MEC nº 70/2025**.
+* Um quadro de **QR Code de Validação Pública** permite a conferência instantânea por órgãos externos, empregadores e agências de fomento, direcionando para o endpoint `/valida-documento` onde a assinatura digital e o hash SHA-256 do histórico escolar podem ser auditados online.

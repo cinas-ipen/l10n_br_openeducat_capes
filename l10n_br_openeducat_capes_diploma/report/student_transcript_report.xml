@@ -7,7 +7,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">l10n_br_openeducat_capes_diploma.report_student_transcript_br_document</field>
         <field name="report_file">l10n_br_openeducat_capes_diploma.report_student_transcript_br_document</field>
-        <field name="print_report_name">'Historico_Consolidado_' + (object.code or 'Discente')</field>
+        <field name="print_report_name">'Historico_Consolidado_' + (object.ra_number or object.gr_no or 'Discente')</field>
         <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
         <field name="binding_type">report</field>
     </record>
@@ -29,13 +29,13 @@
                             <div class="col-6">
                                 <strong>Discente:</strong> <span t-field="o.partner_id.name"/><br/>
                                 <strong>CPF:</strong> <span t-field="o.partner_id.cpf"/><br/>
-                                <strong>Programa PPG:</strong> <span t-field="o.program_id.name"/><br/>
-                                <strong>Código SNPG/CAPES:</strong> <span t-field="o.program_id.snpg_code"/>
+                                <strong>Programa PPG:</strong> <span t-if="o.program_id" t-field="o.program_id.name"/><br/>
+                                <strong>Código SNPG/CAPES:</strong> <span t-if="o.program_id" t-field="o.program_id.snpg_code"/>
                             </div>
                             <div class="col-6">
-                                <strong>Matrícula:</strong> <span t-field="o.code"/><br/>
+                                <strong>Registro Acadêmico (RA):</strong> <span t-field="o.ra_number"/><br/>
                                 <strong>Data de Admissão:</strong> <span t-field="o.admission_date"/><br/>
-                                <strong>Versão Regimental (Ato Perfeito):</strong> <span t-field="o.curriculum_version_id.name"/><br/>
+                                <strong>Versão Regimental (Ato Perfeito):</strong> <span t-if="o.curriculum_version_id" t-field="o.curriculum_version_id.name"/><br/>
                                 <strong>Situação Acadêmica:</strong> <span t-field="o.capes_status"/>
                             </div>
                         </div>
@@ -54,11 +54,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <t t-foreach="o.env['op.student.credit.ledger'].search([('student_id', '=', o.id)], order='academic_period desc')" t-as="ledger">
+                                <t t-foreach="o.env['op.student.credit.ledger'].search([('student_id', '=', o.id)], order='date_earned asc, id asc')" t-as="ledger">
                                     <tr>
-                                        <td><span t-field="ledger.subject_id.code"/></td>
-                                        <td><span t-field="ledger.subject_id.name"/></td>
-                                        <td class="text-center"><span t-field="ledger.workload_hours"/>h</td>
+                                        <td><span t-if="ledger.subject_id" t-field="ledger.subject_id.code"/></td>
+                                        <td><span t-field="ledger.course_name"/></td>
+                                        <td class="text-center"><span t-field="ledger.hours"/>h</td>
                                         <td class="text-center"><span t-field="ledger.credits"/></td>
                                         <td class="text-center"><strong><span t-field="ledger.grade_concept"/></strong></td>
                                         <td class="text-center">

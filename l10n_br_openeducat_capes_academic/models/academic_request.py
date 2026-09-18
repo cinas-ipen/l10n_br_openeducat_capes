@@ -48,6 +48,13 @@ class OpAcademicRequest(models.Model):
         store=True,
         readonly=True
     )
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa CAPES',
+        related='current_curriculum_version_id.program_id',
+        store=True,
+        index=True
+    )
     request_type = fields.Selection([
         ('trancamento', 'Trancamento de Matrícula / Trancamento Contínuo'),
         ('prorrogacao', 'Prorrogação de Prazo para Defesa / Qualificação'),

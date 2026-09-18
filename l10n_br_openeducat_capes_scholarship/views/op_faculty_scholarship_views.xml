@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_op_faculty_form_scholarship_360" model="ir.ui.view">
+        <field name="name">op.faculty.form.scholarship.360</field>
+        <field name="model">op.faculty</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_faculty_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_assigned_scholarship_reviews" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                    <field name="assigned_scholarship_reviews_count" widget="statinfo" string="Avaliações Bolsas"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

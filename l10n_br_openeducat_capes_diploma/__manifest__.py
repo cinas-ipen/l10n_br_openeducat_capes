@@ -32,6 +32,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/diploma_rules.xml',
         'report/student_transcript_report.xml',
         'views/diploma_views.xml',
         'views/op_student_diploma_views.xml',

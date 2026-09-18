@@ -46,3 +46,14 @@ class OpStudentCourseExtension(models.Model):
     completion_date = fields.Date(
         string='Data de Conclusão / Encerramento do Vínculo'
     )
+
+
+class OpBatchExtension(models.Model):
+    _inherit = 'op.batch'
+
+    program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa de Pós-Graduação',
+        index=True,
+        help='Programa CAPES ao qual esta turma/coorte está vinculada.'
+    )

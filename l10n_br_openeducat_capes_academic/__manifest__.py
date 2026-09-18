@@ -31,6 +31,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/academic_rules.xml',
         'views/curriculum_version_views.xml',
         'views/op_subject_views.xml',
         'views/credit_ledger_views.xml',
