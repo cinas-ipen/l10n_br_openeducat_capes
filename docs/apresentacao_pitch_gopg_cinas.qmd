@@ -201,7 +201,7 @@ Barramento de integração contínua para coleta da CAPES e conexão com o repos
 
 ::: {.card}
 **Diplomas e Históricos**
-Histórico escolar com chancela digital e emissão de Diplomas Nato-Digitais (Portaria MEC nº 70/2025).
+Histórico escolar com chancela digital e emissão de Diplomas Nato-Digitais (Portarias MEC nº 330/2018, 554/2019 e 70/2025).
 :::
 
 ::: {.card}
@@ -352,10 +352,10 @@ Matriz avaliativa com dois revisores docentes independentes e consolidação aut
 
 ::: {.columns}
 ::: {.column width="55%"}
-* **4 Eixos Temáticos da CAPES:** Produtos e Processos, Formação, Gestão/Políticas Públicas e Produção Artística.
-* **21 Tipologias Oficiais:** Softwares, Patentes, Manuais Técnicos, Protocolos Clínicos, Tecnologias Sociais, etc.
+* **4 Eixos Estruturantes da CAPES:** Produtos e Processos Tecnológicos (E1), Formação (E2), Divulgação e Difusão (E3) e Serviços Técnicos (E4).
+* **Tipologias Oficiais (GTPT):** Softwares (T19), Patentes (T13), Manuais Técnicos (T09), Protocolos Clínicos (T07), Tecnologias Sociais (T15), etc.
 * **Escala de Maturidade Tecnológica (TRL):** Classificação do nível de prontidão de 1 (ideação básica) a 9 (operação plena no mercado).
-* **Cálculo Automatizado do Qualis Tecnológico:** Classificação objetiva em estratos de **T1 (Alto Impacto)** a **T5**.
+* **Cálculo Automatizado do Qualis Tecnológico:** Classificação objetiva em estratos de **T1 (Alto Impacto)** a **T5**, e **TNC** para produtos não enquadrados.
 :::
 
 ::: {.column width="45%"}
@@ -369,18 +369,18 @@ $$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C}$$
 * **T2:** 75 a 89 pontos
 * **T3:** 60 a 74 pontos
 * **T4:** 45 a 59 pontos
-
+* **T5:** 30 a 44 pontos
+* **TNC:** < 30 pontos (ou Não Aderente)
 
 **Dossiê pronto para chancela e avaliação quadrienal.**
 
-
 Onde:
 
-* NF = Nota Final;
-* D = Demanda;
-* I = Inovação;
-* A = Aplicabilidade e
-* C = Complexidade
+* NF = Nota Final (máx: 100 pts);
+* D = Demanda e Impacto (0 a 30 pts);
+* I = Inovação e Originalidade (0 a 25 pts);
+* A = Aplicabilidade e Replicabilidade (0 a 25 pts);
+* C = Complexidade Técnica (0 a 20 pts).
 
 </small>
 
@@ -392,7 +392,7 @@ Onde:
 
 ## Ritos Acadêmicos e Diploma Nato-Digital
 
-### Da Qualificação ao Registro Oficial (Portaria MEC nº 70/2025)
+### Da Qualificação ao Registro Oficial (Portarias MEC nº 330/2018, 554/2019 e 70/2025)
 
 ::: {.grid-2}
 ::: {.card .card-warning}
@@ -405,7 +405,7 @@ Onde:
 ::: {.card .card-success}
 #### Emissão Documental com Fé Pública
 * **Histórico Consolidado com QR Code:** Emissão imediata com selo de autenticidade para validação pública.
-* **Diploma Nato-Digital Integrado:** Dossiê acadêmico e assinaturas digitais ICP-Brasil conforme padrão federal.
+* **Diploma Nato-Digital Integrado:** Dossiê acadêmico e assinaturas digitais ICP-Brasil (XAdES-BES / XML-DSig SHA-256) conforme padrão federal.
 * **Suporte a Institutos de Pesquisa:** Fluxo de expedição própria com registro em universidade parceira (modelo IPEN $\rightarrow$ USP).
 :::
 :::
@@ -459,7 +459,7 @@ Onde:
 | **Integridade de Históricos** | ❌ Recálculos distorcem o passado | ✅ **Livro-Razão Imutável (Ato Jurídico Perfeito)** |
 | **Teto de 3 PPGs Docentes** | ❌ Controle manual e sujeito a falhas | ✅ **Auditoria automática de âmbito nacional** |
 | **Bolsas e Acúmulo de Renda** | ❌ Processo externo em papel | ✅ **Fluxo completo e avaliação com duplo revisor** |
-| **Diploma Digital MEC 70/2025** | ❌ Contratação de terceiros avulsos | ✅ **Nativo com dossiê e assinatura ICP-Brasil** |
+| **Diploma Digital MEC 330/2018 e 70/2025** | ❌ Contratação de terceiros avulsos | ✅ **Nativo com dossiê e assinatura ICP-Brasil** |
 | **Modelo de Licenciamento** | ❌ Custo recorrente por discente | ✅ **Código aberto soberano, auditável e fruto de pesquisa pública** |
 
 ---
@@ -471,7 +471,7 @@ Onde:
 ::: {.grid-3}
 ::: {.card .card-highlight}
 #### Conformidade Regulatória Nativa
-Auditoria contínua de regras federais (Portarias CAPES nº 158/2023, 81/2016, 133/2023 e MEC nº 70/2025) incorporada diretamente no fluxo do ERP acadêmico.
+Auditoria contínua de regras federais (Portarias CAPES nº 158/2023, 81/2016, 133/2023 e MEC nº 330/2018, 554/2019 e 70/2025) incorporada diretamente no fluxo do ERP acadêmico.
 :::
 
 ::: {.card .card-success}

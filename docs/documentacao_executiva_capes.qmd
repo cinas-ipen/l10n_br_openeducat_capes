@@ -105,9 +105,9 @@ l10n_br_openeducat_capes/
 ├── l10n_br_openeducat_capes_academic     # Versionamento Regimental (op.curriculum.version), Multi-Vínculo, Aluno Especial, Trânsito Intra-IES e Livro-Razão (append-only)
 ├── l10n_br_openeducat_capes_research     # Projetos de Pesquisa, Linhas de Pesquisa e Taxonomia CRediT
 ├── l10n_br_openeducat_capes_thesis       # Ritos Bipartidos (Seminários/Qualificação/Defesa), Bancas e Versão Final PDF
-├── l10n_br_openeducat_capes_ptt          # Produtos Técnico-Tecnológicos, 4 Eixos, 21 Tipos, TRL 1-9 e Qualis Tecnológico
-├── l10n_br_openeducat_capes_integration  # Barramento REST JSON v1 (Fonte Prata) e Crosswalk DSpace OAI-PMH (Fonte Ouro)
-├── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (MEC 70/2025) e Registro Externo (IPEN -> USP)
+├── l10n_br_openeducat_capes_ptt          # Produtos Técnico-Tecnológicos, 4 Eixos (E1 a E4), Tipologias (T01 a T21), TRL 1-9 e Qualis Tecnológico (T1-T5, TNC)
+├── l10n_br_openeducat_capes_integration  # Barramento REST JSON v1 Fonte Prata (/api/capes/v1/) e Crosswalk DSpace OAI-PMH (Fonte Ouro)
+├── l10n_br_openeducat_capes_diploma      # Histórico Consolidado QWeb, Diploma Nato-Digital (Portarias MEC 330/2018, 554/2019 e 70/2025) e Registro Externo (IPEN -> USP)
 └── l10n_br_openeducat_capes_scholarship  # Gestão de Cotas, Editais de Bolsas (CAPES/CNEN/CNPq), Avaliação Paralela e Termos de Outorga
 ```
 
@@ -117,6 +117,24 @@ Em conformidade com as diretrizes do Odoo 19:
 
 * **Views XML:** Todas as visões em lista utilizam rigorosamente a tag `<list>` (substituindo `<tree>`). As visões de busca (`<search>`) utilizam agrupamentos `<group>` sem os atributos legados `expand="0"` e `string`.
 * **Grupos de Segurança:** Os arquivos `security/ir.model.access.csv` utilizam os grupos oficiais do OpenEduCat 19 (`openeducat_core.group_op_faculty` e `openeducat_core.group_op_back_office_admin`), complementados pelos grupos granulares de pós-graduação (`group_capes_central_admin`, `group_capes_program_coordinator` e `group_capes_program_secretary`).
+
+## Modelos Nativos Estendidos e Impactados (OpenEduCat e Odoo Base)
+
+Para garantir integridade arquitetural sem corromper as tabelas originais, os submódulos estendem classes nativas via herança ORM (`_inherit`):
+
+* **OpenEduCat Base (`openeducat_core`):**
+  * `op.student`: Estendido com RA institucional perene (`ra_number` / `gr_no`), CPF, PIDs acadêmicos (ORCiD, Lattes), orientador titular, status CAPES, versão regimental ativa (`curriculum_version_id`), vínculo com Livro-Razão de créditos e prontuário 360°.
+  * `op.faculty`: Estendido com PIDs, regime de trabalho (DE/40h/20h), titulação máxima, linhas de pesquisa, vínculos interinstitucionais unificados (`op.faculty.program.link`), livro-razão de categorias (`op.faculty.category.ledger`) e auditoria do teto de 3 PPGs permanentes (Portaria CAPES 81/2016).
+  * `op.subject`: Estendido com créditos sincronizados com `grade_weightage`, ementa detalhada (`syllabus`), bibliografia básica/complementar, indicador PHEA, idioma e governança de vagas para alunos especiais (`special_seats_quota`).
+  * `op.batch`: Estendido com associação direta ao programa de pós-graduação (`program_id`).
+  * `op.student.course`: Estendido para governança de multi-vínculo com tipo de curso (`course_type`), programa (`program_id`), versão regimental (`curriculum_version_id`) e datas de vigência.
+* **Odoo Framework (`base`, `mail`, `project`):**
+  * `res.company`: Estendido com PIDs institucionais da mantenedora (CNPJ com validação, código e-MEC, código CAPES do PPG, ROR, ISNI), georreferenciamento e dados da Pró-Reitoria de Pós-Graduação.
+  * `res.partner`: Estendido com censo biográfico e demográfico CAPES/DAV (CPF com Módulo 11, ORCiD, Lattes ID, raça/cor IBGE, indicador PCD, nacionalidade e filiação materna).
+  * `res.users`: Estendido com governança multiprograma (`allowed_program_ids`, `current_program_id`, `is_central_admin`, `action_switch_program`).
+  * `ir.http`: Estendido para injetar o contexto do programa de pós-graduação ativo na sessão web (`session_info`).
+  * `project.project`: Integrado com os projetos de pesquisa da pós-graduação (`capes.research.project`) via vínculo `odoo_project_id`.
+  * `mail.thread` e `mail.activity.mixin`: Herdados nos modelos transacionais para trilha de auditoria completa e mensageria interna.
 
 ## Identidade Soberana Discente na IES e Arquitetura Multi-Vínculo
 
@@ -150,8 +168,9 @@ erDiagram
     }
 
     OP_STUDENT_CREDIT_LEDGER {
-        selection credit_type "internal / intra_ies / quarantine / incorporated / extra_ies / apo / milestone"
-        float credits "Valor Nominal de Créditos"
+        selection credit_type "subject / subject_internal / subject_intra_ies / subject_special_quarantine / subject_special_incorporated / subject_extra_ies / apo / milestone / external"
+        float credits "Unidades de Crédito Concedidas"
+        float hours "Carga Horária Computada"
         boolean is_approved "Status de Aprovação"
     }
 ```
@@ -355,8 +374,8 @@ Varredura e auditoria automatizada realizada sobre os arquivos da pasta `metadad
 | :--- | :---: | :--- | :--- |
 | **PROGRAMA DE PÓS-GRADUAÇÃO** | 45 | `op.program.capes`, `res.company` | SNPG code, Nota CAPES, Grande Área, Área de Avaliação, Subárea, Especialidade, Coordenadores, Idioma. |
 | **CURSO / REGIMENTO** | 39 | `op.curriculum.version` | Créditos Totais (`min_credits`), Disciplinas (`min_subject_credits`), Tese (`thesis_credits`), Prazos, Bancas, Parâmetros de Aluno Especial e Intra-IES. |
-| **PESSOA (Docentes / Alunos / Egressos)** | 83 | `res.partner`, `op.faculty`, `op.student`, `op.student.course`, `op.faculty.accreditation` | CPF, Lattes ID, ORCID ID, Scopus ID, RA Soberano Perene (`ra_number`/`gr_no`), Multi-Vínculo (`course_type`), Vínculo de Bolsa, Credenciamento CPG. |
-| **PRODUÇÃO INTELECTUAL & PTT** | 33 | `capes.intellectual.production`, `capes.ptt.product`, `capes.ptt.author`, `capes.ptt.evaluation` | DOI, Handle, ISBN, ISSN, Estrato Qualis, Tipologia PTT (T01-T21), TRL 1-9, Contribuição CRediT, Acesso Aberto/Embargado. |
+| **PESSOA (Docentes / Alunos / Egressos)** | 83 | `res.partner`, `op.faculty`, `op.student`, `op.student.course`, `op.faculty.program.link`, `op.faculty.category.ledger` | CPF, Lattes ID, ORCID ID, Scopus ID, RA Soberano Perene (`ra_number`/`gr_no`), Multi-Vínculo (`course_type`), Vínculo de Bolsa, Credenciamento CPG (`link_type`). |
+| **PRODUÇÃO INTELECTUAL & PTT** | 33 | `capes.intellectual.production`, `capes.ptt.product`, `capes.ptt.author`, `capes.ptt.evaluation` | DOI, Handle, ISBN, ISSN, Estrato Qualis, Tipologia PTT (T01-T21 nos 4 Eixos E1-E4), TRL 1-9, Contribuição CRediT, Qualis Tecnológico (T1-T5, TNC). |
 | **PROJETO DE PESQUISA** | 22 | `capes.research.project`, `capes.project.member` | Nome, Coordenador, Fomento, Natureza (Básica/Aplicada), Cooperação, 14 Papéis CRediT. |
 | **DISCIPLINA & TURMA** | 22 | `op.subject` (via `op_subject_extension.py`) | Código, Nome, Ementa (`syllabus`), Bibliografia Básica/Complementar, PHEA, Vagas de Aluno Especial (`special_seats_quota`), Anuência do Docente (`special_student_instructor_consent_required`). |
 | **INSTITUIÇÃO, CAMPUS & ENDEREÇO** | 42 | `res.company`, `res.partner` | Nome da IES, Sigla, CNPJ, Código IBGE, CEP, Atuação da IES. |
@@ -410,9 +429,9 @@ Varredura e auditoria automatizada realizada sobre os arquivos da pasta `metadad
   * Aba integrada no formulário com a listagem exaustiva de lançamentos do Livro-Razão (disciplinas, créditos, horas, conceitos e aprovação).
 * **Ficha Docente 360° (`op.faculty`):**
   * **Resumo de Filiações a Programas (`programs_summary`):** Campo computado destacado no topo do formulário do docente e na visualização em lista/kanban, consolidando em badges coloridos todos os programas aos quais o professor está filiado (locais e externos), com indicação expressa da categoria regimental (Permanente, Colaborador ou Visitante).
-  * **Auditoria do Teto Nacional de 3 PPGs (Portaria CAPES nº 81/2016):** A Portaria CAPES nº 81/2016 fixa em no máximo **3 (três) programas de pós-graduação stricto sensu** a atuação simultânea de um docente como membro permanente em todo o território nacional. O sistema audita essa regra somando os credenciamentos locais permanentes (`op.faculty.accreditation`) e os credenciamentos permanentes em programas externos (`op.faculty.external.program`), bloqueando via restrição Python `@api.constrains` qualquer inclusão que ultrapasse esse limite.
-  * **Gestão de Filiações Locais (`op.faculty.accreditation`):** Histórico completo de credenciamento nos PPGs da própria mantenedora, com datas de início/término, número do processo/resolução da CPG e categoria docente.
-  * **Gestão de Filiações Externas (`op.faculty.external.program`):** Registro de atuação formal em PPGs de outras IES brasileiras ou estrangeiras, com IES Externa, Nome do Programa, Código SNPG, Categoria de Atuação e Período de Credenciamento.
+  * **Auditoria do Teto Nacional de 3 PPGs (Portaria CAPES nº 81/2016):** A Portaria CAPES nº 81/2016 fixa em no máximo **3 (três) programas de pós-graduação stricto sensu** a atuação simultânea de um docente como membro permanente em todo o território nacional. O sistema audita essa regra no modelo `op.faculty.program.link` somando os credenciamentos locais permanentes (`link_type == 'internal'`) e os credenciamentos permanentes em programas externos (`link_type == 'external'`), bloqueando via restrição Python `@api.constrains` qualquer inclusão que ultrapasse esse limite.
+  * **Gestão Unificada de Filiações (`op.faculty.program.link`):** Registro de atuação formal tanto em PPGs locais da própria mantenedora quanto em PPGs de outras IES brasileiras ou estrangeiras, com IES Externa, Nome do Programa, Código SNPG, Categoria de Atuação (`faculty_category`) e Período de Credenciamento (`start_date`, `end_date`, `is_current`).
+  * **Livro-Razão de Categorias Docentes (`op.faculty.category.ledger`):** Registro histórico imutável (*append-only*) das transições de categoria (permanente, colaborador, visitante) com número de portaria de credenciamento e deliberação da CPG.
   * **Smart Buttons com Contadores em Tempo Real:** Orientandos Ativos, Orientandos Titulados/Egressos, Disciplinas Ministradas, Linhas de Pesquisa Ativas e Bancas Examinadoras.
 
 
@@ -440,20 +459,28 @@ Ao acionar a transição para o rito de defesa, o motor de auditoria varre em te
 
 # Produtos Técnico-Tecnológicos (PTT) e Qualis Tecnológico
 
-## Taxonomia GTPT / Medicina II e Motor Qualis (`capes.ptt.product`)
+## Taxonomia GTPT / Medicina II e Motor Qualis (`capes.ptt.product` & `capes.ptt.evaluation`)
 
-O submódulo `l10n_br_openeducat_capes_ptt` implementa os 4 eixos (E1 a E4) e 21 tipologias (T01 a T21) da CAPES:
+O submódulo `l10n_br_openeducat_capes_ptt` implementa a classificação oficial do Grupo de Trabalho de Produção Técnica (GTPT/CAPES) e da Área de Medicina II:
 
-$$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \text{Aplicabilidade (25)} + \text{Complexidade (20)}$$
+* **4 Eixos Estruturantes (`capes.ptt.axis`):**
+  * **E1 — Produtos e Processos Tecnológicos:** Patentes (T13), Softwares (T19), Tecnologias Sociais (T15), Startups / Spin-offs (T11).
+  * **E2 — Produtos e Processos de Formação:** Cursos de Formação Profissional (T08), Material Didático / Instrucional / Manuais (T09).
+  * **E3 — Produtos e Processos de Divulgação e Difusão:** Relatórios Técnicos Conclusivos / Laudos (T06), Eventos Tecnológicos, Exposições.
+  * **E4 — Produtos e Processos de Serviços Técnicos:** Normas Técnicas / Marcos Regulatórios (T05), Protocolos Clínicos / Conduta Sanitária (T07).
+* **Maturidade Tecnológica (Escala TRL 1 a 9):** Mapeamento do nível de prontidão tecnológica, desde a observação dos princípios básicos (TRL 1) até a operação plena em ambiente real de produção (TRL 9).
+* **Avaliação Paramétrica Ponderada (`capes.ptt.evaluation`):**
 
-### Estratos do Qualis Tecnológico
+$$\text{Pontuação Total} = \text{Demanda e Impacto (0 a 30 pts)} + \text{Inovação (0 a 25 pts)} + \text{Aplicabilidade (0 a 25 pts)} + \text{Complexidade (0 a 20 pts)}$$
 
-* **T1 (90 a 100 pts):** Excelente / Alto Impacto Internacional ou Nacional.
-* **T2 (75 a 89 pts):** Muito Bom / Relevância Regional/Nacional Expressiva.
-* **T3 (60 a 74 pts):** Bom / Relevância Regional.
-* **T4 (45 a 59 pts):** Regular / Aplicação Local.
-* **T5 (30 a 44 pts):** Fraco / Baixa Complexidade.
-* **TNC (< 30 pts ou Não Aderente):** Produto Não Classificado / Glosado.
+### Estratos Oficiais do Qualis Tecnológico
+
+* **T1 (90 a 100 pts):** Excelente — Alto Impacto Internacional ou Nacional.
+* **T2 (75 a 89 pts):** Muito Bom — Relevância Regional/Nacional Expressiva.
+* **T3 (60 a 74 pts):** Bom — Relevância Regional e Replicabilidade Comprovada.
+* **T4 (45 a 59 pts):** Regular — Aplicação Local ou Institucional.
+* **T5 (30 a 44 pts):** Fraco — Baixa Complexidade ou Abrangência Restrita.
+* **TNC (< 30 pts ou Não Aderente):** Produto Não Classificado / Glosado por ausência de aderência às linhas de pesquisa do programa.
 
 ---
 
@@ -461,14 +488,19 @@ $$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \tex
 
 ## APIs RESTful Fonte Prata (`/api/capes/v1/`)
 
-* `GET /api/capes/v1/students`: Discentes, PIDs, proficiência e orientador.
-* `GET /api/capes/v1/faculty`: Corpo docente, regime de trabalho e credenciamento.
-* `GET /api/capes/v1/curriculums`: Matrizes curriculares e regras regimentais.
-* `GET /api/capes/v1/projects_and_ptts`: Projetos de pesquisa e PTTs com Qualis.
+O submódulo `l10n_br_openeducat_capes_integration` expõe endpoints RESTful seguros, autenticados por token Bearer JWT e estruturados para atender diretamente à coleta passiva do Programa GoPG / RICA|PG da CAPES:
 
-## Gestão de Diplomas, Livros de Registro e Titulação (MEC 70/2025 & Transição Física)
+* `POST /api/capes/v1/auth/token`: Autenticação institucional e emissão de token temporário JWT.
+* `GET /api/capes/v1/dav/curriculos`: Versões regimentais (`op.curriculum.version`), matriz de créditos, regras de aproveitamento e datas de vigência.
+* `GET /api/capes/v1/dav/docentes`: Corpo docente institucional, titulação máxima, regime de dedicação, vínculos locais/externos (`op.faculty.program.link`), categorias vigentes e PIDs.
+* `GET /api/capes/v1/dav/discentes`: Prontuário discente com RA soberano vitalício, CPF validado, multi-vínculo ativo, créditos consolidados no Livro-Razão e orientador titular.
+* `GET /api/capes/v1/dav/producao-tecnica`: Produtos técnico-tecnológicos (`capes.ptt.product`), eixos estruturantes, coautores (`capes.ptt.author`) e avaliações do Qualis Tecnológico.
+* `GET /api/capes/v1/dav/bancas`: Trabalhos de conclusão (`capes.thesis`), bancas examinadoras (`capes.thesis.committee`), ritos bipartidos e atas homologadas.
+* **Mecanismos de Cache e Auditoria:** Modelos pré-agregados `capes.dav.sync.cache` (garantindo respostas em milissegundos mesmo para grandes bases) e `capes.dav.payload.log` (trilha de auditoria e conformidade LGPD).
 
-* **Modelo `capes.digital.diploma`:** Geração do XML oficial do diploma, dossiê acadêmico e controle de registro físico em papel.
+## Gestão de Diplomas, Livros de Registro e Titulação (MEC 330/2018, 554/2019 e 70/2025)
+
+* **Modelo `capes.digital.diploma`:** Expedição e registro de diplomas com emissão de XML oficial, dossiê acadêmico integrado e controle de escrituração física/digital.
 * **Governança Dual de Registro (`issuing_ies_type`):** Suporte nativo a Universidades com Autonomia Registradora Direta e a Institutos de Pesquisa sem autonomia universitária (como o **IPEN-CNEN/SP**), cujos diplomas são remetidos para escrituração na Universidade Registradora Externa (**USP**).
 * **Suporte Híbrido de Emissão (`emission_format`):** Permite a emissão em Papel/Físico com Livro de Registro (`registration_book_number`) e Folha (`registration_page_number`), a emissão Nato-Digital (XML + XAdES-BES + RVDD MEC 70/2025) ou ambos simultaneamente.
 * **Filtragem de Quarentena no Dossiê de Titulação:** Ao computar os créditos para expedição do diploma e do dossiê acadêmico oficial, qualquer lançamento residual de aluno especial em quarentena (`subject_special_quarantine`) é excluído, impedindo que disciplinas não homologadas componham a titulação.
@@ -481,15 +513,17 @@ $$\text{Pontuação Total} = \text{Demanda (30)} + \text{Inovação (25)} + \tex
 | Norma / Diretriz | Âmbito Regulatório | Exigência Principal | Solução no `l10n_br_openeducat_capes` |
 | :--- | :--- | :--- | :--- |
 | **Portaria CAPES nº 158/2023** | Governança GoPG | Fim da alimentação manual duplicada; interoperabilidade ativa. | APIs RESTful JSON Fonte Prata e barramento OAI-PMH `oai_capes`. |
-| **Instrução Normativa nº 1/2026** | Coleta RICA\|PG | Coleta automatizada passiva de discentes, docentes e projetos. | Endpoints `/api/capes/v1/` com Privacy by Design (LGPD). |
+| **Instrução Normativa nº 1/2026** | Coleta RICA\|PG | Coleta automatizada passiva de discentes, docentes e projetos. | Endpoints `/api/capes/v1/dav/*` com cache pré-agregado e conformidade LGPD. |
+| **Portaria CAPES nº 81/2016** | Credenciamento Docente | Teto nacional de até 3 PPGs permanentes simultâneos. | Trava `@api.constrains` no modelo `op.faculty.program.link` e ledger `op.faculty.category.ledger`. |
+| **Portaria CAPES nº 133/2023** | Bolsas e Ações Afirmativas | Flexibilização de acúmulo de trabalho/bolsa e cotas PPI. | Submódulo `l10n_br_openeducat_capes_scholarship` com matriz duplo-cega e reversão de cotas. |
 | **Identidade Discente Soberana** | Vida Acadêmica | Unicidade perene do discente na IES e preservação do RA. | `op.student` indexado por CPF e IES (`company_id`) com RA imutável e multi-vínculo via `op.student.course`. |
 | **Portaria CAPES (Quarentena)** | Aluno Especial | Validade limitada a 3 anos e necessidade de convalidação. | Quarentena `subject_special_quarantine`, decadência de 36 meses e modelo `op.special.credit.incorporation.request`. |
 | **Governança Intra-IES** | Multi-Programas | Trânsito de discentes entre cursos da mesma mantenedora. | Créditos `subject_intra_ies` com 100% do valor nominal regulados por teto percentual curricular. |
 | **Distinção Regulatória IPEN/USP** | Caso MPTRCS | Tratamento do programa USP Tecnologia Nuclear como Extra-IES. | Lançamento como `subject_extra_ies` exigindo homologação da CPG e respeitando teto de 20 créditos externos. |
 | **Portaria CAPES nº 221/2025** | Estágio Docência | Validação flexível de estágio de docência para bolsistas. | Parâmetro `teaching_internship_mode` na versão curricular. |
-| **Portaria MEC nº 70/2025 & Registro Físico** | Diplomas e Registros | Emissão Nato-Digital (XML/XAdES) e Registro Físico/Papel com Livro/Folha. | Modelo `capes.digital.diploma` com seleção `digital`, `paper_hybrid` e governança IPEN $\rightarrow$ USP. |
-| **Diretrizes GTPT / Medicina II** | Produção Técnica | Classificação rígida em 4 eixos, 21 tipos e TRL 1-9. | Taxonomia XML estática, Quotas de PI e motor Qualis Tecnológico. |
-| **Governança de Bancas** | Bancas Examinadoras | Impedimento por parentesco até 4º grau e controle de endogenia. | Checagem de `civil_relationship_flag` e quórum externo. |
-| **Ato Jurídico Perfeito (CF/88)** | Direitos do Aluno | Preservação das regras de ingresso até a diplomação. | Entidade `op.curriculum.version` associada ao vínculo do aluno. |
+| **Portarias MEC 330/2018, 554/2019 e 70/2025** | Diplomas e Registros | Emissão Nato-Digital (XML/XAdES) e Registro Físico/Papel com Livro/Folha. | Modelo `capes.digital.diploma` com seleção `digital`, `paper_hybrid` e governança IPEN $\rightarrow$ USP. |
+| **Diretrizes GTPT / Medicina II** | Produção Técnica | Classificação rígida em 4 eixos (E1-E4), tipologias (T01-T21) e TRL 1-9. | Modelos `capes.ptt.product`, `capes.ptt.axis`, `capes.ptt.type` e motor Qualis `capes.ptt.evaluation`. |
+| **Governança de Bancas** | Bancas Examinadoras | Impedimento por parentesco até 4º grau e controle de endogenia. | Checagem de `civil_relationship_flag` e quórum externo em `capes.thesis.committee`. |
+| **Ato Jurídico Perfeito (CF/88)** | Direitos do Aluno | Preservação das regras de ingresso até a diplomação. | Entidade `op.curriculum.version` associada ao vínculo do aluno e Livro-Razão append-only. |
 | **Regulamento MP-TRCS v2 Art. 31º** | Matriz de Créditos | Distribuição de 100 créditos (40 disc. + 52 tese + 8 atividades). | Desdobramento de 5 campos em `op.curriculum.version`. |
 
