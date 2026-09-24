@@ -27,31 +27,31 @@
 }
 
 .reveal h1 {
-  font-size: 1.9em;
+  font-size: 1.8em;
   line-height: 1.2;
   color: #0c4a6e;
 }
 
 .reveal h2 {
-  font-size: 1.35em;
+  font-size: 1.25em;
   color: #0369a1;
   border-bottom: 2px solid #bae6fd;
-  padding-bottom: 0.25em;
-  margin-top: 0.1em;
-  margin-bottom: 0.45em;
+  padding-bottom: 0.2em;
+  margin-top: 0.05em;
+  margin-bottom: 0.3em;
 }
 
 .reveal h3 {
-  font-size: 1.0em;
+  font-size: 0.92em;
   color: #475569;
   margin-top: 0;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.45em;
   font-weight: 600;
 }
 
 .reveal p, .reveal li {
-  font-size: 0.76em;
-  line-height: 1.45;
+  font-size: 0.74em;
+  line-height: 1.38;
   color: #334155;
 }
 
@@ -60,14 +60,14 @@
   background: #ffffff;
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 0.7em 0.9em;
+  padding: 0.55em 0.8em;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-  margin-bottom: 0.6em;
+  margin-bottom: 0.4em;
 }
 
 .card h4 {
-  font-size: 0.9em;
-  margin: 0 0 0.3em 0;
+  font-size: 0.85em;
+  margin: 0 0 0.25em 0;
   color: var(--primary-navy);
 }
 
@@ -124,26 +124,26 @@
 .metric-container {
   display: flex;
   justify-content: space-around;
-  margin: 0.8em 0 1.1em 0;
+  margin: 0.5em 0 0.8em 0;
 }
 
 .metric-box {
   text-align: center;
-  padding: 0.6em 1em;
+  padding: 0.5em 0.8em;
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   flex: 1;
-  margin: 0 0.5em;
+  margin: 0 0.4em;
   box-shadow: 0 2px 4px rgba(0,0,0,0.03);
 }
 
 .metric-num {
-  font-size: 1.9em;
+  font-size: 1.65em;
   font-weight: 800;
   line-height: 1;
   color: #0284c7;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.15em;
 }
 
 .metric-num-gold {
@@ -155,7 +155,7 @@
 }
 
 .metric-label {
-  font-size: 0.68em;
+  font-size: 0.65em;
   font-weight: 600;
   color: #64748b;
   text-transform: uppercase;
@@ -166,27 +166,33 @@
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.8em;
+  gap: 0.6em;
 }
 
 .grid-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.7em;
+  gap: 0.55em;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.5em;
 }
 
 /* Lists */
 .reveal ul {
   list-style: none;
   padding-left: 0;
-  margin-top: 0.2em;
-  margin-bottom: 0.5em;
+  margin-top: 0.15em;
+  margin-bottom: 0.35em;
 }
 
 .reveal ul li {
   position: relative;
-  padding-left: 1.2em;
-  margin-bottom: 0.35em;
+  padding-left: 1.1em;
+  margin-bottom: 0.25em;
 }
 
 .reveal ul li::before {
@@ -194,16 +200,16 @@
   position: absolute;
   left: 0;
   color: var(--primary-blue);
-  font-size: 0.7em;
-  top: 0.15em;
+  font-size: 0.65em;
+  top: 0.12em;
 }
 
 /* Tables */
 .reveal table {
   width: 100%;
-  font-size: 0.65em;
+  font-size: 0.62em;
   border-collapse: collapse;
-  margin-top: 0.5em;
+  margin-top: 0.3em;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
@@ -211,13 +217,13 @@
 .reveal table th {
   background: #f1f5f9;
   color: #0f172a;
-  padding: 0.5em 0.7em;
+  padding: 0.4em 0.6em;
   border: 1px solid #cbd5e1;
   font-weight: 700;
 }
 
 .reveal table td {
-  padding: 0.45em 0.7em;
+  padding: 0.35em 0.6em;
   border: 1px solid #e2e8f0;
 }
 

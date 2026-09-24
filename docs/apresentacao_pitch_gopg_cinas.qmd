@@ -16,6 +16,7 @@ format:
     embed-resources: true
     width: 1280
     height: 720
+    margin: 0.05
     logo: imagens/logo_CINAS_gemini_2_348x348_transp.png
     footer: "CINAS / IPEN-CNEN/SP • Plataforma OpenEduCat CAPES GoPG"
 lang: pt-BR
@@ -44,7 +45,7 @@ A maioria das Universidades e Institutos opera com sistemas acadêmicos genéric
 
 ## O Diagnóstico: O Custo da Desarticulação
 
-### Sobrecarga Administrativa e Vulnerabilidades Institucionais
+### Sobrecarga Administrativa e Retrabalho na Pós-Graduação
 
 ::: {.metric-container}
 ::: {.metric-box}
@@ -75,20 +76,31 @@ Em recursos protegidos contra glosas ou rebaixamento
 :::
 :::
 
+::: {.card .card-highlight style="margin-top: 0.6em;"}
+#### O Impacto Direto nas Coordenações e Secretarias
+A administração dos programas de pós-graduação convive com rotinas exaustivas de compilação em planilhas paralelas e redigitação de dados já existentes no ERP institucional, resultando em sobrecarga crônica e vulnerabilidades regulatórias permanentes.
+:::
+
+---
+
+## Vulnerabilidades Institucionais Críticas
+
+### Os Três Eixos de Fragilidade da Gestão Acadêmica Tradicional
+
 ::: {.grid-3}
 ::: {.card}
-**Sobrecarga Operacional**
-Coordenadores e secretarias passam meses consolidando relatórios em vez de focar na excelência acadêmica.
+#### Sobrecarga Operacional
+Coordenadores, docentes e secretarias passam meses consolidando relatórios anuais em vez de concentrar esforços na produção científica e pedagógica.
+:::
+
+::: {.card .card-warning}
+#### Risco de Descredenciamento
+Erros cadastrais, prazos regimentais estourados ou inconsistências em bancas examinadoras geram apontamentos severos na avaliação da CAPES.
 :::
 
 ::: {.card}
-**Risco de Descredenciamento**
-Erros cadastrais ou inconsistências em defesas geram apontamentos severos na avaliação da CAPES.
-:::
-
-::: {.card}
-**Fragilidade Documental**
-Dificuldade de emitir históricos e diplomas com fé pública digital e plena conformidade legal.
+#### Fragilidade Documental
+Insegurança jurídica na emissão de históricos, diplomas e livros de registro sem fé pública, rastreabilidade criptográfica e plena conformidade legal.
 :::
 :::
 
@@ -157,59 +169,65 @@ Inovação em computação científica, inteligência artificial com governança
 
 ---
 
-## Suíte Modular Integrada
+## Suíte Modular Integrada (1/2)
 
-### Gestão Completa de Ponta a Ponta
+### Ciclo de Vida Discente, Governança Curricular e Fomento
 
-::: {style="font-size: 0.75em;"}
+::: {.grid-2}
+::: {.card}
+#### Núcleo Regulatório (`_core`)
+Identificador perene do discente (RA vitalício na IES), cadastros oficiais no SNPG/CAPES e vinculação biográfica com CPF, Plataforma Lattes e ORCiD.
+:::
+
+::: {.card}
+#### Processos Seletivos e Cotas (`_admission`)
+Editais de ingresso, etapas avaliativas, cotas afirmativas (PPI/PCD) e matrícula automatizada com reaproveitamento do RA histórico do discente.
+:::
+
+::: {.card}
+#### Motor Acadêmico e Livro-Razão (`_academic`)
+Versionamento de regimentos curriculares (`op.curriculum.version`), trânsito de créditos intra-IES, quarentena de aluno especial e Livro-Razão *append-only*.
+:::
+
+::: {.card}
+#### Gestão e Editais de Bolsas (`_scholarship`)
+Distribuição de cotas de fomento institucional, avaliação duplo-cega independente, controle de acúmulo com trabalho e termos de compromisso.
+:::
+:::
+
+---
+
+## Suíte Modular Integrada (2/2)
+
+### Pesquisa Científica, Produção Técnica, Titulação e Interoperabilidade
 
 ::: {.grid-3}
 ::: {.card}
-**Núcleo Regulatório**
-Identificador perene do discente (RA vitalício), cadastros oficiais no SNPG e vinculação com CPF, Lattes e ORCID.
+#### Pesquisa e Projetos (`_research`)
+Linhas de pesquisa, projetos institucionais com agências de fomento e classificação de papéis na taxonomia CRediT.
 :::
 
 ::: {.card}
-**Processos Seletivos e Cotas**
-Editais, etapas avaliativas, cotas afirmativas e matrícula sem perda de histórico anterior.
+#### Produtos Técnicos — PTT (`_ptt`)
+Taxonomia dos 4 eixos e tipologias oficiais da CAPES, maturidade TRL 1-9 e cálculo automatizado do Qualis Tecnológico.
 :::
 
 ::: {.card}
-**Motor Acadêmico**
-Versionamento de regimentos, trânsito de créditos entre cursos e Livro-Razão imutável.
+#### Ritos e Bancas (`_thesis`)
+Qualificações, defesas, validação de quórum de examinadores externos e trava anti-nepotismo até o 4º grau.
+:::
+:::
+
+::: {.grid-2 style="margin-top: 0.2em;"}
+::: {.card}
+#### Diplomas e Históricos Digitais (`_diploma`)
+Histórico escolar com QR Code de validação pública, Diploma Nato-Digital (Portarias MEC 330/2018 e 70/2025) e suporte ao registro dual IPEN $\rightarrow$ USP.
 :::
 
 ::: {.card}
-**Pesquisa e Produção**
-Linhas de pesquisa, projetos institucionais e classificação padronizada de coautorias científicas.
+#### Interoperabilidade GoPG (`_integration`)
+Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínua da CAPES e crosswalk DSpace OAI-PMH (Fonte Ouro).
 :::
-
-::: {.card}
-**Ritos e Bancas**
-Qualificações, defesas, validação de quórum de examinadores e trava anti-nepotismo.
-:::
-
-::: {.card}
-**Produtos Técnicos (PTT)**
-Taxonomia completa dos 4 eixos e 21 tipos, escala de maturidade e cálculo do Qualis Tecnológico.
-:::
-
-::: {.card}
-**Interoperabilidade GoPG**
-Barramento de integração contínua para coleta da CAPES e conexão com o repositório de teses.
-:::
-
-::: {.card}
-**Diplomas e Históricos**
-Histórico escolar com chancela digital e emissão de Diplomas Nato-Digitais (Portarias MEC nº 330/2018, 554/2019 e 70/2025).
-:::
-
-::: {.card}
-**Gestão de Bolsas**
-Distribuição de cotas de fomento, avaliação paralela duplo-cega e termo de outorga.
-:::
-:::
-
 :::
 
 ---
@@ -312,79 +330,94 @@ Distribuição de cotas de fomento, avaliação paralela duplo-cega e termo de o
 
 ## Conformidade 2: Bolsas e Ações Afirmativas
 
-### Portaria CAPES nº 133/2023
+### Portaria CAPES nº 133/2023 & Flexibilização com Trabalho
 
 ::: {.grid-2}
 ::: {.card .card-success}
 #### Acúmulo com Atividade Remunerada
-* Suporte nativo à flexibilização que permite acúmulo de bolsa com trabalho, mediante autorização prévia da comissão de pós-graduação e anuência do orientador.
-* Arquivamento digital do termo de compromisso e declaração formal de vínculo.
+* Suporte nativo à flexibilização que permite acúmulo de bolsa com trabalho remunerado.
+* Exige parecer formal favorável do orientador e homologação colegiada pela CPG.
+* Arquivamento digital do termo de compromisso e declaração formal de rendimentos.
 :::
 
 ::: {.card .card-highlight}
-#### Reserva Afirmativa de Cotas
-* Parametrização de vagas com reserva para candidatos pretos, pardos e indígenas (PPI).
-* **Mecanismo de Reversão Automática:** Caso não haja candidatos cotistas habilitados, as bolsas são revertidas com segurança para ampla concorrência.
+#### Reserva Afirmativa de Cotas (PPI/PCD)
+* Parametrização transparente de cotas para candidatos pretos, pardos, indígenas e PCDs.
+* **Mecanismo de Reversão Automática:** Caso não haja candidatos cotistas habilitados, as vagas revertem com segurança para ampla concorrência.
 :::
 :::
-
 
 ---
 
-## Conformidade 2: Bolsas e Ações Afirmativas (cont.)
+## Governança e Seleção de Bolsistas
 
-### Portaria CAPES nº 133/2023
+### Rigor Avaliativo e Baremas Paramétricos sem Hardcode
 
 ::: {.grid-2}
-
-::: {.card style="margin-top: 0.5em;"}
-#### Avaliação com Duplo Revisor Independente
-Matriz avaliativa com dois revisores docentes independentes e consolidação automática pela comissão de bolsas, eliminando questionamentos em recursos.
+::: {.card}
+#### Avaliação Paralela com Duplo Revisor
+* Matriz avaliativa congregando Autoavaliação, Revisor 01 e Revisor 02 independentes.
+* Trabalho simultâneo e cego entre revisores, eliminando viés e questionamentos recursais.
+* Consolidação automática da média final pela Comissão de Bolsas / CPG.
 :::
 
+::: {.card .card-highlight}
+#### Baremas Dinâmicos e Tetos de Edital
+* Parametrização de pontuações acadêmicas, PTTs e experiência profissional por edital.
+* Aplicação automatizada de tetos parciais e globais sem regras fixas em código.
+* Trilha de auditoria completa de notas, pareceres e termos de outorga.
+:::
 :::
 
 ---
 
 ## Produtos Técnico-Tecnológicos (PTT)
 
-### O Coração dos Mestrados e Doutorados Profissionais
+### Taxonomia GTPT/CAPES e Maturidade Tecnológica
 
-::: {.columns}
-::: {.column width="55%"}
-* **4 Eixos Estruturantes da CAPES:** Produtos e Processos Tecnológicos (E1), Formação (E2), Divulgação e Difusão (E3) e Serviços Técnicos (E4).
-* **Tipologias Oficiais (GTPT):** Softwares (T19), Patentes (T13), Manuais Técnicos (T09), Protocolos Clínicos (T07), Tecnologias Sociais (T15), etc.
-* **Escala de Maturidade Tecnológica (TRL):** Classificação do nível de prontidão de 1 (ideação básica) a 9 (operação plena no mercado).
-* **Cálculo Automatizado do Qualis Tecnológico:** Classificação objetiva em estratos de **T1 (Alto Impacto)** a **T5**, e **TNC** para produtos não enquadrados.
+::: {.grid-2}
+::: {.card}
+#### 4 Eixos Estruturantes da CAPES
+* **E1 — Produtos e Processos:** Patentes (T13), Softwares (T19), Tecnologias Sociais (T15), Startups (T11).
+* **E2 — Processos de Formação:** Cursos de capacitação (T08), Materiais didáticos e manuais operacionais (T09).
+* **E3 — Divulgação e Difusão:** Relatórios técnicos conclusivos e laudos de auditoria especializada (T06).
+* **E4 — Serviços Técnicos:** Normas técnicas e marcos regulatórios (T05), Protocolos clínicos (T07).
 :::
 
-::: {.column width="45%"}
 ::: {.card .card-highlight}
-#### Indicadores de Avaliação
-
-$$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C}$$
-<small>
-
-* **T1:** 90 a 100 pontos
-* **T2:** 75 a 89 pontos
-* **T3:** 60 a 74 pontos
-* **T4:** 45 a 59 pontos
-* **T5:** 30 a 44 pontos
-* **TNC:** < 30 pontos (ou Não Aderente)
-
-**Dossiê pronto para chancela e avaliação quadrienal.**
-
-Onde:
-
-* NF = Nota Final (máx: 100 pts);
-* D = Demanda e Impacto (0 a 30 pts);
-* I = Inovação e Originalidade (0 a 25 pts);
-* A = Aplicabilidade e Replicabilidade (0 a 25 pts);
-* C = Complexidade Técnica (0 a 20 pts).
-
-</small>
-
+#### Maturidade TRL e Aderência
+* **Escala TRL de 1 a 9:** Do conceito básico inicial à operação plena comprovada em ambiente produtivo.
+* **Trava Prévia de Aderência:** Exigência de vinculação direta com as Linhas de Pesquisa ativas do programa.
+* **Comprovação de Propriedade Intelectual:** Anexo obrigatório de comprovante de depósito no INPI para softwares e patentes.
 :::
+:::
+
+---
+
+## PTT: Motor do Qualis Tecnológico
+
+### Avaliação Paramétrica Ponderada e Estratos Oficiais
+
+::: {.grid-2}
+::: {.card .card-highlight}
+#### Fórmula de Pontuação (Baremo CAPES)
+
+$$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100 \text{ pts})$$
+
+* **Demanda e Impacto (D):** 0 a 30 pontos
+* **Inovação e Originalidade (I):** 0 a 25 pontos
+* **Aplicabilidade e Replicabilidade (A):** 0 a 25 pontos
+* **Complexidade Técnica (C):** 0 a 20 pontos
+:::
+
+::: {.card}
+#### Estratos Oficiais de Classificação
+* **T1 (90 a 100 pts):** Excelente / Alto Impacto Internacional ou Nacional
+* **T2 (75 a 89 pts):** Muito Bom / Relevância Regional/Nacional
+* **T3 (60 a 74 pts):** Bom / Relevância Regional e Replicabilidade
+* **T4 (45 a 59 pts):** Regular / Aplicação Local
+* **T5 (30 a 44 pts):** Fraco / Baixa Complexidade
+* **TNC (< 30 pts):** Não Classificado / Glosado por Inadimplência
 :::
 :::
 
@@ -416,37 +449,24 @@ Onde:
 
 ### Da Grande Universidade aos Institutos de Alta Complexidade
 
-::: {style="font-size: 0.75em;"}
-
 ::: {.grid-2}
 ::: {.card}
 #### Universidades Multiprograma
-
 * Dezenas de programas de pós-graduação operando na mesma base de dados.
-* Secretarias setoriais com total sigilo de dados (LGPD) e comutação instantânea para gestores centrais.
-* Trânsito acadêmico entre cursos com validação de vagas e equivalência integral de créditos.
-
-
+* Secretarias setoriais com total sigilo de dados (LGPD) e alternância instantânea.
+* Trânsito acadêmico entre cursos com validação de vagas e equivalência integral.
+* Gestão unificada perante a Pró-Reitoria de Pós-Graduação da IES.
 :::
 
 ::: {.card}
 #### Institutos de Pesquisa Integrados
-
 * Modelo aplicado a instituições federais de excelência como o IPEN-CNEN/SP.
-* Coexistência de programa próprio e cursos compartilhados com a Universidade de São Paulo (USP).
+* Coexistência de programa próprio e cursos compartilhados com a USP.
 * Controle fino de créditos externos e registro compartilhado de diplomas.
-
-
+* Eliminação de retrabalhos manuais e relatórios gerados em segundos.
 :::
 :::
 
-::: {.card .card-success style="text-align: center; margin-top: 0.6em;"}
-
-**Resultado Comprovado:** Eliminação de 100% dos retrabalhos de digitação e geração de relatórios de auditoria em segundos.
-
-:::
-
-:::
 ---
 
 ## Retorno Estratégico para a Reitoria
@@ -485,7 +505,35 @@ Arquitetura moderna, modular e de código aberto concebida no âmbito da pesquis
 :::
 :::
 
-::: {.card style="text-align: center; font-size: 0.8em; margin-top: 0.8em; background: #f8fafc;"}
-**CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclear e Saúde**  
-*Instituto de Pesquisas Energéticas e Nucleares (IPEN-CNEN/SP)*  
+---
+
+## Conexão e Soberania Tecnológica
+
+### Transformando a Gestão da Pós-Graduação Brasileira
+
+::: {.columns}
+::: {.column width="38%"}
+::: {style="text-align: center;"}
+![](imagens/logo_CINAS_gemini_2_348x348_transp.png){width="180px"}
+
+::: {.card style="margin-top: 0.5em; background: #f8fafc;"}
+**CINAS — IPEN-CNEN/SP**  
+Grupo de Pesquisa em Computação e IA em Nuclear e Saúde
+:::
+:::
+:::
+
+::: {.column width="62%"}
+::: {.card .card-highlight}
+#### Projeto Soberano e Comunitário
+* **Licença Aberta e Auditável:** Desenvolvido no âmbito da pesquisa pública para fortalecer as IES brasileiras.
+* **Pronto para Coleta GoPG:** Total aderência às Portarias CAPES nº 158/2023 e IN nº 1/2026.
+* **Repositório Oficial:** `github.com/cinas-ipen/l10n_br_openeducat_capes`
+:::
+
+::: {.card .card-success style="text-align: center; margin-top: 0.5em;"}
+**Contato e Colaboração Institucional:**  
+`cinas@ipen.br` • Portal Institucional: `cinas.ipen.br`
+:::
+:::
 :::
