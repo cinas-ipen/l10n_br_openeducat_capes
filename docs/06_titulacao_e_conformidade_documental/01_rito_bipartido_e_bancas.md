@@ -45,7 +45,7 @@ A Defesa Final é o rito cartorial e acadêmico culminante do programa. O agenda
 
 O pedido de agendamento da defesa deve ser submetido pelo orientador no Portal do Aluno com no mínimo **15 dias de antecedência** em relação à data da sessão. O Odoo executa uma varredura automática confirmando:
 
-1. **Integralização Teórica e Disciplinas Obrigatórias:** Cumprimento da carga mínima de créditos e aprovação em **todas as disciplinas obrigatórias** configuradas em `op.curriculum.subject.rule` para a versão curricular do aluno, considerando tanto as disciplinas gerais do programa quanto as específicas da sua Área de Concentração (`area_id`).
+1. **Integralização Teórica e Disciplinas Obrigatórias:** Cumprimento da carga mínima de créditos e aprovação em **todas as disciplinas obrigatórias** configuradas em `op.curriculum.subject.rule` para a versão curricular do aluno, considerando tanto as disciplinas gerais do programa quanto as específicas da sua Área de Concentração (`area_name` com escopo `scope = 'area'`).
 2. **Proficiência Linguística:** O sistema checa o parâmetro `proficiency_stage` do regimento. Para o IPEN (`proficiency_stage = 'admission'`), essa checagem é automaticamente validada como cumprida por ser requisito de entrada.
 3. **Integralização no Livro-Razão (Artigo 39º do Regulamento MP-TRCS):** Para o agendamento da Defesa Final, a engine valida no livro-razão (`op.student.credit.ledger`) se o aluno cumpriu o teto mínimo de créditos em disciplinas do programa (`min_subject_credits`, ex: 40 créditos no MP-TRCS) e o Seminário Geral (`other_mandatory_credits`, ex: 8 créditos).
 4. **Validação do Produto Técnico-Tecnológico (PTT):** O Odoo verifica o parâmetro `ptt_validation_mode` do regimento do aluno:

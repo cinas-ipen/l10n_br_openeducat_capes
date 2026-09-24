@@ -102,7 +102,8 @@ Cadastra as fontes pagadoras das bolsas.
 Controla o saldo de bolsas disponibilizadas ao programa de pós-graduação.
 * `name` (Char): Identificador da cota (ex.: Cota CAPES-PROEX Mestrado 2026/2027).
 * `sponsor_id` (Many2one -> `capes.scholarship.sponsor`): Agência mantenedora.
-* `course_id` (Many2one -> `op.course`): Programa de Pós-Graduação proprietário da cota.
+* `course_id` (Many2one -> `op.course`): Curso/PPG nativo OpenEduCat proprietário da cota.
+* `program_id` (Many2one -> `op.program.capes`): Programa CAPES associado.
 * `level` (Selection): `master_acad`, `master_prof`, `phd`, `direct_phd`.
 * `total_slots` (Integer): Quantidade total de vagas concedidas pela agência.
 * `used_slots` (Integer, Computed): Bolsas atualmente implementadas e ativas.
@@ -147,7 +148,8 @@ Elimina qualquer hardcode regimental, modelando regras de pontuação para o Pro
 
 ### 4.4. `capes.scholarship.edital` (Edital de Concessão de Bolsas)
 * `name` (Char): Identificador oficial (ex.: Edital de Bolsas nº 06/2026).
-* `course_id` (Many2one -> `op.course`): PPG responsável.
+* `course_id` (Many2one -> `op.course`): Curso/PPG nativo responsável.
+* `program_id` (Many2one -> `op.program.capes`): Programa CAPES associado.
 * `academic_year_id` (Many2one -> `op.academic.year`): Ano de referência.
 * `rubric_id` (Many2one -> `capes.scholarship.rubric`): Barema adotado.
 * `quota_id` (Many2one -> `capes.scholarship.quota`): Cota institucional vinculada.

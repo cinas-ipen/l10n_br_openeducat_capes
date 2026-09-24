@@ -48,7 +48,7 @@ Esta entidade concentra parâmetros vitais que balizam o motor cronológico, a a
   * `qualification`: Exigência no Exame de Qualificação.
   * `defense`: Exigência no momento do depósito da Defesa Final.
 * **Disciplinas Obrigatórias Dinâmicas (`op.curriculum.subject.rule`):**
-  * Configuração de obrigatoriedade parametrizável (*no hardcoded*), podendo ter escopo geral do programa ou específico por Área de Concentração (`area_id`).
+  * Configuração de obrigatoriedade parametrizável (*no hardcoded*), com tipo de regra (`rule_type`: obrigatória ou eletiva) e escopo de abrangência (`scope`: geral do programa `'program'` ou restrito por Área de Concentração `'area'`), armazenando a denominação da área no campo `area_name`.
 * **Regra de Estágio de Docência / Supervisionado (`teaching_internship_mode` - Portaria CAPES nº 221/2025):**
   * `not_applicable` (Inaplicável para Programas Profissionais ou isentos), `scholarship_only` (Bolsistas), `mandatory_all` (Todos), ou `flexible_equivalence` (Permite substituição por Estágio Supervisionado e atividades práticas).
 * **Validação de PTT (`ptt_validation_mode`):**

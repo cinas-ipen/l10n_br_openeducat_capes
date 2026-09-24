@@ -62,10 +62,10 @@ class CapesIntegrationController(http.Controller):
                 'admission_date': str(s.admission_date) if s.admission_date else '',
                 'curriculum_version': s.curriculum_version_id.name if s.curriculum_version_id else '',
                 'status': s.capes_status,
-                'category': s.category,
+                'category': s.student_category,
                 'english_proficiency': s.english_proficiency_status,
-                'advisor_orcid': s.main_advisor_id.partner_id.orcid if s.main_advisor_id and s.main_advisor_id.partner_id else '',
-                'research_line': s.research_line_id.name if s.research_line_id else '',
+                'advisor_orcid': s.advisor_id.partner_id.orcid if s.advisor_id and s.advisor_id.partner_id else '',
+                'program': s.program_id.name if s.program_id else '',
             })
 
         payload = {
@@ -96,7 +96,7 @@ class CapesIntegrationController(http.Controller):
                     'category': ledger.category,
                     'start_date': str(ledger.start_date) if ledger.start_date else '',
                     'end_date': str(ledger.end_date) if ledger.end_date else '',
-                    'validity': ledger.validity_status
+                    'document_ref': ledger.document_ref or '',
                 })
 
             faculty_data.append({
@@ -108,9 +108,9 @@ class CapesIntegrationController(http.Controller):
                     'lattes_url': f.partner_id.lattes_url or '',
                     'scopus_id': f.partner_id.scopus_id or '',
                 },
-                'work_regime': f.work_regime_gopg,
-                'weekly_workload': f.weekly_workload,
-                'title_level': f.title_level,
+                'work_regime': f.work_regime,
+                'weekly_workload': f.workload,
+                'title_level': f.degree_level,
                 'category_history': ledger_data
             })
 
@@ -137,9 +137,9 @@ class CapesIntegrationController(http.Controller):
                 subject_rules.append({
                     'subject_name': sr.subject_id.name if sr.subject_id else '',
                     'subject_code': sr.subject_id.code if sr.subject_id else '',
-                    'rule_type': sr.rule_type,
-                    'area_name': sr.area_id.name if sr.area_id else '',
-                    'credits': sr.credits
+                    'scope': sr.scope,
+                    'area_name': sr.area_name or '',
+                    'credits': sr.subject_id.credits if sr.subject_id else 0.0
                 })
 
             version_data.append({
@@ -147,8 +147,8 @@ class CapesIntegrationController(http.Controller):
                 'program_name': v.program_id.name if v.program_id else '',
                 'snpg_code': v.program_id.snpg_code if v.program_id else '',
                 'min_credits': v.min_credits,
-                'min_months': v.min_months,
-                'max_months': v.max_months,
+                'min_subject_credits': v.min_subject_credits,
+                'max_months_defense': v.max_months_defense,
                 'proficiency_stage': v.proficiency_stage,
                 'ptt_validation_mode': v.ptt_validation_mode,
                 'teaching_internship_mode': v.teaching_internship_mode,

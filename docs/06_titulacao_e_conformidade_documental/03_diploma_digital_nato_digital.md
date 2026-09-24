@@ -48,12 +48,37 @@ Independentemente do formato (Digital ou Físico), o Odoo consolida o **Pacote d
 
 | Campo Odoo | Descrição | Tipo | Uso / Regra de Negócio |
 | :--- | :--- | :--- | :--- |
+| `name` | Identificador do Diploma | `Char` | Computado (`diploma_process_number` + Nome do Discente). |
+| `student_id` | Discente Titulado | `Many2one` | FK para `op.student`. Obrigatório. |
+| `thesis_id` | Defesa / Trabalho de Conclusão | `Many2one` | FK para `capes.thesis`. Obrigatório. |
+| `curriculum_version_id` | Versão Regimental Ativa | `Many2one` | FK para `op.curriculum.version` (Ato Jurídico Perfeito). |
+| `program_id` | Programa CAPES | `Many2one` | FK para `op.program.capes`. |
+| `degree_type` | Grau Acadêmico Concedido | `Selection` | `master` (Mestre), `doctorate` (Doutor). |
 | `issuing_ies_type` | Governança do Registro | `Selection` | `autonomous_university` vs. `external_registering_university` (IPEN $\rightarrow$ USP). |
 | `emission_format` | Formato de Emissão | `Selection` | `digital` (MEC 70/2025), `paper_hybrid` (Físico em Papel), `both`. |
 | `origin_ies_name` | IES de Origem | `Char` | Ex: Instituto de Pesquisas Energéticas e Nucleares - IPEN-CNEN/SP. |
 | `issuing_ies_name` | IES Registradora | `Char` | Ex: Universidade de São Paulo - USP. |
+| `diploma_process_number` | Processo de Registro | `Char` | Número de protocolo na IES Registradora (ex: Processo USP/IPEN). |
+| `graduation_date` | Data da Outorga do Grau | `Date` | Data oficial da colação/outorga do grau acadêmico. |
 | `registration_book_number` | Livro de Registro | `Char` | Número do Livro de Registro de Diplomas (ex: Livro 42-B). |
 | `registration_page_number` | Folha / Página | `Char` | Folha ou Página do registro (ex: Fls. 118). |
 | `registration_date` | Data do Registro | `Date` | Data de efetivação do registro na IES Registradora (USP). |
 | `physical_dispatch_date` | Data de Remessa | `Date` | Data de envio do protocolo físico para a USP. |
+| `diploma_xml` | XML Diploma Digital | `Text` | XML estruturado do diploma conforme padrão MEC nº 70/2025. |
+| `dossier_xml` | XML do Dossiê Acadêmico | `Text` | XML com histórico escolar, livro-razão e ata de defesa. |
+| `signed_xades_xml` | XML Assinado (XAdES) | `Text` | Envelope XAdES assinado com certificado digital ICP-Brasil. |
 | `sha256_hash` | Hash de Autenticidade | `Char` | Chave SHA-256 gerada para selagem do processo. |
+| `validation_qr_code_url` | URL de Validação Pública | `Char` | Endpoint público `/valida-documento?hash=...` estampado no QR Code. |
+| `signature_log_ids` | Trilha de Assinaturas | `One2many` | Relação com `capes.diploma.signature.log`. |
+| `state` | Situação do Diploma | `Selection` | `draft` (Rascunho), `package_ready` (Pacote Selado), `signed` (Assinado/Registrado), `issued` (Expedido & Registrado). |
+
+## 5. Trilha Auditável de Assinaturas (`capes.diploma.signature.log`)
+
+Cada ato de assinatura eletrônica ou homologação institucional é registrado de modo indelével:
+* `diploma_id`: Many2one `capes.digital.diploma`.
+* `signer_role`: Selection (`rector` - Reitor, `prpg_dean` - Pró-Reitor de Pós-Graduação, `coordinator` - Coordenador do Programa, `secretary` - Secretário Acadêmico).
+* `signer_user_id`: Many2one `res.users`, usuário autenticado no sistema.
+* `signature_timestamp`: Datetime, data e hora da assinatura com carimbo de tempo.
+* `certificate_serial`: Char, número de série do certificado digital ICP-Brasil utilizado.
+* `ip_address`: Char, endereço IP do terminal signatário.
+

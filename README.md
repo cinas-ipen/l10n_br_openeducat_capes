@@ -35,15 +35,29 @@ l10n_br_openeducat_capes/
 
 | Submódulo Odoo | Dependências Obrigatórias (`depends`) | Responsabilidade Central |
 | :--- | :--- | :--- |
-| `l10n_br_openeducat_capes_core` | `['openeducat_core']` | Identidade Soberana, PIDs e Infraestrutura Base |
-| `l10n_br_openeducat_capes_admission` | `['l10n_br_openeducat_capes_core']` | Editais de Ingresso e Planos de Trabalho |
-| `l10n_br_openeducat_capes_academic` | `['l10n_br_openeducat_capes_core']` | Motor Curricular, Livro-Razão e Governança CPG |
-| `l10n_br_openeducat_capes_research` | `['l10n_br_openeducat_capes_academic', 'project']` | Projetos de Fomento e Papéis CRediT |
-| `l10n_br_openeducat_capes_thesis` | `['academic', 'admission', 'research']` | Ritos Intermediários/Finais e Bancas |
-| `l10n_br_openeducat_capes_ptt` | `['core', 'academic', 'thesis']` | Produtos Tecnológicos e Qualis T1-T5 |
-| `l10n_br_openeducat_capes_integration` | `['core', 'ptt']` | Barramento RESTful RICA\|PG e DSpace |
-| `l10n_br_openeducat_capes_diploma` | `['core', 'academic', 'thesis']` | Histórico Consolidado e Diploma MEC 70/2025 |
-| `l10n_br_openeducat_capes_scholarship` | `['core', 'academic', 'admission']` | Livro de Cotas, Baremas e Termos de Bolsas |
+| `l10n_br_openeducat_capes_core` | `['openeducat_core']` | Identidade Soberana, PIDs (CPF, ORCiD, Lattes) e Infraestrutura Base |
+| `l10n_br_openeducat_capes_academic` | `['l10n_br_openeducat_capes_core', 'mail']` | Motor Curricular, Livro-Razão (append-only) e Governança CPG |
+| `l10n_br_openeducat_capes_admission` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic']` | Editais de Ingresso, Cotas e Planos de Trabalho |
+| `l10n_br_openeducat_capes_research` | `['l10n_br_openeducat_capes_academic', 'project']` | Projetos de Fomento, Papéis CRediT e Integração Odoo Projects |
+| `l10n_br_openeducat_capes_thesis` | `['academic', 'admission', 'research']` | Ritos Intermediários/Finais, Bancas e Depósito DSpace |
+| `l10n_br_openeducat_capes_ptt` | `['core', 'academic', 'thesis']` | Produtos Tecnológicos (GTPT/Medicina II) e Qualis T1-T5 |
+| `l10n_br_openeducat_capes_diploma` | `['core', 'academic', 'thesis']` | Histórico Consolidado, Diploma MEC 70/2025 e Validação Pública |
+| `l10n_br_openeducat_capes_integration` | `['core', 'ptt']` | Barramento RESTful (/api/capes/v1/) e Crosswalk DSpace |
+| `l10n_br_openeducat_capes_scholarship` | `['core', 'academic', 'admission', 'mail']` | Livro de Cotas, Baremas Parametrizados e Avaliação Paralela |
+
+### Extensões aos Módulos Nativos do OpenEduCat e Odoo
+* **OpenEduCat (`openeducat_core`):**
+  * `op.student`: Estendido para RA perene por CPF, orientador/coorientador, status CAPES, versionamento regimental ativo, totalizadores do livro-razão e visão 360°.
+  * `op.faculty`: Estendido com regime de trabalho, titulação máxima, vínculos docentes (`op.faculty.program.link`) e conformidade com o teto de 3 programas permanentes (Portaria CAPES 81/2016).
+  * `op.subject`: Estendido com créditos sincronizados com `grade_weightage`, ementa, bibliografia básica/complementar, indicador PHEA e cotas para alunos especiais.
+  * `op.batch`: Estendido com vinculação ao programa PPG (`program_id`).
+  * `op.student.course`: Estendido para multi-vínculo discente (`course_type`, `curriculum_version_id`, `program_id`, `admission_date`, `completion_date`).
+* **Odoo Base (`base`, `mail`, `project`):**
+  * `res.company`: Estendido com PIDs institucionais (CNPJ, e-MEC, CAPES, ROR, ISNI), georreferenciamento e dados da Pró-Reitoria de Pós-Graduação.
+  * `res.partner`: Estendido com censo biográfico e demográfico CAPES/DAV (CPF com Módulo 11, ORCiD, Lattes, raça/cor IBGE, PCD, nacionalidade, filiação materna).
+  * `res.users`: Estendido com controle de acesso multiprograma (`allowed_program_ids`, `current_program_id`, `is_central_admin`).
+  * `project.project`: Integrado com `capes.research.project` via campo `odoo_project_id`.
+  * `mail.thread` / `mail.activity.mixin`: Mix-ins para rastreabilidade auditável, histórico e mensageria em todos os modelos transacionais.
 
 ---
 

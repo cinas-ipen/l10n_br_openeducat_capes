@@ -42,50 +42,77 @@ l10n_br_openeducat_capes/
 ### 2.2. `l10n_br_openeducat_capes_admission`
 
 * **Escopo:** Substitui o fluxo linear de inscrição de alunos nativo do OpenEduCat por uma estrutura de concorrência pública baseada em normas brasileiras.
-* **Modelos Estendidos/Criados:** `op.admission.register`, `op.admission.edital`, `op.edital.phase`, `op.student.work_plan`.
-* **Responsabilidade Técnica:** Gerenciar editais parametrizáveis com tabelas One2many para fases de seleção com pontuações ponderadas, controle de ações afirmativas (cotas de 20%), ranqueamento eliminatório/classificatório, mecanismo de Aprovação por Soberania do Coordenador (`is_override`), gatilho de evasão precoce (3 semanas de ausência) e submissão/avaliação do Plano de Trabalho Discente com trava ética do CEP. Reconhece discentes previamente cadastrados na IES (ex: ex-alunos especiais), reaproveitando a chave perene de `op.student` e criando novos vínculos regulares sem duplicação de identidade.
+* **Modelos Criados/Estendidos:**
+  * Modelos Criados: `op.admission.edital`, `op.edital.phase`, `op.edital.slot.distribution`, `op.admission.candidate`, `op.student.work_plan`, `capes.student.professional.profile`.
+  * Modelos Nativos Estendidos: `op.student` (`work_plan_ids`, `work_plan_count`, `action_view_work_plans`).
+* **Responsabilidade Técnica:** Gerenciar editais parametrizáveis com tabelas One2many para fases de seleção com pontuações ponderadas, controle de ações afirmativas (cotas de 20%), ranqueamento eliminatório/classificatório, mecanismo de Aprovação por Soberania do Coordenador (`is_override`), conversão de candidato aprovado em aluno regular com verificação de proficiência linguística na admissão (`proficiency_stage == 'admission'`), submissão/avaliação do Plano de Trabalho Discente com trava ética do CEP, e cadastro do perfil profissional do discente (`capes.student.professional.profile`). Reconhece discentes previamente cadastrados na IES (ex: ex-alunos especiais), reaproveitando o RA institucional único e perene em `op.student` e criando novo vínculo regular em `op.student.course` sem duplicação de identidade.
 
 ### 2.3. `l10n_br_openeducat_capes_academic`
 
 * **Escopo:** Rege a vida estudantil corrente, orquestra a governança colegiada (CPG), implementa a visão 360° integrada de discentes e docentes, e implementa a inteligência de regras curriculares do Módulo 03 da DAV.
-* **Modelos Estendidos/Criados:** `op.subject`, `op.batch`, `op.session`, `op.curriculum.version`, `op.student.credit.ledger`, `op.academic.request`, `op.special.credit.incorporation.request`, `op.faculty.program.link`, `op.faculty.category.ledger`, `op.cpg.committee`, `op.cpg.member`, `op.cpg.meeting`, `op.cpg.approval.log`.
-* **Responsabilidade Técnica:** Versionamento dinâmico de regulamentos, operação do livro-razão imutável de integralização de créditos (diferenciando disciplinas internas, intra-IES, quarentena de aluno especial, especiais incorporadas e extra-IES), automação de matrículas compulsórias de acompanhamento de pesquisa, trava de carga inicial de calouros (mínimo 24 créditos), fluxo de aproveitamento e incorporação formal de créditos cursados como especial via CPG com controle decadencial de 36 meses, fluxo de ajuste manual retroativo com selo de auditoria, e gestão de pautas/atas QWeb da CPG (colegiado com 6 membros titulares e 4 suplentes, reuniões mensais com pautas abertas, deliberação de requerimentos discentes e aprovação auditável com registro de User ID, Timestamp e IP via `op.cpg.approval.log`). Oferece visão 360° em discentes (smart buttons para vínculos, créditos, trabalhos finais, PTTs, requerimentos, diplomas, tabela de créditos embutida e emissão direta do Histórico Escolar no cabeçalho) e docentes (orientandos ativos e egressos, disciplinas lecionadas, linhas de pesquisa e bancas).
+* **Modelos Criados/Estendidos:**
+  * Modelos Criados: `op.curriculum.version`, `op.curriculum.subject.rule`, `op.curriculum.committee.rule`, `op.student.credit.ledger`, `op.special.credit.incorporation.request`, `op.academic.request`, `op.faculty.program.link`, `op.faculty.category.ledger`, `op.cpg.committee`, `op.cpg.member`, `op.cpg.meeting`, `op.cpg.approval.log`.
+  * Modelos Nativos Estendidos:
+    * `op.subject`: créditos sincronizados com `grade_weightage`, ementa (`syllabus`), bibliografia básica/complementar, indicador PHEA, idioma de oferta e governança de alunos especiais (`allow_special_students`, `special_seats_quota`, `special_student_instructor_consent_required`).
+    * `op.batch`: chave relacional com o programa PPG (`program_id`).
+    * `op.student.course`: multi-vínculo com tipo de curso (`course_type`), programa (`program_id`), versão curricular (`curriculum_version_id`), datas de início e encerramento.
+    * `op.student`: campos do livro-razão (`credit_ledger_ids`, `credit_ledger_count`), aproveitamento (`special_request_ids`, `special_req_count`) e totalizadores de créditos (`total_disciplinas_credits`, `total_complementar_credits`, `total_conferred_credits`).
+    * `op.faculty`: vínculos credenciados (`program_link_ids`, `accreditation_count`), lista de programas locais (`program_ids`), resumo de filiações (`programs_summary`), contagem de vínculos permanentes (`permanent_programs_count`), conformidade da Portaria CAPES 81/2016 (`capes_program_compliance`) e trava `_check_capes_permanent_limit` (máx. 3 PPGs permanentes).
+* **Responsabilidade Técnica:** Versionamento dinâmico de regulamentos, operação do livro-razão imutável de integralização de créditos (diferenciando disciplinas internas, intra-IES, quarentena de aluno especial, especiais incorporadas e extra-IES), automação de matrículas compulsórias de acompanhamento de pesquisa, trava de carga inicial de calouros, fluxo de aproveitamento e incorporação formal de créditos cursados como especial via CPG com controle decadencial de 36 meses, fluxo de ajuste manual retroativo com selo de auditoria append-only, e gestão de pautas/atas QWeb da CPG com registro auditável de User ID, Timestamp e IP via `op.cpg.approval.log`.
 
 ### 2.4. `l10n_br_openeducat_capes_research`
 
 * **Escopo:** Mapeia a estrutura de fomento e atividade de investigação descrita no Módulo 05 da DAV.
-* **Modelos Estendidos/Criados:** `capes.research.project`, `capes.project.member`.
-* **Responsabilidade Técnica:** Estender as capacidades de gerenciamento de projetos nativas do Odoo para capturar a natureza científica da pesquisa, classificar parcerias interinstitucionais e vincular pesquisadores às entregas operando sob a Taxonomia CRediT.
+* **Modelos Criados/Estendidos:**
+  * Modelos Criados: `capes.research.project`, `capes.project.member`.
+  * Modelos Nativos Estendidos: `op.faculty` (`project_ids`, `project_count`, `action_view_projects`).
+  * Módulos Nativos Odoo Impactados: `project.project` (via `odoo_project_id`).
+* **Responsabilidade Técnica:** Estender as capacidades de gerenciamento de projetos nativas do Odoo (`project.project`) para capturar a natureza científica da pesquisa, classificar parcerias interinstitucionais nacionais e estrangeiras (`foreign_ies`, `foreign_country_id`), agências de fomento (`funding_agency`, `funding_process`), e vincular pesquisadores e discentes às entregas operando sob a Taxonomia CRediT (14 papéis padronizados).
 
 ### 2.5. `l10n_br_openeducat_capes_thesis`
 
 * **Escopo:** Governa as regras acadêmicas de ritos de passagem intermediários e finais do Módulo 04 da DAV.
-* **Modelos Estendidos/Criados:** `capes.thesis`, `capes.thesis.committee`.
-* **Responsabilidade Técnica:** Orquestrar o fluxo bipartido (Seminário Geral de Área/Qualificação e Defesa com quórum e composição de PhDs parametrizáveis por regimento via `op.curriculum.committee.rule`), auditar pré-requisitos do Plano de Trabalho homologado, gerenciar o processamento de impedimentos éticos e endogenia em comissões julgadoras, registrar cronometria de exposição/arguição (50 min / 40 min) e controlar o prazo limite de 30 dias para depósito da versão eletrônica no DSpace.
+* **Modelos Criados/Estendidos:**
+  * Modelos Criados: `capes.thesis`, `capes.thesis.committee`.
+  * Modelos Nativos Estendidos: `op.student` (`thesis_ids`, `thesis_count`), `op.faculty` (`committee_count`, `action_view_committees`).
+* **Responsabilidade Técnica:** Orquestrar o fluxo bipartido (Seminário Geral de Área/Qualificação e Defesa com quórum e composição de PhDs parametrizáveis por regimento via `op.curriculum.committee.rule`), auditar pré-requisitos do Plano de Trabalho homologado e aprovação CEP/CEUA, gerenciar impedimentos éticos e endogenia em comissões julgadoras, registrar cronometria de exposição/arguição (50 min / 40 min), controlar o envio do PDF final corrigido (`final_pdf_file`), conferência pela secretaria (`secretariat_approval`), titulação automática (`capes_status = 'graduated'`), geração do manifesto XML para a Biblioteca Central (`library_manifest_payload`) e averbação do Handle permanente no DSpace (`repository_url`).
 
 ### 2.6. `l10n_br_openeducat_capes_ptt`
 
 * **Escopo:** Internaliza a taxonomia e a engenharia de avaliação qualitativa do Grupo de Trabalho de Produção Técnica (GTPT) e Comitê Medicina II da CAPES para programas profissionais.
-* **Modelos Estendidos/Criados:** `capes.ptt.axis`, `capes.ptt.type`, `capes.ptt.product`, `capes.ptt.evaluation`.
-* **Responsabilidade Técnica:** Processar o motor de regras do Qualis Tecnológico, validar de forma eliminatória a aderência institucional de produções intelectuais, mapear níveis de Maturidade Tecnológica (TRL 1-9) e computar a média de notas para estratificação em tempo real (T1 a T5 ou TNC) servindo como pré-requisito de defesa e gerador de créditos APO.
+* **Modelos Criados/Estendidos:**
+  * Modelos Criados: `capes.ptt.axis`, `capes.ptt.type`, `capes.ptt.product`, `capes.ptt.evaluation`, `capes.ptt.author`.
+  * Modelos Nativos Estendidos: `op.student` (`ptt_ids`, `ptt_count`), `op.faculty` (`ptt_count`, `action_view_faculty_ptts`).
+* **Responsabilidade Técnica:** Processar o motor de regras do Qualis Tecnológico, validar de forma eliminatória a aderência institucional de produções intelectuais (`is_adherent`), mapear níveis de Maturidade Tecnológica (TRL 1-9) e computar a média de notas nas 4 dimensões (Impacto 30 pts, Inovação 25 pts, Aplicabilidade 25 pts, Complexidade 20 pts) para estratificação em tempo real (T1 a T5 ou TNC) servindo como pré-requisito de defesa e gerador de créditos APO.
 
 ### 2.7. `l10n_br_openeducat_capes_integration`
 
 * **Escopo:** Concentra a inteligência de conectividade e o mapeamento semântico de comunicação externa da DAV Módulo 06.
-* **Modelos Estendidos/Criados:** `capes.intellectual.production`.
-* **Responsabilidade Técnica:** Expor controladores RESTful (rotas HTTP `/api/capes/v1/`) para transmissão de payloads JSON criptografados para a rede RICA|PG, gerenciar as autorizações OAuth 2.0 e atuar como barramento unificado de cruzamento semântico com os esquemas de conversão XSLT do DSpace (`oai_capes`).
+* **Modelos Criados/Estendidos:** `capes.intellectual.production`.
+* **Controllers HTTP e Endpoints RESTful Fonte Prata:**
+  * `GET /api/capes/v1/students`: Consulta serializada de discentes (com suporte a filtro `?program_id=...`), sanitizada com Privacy by Design.
+  * `GET /api/capes/v1/faculty`: Consulta do corpo docente com histórico do livro-razão de categorias (`category_ledger_ids`).
+  * `GET /api/capes/v1/curriculums`: Consulta das matrizes regimentais ativas e regras de disciplinas.
+  * `GET /api/capes/v1/projects_and_ptts`: Exportação integrada de projetos científicos e produtos PTTs com estratos consolidados.
+* **Responsabilidade Técnica:** Expor controladores RESTful para transmissão de payloads JSON tipados para a rede RICA|PG / Plataforma Sucupira com sanitização de campos privados (Privacy by Design), gerar payloads XML formatados sob o namespace `oai_capes` (`action_generate_oai_payload`) para crosswalk com o DSpace, e manter a guarda centralizada de produções intelectuais.
 
 ### 2.8. `l10n_br_openeducat_capes_diploma`
 
-* **Escopo:** Garante a conformidade jurídica de encerramento de percurso e expedição documental de graus acadêmicos em conformidade com o MEC (Portaria nº 70/2025).
-* **Modelos Estendidos/Criados:** `op.student.transcript.br`.
-* **Responsabilidade Técnica:** Renderizar relatórios QWeb consolidados de históricos parciais/finais auto-autenticados com Hash SHA-256 e QR Code, gerar arquivos XML estruturados de diplomas de pós-graduação e documentação acadêmica digital, e orquestrar rotinas criptográficas Python para aplicação de assinaturas avançadas XAdES ICP-Brasil (Certificado A3/HSM) com Carimbos de Tempo.
+* **Escopo:** Garante a conformidade jurídica de encerramento de percurso e expedição documental de graus acadêmicos em conformidade com o MEC (Portaria nº 70/2025) e suporte à dualidade de emissão física/digital (IPEN/USP).
+* **Modelos Criados/Estendidos:**
+  * Modelos Criados: `capes.digital.diploma`, `capes.diploma.signature.log`.
+  * Modelos Nativos Estendidos: `op.student` (`diploma_ids`, `diploma_count`, `action_print_transcript`).
+  * Relatórios QWeb: `action_report_student_transcript_br` (`report_student_transcript_br_document`).
+  * Controller Público: `GET /valida-documento?hash=...` (`CapesPublicValidationController`).
+* **Responsabilidade Técnica:** Renderizar relatórios QWeb consolidados de históricos escolares oficiais com QR Code e chave de validação pública, compilar o Pacote de Titulação com cálculo do Hash SHA-256 de auto-autenticação, gerar os XMLs estruturados do Diploma Digital e do Dossiê Acadêmico (Portaria MEC nº 70/2025), aplicar envelopes criptográficos XAdES ICP-Brasil com Carimbo de Tempo e gerenciar o livro de registro físico/híbrido para IES registradoras externas (USP para o IPEN).
 
 ### 2.9. `l10n_br_openeducat_capes_scholarship`
 
 * **Escopo:** Governa o livro de cotas institucionais de bolsas (CAPES, CNPq, CNEN, FAPs), editais de distribuição de bolsas, processos avaliativos com múltiplos revisores docentes em paralelo e ciclo de vida de concessão sem gestão financeira direta (Portaria CAPES nº 133/2023 e IN CNEN nº 07/2024).
-* **Modelos Estendidos/Criados:** `capes.scholarship.sponsor`, `capes.scholarship.quota`, `capes.scholarship.rubric`, `capes.scholarship.rubric.item`, `capes.scholarship.edital`, `capes.scholarship.application`, `capes.scholarship.evaluation`, `capes.scholarship.evaluation.line`, `capes.scholarship.assignment`, `op.student` (extensão), `op.faculty` (extensão).
-* **Responsabilidade Técnica:** Operar o saldo de cotas de bolsas sem pagamento financeiro direto pela IES; gerenciar editais parametrizados com reserva de cotas (PPI e Ampla Concorrência) e regras de reversão; viabilizar matriz avaliativa em 4 colunas (Autoavaliação, Revisor 1, Revisor 2 e Consolidação pela CPG) com revisores operando em paralelo; aplicar fórmulas lineares e tetos dinâmicos sem hardcode regimental; verificar limites regulamentares de acúmulo temporal (24m ME / 48m DO) e regras de vínculo empregatício sob deliberação da CPG; gerar termos de compromisso digital e auditar frequências e relatórios anuais.
+* **Modelos Criados/Estendidos:**
+  * Modelos Criados: `capes.scholarship.sponsor`, `capes.scholarship.quota`, `capes.scholarship.rubric`, `capes.scholarship.rubric.item`, `capes.scholarship.edital`, `capes.scholarship.application`, `capes.scholarship.evaluation`, `capes.scholarship.evaluation.line`, `capes.scholarship.assignment`.
+  * Modelos Nativos Estendidos: `op.student` (`scholarship_assignment_ids`, `scholarship_application_ids`, `active_scholarship_count`, `has_active_scholarship`, `scholarship_status_badge`), `op.faculty` (`scholarship_evaluation_ids`, `assigned_scholarship_reviews_count`).
+* **Responsabilidade Técnica:** Operar o saldo de cotas de bolsas sem desembolso financeiro pela IES; gerenciar editais parametrizados com reserva de cotas (PPI e Ampla Concorrência) e reversão de vagas; viabilizar matriz avaliativa em 4 colunas (Autoavaliação, Revisor 1, Revisor 2 e Consolidação pela CPG) operando em paralelo; aplicar fórmulas lineares e tetos dinâmicos sem hardcode regimental; verificar limites regulamentares de acúmulo temporal (24m ME / 48m DO) e regras de vínculo empregatício sob deliberação da CPG; gerar termos de compromisso digital e auditar frequências e relatórios anuais.
 
 ## 3. Matriz de Dependências e Manifestos do Odoo (`__manifest__.py`)
 
@@ -95,33 +122,35 @@ Para assegurar a integridade do monorepo e a correta carga de dados no banco rel
 [openeducat_core]
 ^
 |
-[l10n_br_openeducat_capes_core] <---------------------------------------+
-^                     ^                                          |
-|                     |                                          |
-[l10n_br_openeducat_capes_admission] <───┐                         |
-^                                │                         |
-|                                │                         |
-[l10n_br_openeducat_capes_academic] <---+│                         |
-^          ^                     |│                        |
-|          |                     ||                        |
-|          +---------------------+│                        |
-|                                ||                        |
-[l10n_br_openeducat_capes_research]     ||                        |
-^                                |│                        |
-|                                ||                        |
-[l10n_br_openeducat_capes_thesis] ------+┘                        |
-^                                ^                         |
-|                                |                         |
-[l10n_br_openeducat_capes_ptt] ---------+                         |
-^                                                          |
-|                                                          |
-[l10n_br_openeducat_capes_integration]                            |
-^                                                          |
-|                                                          |
-[l10n_br_openeducat_capes_diploma] -------------------------------+
-^
-|
-[l10n_br_openeducat_capes_scholarship] (core + academic + admission)
+[l10n_br_openeducat_capes_core] <-----------------------------------------------------+
+^                     ^                                                        |
+|                     |                                                        |
+|                     +───────────────────────────────┐                        |
+|                                                     │                        |
+[l10n_br_openeducat_capes_academic] (+ mail) <────────┼──────────┐             |
+^          ^                     ^                    │          │             |
+|          |                     │                    │          │             |
+|          |         [l10n_br_openeducat_capes_admission]       │             |
+|          |                     ^                    ^          │             |
+|          |                     │                    │          │             |
+[l10n_br_openeducat_capes_research] (+ project)       │          │             |
+^                                │                    │          │             |
+|                                │                    │          │             |
++────────────────────────────────┴────────────────────┼──────────┤             |
+                                                      │          │             |
+[l10n_br_openeducat_capes_thesis] ────────────────────┘          │             |
+^                                ^                               │             |
+|                                │                               │             |
+[l10n_br_openeducat_capes_ptt] ──+                               │             |
+^                                                                │             |
+|                                                                │             |
+[l10n_br_openeducat_capes_diploma] ──────────────────────────────┘             |
+^                                                                              |
+|                                                                              |
+[l10n_br_openeducat_capes_integration] (core + ptt)                            |
+^                                                                              |
+|                                                                              |
+[l10n_br_openeducat_capes_scholarship] (core + academic + admission + mail) ───+
 
 ```
 
@@ -129,15 +158,15 @@ Abaixo está a especificação exata das chaves `depends` presentes em cada mani
 
 | Submódulo Odoo | Módulos Obrigatórios em `depends` | Tipo de Dependência |
 | --- | --- | --- |
-| `l10n_br_openeducat_capes_core` | `['openeducat_core']` | Extensão Base de Infraestrutura |
-| `l10n_br_openeducat_capes_admission` | `['l10n_br_openeducat_capes_core']` | Extensão do Fluxo de Admissão e Plano de Trabalho |
-| `l10n_br_openeducat_capes_academic` | `['l10n_br_openeducat_capes_core']` | Motor Curricular, Regimentos e CPG |
-| `l10n_br_openeducat_capes_research` | `['l10n_br_openeducat_capes_academic', 'project']` | Integração Odoo Projects e Fomento |
-| `l10n_br_openeducat_capes_thesis` | `['l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_admission', 'l10n_br_openeducat_capes_research']` | Ritos Bipartidos, Plano de Trabalho e Qualificação |
-| `l10n_br_openeducat_capes_ptt` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_thesis']` | Qualis, Eixos GTPT e Trava PTT |
-| `l10n_br_openeducat_capes_integration` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_ptt']` | Barramento RESTful e OAI-PMH |
-| `l10n_br_openeducat_capes_diploma` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_thesis']` | Conformidade MEC, Teses e Criptografia |
-| `l10n_br_openeducat_capes_scholarship` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_admission']` | Gestão de Cotas, Editais de Bolsa e Pareceres |
+| `l10n_br_openeducat_capes_core` | `['openeducat_core']` | Extensão Base de Infraestrutura e PIDs |
+| `l10n_br_openeducat_capes_academic` | `['l10n_br_openeducat_capes_core', 'mail']` | Motor Curricular, Regimentos, Livro-Razão e CPG |
+| `l10n_br_openeducat_capes_admission` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic']` | Editais de Ingresso, Cotas e Planos de Trabalho |
+| `l10n_br_openeducat_capes_research` | `['l10n_br_openeducat_capes_academic', 'project']` | Integração Odoo Projects, Fomento e CRediT |
+| `l10n_br_openeducat_capes_thesis` | `['l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_admission', 'l10n_br_openeducat_capes_research']` | Ritos Bipartidos, Qualificação e Defesa |
+| `l10n_br_openeducat_capes_ptt` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_thesis']` | Qualis Tecnológico, Eixos GTPT e Trava PTT |
+| `l10n_br_openeducat_capes_diploma` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_thesis']` | Histórico Consolidado, Diploma Digital MEC 70/2025 e Validação Pública |
+| `l10n_br_openeducat_capes_integration` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_ptt']` | Barramento RESTful (/api/capes/v1/) e Crosswalk DSpace |
+| `l10n_br_openeducat_capes_scholarship` | `['l10n_br_openeducat_capes_core', 'l10n_br_openeducat_capes_academic', 'l10n_br_openeducat_capes_admission', 'mail']` | Gestão de Cotas, Baremas Parametrizados e Termos de Bolsas |
 
 ## 4. Modelo de Extensibilidade e Herança Estrita (`_inherit`)
 

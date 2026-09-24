@@ -132,17 +132,24 @@ A partir do formulário do discente, a secretaria e a coordenação possuem vis�
 ### 3.2. Entidade de Vínculo Acadêmico (`op.student.course`)
 * **Campos Principais:** `student_id`, `course_id`, `batch_id` (Turma / Lote de Ingresso), `curriculum_version_id`, `course_type` (`regular` / `special`), `state` (`running`, `finished`, `canceled`), `admission_date`, `completion_date`.
 
-## 4. Gestão de Afastamentos (`capes.leave_of_absence`)
+## 4. Gestão de Afastamentos e Trancamentos de Matrícula
 
-| Campo Odoo | Metadado JSON DAV | Tipo de Dado Odoo | Domínio / Validação JSON |
-| --- | --- | --- | --- |
-| `student_id` | Discente Afastado | `Many2one` | FK para `op.student`. |
-| `faculty_id` | Docente Afastado | `Many2one` | FK para `op.faculty`. |
-| `leave_type` | Tipo de afastamento | `Selection` | Saúde própria, Doença família, Maternidade, Paternidade, Serviço Militar. |
-| `cid_code` | Código CID Médico | `Char` | Obrigatório se motivo de saúde. |
-| `start_date` | Data início afastamento | `Date` | AAAA-MM-DD. |
-| `end_date` | Data encerramento | `Date` | AAAA-MM-DD. Trava de teto de 365 dias. |
-| `attachment_ids` | Atestados / Comprovantes | `Many2many` | Documentos em PDF anexados ao chamado. |
+A arquitetura do `l10n_br_openeducat_capes` não utiliza tabelas isoladas descartáveis para afastamentos, integrando-os diretamente às esteiras de governança e auditoria regimental:
+
+### 4.1. Afastamentos e Trancamentos Discentes (`op.academic.request`)
+Os pedidos de trancamento de matrícula ou prorrogação excepcional tramitam via modelo unificado de requerimentos discentes:
+* **Modelo:** `op.academic.request` (`request_type = 'trancamento'` ou `'prorrogacao'`).
+* **Validação Regimental:** O sistema consulta dinamicamente a versão curricular do discente (`op.curriculum.version`):
+  * Fiscaliza o teto contínuo (`max_trancamento_days`, ex: máx. 365 dias).
+  * Trava pedidos no 1º semestre de ingresso quando `block_first_semester_trancamento = True`.
+* **Fluxo de Tramitação:** `draft` $\rightarrow$ `submitted` $\rightarrow$ `advisor_approval` $\rightarrow$ `cpg_meeting_id` (deliberação colegiada) $\rightarrow$ `approved` / `rejected`.
+* **Impacto no Histórico:** Em caso de deferimento, a situação do discente em `op.student.course` e `op.student` é atualizada, e o período de trancamento suspende ou dilata os prazos de qualificação e defesa em conformidade com o regimento.
+
+### 4.2. Afastamentos e Licenças Docentes (`op.faculty.category.ledger`)
+Licenças para capacitação, afastamentos para pós-doutorado, licença-maternidade/saúde e variações funcionais de docentes são tratadas dentro do histórico append-only:
+* **Modelo:** `op.faculty.category.ledger` vinculado ao `op.faculty.program.link`.
+* **Campos Auditáveis:** `start_date`, `end_date`, `category` (ex: Colaborador/Afastado), `document_ref` (Portaria ou Ato de Homologação da CPG).
+* **Impacto:** Atualiza dinamicamente o status funcional em `op.faculty` (`status`: `active`, `inactive`, `retired`), suspendendo a atribuição de novas orientações quando inativo e recalculando o indicador `permanent_programs_count` para a conformidade da Portaria CAPES nº 81/2016.
 
 ## 5. Governança do Colegiado CPG (Macroprocesso 10)
 

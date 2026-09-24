@@ -14,6 +14,7 @@ As rotas expostas pela Fonte Prata compreendem:
 * `GET /api/capes/v1/faculty`: Devolve o corpo docente, PIDs, regime de trabalho e a timeline de credenciamento derivada do livro-razão `op.faculty.category.ledger`.
 * `GET /api/capes/v1/curriculums`: Expõe a matriz de disciplinas ativas, ementas, carga horária/créditos, regulamentos e modalidade de ensino.
 * `GET /api/capes/v1/projects_and_ptts`: Exporta os projetos de pesquisa cadastrados, relacionando-os com as dissertações defendidas e os Produtos Técnico-Tecnológicos (PTTs) com seus respectivos estratos Qualis calculados.
+* `GET /valida-documento?hash={SHA256}`: Endpoint público de conferência da autenticidade e fé pública de Diplomas Digitais e Históricos Escolares, auditando o hash SHA-256 e exibindo o dossiê de outorga e assinaturas digitais.
 
 ## 3. Estrutura do Payload JSON (Exemplo Discentes)
 

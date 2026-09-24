@@ -58,3 +58,17 @@ Entidade de workflow para homologação de disciplinas cursadas em regime especi
 | `cpg_resolution_number` | Número do Ato / Resolução CPG | `Char` | Obrigatório para transição ao estado `cpg_approved`. |
 | `cpg_resolution_date` | Data da Reunião / Deliberação | `Date` | Data oficial de homologação do aproveitamento. |
 | `advisor_opinion` | Parecer do Orientador | `Text` | Justificativa de aderência à pesquisa da dissertação. |
+
+## 4. Extensões nos Modelos Nativos do OpenEduCat
+
+### 4.1. Vínculo Acadêmico de Curso (`op.student.course`)
+Estendido em `l10n_br_openeducat_capes_academic` para suportar a coexistência de percursos regulares e vínculos de aluno especial sob o mesmo discente soberano:
+* `course_type`: `regular` (Curso Regular Stricto Sensu) ou `special` (Aluno Especial - Disciplinas Isoladas).
+* `program_id`: Many2one `op.program.capes`, programa CAPES responsável pelo curso.
+* `curriculum_version_id`: Many2one `op.curriculum.version`, regimento específico associado a esta matrícula.
+* `admission_date`: Date, data de início formal do vínculo.
+* `completion_date`: Date, data de encerramento/titulação.
+
+### 4.2. Turmas e Coortes de Ingresso (`op.batch`)
+Estendido para ancorar cada turma ao seu respectivo programa de pós-graduação:
+* `program_id`: Many2one `op.program.capes`, programa CAPES da turma ofertada.

@@ -48,17 +48,18 @@ A entidade central submetida pelo discente ou docente. É o objeto que será dep
 | :--- | :--- | :--- | :--- |
 | `type_id` | Tipo do Produto | `Many2one` | FK para `capes.ptt.type`. |
 | `student_id` | Discente Autor (Principal) | `Many2one` | FK para `op.student`. |
-| `thesis_id` | Tese / Dissertação Associada| `Many2one` | FK para `capes.thesis`. Produto que serve como TCC. |
+| `thesis_id` | Tese / Dissertação Associada| `Many2one` | FK para `capes.thesis`. Produto derivado do trabalho de conclusão. |
+| `program_id` | Programa CAPES | `Many2one` | FK para `op.program.capes` (relacionado a `thesis_id.program_id`). |
 | `title` | Título do Produto | `Char` | Nome exato do desenvolvimento. |
 | `name` | Nome do Produto (Identificador) | `Char` | Campo armazenado relacionado a `title`. |
 | `trl_level` | Nível de Maturidade (TRL) | `Selection` | Níveis de `trl_1` a `trl_9` (Princípios básicos a sistema provado em ambiente real). |
 | `final_stratum` | Estrato Qualis Tecnológico | `Selection` | `T1`, `T2`, `T3`, `T4`, `T5`, `TNC` (computado a partir das avaliações). |
 | `state` | Situação no Workflow | `Selection` | `draft` (Rascunho), `adherence_check` (Auditoria de Aderência), `evaluating` (Em Avaliação Qualis), `homologated` (Homologado), `rejected` (Rejeitado/TNC). |
 | `adherence_justif`| Justificação de Aderência | `Text` | OBRIGATÓRIO: Texto discursivo onde o autor defende a ligação do produto com a Linha de Pesquisa do PPG. |
-| `is_adherent` | Validação de Aderência | `Boolean` | Campo de controlo da comissão. Se validado como `False`, o produto sofre glosa imediata e não segue para avaliação. |
+| `is_adherent` | Validação de Aderência | `Boolean` | Campo de controle da comissão. Se validado como `False`, o produto sofre glosa imediata e não segue para avaliação. |
 | `target_audience` | Público-Alvo / Beneficiários | `Text` | Identificação do setor produtivo, governo ou sociedade civil impactada. |
-| `financing_agency`| Agência de Financiamento | `Many2one` | FK para entidade parceira ou de fomento (se aplicável). |
-| `repository_url` | URL do Produto (DSpace) | `Char` | Ligação OAI-PMH para a Fonte Ouro. |
+| `financing_agency`| Agência de Financiamento | `Char` | Nome da entidade parceira ou órgão de fomento (ex: CNPq, FAPESP, Finep). |
+| `repository_url` | URL do Produto (DSpace) | `Char` | Ligação permanente no repositório institucional (DSpace / Fonte Ouro). |
 
 ## 5. Estrutura de Autoria e Taxonomia (`capes.ptt.author`)
 Como os PTTs são frequentemente colaborativos (ex: desenvolvimento de um software clínico), os coautores precisam de rastreabilidade.

@@ -65,7 +65,7 @@ class CapesPttEvaluation(models.Model):
                 eval.final_stratum = 'TNC'
 ```
 
-## 3. Inteligência Analítica e Odoo BI Views
+## 4. Inteligência Analítica e Odoo BI Views
 Para o coordenador do Mestrado Profissional, o sucesso da avaliação quadrienal depende da monitorização da "Densidade de Impacto" do seu programa. A arquitetura de interface de utilizador (UI) desenvolve as seguintes ferramentas de Business Intelligence nativas:
 
 * **Matriz Pivot (TRL x Inovação):** Uma `pivot view` nativa do Odoo que cruza as 21 Tipologias de PTT no eixo Y com a Escala TRL no eixo X. O coordenador pode visualizar de relance se o programa está a produzir muito "Software TRL 3" (baixa maturidade) ou "Patentes TRL 8" (alta maturidade).

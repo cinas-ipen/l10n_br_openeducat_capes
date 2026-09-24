@@ -36,10 +36,10 @@ Após o encerramento do semestre, os docentes lançam notas/conceitos (A, B, C, 
 * Para alunos regulares cursando disciplinas de outros PPGs da IES: classificados como `subject_intra_ies`.
 * Para alunos matriculados como especiais: classificados como `subject_special_quarantine` (em quarentena).
 
-## 5. Ajuste Manual Retroativo (Fluxo de Exceção Auditado)
+## 5. Ajuste Manual Retroativo e Retificações (Fluxo Append-Only Auditado)
 
-Para atender a determinações judiciais ou retificações homologadas pela CPG, o sistema implementa o formulário de exceção `op.academic.request.grade_adjustment`:
+Para atender a determinações judiciais, recursos de nota ou retificações homologadas pela CPG, o sistema opera sob o estrito rigor *append-only*:
 
-1. O docente ou secretaria abre o chamado informando: Aluno, Disciplina, Semestre, Conceito Original, Conceito Pretendido e Justificativa Detalhada com anexo de provas documentais.
-2. O pedido é roteado para aprovação eletrônica do Coordenador do Programa.
-3. Após o clique do Coordenador, a secretaria executa a retificação no Livro-Razão. O ERP sobrescreve o dado e gera um selo de auditoria indelével no histórico escolar, registrando o responsável, a data, a hora e o motivo da alteração.
+1. O docente ou secretaria abre o processo via modelo unificado de requerimentos `op.academic.request` informando: Aluno, Disciplina, Semestre, Conceito Original, Conceito Pretendido e Justificativa Detalhada com anexo das provas documentais ou ata deliberativa.
+2. O pedido é roteado para parecer do Coordenador do Programa e homologação colegiada (`cpg_meeting_id`).
+3. Uma vez deferido, **o sistema nunca sobrescreve nem apaga o registro primitivo no Livro-Razão**. A retificação é executada através da inserção de um **novo lançamento compensatório / retificador** em `op.student.credit.ledger`, referenciando o número da resolução no campo `origin_ref` e detalhando a motivação em `notes`, gerando uma trilha de auditoria indelével e transparente para auditorias do MEC e da CAPES.

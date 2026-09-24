@@ -18,10 +18,11 @@ O algoritmo Python vinculado ao `op.curriculum.version` bloqueia tentativas de u
 ## 4. O Fluxo de Migração e Direito de Opção via Portal
 As atualizações de currículo não devem ser aplicadas pela secretaria de forma silenciosa ou arbitrária sem documentação formal. A transição exige a ativação do "Direito de Opção".
 
-Foi projetado no módulo `l10n_br_openeducat_capes_academic` o requerimento `op.academic.request.regime_migration` acessível pelo Portal do Aluno. A lógica operacional dita que:
+Foi projetado no módulo `l10n_br_openeducat_capes_academic` o modelo unificado de requerimentos discentes `op.academic.request` (utilizando `request_type = 'regime_migration'` e o campo de destino `target_curriculum_version_id`), integrando mensageria via `mail.thread` e acessível pelo Portal do Aluno. A lógica operacional dita que:
 1. O aluno inicia o requerimento e o sistema renderiza um quadro comparativo (ex: matriz de redução de créditos vs. novos exames exigidos).
-2. O discente submete o pleito mediante a assinatura digital de um termo de aceitação irrevogável.
-3. Após aprovação eletrônica do colegiado, o código Odoo executa a migração sistêmica: ele encerra a leitura do livro-razão de créditos associada à versão antiga e abre a contabilidade na nova versão atrelada ao aluno (`curriculum_version_id`), acionando os novos gatilhos cronológicos.
+2. O discente submete o pleito (transição de `draft` para `submitted`) mediante a fundamentação circunstanciada e assinatura de termo de aceitação irrevogável.
+3. O requerimento tramita por análise e deliberação da CPG (`cpg_meeting_id`).
+4. Ao ser homologado (`action_approve()`), o sistema atualiza atômica e permanentemente o regimento do estudante (`record.student_id.curriculum_version_id = record.target_curriculum_version_id`), encerrando a contabilidade de prazos sob a versão anterior e ativando os novos gatilhos cronológicos para as atividades pendentes, sem expurgar nenhum crédito já consolidado no Livro-Razão.
 
 ## 5. O Ato Jurídico Perfeito no Aproveitamento de Disciplinas de Aluno Especial
 

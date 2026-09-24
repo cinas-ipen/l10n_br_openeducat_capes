@@ -17,19 +17,32 @@ Através de campos calculados via framework Odoo (decorador Python `@api.depends
 O livro-razão no `l10n_br_openeducat_capes` extrapola a medição de disciplinas convencionais em sala de aula. A entidade categoriza e injeta os lançamentos obedecendo às tipologias regulamentares refinadas para o ambiente multi-programas e multi-vínculos:
 
 ```python
-# Exemplo da classificação no Ledger
+# Mapeamento oficial dos tipos de lançamento no Livro-Razão de Créditos
 class OpStudentCreditLedger(models.Model):
     _name = 'op.student.credit.ledger'
-    
+    _description = 'Livro-Razão Acadêmico de Créditos (Append-Only)'
+    _order = 'date_earned desc, id desc'
+
     credit_type = fields.Selection([
+        ('subject', 'Disciplinas Regulares'),
         ('subject_internal', 'Disciplinas do Próprio Programa'),
         ('subject_intra_ies', 'Disciplinas de outros PPGs da mesma IES (100% Equivalência)'),
         ('subject_special_quarantine', 'Créditos em Quarentena (Aluno Especial)'),
         ('subject_special_incorporated', 'Créditos de Aluno Especial Incorporados (Homologados CPG)'),
         ('subject_extra_ies', 'Disciplinas Externas de Outras IES (Com Equivalência)'),
-        ('apo', 'Atividades Programadas Obrigatórias (APO) / Produção Técnica'),
-        ('milestone', 'Créditos por Qualificação e Defesa')
-    ], string="Natureza do Crédito", required=True)
+        ('apo', 'Atividades Programadas Obrigatórias (APO) / PTT'),
+        ('milestone', 'Créditos por Qualificação e Defesa'),
+        ('external', 'Aproveitamento de Créditos Externos')
+    ], string='Natureza do Crédito', required=True, index=True)
+
+    incorporation_request_id = fields.Many2one(
+        'op.special.credit.incorporation.request',
+        string='Requerimento de Incorporação CPG'
+    )
+    original_program_id = fields.Many2one(
+        'op.program.capes',
+        string='Programa Ofertante de Origem'
+    )
 ```
 
 * **Disciplinas Intra-IES:** Cursadas pelo aluno regular em outros programas da mesma instituição (`res.company`). Integram-se com 100% do valor nominal de carga horária e créditos, respeitando o limite parametrizado em `max_intra_ies_credits_percent`.
@@ -49,3 +62,10 @@ Para estudantes admitidos inicialmente como Alunos Especiais (disciplinas isolad
    * *Verificação de Teto:* O sistema bloqueia requisições que excedam o limite máximo de disciplinas isoladas permitido pelo regimento (`max_special_subjects_limit`).
 4. **Deliberação Colegiada:** O pedido tramita com parecer do orientador e julgamento pela CPG, registrando o número da resolução e a data da reunião.
 5. **Efeito Append-Only no Livro-Razão:** Ao deferir o pedido, o sistema gera lançamentos adicionais no livro-razão com tipologia `subject_special_incorporated`, vinculados ao `curriculum_version_id` ativo do aluno e com apontador para o requerimento deferido, mantendo a linha original de quarentena intacta para fins de auditoria.
+
+## 5. Governança Append-Only e Retificações de Lançamento
+
+Em observância ao princípio da imutabilidade e rastreabilidade total:
+* **Bloqueio Irrevogável de Deleção (`unlink`):** O método `unlink()` da classe `OpStudentCreditLedger` dispara um `UserError` bloqueando qualquer exclusão direta via interface web, scripts de lote ou orquestração externa.
+* **Retificações Administrativas:** Caso um lançamento tenha ocorrido por equívoco administrativo ou revisão de nota homologada pela CPG, o sistema proíbe a edição ou deleção do registro original. A correção exige a inserção de um **novo lançamento retificador compensatório** com observações auditáveis no campo `notes` e vinculação documental em `origin_ref`, garantindo que toda a linha do tempo histórica do discente permaneça intacta e auditável por órgãos de controle e pela CAPES.
+

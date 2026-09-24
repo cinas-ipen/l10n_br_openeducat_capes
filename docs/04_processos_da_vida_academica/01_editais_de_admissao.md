@@ -13,7 +13,7 @@ Esta classe orquestra as regras do certame público, conectando a oferta de vaga
 * **Vinculação Regimental:** Cada edital nasce obrigatoriamente atrelado à versão do currículo vigente (`curriculum_version_id`), garantindo que os novos ingressantes sejam inseridos sob a tutela do Ato Jurídico Perfeito.
 * **Gestão de Turmas (Cohorts) e Vagas Remanescentes:** O Edital cria a entidade de agrupamento "Turma" (ex: Turma 2026/1), que atua como âncora cronológica irrevogável. Em caso de ociosidade, o ERP permite duplicar o certame para "Vagas Remanescentes", atrelando os aprovados à mesma Turma original para equalização de prazos.
 * **Reserva de Vagas (Ações Afirmativas):** Parametrização de cota obrigatória (ex: 20%) reservada a candidatos autodeclarados pretos, pardos, indígenas ou pessoas com deficiência (PcD), auditada através dos campos estendidos em `res.partner`.
-* **Quadro de Vagas por Linha/Orientador:** As vagas são vinculadas especificamente na relação *One2many* do edital, mapeando `capes.research.line` (Linha de Pesquisa), `op.faculty` (Orientador responsável) e a quantidade exata de vagas disponibilizadas.
+* **Quadro de Vagas por Linha/Orientador (`op.edital.slot.distribution`):** As vagas são vinculadas na relação *One2many* do edital, mapeando a denominação da Linha de Pesquisa (`research_line`), o orientador responsável (`faculty_id` Many2one `op.faculty`) e a quantidade exata de vagas disponibilizadas (`slots`).
 
 ## 3. Fases de Seleção Dinâmicas e Trava de Proficiência na Admissão (`op.edital.phase`)
 

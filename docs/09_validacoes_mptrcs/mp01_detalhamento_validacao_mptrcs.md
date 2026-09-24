@@ -171,7 +171,7 @@ Abaixo, cada um dos 10 subprocessos do MP1 é detalhado considerando a **Lógica
 
 * **Descrição Operacional:** Garante a transparência e o cumprimento estrito do direito de opção quando o programa aprova uma atualização em seu regulamento.
 * **Configuração Específica MPTRCS/IPEN:**
-* *Formulário de Solicitante no Portal:* Requerimento op.academic.request.regime_migration.
+* *Formulário de Solicitante no Portal:* Requerimento `op.academic.request` (`request_type = 'regime_migration'` com seleção de `target_curriculum_version_id`).
 * *Fluxo de Trabalho:*
 1. O estudante inicia a solicitação no Portal do Aluno.
 2. O Odoo gera e exibe um **Quadro Comparativo de Impacto** (demonstrando eventuais variações de carga de disciplinas e prazos).

@@ -25,7 +25,7 @@ Este é o processo fundacional de back-office. Antes de qualquer edital ser publ
 * **Parametrização de Proficiência Linguística (`proficiency_stage`):**
   * Configuração do gatilho: `admission` (matrícula inicial - IPEN), `qualification` ou `defense`.
 * **Parametrização Dinâmica de Disciplinas Obrigatórias (`op.curriculum.subject.rule`):**
-  * Eliminação de códigos fixos em código. Obrigatoriedade gerenciada por tabela de regras com escopo de Programa ou por Área de Concentração (`area_id`).
+  * Eliminação de códigos fixos em código. Obrigatoriedade gerenciada por tabela de regras com escopo de Programa (`scope = 'program'`) ou por Área de Concentração (`scope = 'area'` com `area_name`).
 * **Parametrização do Estágio de Docência / Supervisionado (`teaching_internship_mode` - Portaria CAPES nº 221/2025):**
   * Configuração flexível: `not_applicable` (Cursos Profissionais/Isentos), `scholarship_only` (Apenas Bolsistas), `mandatory_all` (Todos), ou `flexible_equivalence` (Permite Estágio Supervisionado / Equivalentes).
 * **Flexibilização da Trava de Produto Técnico-Tecnológico (`ptt_validation_mode`):**
@@ -33,7 +33,7 @@ Este é o processo fundacional de back-office. Antes de qualquer edital ser publ
 * **Parametrização das Regras de Comissão Julgadora (`op.curriculum.committee.rule`):**
   * Definição de quórum de titulares e suplentes, direito a voto do Orientador/Coorientador, regras de endogenia e política de presença (presencial, híbrida ou 100% remota).
 * **Migração de Regimento (Tutela do Ato Jurídico Perfeito e Direito de Opção):**
-  * *Acionamento via Portal:* Requerimento `op.academic.request.regime_migration` no Portal do Aluno com quadro comparativo e assinatura de termo irrevogável.
+  * *Acionamento via Portal:* Requerimento discente `op.academic.request` (com `request_type = 'regime_migration'` e `target_curriculum_version_id`) no Portal do Aluno com quadro comparativo e assinatura de termo irrevogável.
   * *Execução Algorítmica:* Encerramento da leitura na versão anterior (preservando o Ato Jurídico Perfeito) e reabertura na nova chave `curriculum_version_id`.
 
 ---

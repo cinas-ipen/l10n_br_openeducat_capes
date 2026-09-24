@@ -40,7 +40,7 @@ O módulo realiza o mapeamento biunívoco entre os 21 Tipos oficiais do GTPT (T0
 9. **Produto de Editoração:** Livro técnico, capítulo ou material instrucional.
 10. **Processos e Materiais Não Patenteáveis:** Metodologia de calibragem de equipamentos ou tecnologia social de atendimento.
 
-O campo booleano `req_ip_registration` torna obrigatório o anexo do comprovante de depósito no INPI ou publicação oficial quando a tipologia selecionada assim o exigir.
+O campo booleano `req_ip` torna obrigatório o anexo do comprovante de depósito no INPI ou publicação oficial quando a tipologia selecionada assim o exigir.
 
 ### 3.1. Tabela de campos Tipo de Produto (`capes.ptt.type`)
 
