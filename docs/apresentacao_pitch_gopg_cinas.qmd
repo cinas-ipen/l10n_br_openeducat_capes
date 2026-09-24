@@ -29,14 +29,14 @@ lang: pt-BR
 ::: {.columns}
 ::: {.column width="55%"}
 * **Mais de 4.500 programas de pós-graduação** formam a liderança científica e técnica do Brasil.
-* **Avaliação Quadrienal Decisiva da CAPES:** Determina as notas de excelência (3 a 7), o orçamento institucional e a distribuição de bolsas de estudo.
-* **Conformidade Contínua e Rigorosa:** Portarias federais da CAPES, normas do MEC e regimentos internos exigem auditoria permanente.
+* **Avaliação Quadrienal Decisiva da CAPES:** Determina as notas de excelência (3 a 7), orçamento e bolsas.
+* **Conformidade Contínua e Rigorosa:** Portarias da CAPES, normas do MEC e regimentos exigem auditoria permanente.
 :::
 
 ::: {.column width="45%"}
 ::: {.card .card-warning}
-#### O Gargalo das Instituições
-A maioria das Universidades e Institutos opera com sistemas acadêmicos genéricos, planilhas paralelas vulneráveis e digitação manual exaustiva para prestação de contas.
+<div class="card-title">O Gargalo das Instituições</div>
+A maioria das Universidades e Institutos opera com sistemas genéricos, planilhas paralelas vulneráveis e digitação manual exaustiva para prestação de contas.
 :::
 :::
 :::
@@ -53,7 +53,7 @@ A maioria das Universidades e Institutos opera com sistemas acadêmicos genéric
 400h+
 :::
 ::: {.metric-label}
-Gastas em digitação manual por PPG a cada ano
+Gastas em digitação manual por PPG/ano
 :::
 :::
 
@@ -62,7 +62,7 @@ Gastas em digitação manual por PPG a cada ano
 72%
 :::
 ::: {.metric-label}
-Das inconformidades decorrem de retrabalho humano
+Das falhas decorrem de retrabalho humano
 :::
 :::
 
@@ -71,14 +71,14 @@ Das inconformidades decorrem de retrabalho humano
 R$ Milhões
 :::
 ::: {.metric-label}
-Em recursos protegidos contra glosas ou rebaixamento
+Protegidos contra glosas ou rebaixamento
 :::
 :::
 :::
 
-::: {.card .card-highlight style="margin-top: 0.6em;"}
-#### O Impacto Direto nas Coordenações e Secretarias
-A administração dos programas de pós-graduação convive com rotinas exaustivas de compilação em planilhas paralelas e redigitação de dados já existentes no ERP institucional, resultando em sobrecarga crônica e vulnerabilidades regulatórias permanentes.
+::: {.card .card-highlight style="margin-top: 0.4em;"}
+<div class="card-title">O Impacto Direto nas Coordenações e Secretarias</div>
+A rotina das secretarias e coordenações é drenada por compilações em planilhas paralelas e redigitação de dados já existentes no ERP, gerando sobrecarga crônica e vulnerabilidades regulatórias.
 :::
 
 ---
@@ -89,18 +89,18 @@ A administração dos programas de pós-graduação convive com rotinas exaustiv
 
 ::: {.grid-3}
 ::: {.card}
-#### Sobrecarga Operacional
-Coordenadores, docentes e secretarias passam meses consolidando relatórios anuais em vez de concentrar esforços na produção científica e pedagógica.
+<div class="card-title">Sobrecarga Operacional</div>
+Coordenadores e secretarias passam meses consolidando relatórios anuais em vez de focar na excelência acadêmica.
 :::
 
 ::: {.card .card-warning}
-#### Risco de Descredenciamento
-Erros cadastrais, prazos regimentais estourados ou inconsistências em bancas examinadoras geram apontamentos severos na avaliação da CAPES.
+<div class="card-title">Risco de Descredenciamento</div>
+Erros cadastrais ou inconsistências em defesas geram apontamentos severos e rebaixamento na avaliação da CAPES.
 :::
 
 ::: {.card}
-#### Fragilidade Documental
-Insegurança jurídica na emissão de históricos, diplomas e livros de registro sem fé pública, rastreabilidade criptográfica e plena conformidade legal.
+<div class="card-title">Fragilidade Documental</div>
+Dificuldade na emissão de históricos e diplomas com fé pública digital e plena conformidade legal.
 :::
 :::
 
@@ -108,34 +108,27 @@ Insegurança jurídica na emissão de históricos, diplomas e livros de registro
 
 ## O Marco Regulatório: Programa GoPG
 
-### Portaria CAPES nº 158/2023 & Instrução Normativa nº 1/2026
-
-::: {.card .card-highlight}
-A CAPES determinou o **fim da alimentação manual periódica** na Plataforma Sucupira. O novo modelo adota **coleta automatizada e contínua** com fé pública diretamente dos sistemas institucionais.
-:::
+### Fim da Alimentação Manual na Sucupira • Coleta Contínua e Automatizada
 
 ::: {.grid-3}
 ::: {.card}
 <span class="badge badge-emerald">Fonte Ouro</span>
 
-#### Repositório Institucional
-
-Custódia digital das versões finais de Teses, Dissertações e Produtos Técnicos, com bloqueio a alterações após coleta oficial.
+<div class="card-title">Repositório Institucional</div>
+Custódia digital das versões finais de Teses, Dissertações e PTTs com bloqueio de alteração pós-coleta oficial.
 :::
 
 ::: {.card}
 <span class="badge badge-blue">Fonte Prata</span>
 
-#### Plataforma Integrada (ERP)
-
-Registro fidedigno da vida acadêmica: matrículas, livro-razão de créditos, bancas examinadoras, docentes e bolsas.
+<div class="card-title">Plataforma Integrada (ERP)</div>
+Registro fidedigno da vida acadêmica: matrículas, livro-razão de créditos, bancas, docentes e bolsas.
 :::
 
 ::: {.card}
 <span class="badge badge-gold">Fonte Bronze</span>
 
-#### Digitação Manual (Legada)
-
+<div class="card-title">Digitação Manual (Legada)</div>
 Formulários manuais e redundantes na Sucupira, em **fase oficial de descontinuidade**.
 :::
 :::
@@ -169,63 +162,69 @@ Inovação em computação científica, inteligência artificial com governança
 
 ---
 
-## Suíte Modular Integrada (1/2)
+## Suíte Modular Integrada (1/3)
 
-### Ciclo de Vida Discente, Governança Curricular e Fomento
+### Identidade Soberana, Processos Seletivos e Motor Curricular
 
-::: {.grid-2}
+::: {.grid-3}
 ::: {.card}
-#### Núcleo Regulatório (`_core`)
-Identificador perene do discente (RA vitalício na IES), cadastros oficiais no SNPG/CAPES e vinculação biográfica com CPF, Plataforma Lattes e ORCiD.
+<div class="card-title">Núcleo Regulatório (`_core`)</div>
+Identificador perene do discente (RA vitalício na IES), cadastros oficiais no SNPG/CAPES e vinculação com CPF, Lattes e ORCiD.
 :::
 
 ::: {.card}
-#### Processos Seletivos e Cotas (`_admission`)
-Editais de ingresso, etapas avaliativas, cotas afirmativas (PPI/PCD) e matrícula automatizada com reaproveitamento do RA histórico do discente.
+<div class="card-title">Processos Seletivos (`_admission`)</div>
+Editais de ingresso, etapas avaliativas, reserva de cotas (PPI/PCD) e matrícula com reaproveitamento do RA histórico do aluno.
 :::
 
 ::: {.card}
-#### Motor Acadêmico e Livro-Razão (`_academic`)
-Versionamento de regimentos curriculares (`op.curriculum.version`), trânsito de créditos intra-IES, quarentena de aluno especial e Livro-Razão *append-only*.
-:::
-
-::: {.card}
-#### Gestão e Editais de Bolsas (`_scholarship`)
-Distribuição de cotas de fomento institucional, avaliação duplo-cega independente, controle de acúmulo com trabalho e termos de compromisso.
+<div class="card-title">Motor Acadêmico (`_academic`)</div>
+Versionamento regimental dinâmico (`op.curriculum.version`), trânsito intra-IES, quarentena de aluno especial e Livro-Razão *append-only*.
 :::
 :::
 
 ---
 
-## Suíte Modular Integrada (2/2)
+## Suíte Modular Integrada (2/3)
 
-### Pesquisa Científica, Produção Técnica, Titulação e Interoperabilidade
+### Fomento Institucional, Pesquisa Científica e Produtos Técnicos
 
 ::: {.grid-3}
 ::: {.card}
-#### Pesquisa e Projetos (`_research`)
-Linhas de pesquisa, projetos institucionais com agências de fomento e classificação de papéis na taxonomia CRediT.
+<div class="card-title">Gestão de Bolsas (`_scholarship`)</div>
+Distribuição de cotas de agências, avaliação duplo-cega independente, controle de acúmulo com renda e termos de outorga.
 :::
 
 ::: {.card}
-#### Produtos Técnicos — PTT (`_ptt`)
-Taxonomia dos 4 eixos e tipologias oficiais da CAPES, maturidade TRL 1-9 e cálculo automatizado do Qualis Tecnológico.
+<div class="card-title">Pesquisa e Projetos (`_research`)</div>
+Linhas de pesquisa, projetos com fomento e classificação padronizada de contribuições na taxonomia internacional CRediT.
 :::
 
 ::: {.card}
-#### Ritos e Bancas (`_thesis`)
-Qualificações, defesas, validação de quórum de examinadores externos e trava anti-nepotismo até o 4º grau.
+<div class="card-title">Produtos Técnicos — PTT (`_ptt`)</div>
+Taxonomia dos 4 eixos e tipologias oficiais CAPES, maturidade TRL 1-9 e cálculo automatizado do Qualis Tecnológico.
 :::
 :::
 
-::: {.grid-2 style="margin-top: 0.2em;"}
+---
+
+## Suíte Modular Integrada (3/3)
+
+### Titulação, Certificação Digital e Interoperabilidade GoPG
+
+::: {.grid-3}
 ::: {.card}
-#### Diplomas e Históricos Digitais (`_diploma`)
-Histórico escolar com QR Code de validação pública, Diploma Nato-Digital (Portarias MEC 330/2018 e 70/2025) e suporte ao registro dual IPEN $\rightarrow$ USP.
+<div class="card-title">Ritos e Bancas (`_thesis`)</div>
+Qualificações, defesas, validação de quórum de examinadores externos e trava anti-nepotismo cível até o 4º grau.
 :::
 
 ::: {.card}
-#### Interoperabilidade GoPG (`_integration`)
+<div class="card-title">Diplomas Digitais (`_diploma`)</div>
+Histórico com QR Code, Diploma Nato-Digital (Portarias MEC 330/2018 e 70/2025) e suporte ao registro dual IPEN $\rightarrow$ USP.
+:::
+
+::: {.card}
+<div class="card-title">Interoperabilidade GoPG (`_integration`)</div>
 Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínua da CAPES e crosswalk DSpace OAI-PMH (Fonte Ouro).
 :::
 :::
@@ -239,17 +238,17 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 ::: {.columns}
 ::: {.column width="50%"}
 ::: {.card .card-highlight}
-#### Histórico Acadêmico Permanente
-* **Registros Cumulativos e Intocáveis:** Cada disciplina cursada, crédito convalidado ou rito concluído é lançado em definitivo.
-* **Segurança Jurídica:** Alterações em novos regimentos curriculares **nunca recalculam ou anulam retroativamente** o que o aluno integralizou.
-* **Fim das Distorções:** Elimina erros comuns de sistemas legados que alteravam históricos passados após reformas de currículo.
+<div class="card-title">Histórico Acadêmico Permanente</div>
+* **Registros Cumulativos:** Cada disciplina cursada, crédito ou rito é lançado em definitivo.
+* **Segurança Jurídica:** Novos regimentos curriculares **nunca recalculam ou anulam retroativamente** o que foi integralizado.
+* **Fim das Distorções:** Elimina alterações acidentais de históricos após reformas curriculares.
 :::
 :::
 
 ::: {.column width="50%"}
 ::: {.card .card-success}
-#### Rastreabilidade para Auditorias
-* Cada lançamento referencia o tipo de atividade, data, nota ou conceito, carga horária e deliberação da comissão de pós-graduação.
+<div class="card-title">Rastreabilidade para Auditorias</div>
+* Lançamento detalhado com atividade, data, nota/conceito, carga horária e ata da CPG.
 * Emissão de histórico escolar oficial com fé pública e consistência matemática garantida.
 :::
 :::
@@ -264,18 +263,18 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 ::: {.columns}
 ::: {.column width="50%"}
 ::: {.card .card-warning}
-#### Quarentena Regimental
-* Disciplinas cursadas em regime isolado são mantidas em **quarentena acadêmica segura**.
-* **Não poluem o histórico regular** e não são transmitidas indevidamente à CAPES enquanto não houver aprovação formal do colegiado.
-* Se o aluno ingressar como regular, solicita a convalidação mediante parecer do orientador e homologação.
+<div class="card-title">Quarentena Regimental</div>
+* Disciplinas isoladas são mantidas em **quarentena acadêmica segura**.
+* **Não poluem o histórico regular** nem são transmitidas indevidamente à CAPES sem aprovação da CPG.
+* Convalidação mediante solicitação formal e parecer favorável do orientador.
 :::
 :::
 
 ::: {.column width="50%"}
 ::: {.card}
-#### Monitoramento de Validade (36 Meses)
-* O sistema acompanha automaticamente o prazo decadencial de 3 anos previsto na legislação federal.
-* **Histórico de Titulação Limpo:** Reprovações do período especial ou créditos não aproveitados são omitidos do documento de titulação do aluno regular.
+<div class="card-title">Monitoramento de Validade (36 Meses)</div>
+* Acompanhamento automático do prazo decadencial de 3 anos da legislação federal.
+* **Histórico de Titulação Limpo:** Reprovações do período especial ou créditos não aproveitados são omitidos do documento de titulação regular.
 :::
 :::
 :::
@@ -288,18 +287,18 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 
 ::: {.columns}
 ::: {.column width="55%"}
-* **IES Mantenedora Única:** Mantém a unidade institucional requerida pelo MEC e pelos registros de diplomas.
-* **Isolamento de Dados Setoriais (LGPD):** Cada coordenação e secretaria visualiza estritamente os discentes, turmas e bancas do seu programa.
-* **Seletor no Topo em Um Clique:** Usuários com permissão em mais de um programa alternam o contexto de trabalho instantaneamente, sem sair da sessão.
-* **Trânsito Interno de Alunos:** Matrícula cruzada entre programas da mesma instituição com aproveitamento integral de créditos.
+* **IES Mantenedora Única:** Preserva a unidade institucional requerida pelo MEC.
+* **Isolamento de Dados Setoriais (LGPD):** Secretarias visualizam estritamente seus discentes e bancas.
+* **Seletor no Topo em Um Clique:** Alternância instantânea de programa para usuários autorizados.
+* **Trânsito Interno de Alunos:** Matrícula cruzada intra-IES com aproveitamento integral.
 :::
 
 ::: {.column width="45%"}
 ::: {.card .card-highlight}
-#### Interface Ergonômica
+<div class="card-title">Interface Ergonômica</div>
 * Widget seletor sempre visível na barra de topo.
 * Botões de alternância rápida na listagem de programas.
-* Identificação visual imediata do curso ativo em cada tela de trabalho.
+* Identificação visual imediata do curso ativo em cada tela.
 :::
 :::
 :::
@@ -312,15 +311,15 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 
 ::: {.columns}
 ::: {.column width="55%"}
-* **Limite Nacional de Atuação:** Nenhum docente pode atuar simultaneamente como membro permanente em mais de **3 programas de pós-graduação stricto sensu** no país.
-* **Controle de Vínculos Locais e Externos:** O sistema registra as atuações em programas da própria instituição e os vínculos declarados em outras IES do Brasil ou exterior.
-* **Bloqueio Prévio de Excessos:** O sistema impede o credenciamento de um quarto vínculo permanente, protegendo a instituição e o professor contra glosas da CAPES.
+* **Limite Nacional de Atuação:** Nenhum docente pode atuar simultaneamente como permanente em mais de **3 programas de pós-graduação** no país.
+* **Controle de Vínculos Locais e Externos:** Monitoramento somado de atuações na própria IES e em instituições externas.
+* **Bloqueio Prévio de Excessos:** Impede o credenciamento de um quarto vínculo permanente, protegendo contra glosas da CAPES.
 :::
 
 ::: {.column width="45%"}
 ::: {.card .card-highlight}
-#### Painel de Vínculos Docentes
-* Painel consolidado na ficha do professor apresentando todos os programas filiados com selos informativos.
+<div class="card-title">Painel de Vínculos Docentes</div>
+* Painel consolidado na ficha do professor apresentando filiações e selos informativos.
 * Rastreabilidade de portarias de credenciamento e prazos de vigência.
 :::
 :::
@@ -334,14 +333,14 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 
 ::: {.grid-2}
 ::: {.card .card-success}
-#### Acúmulo com Atividade Remunerada
+<div class="card-title">Acúmulo com Atividade Remunerada</div>
 * Suporte nativo à flexibilização que permite acúmulo de bolsa com trabalho remunerado.
 * Exige parecer formal favorável do orientador e homologação colegiada pela CPG.
 * Arquivamento digital do termo de compromisso e declaração formal de rendimentos.
 :::
 
 ::: {.card .card-highlight}
-#### Reserva Afirmativa de Cotas (PPI/PCD)
+<div class="card-title">Reserva Afirmativa de Cotas (PPI/PCD)</div>
 * Parametrização transparente de cotas para candidatos pretos, pardos, indígenas e PCDs.
 * **Mecanismo de Reversão Automática:** Caso não haja candidatos cotistas habilitados, as vagas revertem com segurança para ampla concorrência.
 :::
@@ -355,14 +354,14 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 
 ::: {.grid-2}
 ::: {.card}
-#### Avaliação Paralela com Duplo Revisor
+<div class="card-title">Avaliação Paralela com Duplo Revisor</div>
 * Matriz avaliativa congregando Autoavaliação, Revisor 01 e Revisor 02 independentes.
 * Trabalho simultâneo e cego entre revisores, eliminando viés e questionamentos recursais.
 * Consolidação automática da média final pela Comissão de Bolsas / CPG.
 :::
 
 ::: {.card .card-highlight}
-#### Baremas Dinâmicos e Tetos de Edital
+<div class="card-title">Baremas Dinâmicos e Tetos de Edital</div>
 * Parametrização de pontuações acadêmicas, PTTs e experiência profissional por edital.
 * Aplicação automatizada de tetos parciais e globais sem regras fixas em código.
 * Trilha de auditoria completa de notas, pareceres e termos de outorga.
@@ -377,7 +376,7 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 
 ::: {.grid-2}
 ::: {.card}
-#### 4 Eixos Estruturantes da CAPES
+<div class="card-title">4 Eixos Estruturantes da CAPES</div>
 * **E1 — Produtos e Processos:** Patentes (T13), Softwares (T19), Tecnologias Sociais (T15), Startups (T11).
 * **E2 — Processos de Formação:** Cursos de capacitação (T08), Materiais didáticos e manuais operacionais (T09).
 * **E3 — Divulgação e Difusão:** Relatórios técnicos conclusivos e laudos de auditoria especializada (T06).
@@ -385,7 +384,7 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 :::
 
 ::: {.card .card-highlight}
-#### Maturidade TRL e Aderência
+<div class="card-title">Maturidade TRL e Aderência</div>
 * **Escala TRL de 1 a 9:** Do conceito básico inicial à operação plena comprovada em ambiente produtivo.
 * **Trava Prévia de Aderência:** Exigência de vinculação direta com as Linhas de Pesquisa ativas do programa.
 * **Comprovação de Propriedade Intelectual:** Anexo obrigatório de comprovante de depósito no INPI para softwares e patentes.
@@ -400,7 +399,7 @@ Barramento RESTful JSON Fonte Prata (`/api/capes/v1/dav/*`) para coleta contínu
 
 ::: {.grid-2}
 ::: {.card .card-highlight}
-#### Fórmula de Pontuação (Baremo CAPES)
+<div class="card-title">Fórmula de Pontuação (Baremo CAPES)</div>
 
 $$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100 \text{ pts})$$
 
@@ -411,7 +410,7 @@ $$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100
 :::
 
 ::: {.card}
-#### Estratos Oficiais de Classificação
+<div class="card-title">Estratos Oficiais de Classificação</div>
 * **T1 (90 a 100 pts):** Excelente / Alto Impacto Internacional ou Nacional
 * **T2 (75 a 89 pts):** Muito Bom / Relevância Regional/Nacional
 * **T3 (60 a 74 pts):** Bom / Relevância Regional e Replicabilidade
@@ -429,14 +428,14 @@ $$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100
 
 ::: {.grid-2}
 ::: {.card .card-warning}
-#### Bancas e Blindagem Jurídica
+<div class="card-title">Bancas e Blindagem Jurídica</div>
 * **Validação Automática de Quórum:** Checagem da titulação e do número de examinadores externos à IES e ao programa.
 * **Trava Anti-Nepotismo:** Bloqueio automático de examinadores com vínculo de parentesco até o 4º grau com discente ou orientador.
 * **Pré-requisitos Obrigatórios:** Verificação de proficiência, créditos e aprovação de comitê de ética antes da defesa.
 :::
 
 ::: {.card .card-success}
-#### Emissão Documental com Fé Pública
+<div class="card-title">Emissão Documental com Fé Pública</div>
 * **Histórico Consolidado com QR Code:** Emissão imediata com selo de autenticidade para validação pública.
 * **Diploma Nato-Digital Integrado:** Dossiê acadêmico e assinaturas digitais ICP-Brasil (XAdES-BES / XML-DSig SHA-256) conforme padrão federal.
 * **Suporte a Institutos de Pesquisa:** Fluxo de expedição própria com registro em universidade parceira (modelo IPEN $\rightarrow$ USP).
@@ -451,7 +450,7 @@ $$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100
 
 ::: {.grid-2}
 ::: {.card}
-#### Universidades Multiprograma
+<div class="card-title">Universidades Multiprograma</div>
 * Dezenas de programas de pós-graduação operando na mesma base de dados.
 * Secretarias setoriais com total sigilo de dados (LGPD) e alternância instantânea.
 * Trânsito acadêmico entre cursos com validação de vagas e equivalência integral.
@@ -459,7 +458,7 @@ $$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100
 :::
 
 ::: {.card}
-#### Institutos de Pesquisa Integrados
+<div class="card-title">Institutos de Pesquisa Integrados</div>
 * Modelo aplicado a instituições federais de excelência como o IPEN-CNEN/SP.
 * Coexistência de programa próprio e cursos compartilhados com a USP.
 * Controle fino de créditos externos e registro compartilhado de diplomas.
@@ -490,17 +489,17 @@ $$\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100
 
 ::: {.grid-3}
 ::: {.card .card-highlight}
-#### Conformidade Regulatória Nativa
+<div class="card-title">Conformidade Regulatória Nativa</div>
 Auditoria contínua de regras federais (Portarias CAPES nº 158/2023, 81/2016, 133/2023 e MEC nº 330/2018, 554/2019 e 70/2025) incorporada diretamente no fluxo do ERP acadêmico.
 :::
 
 ::: {.card .card-success}
-#### Fé Pública e Rastreabilidade
+<div class="card-title">Fé Pública e Rastreabilidade</div>
 Livro-Razão imutável (*append-only*), proteção integral ao Ato Jurídico Perfeito e eliminação do retrabalho manual periódico na Plataforma Sucupira.
 :::
 
 ::: {.card .card-highlight}
-#### Inovação e Soberania Tecnológica
+<div class="card-title">Inovação e Soberania Tecnológica</div>
 Arquitetura moderna, modular e de código aberto concebida no âmbito da pesquisa científica para elevar a gestão da pós-graduação *stricto sensu* brasileira.
 :::
 :::
@@ -525,7 +524,7 @@ Grupo de Pesquisa em Computação e IA em Nuclear e Saúde
 
 ::: {.column width="62%"}
 ::: {.card .card-highlight}
-#### Projeto Soberano e Comunitário
+<div class="card-title">Projeto Soberano e Comunitário</div>
 * **Licença Aberta e Auditável:** Desenvolvido no âmbito da pesquisa pública para fortalecer as IES brasileiras.
 * **Pronto para Coleta GoPG:** Total aderência às Portarias CAPES nº 158/2023 e IN nº 1/2026.
 * **Repositório Oficial:** `github.com/cinas-ipen/l10n_br_openeducat_capes`

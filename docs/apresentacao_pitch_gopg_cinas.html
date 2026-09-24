@@ -514,43 +514,45 @@ color: var(--primary-navy);
 letter-spacing: -0.02em;
 }
 .reveal h1 {
-font-size: 1.8em;
-line-height: 1.2;
+font-size: 1.65em;
+line-height: 1.15;
 color: #0c4a6e;
 }
 .reveal h2 {
-font-size: 1.25em;
+font-size: 1.15em;
 color: #0369a1;
 border-bottom: 2px solid #bae6fd;
-padding-bottom: 0.2em;
-margin-top: 0.05em;
-margin-bottom: 0.3em;
+padding-bottom: 0.15em;
+margin-top: 0;
+margin-bottom: 0.25em;
 }
 .reveal h3 {
-font-size: 0.92em;
+font-size: 0.82em;
 color: #475569;
 margin-top: 0;
-margin-bottom: 0.45em;
+margin-bottom: 0.35em;
 font-weight: 600;
 }
 .reveal p, .reveal li {
-font-size: 0.74em;
-line-height: 1.38;
+font-size: 0.67em;
+line-height: 1.32;
 color: #334155;
 }
 
 .card {
 background: #ffffff;
 border: 1px solid var(--card-border);
-border-radius: 8px;
-padding: 0.55em 0.8em;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-margin-bottom: 0.4em;
+border-radius: 6px;
+padding: 0.45em 0.7em;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+margin-bottom: 0.3em;
 }
-.card h4 {
-font-size: 0.85em;
-margin: 0 0 0.25em 0;
+.card-title {
+font-size: 0.82em;
+font-weight: 700;
 color: var(--primary-navy);
+margin-bottom: 0.2em;
+line-height: 1.2;
 }
 .card p {
 margin-bottom: 0;
@@ -597,24 +599,24 @@ border: 1px solid #a7f3d0;
 .metric-container {
 display: flex;
 justify-content: space-around;
-margin: 0.5em 0 0.8em 0;
+margin: 0.3em 0 0.5em 0;
 }
 .metric-box {
 text-align: center;
-padding: 0.5em 0.8em;
+padding: 0.35em 0.6em;
 background: #ffffff;
 border: 1px solid #e2e8f0;
-border-radius: 8px;
+border-radius: 6px;
 flex: 1;
-margin: 0 0.4em;
-box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+margin: 0 0.35em;
+box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 .metric-num {
-font-size: 1.65em;
+font-size: 1.45em;
 font-weight: 800;
 line-height: 1;
 color: #0284c7;
-margin-bottom: 0.15em;
+margin-bottom: 0.1em;
 }
 .metric-num-gold {
 color: #d97706;
@@ -623,67 +625,71 @@ color: #d97706;
 color: #059669;
 }
 .metric-label {
-font-size: 0.65em;
+font-size: 0.58em;
 font-weight: 600;
 color: #64748b;
 text-transform: uppercase;
-letter-spacing: 0.04em;
+letter-spacing: 0.03em;
 }
 
 .grid-2 {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 0.6em;
+gap: 0.55em;
 }
 .grid-3 {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
-gap: 0.55em;
+gap: 0.5em;
 }
 .grid-4 {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
-gap: 0.5em;
+gap: 0.45em;
 }
 
 .reveal ul {
 list-style: none;
 padding-left: 0;
-margin-top: 0.15em;
-margin-bottom: 0.35em;
+margin-top: 0.1em;
+margin-bottom: 0.25em;
 }
 .reveal ul li {
 position: relative;
-padding-left: 1.1em;
-margin-bottom: 0.25em;
+padding-left: 1.0em;
+margin-bottom: 0.2em;
 }
 .reveal ul li::before {
 content: "■";
 position: absolute;
 left: 0;
 color: var(--primary-blue);
-font-size: 0.65em;
-top: 0.12em;
+font-size: 0.6em;
+top: 0.1em;
 }
 
 .reveal table {
 width: 100%;
-font-size: 0.62em;
+font-size: 0.56em;
 border-collapse: collapse;
-margin-top: 0.3em;
+margin-top: 0.2em;
 background: #ffffff;
 box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .reveal table th {
 background: #f1f5f9;
 color: #0f172a;
-padding: 0.4em 0.6em;
+padding: 0.3em 0.5em;
 border: 1px solid #cbd5e1;
 font-weight: 700;
 }
 .reveal table td {
-padding: 0.35em 0.6em;
+padding: 0.25em 0.5em;
 border: 1px solid #e2e8f0;
+}
+.compact-text {
+font-size: 0.62em !important;
+line-height: 1.25 !important;
 }
 
 .reveal .slide-logo {
@@ -1220,14 +1226,16 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <div class="column" style="width:55%;">
 <ul>
 <li><strong>Mais de 4.500 programas de pós-graduação</strong> formam a liderança científica e técnica do Brasil.</li>
-<li><strong>Avaliação Quadrienal Decisiva da CAPES:</strong> Determina as notas de excelência (3 a 7), o orçamento institucional e a distribuição de bolsas de estudo.</li>
-<li><strong>Conformidade Contínua e Rigorosa:</strong> Portarias federais da CAPES, normas do MEC e regimentos internos exigem auditoria permanente.</li>
+<li><strong>Avaliação Quadrienal Decisiva da CAPES:</strong> Determina as notas de excelência (3 a 7), orçamento e bolsas.</li>
+<li><strong>Conformidade Contínua e Rigorosa:</strong> Portarias da CAPES, normas do MEC e regimentos exigem auditoria permanente.</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<section class="card card-warning">
-<h4>O Gargalo das Instituições</h4>
-<p>A maioria das Universidades e Institutos opera com sistemas acadêmicos genéricos, planilhas paralelas vulneráveis e digitação manual exaustiva para prestação de contas.</p>
-</section>
+<div class="card card-warning">
+<div class="card-title">
+O Gargalo das Instituições
+</div>
+<p>A maioria das Universidades e Institutos opera com sistemas genéricos, planilhas paralelas vulneráveis e digitação manual exaustiva para prestação de contas.</p>
+</div>
 </div></div>
 </section>
 <section class="slide level2">
@@ -1239,7 +1247,7 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <p>400h+</p>
 </div>
 <div class="metric-label">
-<p>Gastas em digitação manual por PPG a cada ano</p>
+<p>Gastas em digitação manual por PPG/ano</p>
 </div>
 </div>
 <div class="metric-box">
@@ -1247,7 +1255,7 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <p>72%</p>
 </div>
 <div class="metric-label">
-<p>Das inconformidades decorrem de retrabalho humano</p>
+<p>Das falhas decorrem de retrabalho humano</p>
 </div>
 </div>
 <div class="metric-box">
@@ -1255,53 +1263,64 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <p>R$ Milhões</p>
 </div>
 <div class="metric-label">
-<p>Em recursos protegidos contra glosas ou rebaixamento</p>
+<p>Protegidos contra glosas ou rebaixamento</p>
 </div>
 </div>
 </div>
-<section class="card card-highlight" style="margin-top: 0.6em;">
-<h4>O Impacto Direto nas Coordenações e Secretarias</h4>
-<p>A administração dos programas de pós-graduação convive com rotinas exaustivas de compilação em planilhas paralelas e redigitação de dados já existentes no ERP institucional, resultando em sobrecarga crônica e vulnerabilidades regulatórias permanentes.</p>
-</section>
+<div class="card card-highlight" style="margin-top: 0.4em;">
+<div class="card-title">
+O Impacto Direto nas Coordenações e Secretarias
+</div>
+<p>A rotina das secretarias e coordenações é drenada por compilações em planilhas paralelas e redigitação de dados já existentes no ERP, gerando sobrecarga crônica e vulnerabilidades regulatórias.</p>
+</div>
 </section>
 <section class="slide level2">
 <h2>Vulnerabilidades Institucionais Críticas</h2>
 <h3>Os Três Eixos de Fragilidade da Gestão Acadêmica Tradicional</h3>
 <div class="grid-3">
-<section class="card">
-<h4>Sobrecarga Operacional</h4>
-<p>Coordenadores, docentes e secretarias passam meses consolidando relatórios anuais em vez de concentrar esforços na produção científica e pedagógica.</p>
-</section>
-<section class="card card-warning">
-<h4>Risco de Descredenciamento</h4>
-<p>Erros cadastrais, prazos regimentais estourados ou inconsistências em bancas examinadoras geram apontamentos severos na avaliação da CAPES.</p>
-</section>
-<section class="card">
-<h4>Fragilidade Documental</h4>
-<p>Insegurança jurídica na emissão de históricos, diplomas e livros de registro sem fé pública, rastreabilidade criptográfica e plena conformidade legal.</p>
-</section>
+<div class="card">
+<div class="card-title">
+Sobrecarga Operacional
+</div>
+<p>Coordenadores e secretarias passam meses consolidando relatórios anuais em vez de focar na excelência acadêmica.</p>
+</div>
+<div class="card card-warning">
+<div class="card-title">
+Risco de Descredenciamento
+</div>
+<p>Erros cadastrais ou inconsistências em defesas geram apontamentos severos e rebaixamento na avaliação da CAPES.</p>
+</div>
+<div class="card">
+<div class="card-title">
+Fragilidade Documental
+</div>
+<p>Dificuldade na emissão de históricos e diplomas com fé pública digital e plena conformidade legal.</p>
+</div>
 </div>
 </section>
 <section class="slide level2">
 <h2>O Marco Regulatório: Programa GoPG</h2>
-<h3>Portaria CAPES nº 158/2023 &amp; Instrução Normativa nº 1/2026</h3>
-<div class="card card-highlight">
-<p>A CAPES determinou o <strong>fim da alimentação manual periódica</strong> na Plataforma Sucupira. O novo modelo adota <strong>coleta automatizada e contínua</strong> com fé pública diretamente dos sistemas institucionais.</p>
-</div>
+<h3>Fim da Alimentação Manual na Sucupira • Coleta Contínua e Automatizada</h3>
 <div class="grid-3">
 <div class="card">
 <p><span class="badge badge-emerald">Fonte Ouro</span></p>
-<h4>Repositório Institucional</h4>
-<p>Custódia digital das versões finais de Teses, Dissertações e Produtos Técnicos, com bloqueio a alterações após coleta oficial.</p>
+<div class="card-title">
+Repositório Institucional
+</div>
+<p>Custódia digital das versões finais de Teses, Dissertações e PTTs com bloqueio de alteração pós-coleta oficial.</p>
 </div>
 <div class="card">
 <p><span class="badge badge-blue">Fonte Prata</span></p>
-<h4>Plataforma Integrada (ERP)</h4>
-<p>Registro fidedigno da vida acadêmica: matrículas, livro-razão de créditos, bancas examinadoras, docentes e bolsas.</p>
+<div class="card-title">
+Plataforma Integrada (ERP)
+</div>
+<p>Registro fidedigno da vida acadêmica: matrículas, livro-razão de créditos, bancas, docentes e bolsas.</p>
 </div>
 <div class="card">
 <p><span class="badge badge-gold">Fonte Bronze</span></p>
-<h4>Digitação Manual (Legada)</h4>
+<div class="card-title">
+Digitação Manual (Legada)
+</div>
 <p>Formulários manuais e redundantes na Sucupira, em <strong>fase oficial de descontinuidade</strong>.</p>
 </div>
 </div>
@@ -1326,53 +1345,75 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 </div></div>
 </section>
 <section class="slide level2">
-<h2>Suíte Modular Integrada (1/2)</h2>
-<h3>Ciclo de Vida Discente, Governança Curricular e Fomento</h3>
-<div class="grid-2">
-<section class="card">
-<h4>Núcleo Regulatório (<code>_core</code>)</h4>
-<p>Identificador perene do discente (RA vitalício na IES), cadastros oficiais no SNPG/CAPES e vinculação biográfica com CPF, Plataforma Lattes e ORCiD.</p>
-</section>
-<section class="card">
-<h4>Processos Seletivos e Cotas (<code>_admission</code>)</h4>
-<p>Editais de ingresso, etapas avaliativas, cotas afirmativas (PPI/PCD) e matrícula automatizada com reaproveitamento do RA histórico do discente.</p>
-</section>
-<section class="card">
-<h4>Motor Acadêmico e Livro-Razão (<code>_academic</code>)</h4>
-<p>Versionamento de regimentos curriculares (<code>op.curriculum.version</code>), trânsito de créditos intra-IES, quarentena de aluno especial e Livro-Razão <em>append-only</em>.</p>
-</section>
-<section class="card">
-<h4>Gestão e Editais de Bolsas (<code>_scholarship</code>)</h4>
-<p>Distribuição de cotas de fomento institucional, avaliação duplo-cega independente, controle de acúmulo com trabalho e termos de compromisso.</p>
-</section>
+<h2>Suíte Modular Integrada (1/3)</h2>
+<h3>Identidade Soberana, Processos Seletivos e Motor Curricular</h3>
+<div class="grid-3">
+<div class="card">
+<div class="card-title">
+Núcleo Regulatório (<code>_core</code>)
+</div>
+<p>Identificador perene do discente (RA vitalício na IES), cadastros oficiais no SNPG/CAPES e vinculação com CPF, Lattes e ORCiD.</p>
+</div>
+<div class="card">
+<div class="card-title">
+Processos Seletivos (<code>_admission</code>)
+</div>
+<p>Editais de ingresso, etapas avaliativas, reserva de cotas (PPI/PCD) e matrícula com reaproveitamento do RA histórico do aluno.</p>
+</div>
+<div class="card">
+<div class="card-title">
+Motor Acadêmico (<code>_academic</code>)
+</div>
+<p>Versionamento regimental dinâmico (<code>op.curriculum.version</code>), trânsito intra-IES, quarentena de aluno especial e Livro-Razão <em>append-only</em>.</p>
+</div>
 </div>
 </section>
 <section class="slide level2">
-<h2>Suíte Modular Integrada (2/2)</h2>
-<h3>Pesquisa Científica, Produção Técnica, Titulação e Interoperabilidade</h3>
+<h2>Suíte Modular Integrada (2/3)</h2>
+<h3>Fomento Institucional, Pesquisa Científica e Produtos Técnicos</h3>
 <div class="grid-3">
-<section class="card">
-<h4>Pesquisa e Projetos (<code>_research</code>)</h4>
-<p>Linhas de pesquisa, projetos institucionais com agências de fomento e classificação de papéis na taxonomia CRediT.</p>
-</section>
-<section class="card">
-<h4>Produtos Técnicos — PTT (<code>_ptt</code>)</h4>
-<p>Taxonomia dos 4 eixos e tipologias oficiais da CAPES, maturidade TRL 1-9 e cálculo automatizado do Qualis Tecnológico.</p>
-</section>
-<section class="card">
-<h4>Ritos e Bancas (<code>_thesis</code>)</h4>
-<p>Qualificações, defesas, validação de quórum de examinadores externos e trava anti-nepotismo até o 4º grau.</p>
-</section>
+<div class="card">
+<div class="card-title">
+Gestão de Bolsas (<code>_scholarship</code>)
 </div>
-<div class="grid-2" style="margin-top: 0.2em;">
-<section class="card">
-<h4>Diplomas e Históricos Digitais (<code>_diploma</code>)</h4>
-<p>Histórico escolar com QR Code de validação pública, Diploma Nato-Digital (Portarias MEC 330/2018 e 70/2025) e suporte ao registro dual IPEN <span class="math inline">\(\rightarrow\)</span> USP.</p>
+<p>Distribuição de cotas de agências, avaliação duplo-cega independente, controle de acúmulo com renda e termos de outorga.</p>
+</div>
+<div class="card">
+<div class="card-title">
+Pesquisa e Projetos (<code>_research</code>)
+</div>
+<p>Linhas de pesquisa, projetos com fomento e classificação padronizada de contribuições na taxonomia internacional CRediT.</p>
+</div>
+<div class="card">
+<div class="card-title">
+Produtos Técnicos — PTT (<code>_ptt</code>)
+</div>
+<p>Taxonomia dos 4 eixos e tipologias oficiais CAPES, maturidade TRL 1-9 e cálculo automatizado do Qualis Tecnológico.</p>
+</div>
+</div>
 </section>
-<section class="card">
-<h4>Interoperabilidade GoPG (<code>_integration</code>)</h4>
+<section class="slide level2">
+<h2>Suíte Modular Integrada (3/3)</h2>
+<h3>Titulação, Certificação Digital e Interoperabilidade GoPG</h3>
+<div class="grid-3">
+<div class="card">
+<div class="card-title">
+Ritos e Bancas (<code>_thesis</code>)
+</div>
+<p>Qualificações, defesas, validação de quórum de examinadores externos e trava anti-nepotismo cível até o 4º grau.</p>
+</div>
+<div class="card">
+<div class="card-title">
+Diplomas Digitais (<code>_diploma</code>)
+</div>
+<p>Histórico com QR Code, Diploma Nato-Digital (Portarias MEC 330/2018 e 70/2025) e suporte ao registro dual IPEN <span class="math inline">\(\rightarrow\)</span> USP.</p>
+</div>
+<div class="card">
+<div class="card-title">
+Interoperabilidade GoPG (<code>_integration</code>)
+</div>
 <p>Barramento RESTful JSON Fonte Prata (<code>/api/capes/v1/dav/*</code>) para coleta contínua da CAPES e crosswalk DSpace OAI-PMH (Fonte Ouro).</p>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
@@ -1380,22 +1421,26 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <h3>Respeito Rigoroso ao Ato Jurídico Perfeito (CF/88)</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<section class="card card-highlight">
-<h4>Histórico Acadêmico Permanente</h4>
+<div class="card card-highlight">
+<div class="card-title">
+Histórico Acadêmico Permanente
+</div>
 <ul>
-<li><strong>Registros Cumulativos e Intocáveis:</strong> Cada disciplina cursada, crédito convalidado ou rito concluído é lançado em definitivo.</li>
-<li><strong>Segurança Jurídica:</strong> Alterações em novos regimentos curriculares <strong>nunca recalculam ou anulam retroativamente</strong> o que o aluno integralizou.</li>
-<li><strong>Fim das Distorções:</strong> Elimina erros comuns de sistemas legados que alteravam históricos passados após reformas de currículo.</li>
+<li><strong>Registros Cumulativos:</strong> Cada disciplina cursada, crédito ou rito é lançado em definitivo.</li>
+<li><strong>Segurança Jurídica:</strong> Novos regimentos curriculares <strong>nunca recalculam ou anulam retroativamente</strong> o que foi integralizado.</li>
+<li><strong>Fim das Distorções:</strong> Elimina alterações acidentais de históricos após reformas curriculares.</li>
 </ul>
-</section>
+</div>
 </div><div class="column" style="width:50%;">
-<section class="card card-success">
-<h4>Rastreabilidade para Auditorias</h4>
+<div class="card card-success">
+<div class="card-title">
+Rastreabilidade para Auditorias
+</div>
 <ul>
-<li>Cada lançamento referencia o tipo de atividade, data, nota ou conceito, carga horária e deliberação da comissão de pós-graduação.</li>
+<li>Lançamento detalhado com atividade, data, nota/conceito, carga horária e ata da CPG.</li>
 <li>Emissão de histórico escolar oficial com fé pública e consistência matemática garantida.</li>
 </ul>
-</section>
+</div>
 </div></div>
 </section>
 <section class="slide level2">
@@ -1403,22 +1448,26 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <h3>Quarentena Segura e Controle de Decadência Legal</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<section class="card card-warning">
-<h4>Quarentena Regimental</h4>
+<div class="card card-warning">
+<div class="card-title">
+Quarentena Regimental
+</div>
 <ul>
-<li>Disciplinas cursadas em regime isolado são mantidas em <strong>quarentena acadêmica segura</strong>.</li>
-<li><strong>Não poluem o histórico regular</strong> e não são transmitidas indevidamente à CAPES enquanto não houver aprovação formal do colegiado.</li>
-<li>Se o aluno ingressar como regular, solicita a convalidação mediante parecer do orientador e homologação.</li>
+<li>Disciplinas isoladas são mantidas em <strong>quarentena acadêmica segura</strong>.</li>
+<li><strong>Não poluem o histórico regular</strong> nem são transmitidas indevidamente à CAPES sem aprovação da CPG.</li>
+<li>Convalidação mediante solicitação formal e parecer favorável do orientador.</li>
 </ul>
-</section>
+</div>
 </div><div class="column" style="width:50%;">
-<section class="card">
-<h4>Monitoramento de Validade (36 Meses)</h4>
+<div class="card">
+<div class="card-title">
+Monitoramento de Validade (36 Meses)
+</div>
 <ul>
-<li>O sistema acompanha automaticamente o prazo decadencial de 3 anos previsto na legislação federal.</li>
-<li><strong>Histórico de Titulação Limpo:</strong> Reprovações do período especial ou créditos não aproveitados são omitidos do documento de titulação do aluno regular.</li>
+<li>Acompanhamento automático do prazo decadencial de 3 anos da legislação federal.</li>
+<li><strong>Histórico de Titulação Limpo:</strong> Reprovações do período especial ou créditos não aproveitados são omitidos do documento de titulação regular.</li>
 </ul>
-</section>
+</div>
 </div></div>
 </section>
 <section class="slide level2">
@@ -1427,20 +1476,22 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <div class="columns">
 <div class="column" style="width:55%;">
 <ul>
-<li><strong>IES Mantenedora Única:</strong> Mantém a unidade institucional requerida pelo MEC e pelos registros de diplomas.</li>
-<li><strong>Isolamento de Dados Setoriais (LGPD):</strong> Cada coordenação e secretaria visualiza estritamente os discentes, turmas e bancas do seu programa.</li>
-<li><strong>Seletor no Topo em Um Clique:</strong> Usuários com permissão em mais de um programa alternam o contexto de trabalho instantaneamente, sem sair da sessão.</li>
-<li><strong>Trânsito Interno de Alunos:</strong> Matrícula cruzada entre programas da mesma instituição com aproveitamento integral de créditos.</li>
+<li><strong>IES Mantenedora Única:</strong> Preserva a unidade institucional requerida pelo MEC.</li>
+<li><strong>Isolamento de Dados Setoriais (LGPD):</strong> Secretarias visualizam estritamente seus discentes e bancas.</li>
+<li><strong>Seletor no Topo em Um Clique:</strong> Alternância instantânea de programa para usuários autorizados.</li>
+<li><strong>Trânsito Interno de Alunos:</strong> Matrícula cruzada intra-IES com aproveitamento integral.</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<section class="card card-highlight">
-<h4>Interface Ergonômica</h4>
+<div class="card card-highlight">
+<div class="card-title">
+Interface Ergonômica
+</div>
 <ul>
 <li>Widget seletor sempre visível na barra de topo.</li>
 <li>Botões de alternância rápida na listagem de programas.</li>
-<li>Identificação visual imediata do curso ativo em cada tela de trabalho.</li>
+<li>Identificação visual imediata do curso ativo em cada tela.</li>
 </ul>
-</section>
+</div>
 </div></div>
 </section>
 <section class="slide level2">
@@ -1449,92 +1500,108 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <div class="columns">
 <div class="column" style="width:55%;">
 <ul>
-<li><strong>Limite Nacional de Atuação:</strong> Nenhum docente pode atuar simultaneamente como membro permanente em mais de <strong>3 programas de pós-graduação stricto sensu</strong> no país.</li>
-<li><strong>Controle de Vínculos Locais e Externos:</strong> O sistema registra as atuações em programas da própria instituição e os vínculos declarados em outras IES do Brasil ou exterior.</li>
-<li><strong>Bloqueio Prévio de Excessos:</strong> O sistema impede o credenciamento de um quarto vínculo permanente, protegendo a instituição e o professor contra glosas da CAPES.</li>
+<li><strong>Limite Nacional de Atuação:</strong> Nenhum docente pode atuar simultaneamente como permanente em mais de <strong>3 programas de pós-graduação</strong> no país.</li>
+<li><strong>Controle de Vínculos Locais e Externos:</strong> Monitoramento somado de atuações na própria IES e em instituições externas.</li>
+<li><strong>Bloqueio Prévio de Excessos:</strong> Impede o credenciamento de um quarto vínculo permanente, protegendo contra glosas da CAPES.</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<section class="card card-highlight">
-<h4>Painel de Vínculos Docentes</h4>
+<div class="card card-highlight">
+<div class="card-title">
+Painel de Vínculos Docentes
+</div>
 <ul>
-<li>Painel consolidado na ficha do professor apresentando todos os programas filiados com selos informativos.</li>
+<li>Painel consolidado na ficha do professor apresentando filiações e selos informativos.</li>
 <li>Rastreabilidade de portarias de credenciamento e prazos de vigência.</li>
 </ul>
-</section>
+</div>
 </div></div>
 </section>
 <section class="slide level2">
 <h2>Conformidade 2: Bolsas e Ações Afirmativas</h2>
 <h3>Portaria CAPES nº 133/2023 &amp; Flexibilização com Trabalho</h3>
 <div class="grid-2">
-<section class="card card-success">
-<h4>Acúmulo com Atividade Remunerada</h4>
+<div class="card card-success">
+<div class="card-title">
+Acúmulo com Atividade Remunerada
+</div>
 <ul>
 <li>Suporte nativo à flexibilização que permite acúmulo de bolsa com trabalho remunerado.</li>
 <li>Exige parecer formal favorável do orientador e homologação colegiada pela CPG.</li>
 <li>Arquivamento digital do termo de compromisso e declaração formal de rendimentos.</li>
 </ul>
-</section>
-<section class="card card-highlight">
-<h4>Reserva Afirmativa de Cotas (PPI/PCD)</h4>
+</div>
+<div class="card card-highlight">
+<div class="card-title">
+Reserva Afirmativa de Cotas (PPI/PCD)
+</div>
 <ul>
 <li>Parametrização transparente de cotas para candidatos pretos, pardos, indígenas e PCDs.</li>
 <li><strong>Mecanismo de Reversão Automática:</strong> Caso não haja candidatos cotistas habilitados, as vagas revertem com segurança para ampla concorrência.</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
 <h2>Governança e Seleção de Bolsistas</h2>
 <h3>Rigor Avaliativo e Baremas Paramétricos sem Hardcode</h3>
 <div class="grid-2">
-<section class="card">
-<h4>Avaliação Paralela com Duplo Revisor</h4>
+<div class="card">
+<div class="card-title">
+Avaliação Paralela com Duplo Revisor
+</div>
 <ul>
 <li>Matriz avaliativa congregando Autoavaliação, Revisor 01 e Revisor 02 independentes.</li>
 <li>Trabalho simultâneo e cego entre revisores, eliminando viés e questionamentos recursais.</li>
 <li>Consolidação automática da média final pela Comissão de Bolsas / CPG.</li>
 </ul>
-</section>
-<section class="card card-highlight">
-<h4>Baremas Dinâmicos e Tetos de Edital</h4>
+</div>
+<div class="card card-highlight">
+<div class="card-title">
+Baremas Dinâmicos e Tetos de Edital
+</div>
 <ul>
 <li>Parametrização de pontuações acadêmicas, PTTs e experiência profissional por edital.</li>
 <li>Aplicação automatizada de tetos parciais e globais sem regras fixas em código.</li>
 <li>Trilha de auditoria completa de notas, pareceres e termos de outorga.</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
 <h2>Produtos Técnico-Tecnológicos (PTT)</h2>
 <h3>Taxonomia GTPT/CAPES e Maturidade Tecnológica</h3>
 <div class="grid-2">
-<section class="card">
-<h4>4 Eixos Estruturantes da CAPES</h4>
+<div class="card">
+<div class="card-title">
+4 Eixos Estruturantes da CAPES
+</div>
 <ul>
 <li><strong>E1 — Produtos e Processos:</strong> Patentes (T13), Softwares (T19), Tecnologias Sociais (T15), Startups (T11).</li>
 <li><strong>E2 — Processos de Formação:</strong> Cursos de capacitação (T08), Materiais didáticos e manuais operacionais (T09).</li>
 <li><strong>E3 — Divulgação e Difusão:</strong> Relatórios técnicos conclusivos e laudos de auditoria especializada (T06).</li>
 <li><strong>E4 — Serviços Técnicos:</strong> Normas técnicas e marcos regulatórios (T05), Protocolos clínicos (T07).</li>
 </ul>
-</section>
-<section class="card card-highlight">
-<h4>Maturidade TRL e Aderência</h4>
+</div>
+<div class="card card-highlight">
+<div class="card-title">
+Maturidade TRL e Aderência
+</div>
 <ul>
 <li><strong>Escala TRL de 1 a 9:</strong> Do conceito básico inicial à operação plena comprovada em ambiente produtivo.</li>
 <li><strong>Trava Prévia de Aderência:</strong> Exigência de vinculação direta com as Linhas de Pesquisa ativas do programa.</li>
 <li><strong>Comprovação de Propriedade Intelectual:</strong> Anexo obrigatório de comprovante de depósito no INPI para softwares e patentes.</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
 <h2>PTT: Motor do Qualis Tecnológico</h2>
 <h3>Avaliação Paramétrica Ponderada e Estratos Oficiais</h3>
 <div class="grid-2">
-<section class="card card-highlight">
-<h4>Fórmula de Pontuação (Baremo CAPES)</h4>
+<div class="card card-highlight">
+<div class="card-title">
+Fórmula de Pontuação (Baremo CAPES)
+</div>
 <p><span class="math display">\[\text{NF} = \text{D} + \text{I} + \text{A} + \text{C} \quad (\text{Máx: } 100 \text{ pts})\]</span></p>
 <ul>
 <li><strong>Demanda e Impacto (D):</strong> 0 a 30 pontos</li>
@@ -1542,9 +1609,11 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <li><strong>Aplicabilidade e Replicabilidade (A):</strong> 0 a 25 pontos</li>
 <li><strong>Complexidade Técnica (C):</strong> 0 a 20 pontos</li>
 </ul>
-</section>
-<section class="card">
-<h4>Estratos Oficiais de Classificação</h4>
+</div>
+<div class="card">
+<div class="card-title">
+Estratos Oficiais de Classificação
+</div>
 <ul>
 <li><strong>T1 (90 a 100 pts):</strong> Excelente / Alto Impacto Internacional ou Nacional</li>
 <li><strong>T2 (75 a 89 pts):</strong> Muito Bom / Relevância Regional/Nacional</li>
@@ -1553,53 +1622,61 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <li><strong>T5 (30 a 44 pts):</strong> Fraco / Baixa Complexidade</li>
 <li><strong>TNC (&lt; 30 pts):</strong> Não Classificado / Glosado por Inadimplência</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
 <h2>Ritos Acadêmicos e Diploma Nato-Digital</h2>
 <h3>Da Qualificação ao Registro Oficial (Portarias MEC nº 330/2018, 554/2019 e 70/2025)</h3>
 <div class="grid-2">
-<section class="card card-warning">
-<h4>Bancas e Blindagem Jurídica</h4>
+<div class="card card-warning">
+<div class="card-title">
+Bancas e Blindagem Jurídica
+</div>
 <ul>
 <li><strong>Validação Automática de Quórum:</strong> Checagem da titulação e do número de examinadores externos à IES e ao programa.</li>
 <li><strong>Trava Anti-Nepotismo:</strong> Bloqueio automático de examinadores com vínculo de parentesco até o 4º grau com discente ou orientador.</li>
 <li><strong>Pré-requisitos Obrigatórios:</strong> Verificação de proficiência, créditos e aprovação de comitê de ética antes da defesa.</li>
 </ul>
-</section>
-<section class="card card-success">
-<h4>Emissão Documental com Fé Pública</h4>
+</div>
+<div class="card card-success">
+<div class="card-title">
+Emissão Documental com Fé Pública
+</div>
 <ul>
 <li><strong>Histórico Consolidado com QR Code:</strong> Emissão imediata com selo de autenticidade para validação pública.</li>
 <li><strong>Diploma Nato-Digital Integrado:</strong> Dossiê acadêmico e assinaturas digitais ICP-Brasil (XAdES-BES / XML-DSig SHA-256) conforme padrão federal.</li>
 <li><strong>Suporte a Institutos de Pesquisa:</strong> Fluxo de expedição própria com registro em universidade parceira (modelo IPEN <span class="math inline">\(\rightarrow\)</span> USP).</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
 <h2>Validação Prática em Casos Reais</h2>
 <h3>Da Grande Universidade aos Institutos de Alta Complexidade</h3>
 <div class="grid-2">
-<section class="card">
-<h4>Universidades Multiprograma</h4>
+<div class="card">
+<div class="card-title">
+Universidades Multiprograma
+</div>
 <ul>
 <li>Dezenas de programas de pós-graduação operando na mesma base de dados.</li>
 <li>Secretarias setoriais com total sigilo de dados (LGPD) e alternância instantânea.</li>
 <li>Trânsito acadêmico entre cursos com validação de vagas e equivalência integral.</li>
 <li>Gestão unificada perante a Pró-Reitoria de Pós-Graduação da IES.</li>
 </ul>
-</section>
-<section class="card">
-<h4>Institutos de Pesquisa Integrados</h4>
+</div>
+<div class="card">
+<div class="card-title">
+Institutos de Pesquisa Integrados
+</div>
 <ul>
 <li>Modelo aplicado a instituições federais de excelência como o IPEN-CNEN/SP.</li>
 <li>Coexistência de programa próprio e cursos compartilhados com a USP.</li>
 <li>Controle fino de créditos externos e registro compartilhado de diplomas.</li>
 <li>Eliminação de retrabalhos manuais e relatórios gerados em segundos.</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
@@ -1656,18 +1733,24 @@ CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclea
 <h2>Síntese Executiva</h2>
 <h3>A Governança da Pós-Graduação em um Novo Patamar</h3>
 <div class="grid-3">
-<section class="card card-highlight">
-<h4>Conformidade Regulatória Nativa</h4>
+<div class="card card-highlight">
+<div class="card-title">
+Conformidade Regulatória Nativa
+</div>
 <p>Auditoria contínua de regras federais (Portarias CAPES nº 158/2023, 81/2016, 133/2023 e MEC nº 330/2018, 554/2019 e 70/2025) incorporada diretamente no fluxo do ERP acadêmico.</p>
-</section>
-<section class="card card-success">
-<h4>Fé Pública e Rastreabilidade</h4>
+</div>
+<div class="card card-success">
+<div class="card-title">
+Fé Pública e Rastreabilidade
+</div>
 <p>Livro-Razão imutável (<em>append-only</em>), proteção integral ao Ato Jurídico Perfeito e eliminação do retrabalho manual periódico na Plataforma Sucupira.</p>
-</section>
-<section class="card card-highlight">
-<h4>Inovação e Soberania Tecnológica</h4>
+</div>
+<div class="card card-highlight">
+<div class="card-title">
+Inovação e Soberania Tecnológica
+</div>
 <p>Arquitetura moderna, modular e de código aberto concebida no âmbito da pesquisa científica para elevar a gestão da pós-graduação <em>stricto sensu</em> brasileira.</p>
-</section>
+</div>
 </div>
 </section>
 <section class="slide level2">
@@ -1683,14 +1766,16 @@ Grupo de Pesquisa em Computação e IA em Nuclear e Saúde</p>
 </div>
 </div>
 </div><div class="column" style="width:62%;">
-<section class="card card-highlight">
-<h4>Projeto Soberano e Comunitário</h4>
+<div class="card card-highlight">
+<div class="card-title">
+Projeto Soberano e Comunitário
+</div>
 <ul>
 <li><strong>Licença Aberta e Auditável:</strong> Desenvolvido no âmbito da pesquisa pública para fortalecer as IES brasileiras.</li>
 <li><strong>Pronto para Coleta GoPG:</strong> Total aderência às Portarias CAPES nº 158/2023 e IN nº 1/2026.</li>
 <li><strong>Repositório Oficial:</strong> <code>github.com/cinas-ipen/l10n_br_openeducat_capes</code></li>
 </ul>
-</section>
+</div>
 <div class="card card-success" style="text-align: center; margin-top: 0.5em;">
 <p><strong>Contato e Colaboração Institucional:</strong><br>
 <code>cinas@ipen.br</code> • Portal Institucional: <code>cinas.ipen.br</code></p>
