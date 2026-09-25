@@ -156,8 +156,12 @@ def audit_scenario(scenario_dir, scenario_name):
         fac_link_ids.add(r['id'])
         if r['faculty_id/id'] not in fac_ids:
             errors.append(f"Vínculo docente {r['id']} aponta para docente inexistente: {r['faculty_id/id']}")
-        if r['program_id/id'] not in prog_ids:
-            errors.append(f"Vínculo docente {r['id']} aponta para programa inexistente: {r['program_id/id']}")
+        if r.get('link_type') != 'external':
+            if r['program_id/id'] not in prog_ids:
+                errors.append(f"Vínculo docente {r['id']} aponta para programa inexistente: {r['program_id/id']}")
+        else:
+            if not r.get('external_ies_name') or not r.get('external_program_name'):
+                errors.append(f"Vínculo docente externo {r['id']} sem instituição ou programa externo: {r['id']}")
 
     # Validação de Livro-Razão de Credenciamento Docente
     fac_led_file = [f for f in csv_files if '06b_credenciamento_docente' in f][0]

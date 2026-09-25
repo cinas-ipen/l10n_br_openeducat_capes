@@ -111,6 +111,7 @@ O ecossistema `l10n_br_openeducat_capes` foi concebido sob o paradigma do **Desi
 Em contraposição à cultura contemporânea da experimentação indiscriminada (*vibe coding*) — na qual desenvolvedores solicitam código diretamente a assistentes de IA por tentativa e erro, sem fundação relacional —, o DDD estabelece um princípio inegociável: **nenhuma linha de código em Python ou XML de produção é escrita antes que o modelo conceitual, os contratos de interface e os requisitos regulatórios estejam formalmente documentados e validados**.
 
 Em sistemas acadêmicos corporativos de missão crítica, a prática do *vibe coding* acarreta colapsos previsíveis:
+
 1. **Débito Técnico Exponencial:** A IA cria modelos desconexos, prolifera chaves estrangeiras com nomenclaturas incompatíveis (`student_id` versus `discente_id`) e viola padrões essenciais de performance e concorrência do ORM do Odoo.
 2. **Alucinações Regulatórias Fatais:** A ausência de especificação leva a IA a inventar regras fictícias, permitindo credenciamentos ilegais de docentes (violando a Portaria CAPES 81/2016), omitindo exigências censitárias do IBGE ou negligenciando as Portarias MEC de Diploma Digital.
 3. **Fragmentação de Estado e Ilegalidade:** A introdução de operações destrutivas (`DELETE` / `unlink`) destrói a trilha de auditoria exigida pela CAPES, pelo MEC e pelo Ministério Público, violando frontalmente a segurança jurídica do ato acadêmico.
@@ -177,6 +178,8 @@ Orientação ao agente de IA para codificação estritamente balizada pela arqui
 ### 5. Teste de Estresse com Dados Sintéticos Densos
 Rejeição categórica de dados de teste superficiais ou fictícios triviais. Construção de um gerador sintético determinístico com **33 entidades relacionais encadeadas** e de um **script validador forense pré-carga** que atestou **0 erros de integridade** antes da injeção no PostgreSQL.
 
+*(O detalhamento minucioso da esteira de dados sintéticos, arquitetura dos scripts Python, decisões de modelagem e seus dois cenários de validação empírica está documentado no [Capítulo: Engenharia de Dados Sintéticos e Validação Forense de Integridade](#sec-dados-sinteticos).)*
+
 ### 6. Auditoria Reversa Pente-Fino (*Back-Audit*) e GitOps Dual-Remote
 Confronto minucioso entre cada linha de código executável e os documentos de arquitetura. Havendo qualquer discrepância, a documentação e o código são sincronizados bidirecionalmente antes do commit atômico e sincronização simultânea nos repositórios institucional e público (*GitLab/Local + GitHub*).
 
@@ -195,6 +198,7 @@ Toda validação consulta dinamicamente a entidade de versionamento curricular (
 A operação destrutiva `DELETE` (`unlink` no Odoo) é terminantemente proibida em registros que conferem direitos acadêmicos ou titulação. 
 
 O sistema utiliza arquitetura de livro-razão (*ledger*) estritamente **append-only**:
+
 * `op.student.credit.ledger`: Registra créditos de disciplinas, equivalências, produções e aproveitamentos. Ajustes ou anulações são efetuados exclusivamente mediante novo lançamento de contrapartida (estorno ou aditivo com sinal negativo), amparado por ato formal da comissão de pós-graduação.
 * `op.faculty.category.ledger`: Custodia as transições funcionais dos docentes (ex: transição de *Colaborador* para *Permanente*), preservando a data de vigência e o número da ata deliberativa para fins de auditoria quadrienal pela CAPES.
 
@@ -207,6 +211,7 @@ Fundamentado no Art. 5º, inciso XXXVI da Constituição Federal de 1988, o sist
 O paradigma Design-Driven Development transforma radicalmente a atuação do engenheiro de software: o desenvolvedor deixa de atuar como mero digitador de sintaxe para assumir o papel de **Arquiteto de Sistemas e Auditor Crítico**.
 
 A governança eficaz de agentes de IA exige:
+
 * **Comandos Imperativos e Perímetros Delimitados:** Instruções precisas com escopo fechado, indicando os arquivos a auditar e os contratos a cumprir.
 * **Exigência de Rastreabilidade:** Cada linha de código deve possuir correspondência biunívoca com a documentação de arquitetura.
 * **Análise Forense de Falhas:** Diagnóstico aprofundado na raiz dos frameworks (examinando a árvore DOM compilada ou o plano de execução do PostgreSQL), evitando tentativas cegas de autocorreção pela IA.
@@ -252,12 +257,14 @@ Em conformidade com as diretrizes do Odoo 19:
 Para garantir integridade arquitetural sem corromper as tabelas originais, os submódulos estendem classes nativas via herança ORM (`_inherit`):
 
 * **OpenEduCat Base (`openeducat_core`):**
+
   * `op.student`: Estendido com RA institucional perene (`ra_number` / `gr_no`), CPF, PIDs acadêmicos (ORCiD, Lattes), orientador titular, status CAPES, versão regimental ativa (`curriculum_version_id`), vínculo com Livro-Razão de créditos e prontuário 360°.
   * `op.faculty`: Estendido com PIDs, regime de trabalho (DE/40h/20h), titulação máxima, linhas de pesquisa, vínculos interinstitucionais unificados (`op.faculty.program.link`), livro-razão de categorias (`op.faculty.category.ledger`) e auditoria do teto de 3 PPGs permanentes (Portaria CAPES 81/2016).
   * `op.subject`: Estendido com créditos sincronizados com `grade_weightage`, ementa detalhada (`syllabus`), bibliografia básica/complementar, indicador PHEA, idioma e governança de vagas para alunos especiais (`special_seats_quota`).
   * `op.batch`: Estendido com associação direta ao programa de pós-graduação (`program_id`).
   * `op.student.course`: Estendido para governança de multi-vínculo com tipo de curso (`course_type`), programa (`program_id`), versão regimental (`curriculum_version_id`) e datas de vigência.
 * **Odoo Framework (`base`, `mail`, `project`):**
+
   * `res.company`: Estendido com PIDs institucionais da mantenedora (CNPJ com validação, código e-MEC, código CAPES do PPG, ROR, ISNI), georreferenciamento e dados da Pró-Reitoria de Pós-Graduação.
   * `res.partner`: Estendido com censo biográfico e demográfico CAPES/DAV (CPF com Módulo 11, ORCiD, Lattes ID, raça/cor IBGE, indicador PCD, nacionalidade e filiação materna).
   * `res.users`: Estendido com governança multiprograma (`allowed_program_ids`, `current_program_id`, `is_central_admin`, `action_switch_program`).
@@ -305,15 +312,18 @@ erDiagram
 ```
 
 1. **Entidade Pessoal e Identidade Soberana (`op.student`):**
+
    * Vinculada de forma biunívoca à pessoa física (`res.partner`) e à IES mantenedora (`company_id`).
    * Possui um **Registro Acadêmico (RA)** vitalício e perene (`ra_number` / `gr_no`), gerado por sequência automática e imutável no tempo.
    * Trava de unicidade relacional: a restrição Python `@api.constrains('partner_id', 'company_id')` impede a criação de registros discentes duplicados para a mesma pessoa dentro da mesma instituição.
 
 2. **Vínculos Acadêmicos Desacoplados (`op.student.course`):**
+
    * Cada ingresso em programa (seja especial ou regular) é registrado como uma linha de detalhe em `op.student.course`.
    * Campos especializados `course_type` (`regular` vs `special`), `program_id` e `curriculum_version_id` definem as regras jurídicas ativas daquele período letivo.
 
 3. **Conversão de Candidato e Preservação do RA:**
+
    * No submódulo `l10n_br_openeducat_capes_admission`, a ação `action_convert_to_student` pesquisa previamente se o candidato aprovado já possui registro em `op.student` na IES (por exemplo, por ter sido Aluno Especial no passado).
    * Em caso positivo, o cadastro discente existente é reutilizado, seu RA é integralmente preservado, sua categoria é atualizada para `regular`, e um novo vínculo de curso (`op.student.course`) é instanciado para o novo programa de pós-graduação.
 
@@ -384,16 +394,20 @@ graph TD
 ## Mecanismo de Isolamento e Filtro Geral por Contexto
 
 1. **Extensão de Usuários (`res.users`):**
+
    * `allowed_program_ids`: Programas aos quais o operador tem delegação de acesso formal.
    * `current_program_id`: Programa selecionado como ativo no momento.
    * `is_central_admin`: Usuários da Pró-Reitoria com privilégios de supervisão global consolidada.
 2. **Modalidades Ergonômicas de Alternância de Programa:**
+
    * **Seletor Superior (Systray OWL):** Widget reativo no topo da interface que exibe o programa ativo e permite a comutação imediata via dropdown para usuários autorizados em múltiplos programas. Em instituições monoprograma (ex: MPTRCS), exibe o nome do curso de forma estática com zero cliques adicionais.
    * **Listagem de Programas (`CAPES/PPG -> Programas (SNPG)`):** Exibe coluna de status com selos visuais (`Programa Ativo` / `Disponível`), botão inline comutador direto (`fa-exchange`) em cada linha e ação coletiva *"Alternar para esse Programa"* no menu **Ações**.
    * **Formulário de Programa (`form view`):** Cabeçalho com botão primário *"Alternar para este Programa"* para programas permitidos em espera, e selo gráfico em fita `web_ribbon` (**"Programa Ativo"**) quando em exibição o programa corrente.
 3. **Injeção de `program_id` nas Entidades de Negócio:**
+
    * Todas as entidades transacionais (Turmas `op.batch`, Cursos `op.course`, Reuniões de Colegiado `op.cpg.meeting`, Inscrições de Processo Seletivo `op.admission.register`, Teses `capes.thesis`, Produtos PTT `capes.ptt.product`, Bolsas `capes.scholarship.edital` e Discentes `op.student`) possuem ligação relacional indexada `program_id`.
 4. **Regras de Registro no PostgreSQL (`ir.rule`):**
+
    * Impedem matematicamente que a Secretaria da Computação acesse ou altere requerimentos, turmas ou atas de bancas da Física Aplicada, garantindo conformidade estrita com a LGPD e a segregação de competências regimentais.
 
 ---
@@ -462,6 +476,7 @@ Para evitar recálculos retroativos em históricos passados, a integralização 
 
 * **Imutabilidade Estrita (`unlink` bloqueado):** O sistema impede o apagamento de lançamentos no livro-razão acadêmico.
 * **Taxonomia Completa de Lançamento (`credit_type`):**
+
   1. `subject_internal`: Disciplinas regulares cursadas no próprio programa de pós-graduação.
   2. `subject_intra_ies`: Disciplinas cursadas em outros programas de pós-graduação da mesma IES.
   3. `subject_special_quarantine`: Disciplinas cursadas na condição de Aluno Especial (mantidas em **quarentena**).
@@ -492,6 +507,138 @@ stateDiagram-v2
 3. **Requerimento Formal (`op.special.credit.incorporation.request`):** O aluno regular solicita a incorporação das disciplinas especiais, indicando o vínculo regular e as justificativas.
 4. **Homologação da CPG e Convalidação:** Uma vez deferido pela CPG, o sistema gera novos registros imutáveis no Livro-Razão com tipo `subject_special_incorporated`, referenciando o número da Resolução da CPG e a data da ata.
 5. **Histórico Oficial Limpo (`omit_on_regular`):** Na emissão do histórico escolar oficial de conclusão do aluno regular, as disciplinas mantidas em quarentena (não incorporadas) e eventuais reprovações do período de aluno especial são omitidas, refletindo apenas a trajetória regular e os créditos legitimamente integralizados.
+
+---
+
+# Engenharia de Dados Sintéticos e Validação Forense de Integridade {#sec-dados-sinteticos}
+
+## A Filosofia Anti-Trivialidade e a Armadilha do Isolamento
+
+Em projetos de software corporativo de grande porte assistidos por Inteligência Artificial, um dos erros mais frequentes e danosos é a realização de testes com massas de dados triviais (*"Aluno Teste 1"*, *"Professor Exemplo"* ou tabelas com apenas duas colunas preenchidas). Essa prática mascara falhas graves de integridade referencial, dependências cíclicas entre tabelas e exceções silenciosas em tempo de execução no ORM.
+
+Durante a maturação do ecossistema `l10n_br_openeducat_capes`, a equipe identificou e superou a **Armadilha do Isolamento**: a tendência inicial da IA de gerar dados sintéticos restritos apenas às tabelas customizadas do projeto (`capes_*`), ignorando a infraestrutura canônica do OpenEduCat.
+
+No ecossistema Odoo/OpenEduCat, nenhuma entidade acadêmica pode existir no vácuo:
+
+* Um discente (`op.student`) requer turmas (`op.batch`), cursos (`op.course`), níveis de programa (`op.program.level`), departamentos (`op.department`) e calendários letivos ativos (`op.academic.year`, `op.academic.term`).
+* Um docente (`op.faculty`) exige departamentos, áreas de conhecimento, linhas de pesquisa e vínculos funcionais formais.
+* Uma banca examinadora (`capes.thesis.committee`) requer membros internos e externos vinculados a instituições e áreas de avaliação da CAPES.
+
+Para superar essa limitação, foi projetada uma esteira determinística de geração e auditoria forense baseada em dois scripts Python independentes, operando sobre **33 arquivos CSV relacionais encadeados**.
+
+## Arquitetura dos Scripts Python da Esteira Sintética
+
+```{mermaid}
+graph TD
+    subgraph Gerador ["1. Gerador Procedural Sintético (gerador_dados_sinteticos.py)"]
+        Seed["Semente Determinística RNG(2026)<br/>(Reprodutibilidade Científica Total)"]
+        Onomastica["Onomástica Brasileira & Censo IBGE<br/>(Prenomes, Sobrenomes, Mãe, Raça/Cor, PCD)"]
+        Algoritmos["Algoritmos Fiscais e Criptográficos<br/>(CPF Módulo 11, ORCiD ISO 7064, PDFs Base64)"]
+        Orquestrador["Orquestrador de Chaves Estrangeiras<br/>(33 Datasets CSV Encadeados)"]
+    end
+
+    subgraph Datasets ["2. Repositório de Datasets (import_templates/datasets_sinteticos/)"]
+        Cen1["Cenário 1: Universidade XYZQ<br/>(4 Programas, 110 Pessoas, Coortes T1-T9)"]
+        Cen2["Cenário 2: MPTRCS / IPEN-CNEN/SP<br/>(Mestrado Profissional, 72 Pessoas, Registro USP)"]
+    end
+
+    subgraph Validador ["3. Validador Forense em Memória (validar_integridade_sintetica.py)"]
+        AuditOnomastica["Auditoria de CPFs, Censo e Unicidade<br/>(0 Colisões, 100% CPFs Válidos)"]
+        AuditFK["Auditoria em Grafo de Foreign Keys<br/>(Checagem Cruzada de 33 Tabelas)"]
+        AuditRegras["Auditoria de Regras Regimentais<br/>(Portaria 81/2016, Vínculos Externos, Quórum)"]
+        Atestado["Atestado Formal: 0 ERROS DETECTADOS<br/>(Aprovação Prévia à Carga no PostgreSQL)"]
+    end
+
+    Seed --> Onomastica
+    Onomastica --> Algoritmos
+    Algoritmos --> Orquestrador
+    Orquestrador --> Cen1
+    Orquestrador --> Cen2
+    Cen1 --> AuditOnomastica
+    Cen2 --> AuditOnomastica
+    AuditOnomastica --> AuditFK
+    AuditFK --> AuditRegras
+    AuditRegras --> Atestado
+
+    style Gerador fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style Datasets fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Validador fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Seed fill:#ffffff,stroke:#0288d1,stroke-width:1px
+    style Onomastica fill:#ffffff,stroke:#0288d1,stroke-width:1px
+    style Algoritmos fill:#ffffff,stroke:#0288d1,stroke-width:1px
+    style Orquestrador fill:#ffffff,stroke:#0288d1,stroke-width:1px
+    style Cen1 fill:#ffffff,stroke:#fbc02d,stroke-width:1px
+    style Cen2 fill:#ffffff,stroke:#fbc02d,stroke-width:1px
+    style AuditOnomastica fill:#ffffff,stroke:#388e3c,stroke-width:1px
+    style AuditFK fill:#ffffff,stroke:#388e3c,stroke-width:1px
+    style AuditRegras fill:#ffffff,stroke:#388e3c,stroke-width:1px
+    style Atestado fill:#ffffff,stroke:#388e3c,stroke-width:2px
+```
+
+### O Gerador Procedural (`scripts/gerador_dados_sinteticos.py`)
+
+Com mais de 1.100 linhas de código Python estruturado, o script é responsável pela geração não-repetitiva, determinística e rica dos dados acadêmicos:
+
+1. **Reprodutibilidade Estrita via Semente Fixa:** Utilização de `random.Random(2026)` garantindo que qualquer desenvolvedor, auditor ou esteira de CI/CD produza exatamente os mesmos registros, identificadores XML e valores de teste.
+2. **Onomástica Brasileira Realista e Censo CAPES:** 
+
+   * Pool balanceado de prenomes masculinos e femininos, combinados com sobrenomes e conectores tradicionais brasileiros (`Alcantara`, `Bittencourt`, `Cavalcanti`, `Guimarães`, `Mascarenhas`, `Wanderley`).
+   * Filiação materna completa com sobrenome consistente (`MOTHER_FIRSTS` + `MOTHER_CONNECTORS` + `last_name`).
+   * Cobertura de 100% dos dados demográficos exigidos pelo Censo da DAV/CAPES: naturalidade (município e UF oficiais), raça/cor IBGE (`white`, `brown`, `black`, `yellow`, `indigenous`), indicadores de PCD (Pessoas com Deficiência) e logradouros reais com CEP e código de área.
+3. **Cálculo Algorítmico Real de CPFs (Módulo 11):** Implementação da função `gen_cpf(seed_int)` que calcula matematicamente os dois dígitos verificadores conforme as regras da Receita Federal, evitando rejeições em validações de banco de dados.
+4. **Geração de Anexos em Base64:** Planos de trabalho discentes (`capes.work.plan`) e cartas de aceite de estágio são gerados com PDFs sintéticos válidos codificados em Base64, estressando o armazenamento de binários (*filestore*) do Odoo.
+5. **Orquestração Encadeada de 33 Datasets CSV:** O script exporta 33 arquivos numerados rigorosamente na sequência exigida para importação relacional no Odoo (desde `01a_empresa_ies` até `14c_historicos_escolares`).
+
+### O Validador Forense em Memória (`scripts/validar_integridade_sintetica.py`)
+
+Para impedir que dados corrompidos ou inconsistentes sejam carregados no ERP, foi desenvolvido um auditor forense autônomo que processa os arquivos CSV em memória antes de qualquer injeção no PostgreSQL:
+
+1. **Varredura Completa de Foreign Keys Cruzadas:** Constrói tabelas de símbolos em memória para todas as chaves primárias e valida se cada relacionamento aponta para um registro legitimamente existente (Docentes $\rightarrow$ Departamentos, Discentes $\rightarrow$ Turmas, Vínculos $\rightarrow$ Programas, Teses $\rightarrow$ Orientadores).
+2. **Auditoria de Unicidade e Onomástica:** Verifica colisão de nomes completos em todo o universo gerado (garantindo 0 duplicidades entre docentes e discentes) e audita a decomposição correta dos campos `first_name`, `middle_name` e `last_name`.
+3. **Auditoria Regulatória da Portaria CAPES nº 81/2016:**
+
+   * Distingue vínculos internos (`link_type == 'internal'`) de vínculos externos (`link_type == 'external'`).
+   * Para vínculos internos, assegura a integridade de `program_id/id`.
+   * Para vínculos externos, valida o preenchimento obrigatório da IES Externa (`external_ies_name`), Programa Externo (`external_program_name`) e código SNPG (`external_snpg_code`), permitindo auditar o teto de 3 credenciamentos permanentes.
+4. **Verificação de Regras Temporais e Prazos:** Audita se os prazos de quarentena de aluno especial (36 meses) e datas de ingresso/término respeitam as vigências das versões curriculares.
+5. **Atestado Formal de Conformidade:** O script emite um relatório conclusivo e só encerra com código `0` quando o dataset atinge **100% de conformidade e 0 erros detectados**.
+
+## Decisões de Design nos Dois Cenários de Validação
+
+A esteira sintética materializou dois cenários institucionais complementares, cobrindo todo o espectro da pós-graduação nacional:
+
+### Cenário 1: Universidade XYZQ (Universidade Multiprograma Complexa)
+
+Projetado para estressar a governança descentralizada, concorrência e isolamento departamental de grandes instituições:
+
+* **Escopo e Dimensão:** 4 Programas de Pós-Graduação (3 Acadêmicos: Ciência da Computação, Física Aplicada e Biologia Celular; 1 Profissional: Engenharia de Software), totalizando **110 identidades soberanas** (25 docentes e 85 discentes).
+* **Escalonamento Histórico em Coortes (T1 a T9):** Distribuição dos discentes ao longo de múltiplos anos letivos, abrangendo todo o ciclo de vida acadêmico:
+
+  * Alunos Egressos/Titulados (defesas concluídas, diplomas emitidos e histórico consolidado).
+  * Alunos Regulares em fase final de defesa de tese/dissertação.
+  * Alunos em fase de qualificação e cumprimento de créditos.
+  * Alunos Ingressantes recém-matriculados.
+  * Alunos Especiais cursando disciplinas isoladas.
+* **Corpo Docente Compartilhado e Vínculos Interinstitucionais:** Docentes com credenciamento simultâneo em dois programas da mesma IES e com atuação em instituições parceiras externas (USP, UNICAMP, UNESP, UNIFESP, UFABC e IPT), exercitando em escala as restrições da Portaria CAPES nº 81/2016.
+* **Validação do Seletor Systray (OWL):** Prova empírica de que secretarias de departamentos distintos visualizam exclusivamente seus discentes e turmas, enquanto a Pró-Reitoria de Pós-Graduação comuta entre programas ou mantém visão consolidada irrestrita.
+
+### Cenário 2: MPTRCS / IPEN-CNEN/SP (Instituto de Pesquisa Especializado)
+
+Projetado para validar as especificidades de um Mestrado Profissional de excelência sediado em Instituto de Pesquisa:
+
+* **Escopo e Dimensão:** Programa de Mestrado Profissional em Tecnologia das Radiações em Ciências da Saúde (MPTRCS), sediado no Instituto de Pesquisas Energéticas e Nucleares (IPEN-CNEN/SP), totalizando **72 identidades soberanas** (12 docentes e 60 discentes).
+* **Tramitação Híbrida e Registro Externo (USP):** Validação da expedição de diplomas por Instituto de Pesquisa sem autonomia universitária própria, exigindo que o registro do diploma seja remetido para escrituração externa na universidade registradora parceira (Universidade de São Paulo - USP), com número de registro, folha e processo externo.
+* **Quarentena e Convalidação de Aluno Especial:** Modelagem de discentes que iniciaram a trajetória cursando disciplinas isoladas (`subject_special_quarantine`), prestaram processo seletivo regular e tiveram seus créditos legitimamente incorporados (`subject_special_incorporated`) mediante requerimento formal homologado pela Comissão de Pós-Graduação (CPG).
+* **Esteira Densa de Produtos Técnico-Tecnológicos (PTT):** Avaliação de patentes, relatórios técnicos, softwares e protocolos clínicos aplicados à área de saúde e tecnologia nuclear, processados pela matriz de 4 eixos (100 pontos) do Qualis Tecnológico (estratos T1 a T5).
+
+## Implicações Técnicas e Regulatórias dos Dados Sintéticos
+
+A execução e validação dessa esteira de dados sintéticos trouxe impactos decisivos para a robustez da plataforma:
+
+1. **Blindagem do ORM contra Valores Nulos (*NoneType*):** A presença de históricos reais forçou a criação de tratamentos defensivos em campos computados (`@api.depends`) no Python, eliminando quebras quando alunos ainda não possuem orientador, coorientador ou data de defesa agendada.
+2. **Validação das Regras de Registro (*Record Rules*):** Demonstrou matematicamente no PostgreSQL que nenhuma consulta (`SELECT`) vaza dados confidenciais de alunos entre programas distintos quando governada pelo contexto da sessão (`current_program_id`).
+3. **Estabilidade de Relatórios QWeb e PDFs Oficiais:** Assegurou que a emissão de Históricos Escolares Consolidados e Dossiês de Diplomação suporte discentes com dezenas de disciplinas cursadas, aprovações, trancamentos e convalidações sem truncamento ou falha de paginação.
+4. **Verificação dos Endpoints REST Fonte Prata:** Testou a exportação JSON sob as rotas `/api/capes/v1/dav/*` com dezenas de discentes e docentes simultâneos, comprovando a eficácia dos mecanismos de cache e conformidade com o dicionário de 305 metadados da CAPES.
 
 ---
 
@@ -552,11 +699,13 @@ Varredura e auditoria automatizada realizada sobre os arquivos da pasta `metadad
 ## Visão 360° do Discente e do Docente
 
 * **Prontuário Discente 360° (`op.student`):**
+
   * Botão de ação direta no cabeçalho (*Header Action*) para emissão instantânea do *Histórico Escolar Consolidado Oficial em PDF* com QR Code e chancela MEC nº 70/2025.
   * Filiação formal ao Programa de Pós-Graduação (`program_id`), exibida na aba *Vínculo Regimental e Proficiências* e sincronizada com a versão regimental ativa.
   * Smart buttons para navegação em 1 clique: Vínculos de Curso, Livro-Razão Acadêmico, Trabalhos Finais e Bancas, Produtos PTT, Requerimentos e Diplomas Digitais.
   * Aba integrada no formulário com a listagem exaustiva de lançamentos do Livro-Razão (disciplinas, créditos, horas, conceitos e aprovação).
 * **Ficha Docente 360° (`op.faculty`):**
+
   * **Resumo de Filiações a Programas (`programs_summary`):** Campo computado destacado no topo do formulário do docente e na visualização em lista/kanban, consolidando em badges coloridos todos os programas aos quais o professor está filiado (locais e externos), com indicação expressa da categoria regimental (Permanente, Colaborador ou Visitante).
   * **Auditoria do Teto Nacional de 3 PPGs (Portaria CAPES nº 81/2016):** A Portaria CAPES nº 81/2016 fixa em no máximo **3 (três) programas de pós-graduação stricto sensu** a atuação simultânea de um docente como membro permanente em todo o território nacional. O sistema audita essa regra no modelo `op.faculty.program.link` somando os credenciamentos locais permanentes (`link_type == 'internal'`) e os credenciamentos permanentes em programas externos (`link_type == 'external'`), bloqueando via restrição Python `@api.constrains` qualquer inclusão que ultrapasse esse limite.
   * **Gestão Unificada de Filiações (`op.faculty.program.link`):** Registro de atuação formal tanto em PPGs locais da própria mantenedora quanto em PPGs de outras IES brasileiras ou estrangeiras, com IES Externa, Nome do Programa, Código SNPG, Categoria de Atuação (`faculty_category`) e Período de Credenciamento (`start_date`, `end_date`, `is_current`).
@@ -593,6 +742,7 @@ Ao acionar a transição para o rito de defesa, o motor de auditoria varre em te
 O submódulo `l10n_br_openeducat_capes_ptt` implementa a classificação oficial do Grupo de Trabalho de Produção Técnica (GTPT/CAPES) e da Área de Medicina II:
 
 * **4 Eixos Estruturantes (`capes.ptt.axis`):**
+
   * **E1 — Produtos e Processos Tecnológicos:** Patentes (T13), Softwares (T19), Tecnologias Sociais (T15), Startups / Spin-offs (T11).
   * **E2 — Produtos e Processos de Formação:** Cursos de Formação Profissional (T08), Material Didático / Instrucional / Manuais (T09).
   * **E3 — Produtos e Processos de Divulgação e Difusão:** Relatórios Técnicos Conclusivos / Laudos (T06), Eventos Tecnológicos, Exposições.
