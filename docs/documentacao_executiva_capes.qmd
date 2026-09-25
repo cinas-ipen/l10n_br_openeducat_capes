@@ -122,20 +122,20 @@ No DDD, **o documento de arquitetura é o código-fonte primário da inteligênc
 O desenvolvimento do ecossistema operou sob um ciclo contínuo e determinístico dividido em três fases:
 
 ```{mermaid}
-flowchart TD
-    subgraph FaseConceitual["1. Domínio & Especificação"]
+graph TD
+    subgraph FaseConceitual ["1. Domínio & Especificação"]
         Regulacao["Mapeamento Normativo<br/>(CAPES, MEC, Regimento)"]
         DocOuro["Documentação Arquitetural Ouro<br/>(Modelos, Diagramas, Contratos)"]
         Impacto["Análise de Impacto<br/>(11 Modelos Nativos Herdados)"]
     end
 
-    subgraph FaseExecutiva["2. Materialização & Teste"]
+    subgraph FaseExecutiva ["2. Materialização & Teste"]
         Implementacao["Implementação Estrita<br/>(ORM Python, Views list, OWL)"]
         CargaSintetica["Validação com Dados Sintéticos Densos<br/>(33 Entidades Encadeadas, 0 Erros)"]
         BackAudit["Auditoria Reversa Pente-Fino<br/>(Código vs. Arquitetura)"]
     end
 
-    subgraph FaseGovernanca["3. Entrega & Sincronização"]
+    subgraph FaseGovernanca ["3. Entrega & Sincronização"]
         Commit["GitOps Atômico Dual-Remote<br/>(Servidor Local + GitHub)"]
         SincExecutiva["Sincronização Executiva & Pitch<br/>(Simetria Semântica com o Banco)"]
     end
@@ -145,9 +145,21 @@ flowchart TD
     Impacto --> Implementacao
     Implementacao --> CargaSintetica
     CargaSintetica --> BackAudit
-    BackAudit -->|Inconsistência Identificada| DocOuro
-    BackAudit -->|Aprovado no Pente-Fino| Commit
+    BackAudit -->|"Inconsistência Identificada"| DocOuro
+    BackAudit -->|"Aprovado no Pente-Fino"| Commit
     Commit --> SincExecutiva
+
+    style FaseConceitual fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style FaseExecutiva fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style FaseGovernanca fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Regulacao fill:#ffffff,stroke:#0288d1,stroke-width:1px
+    style DocOuro fill:#ffffff,stroke:#0288d1,stroke-width:1px
+    style Impacto fill:#ffffff,stroke:#0288d1,stroke-width:1px
+    style Implementacao fill:#ffffff,stroke:#388e3c,stroke-width:1px
+    style CargaSintetica fill:#ffffff,stroke:#388e3c,stroke-width:1px
+    style BackAudit fill:#ffffff,stroke:#388e3c,stroke-width:1px
+    style Commit fill:#ffffff,stroke:#fbc02d,stroke-width:1px
+    style SincExecutiva fill:#ffffff,stroke:#fbc02d,stroke-width:1px
 ```
 
 ### 1. Mapeamento da Base Regulatória Formal
