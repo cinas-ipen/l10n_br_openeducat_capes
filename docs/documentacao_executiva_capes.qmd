@@ -37,6 +37,14 @@ Inconsistências cadastrais, inconsistências de datas de vínculo, omissão de 
 O módulo `l10n_br_openeducat_capes` foi concebido para atuar como a espinha dorsal de conformidade do ERP OpenEduCat/Odoo 19.0, garantindo rigor relacional, aderência estrita a **305 metadados CAPES DAV** e blindagem contra erros humanos e inconformidades regulatórias.
 :::
 
+:::{.callout-tip}
+### Livro Publicado: Metodologia Design-Driven Development (DDD)
+Para a fundamentação teórica completa, crônica detalhada de desenvolvimento assistido por Inteligência Artificial e lições aprendidas de Engenharia de Software deste projeto, consulte o livro oficial publicado online:
+
+👉 **[Design-Driven Development: Da Arquitetura Regulatória ao Código](https://momenezes.github.io/livroddd/)**  
+*Autoria: CINAS — Grupo de Pesquisa em Computação e Inteligência Artificial em Nuclear e Saúde (IPEN-CNEN/SP).*
+:::
+
 ## O Programa de Governança Colaborativa de Informações da Pós-Graduação (GoPG)
 
 Instituído oficialmente pela **Portaria CAPES nº 158, de 17 de agosto de 2023**, e complementado pela **Instrução Normativa nº 1/2026**, o **Programa GoPG** altera a dinâmica histórica de prestação de contas dos programas de pós-graduação. O modelo arcaico de redigitação manual periódica na Plataforma Sucupira é substituído por um ambiente **interoperável, contínuo e auditável em tempo real**.
@@ -91,6 +99,115 @@ graph TD
 * **Fonte Ouro (Repositórios Institucionais DSpace):** Custodia os arquivos digitais definitivos das teses, dissertações e Produtos Técnico-Tecnológicos (PTTs). Expõe o XML no namespace `oai_capes`. Uma vez coletado pela CAPES, o dado fica bloqueado para edição manual na Sucupira.
 * **Fonte Prata (ERP OpenEduCat / Odoo):** Custodia a verdade sobre a vida acadêmica, matrículas, notas, integralização de créditos, livro-razão imutável, composição de bancas, credenciamento docente e PTTs. Expõe APIs RESTful JSON sob a rota `/api/capes/v1/`.
 * **Fonte Bronze (Inserção Manual na Sucupira):** Formulários Web manuais sob diretriz de descontinuidade progressiva pelo GoPG.
+
+---
+
+# Metodologia de Engenharia de Software: Design-Driven Development (DDD) na Prática
+
+## O Manifesto do Design-Driven Development (DDD) e o Combate ao "Vibe Coding"
+
+O ecossistema `l10n_br_openeducat_capes` foi concebido sob o paradigma do **Design-Driven Development (DDD)** — a confluência sistemática entre a modelagem rica de domínio (*Domain-Driven Design*) e a arquitetura formal prévia (*Documentation-First Architecture*) assistida por Inteligência Artificial generativa.
+
+Em contraposição à cultura contemporânea da experimentação indiscriminada (*vibe coding*) — na qual desenvolvedores solicitam código diretamente a assistentes de IA por tentativa e erro, sem fundação relacional —, o DDD estabelece um princípio inegociável: **nenhuma linha de código em Python ou XML de produção é escrita antes que o modelo conceitual, os contratos de interface e os requisitos regulatórios estejam formalmente documentados e validados**.
+
+Em sistemas acadêmicos corporativos de missão crítica, a prática do *vibe coding* acarreta colapsos previsíveis:
+1. **Débito Técnico Exponencial:** A IA cria modelos desconexos, prolifera chaves estrangeiras com nomenclaturas incompatíveis (`student_id` versus `discente_id`) e viola padrões essenciais de performance e concorrência do ORM do Odoo.
+2. **Alucinações Regulatórias Fatais:** A ausência de especificação leva a IA a inventar regras fictícias, permitindo credenciamentos ilegais de docentes (violando a Portaria CAPES 81/2016), omitindo exigências censitárias do IBGE ou negligenciando as Portarias MEC de Diploma Digital.
+3. **Fragmentação de Estado e Ilegalidade:** A introdução de operações destrutivas (`DELETE` / `unlink`) destrói a trilha de auditoria exigida pela CAPES, pelo MEC e pelo Ministério Público, violando frontalmente a segurança jurídica do ato acadêmico.
+
+No DDD, **o documento de arquitetura é o código-fonte primário da inteligência do sistema**. Quando se opera com agentes de IA, a densidade e o rigor da especificação formal determinam matematicamente a qualidade do código gerado.
+
+## O Ciclo DDD em Seis Passos de Ouro
+
+O desenvolvimento do ecossistema operou sob um ciclo contínuo e determinístico dividido em três fases:
+
+```{mermaid}
+flowchart TD
+    subgraph FaseConceitual["1. Domínio & Especificação"]
+        Regulacao["Mapeamento Normativo<br/>(CAPES, MEC, Regimento)"]
+        DocOuro["Documentação Arquitetural Ouro<br/>(Modelos, Diagramas, Contratos)"]
+        Impacto["Análise de Impacto<br/>(11 Modelos Nativos Herdados)"]
+    end
+
+    subgraph FaseExecutiva["2. Materialização & Teste"]
+        Implementacao["Implementação Estrita<br/>(ORM Python, Views list, OWL)"]
+        CargaSintetica["Validação com Dados Sintéticos Densos<br/>(33 Entidades Encadeadas, 0 Erros)"]
+        BackAudit["Auditoria Reversa Pente-Fino<br/>(Código vs. Arquitetura)"]
+    end
+
+    subgraph FaseGovernanca["3. Entrega & Sincronização"]
+        Commit["GitOps Atômico Dual-Remote<br/>(Servidor Local + GitHub)"]
+        SincExecutiva["Sincronização Executiva & Pitch<br/>(Simetria Semântica com o Banco)"]
+    end
+
+    Regulacao --> DocOuro
+    DocOuro --> Impacto
+    Impacto --> Implementacao
+    Implementacao --> CargaSintetica
+    CargaSintetica --> BackAudit
+    BackAudit -->|Inconsistência Identificada| DocOuro
+    BackAudit -->|Aprovado no Pente-Fino| Commit
+    Commit --> SincExecutiva
+```
+
+### 1. Mapeamento da Base Regulatória Formal
+Engenharia reversa das portarias ministeriais (CAPES 81/2016, 133/2023, 158/2023; MEC 330/2018, 554/2019 e 70/2025), dicionários de dados da Plataforma Sucupira/DAV e normas regimentais internas antes de abrir o editor de código.
+
+### 2. Redação da Documentação Arquitetural Ouro
+Criação dos memoriais técnicos textuais versionados em `docs/`, contendo diagramas de entidade-relacionamento (Mermaid), dicionários de dados detalhados com restrições (`required`, `readonly`, `tracking`), máquinas de estado e diagramas de sequência.
+
+### 3. Análise de Impacto no Ecossistema
+Mapeamento cirúrgico dos 11 modelos nativos do Odoo e OpenEduCat a serem estendidos, identificando riscos de sobrescrita de métodos, dependências transitivas e definição de regras de acesso (`ir.rule`) para isolamento de dados.
+
+### 4. Implementação Estrita no ORM e Views
+Orientação ao agente de IA para codificação estritamente balizada pela arquitetura. Adoção mandatória de tipagem forte, decorators `@api.depends`, restrições de integridade `@api.constrains`, campos rastreados para auditoria (`tracking=True`) e uso exclusivo das tags modernas do Odoo 19 (`<list>` em substituição ao legado `<tree>`).
+
+### 5. Teste de Estresse com Dados Sintéticos Densos
+Rejeição categórica de dados de teste superficiais ou fictícios triviais. Construção de um gerador sintético determinístico com **33 entidades relacionais encadeadas** e de um **script validador forense pré-carga** que atestou **0 erros de integridade** antes da injeção no PostgreSQL.
+
+### 6. Auditoria Reversa Pente-Fino (*Back-Audit*) e GitOps Dual-Remote
+Confronto minucioso entre cada linha de código executável e os documentos de arquitetura. Havendo qualquer discrepância, a documentação e o código são sincronizados bidirecionalmente antes do commit atômico e sincronização simultânea nos repositórios institucional e público (*GitLab/Local + GitHub*).
+
+## Os Três Axiomas Inegociáveis da Arquitetura
+
+Para blindar o sistema contra falhas jurídicas e operacionais, três axiomas foram instituídos como dogmas técnicos:
+
+### Axioma 1: Proibição Absoluta de Hardcode Regimental
+
+Regras de prazo, fatores de conversão de créditos, quóruns mínimos de bancas examinadoras e exigências de proficiência **jamais são fixados diretamente no código Python**. 
+
+Toda validação consulta dinamicamente a entidade de versionamento curricular (`op.curriculum.version`) associada à matrícula específica do discente (`op.student.course`). Isso viabiliza que diferentes turmas coexistam sob regimentos distintos no mesmo banco de dados, sem necessidade de deploy ou intervenção de TI quando uma Congregação altera o regulamento do programa.
+
+### Axioma 2: Imutabilidade e Append-Only em Livros-Razão
+
+A operação destrutiva `DELETE` (`unlink` no Odoo) é terminantemente proibida em registros que conferem direitos acadêmicos ou titulação. 
+
+O sistema utiliza arquitetura de livro-razão (*ledger*) estritamente **append-only**:
+* `op.student.credit.ledger`: Registra créditos de disciplinas, equivalências, produções e aproveitamentos. Ajustes ou anulações são efetuados exclusivamente mediante novo lançamento de contrapartida (estorno ou aditivo com sinal negativo), amparado por ato formal da comissão de pós-graduação.
+* `op.faculty.category.ledger`: Custodia as transições funcionais dos docentes (ex: transição de *Colaborador* para *Permanente*), preservando a data de vigência e o número da ata deliberativa para fins de auditoria quadrienal pela CAPES.
+
+### Axioma 3: Respeito ao Ato Jurídico Perfeito e Não-Retroatividade
+
+Fundamentado no Art. 5º, inciso XXXVI da Constituição Federal de 1988, o sistema diferencia formalmente o **Ato Jurídico Perfeito** (disciplinas cursadas, créditos concedidos e exames de qualificação homologados sob regimento anterior) da **Expectativa de Direito** (prazos futuros de defesa e novos requisitos de publicação). As alterações de regimento aplicam-se prospectivamente, assegurando que o discente não sofra prejuízos por reformas curriculares ocorridas durante o seu curso.
+
+## O Papel do Arquiteto Humano na Governança da IA
+
+O paradigma Design-Driven Development transforma radicalmente a atuação do engenheiro de software: o desenvolvedor deixa de atuar como mero digitador de sintaxe para assumir o papel de **Arquiteto de Sistemas e Auditor Crítico**.
+
+A governança eficaz de agentes de IA exige:
+* **Comandos Imperativos e Perímetros Delimitados:** Instruções precisas com escopo fechado, indicando os arquivos a auditar e os contratos a cumprir.
+* **Exigência de Rastreabilidade:** Cada linha de código deve possuir correspondência biunívoca com a documentação de arquitetura.
+* **Análise Forense de Falhas:** Diagnóstico aprofundado na raiz dos frameworks (examinando a árvore DOM compilada ou o plano de execução do PostgreSQL), evitando tentativas cegas de autocorreção pela IA.
+
+## Os Três Registros Semânticos de Comunicação do Ecossistema
+
+Um projeto corporativo de alta complexidade demanda governança comunicacional estruturada em três níveis semânticos distintos:
+
+| Registro de Comunicação | Artefato Principal | Público-Alvo | Função e Estilo |
+| :--- | :--- | :--- | :--- |
+| **Linguagem Arquitetural** | 23 Docs Técnicos (`docs/*.md`) | Engenheiros de Software, DevOps e Auditores de TI | Rigor formal, modelos relacionais, decorators ORM, contratos de API e segurança. |
+| **Linguagem Operacional** | Manuais de Usuário (`docs/manual_*.md`) | Secretarias de Pós, Coordenadores e Docentes | Guias orientados a processos de negócio, ritos acadêmicos e fluxos de tela. |
+| **Linguagem Estratégica** | Documentação Executiva e Pitch (`.qmd`) | Reitoria, Pró-Reitores e Diretores de Centro | Governança institucional, conformidade regulatória CAPES/MEC e soberania tecnológica. |
 
 ---
 
